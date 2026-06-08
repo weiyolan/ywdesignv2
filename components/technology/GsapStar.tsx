@@ -102,17 +102,27 @@ export function GsapStar() {
           },
         });
 
-        const [drag] = Draggable.create(svg, {
-          type: "x,y",
-          bounds: "#star-stage",
-          edgeResistance: 0.65,
-          dragClickables: true,
-          onClick: morph,
-        });
+        let drag: Draggable | undefined;
+        try {
+          // Pass the element, not a "#star-stage" selector — Draggable's selector
+          // resolution can return undefined here and throw in applyBounds.
+          [drag] = Draggable.create(svg, {
+            type: "x,y",
+            bounds: stage,
+            edgeResistance: 0.65,
+            dragClickables: true,
+            onClick: morph,
+          });
+        } catch {
+          // Draggable is an enhancement — never let it break the page.
+          svg.style.cursor = "pointer";
+          svg.addEventListener("click", morph);
+        }
 
         return () => {
           st.kill();
           drag?.kill();
+          svg.removeEventListener("click", morph);
         };
       });
 
