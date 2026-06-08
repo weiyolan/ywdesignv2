@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.className='js';</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YWdesign — Senior web developer, Antwerp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Unbounded:wght@400;600;800&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="theme-init.js"></script>
+<script src="image-slot.js"></script>
+</head>
+<body data-motion="full" data-grid="on" data-work="stack">
+
+<div class="grid-bg"></div>
+<div class="dots-bg"></div>
+<div class="rules-bg"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+
+<nav id="nav">
+  <a class="logo" href="#top">
+    <span class="mark">YW<b>design</b></span>
+    <span class="stat">available</span>
+  </a>
+  <div class="navlinks">
+    <a href="#top" class="hide-md">Home</a>
+    <a href="work.html" class="hide-md">Work</a>
+    <a href="technology.html" class="hide-md">Technology</a>
+    <a href="about.html" class="hide-md">About</a>
+    <a href="#contact" class="btn btn-primary hide-sm">Start a project <span class="arr">→</span></a>
+    <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <a href="#top" data-mclose>Home <span class="md-i">01</span></a>
+  <a href="work.html" data-mclose>Work <span class="md-i">02</span></a>
+  <a href="technology.html" data-mclose>Technology <span class="md-i">03</span></a>
+  <a href="about.html" data-mclose>About <span class="md-i">04</span></a>
+  <a href="#contact" class="btn btn-primary md-cta" data-mclose>Start a project <span class="arr">→</span></a>
+</div>
+<div class="nav-scrim" id="nav-scrim" hidden></div>
+
+<a id="top"></a>
+<header>
+  <div class="wrap hero-grid">
+    <div class="hero hero-copy">
+      <span class="eyebrow" data-reveal><span class="tk">//</span> Senior web developer &amp; designer · Antwerp, BE</span>
+      <h1 class="display" data-reveal data-d="1">
+        <span class="line"><span class="word" data-scramble>Websites,</span> built</span>
+        <span class="line">from <span class="accent" data-scramble>scratch</span>—</span>
+        <span class="line">AI is the <span class="accent" data-scramble>power&nbsp;tool.</span></span>
+      </h1>
+      <p class="hero-sub" data-reveal data-d="2">I'm <b>Yolan</b> — a senior developer who architects fast, multilingual websites and stores line by line. <b>AI accelerates the craft; it never replaces the judgement.</b> Mastered, not enslaved.</p>
+      <div class="hero-cta" data-reveal data-d="3">
+        <a href="#work" class="btn btn-primary">See the work <span class="arr">→</span></a>
+        <a href="#ai" class="btn btn-ghost">The philosophy</a>
+      </div>
+    </div>
+
+    <div class="growth" data-reveal data-d="2" id="growth">
+      <div class="growth-bar">
+        <span class="gb-title"><i class="gb-dot"></i> growth.tsx — what good code earns</span>
+        <span class="gb-live"><i></i>live</span>
+      </div>
+      <div class="growth-body">
+        <div class="funnel">
+          <div class="fn-step">
+            <span class="fn-k">Visitors</span>
+            <span class="fn-v" data-val="48200" data-fmt="k">0</span>
+            <span class="fn-d">+0%</span>
+          </div>
+          <span class="fn-arrow" aria-hidden="true">→</span>
+          <div class="fn-step">
+            <span class="fn-k">Clicks</span>
+            <span class="fn-v" data-val="13100" data-fmt="k">0</span>
+            <span class="fn-d">27% CTR</span>
+          </div>
+          <span class="fn-arrow" aria-hidden="true">→</span>
+          <div class="fn-step fn-profit">
+            <span class="fn-k">Profit</span>
+            <span class="fn-v" data-val="92400" data-fmt="eur">0</span>
+            <span class="fn-d">▲ shipped</span>
+          </div>
+        </div>
+        <div class="chart" id="growth-chart">
+          <svg class="chart-svg" viewBox="0 0 560 240" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.34"></stop>
+                <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"></stop>
+              </linearGradient>
+            </defs>
+            <g class="chart-grid"></g>
+            <path class="chart-area" d=""></path>
+            <path class="chart-line" d="" fill="none"></path>
+            <circle class="chart-head" r="6" cx="0" cy="0"></circle>
+          </svg>
+          <div class="burst" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="strip" data-reveal>
+      <div class="strip-track" id="strip"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ CAPABILITIES (bento) ============ -->
+<section id="capabilities" class="tex-dots">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow"><span class="tk">01</span> What I bring</span>
+      <h2 class="display">Not a template.<br>A toolkit, hand-built.</h2>
+      <p>Every capability below is engineered from scratch and proven on a real, shipped project. No page builders, no boilerplate — just code I understand top to bottom.</p>
+    </div>
+
+    <div class="bento">
+      <!-- design systems -->
+      <div class="card feature span-3" data-reveal>
+        <div class="c-ico">[ design_systems ]</div>
+        <h3>Design systems, from tokens up</h3>
+        <p>Type scales, color, spacing, motion and components — a coherent system, not a pile of CSS.</p>
+        <div class="viz">
+          <div class="viz-scale">
+            <span style="font-size:34px">Aa</span><span style="font-size:26px">Aa</span>
+            <span style="font-size:20px">Aa</span><span style="font-size:15px">Aa</span>
+          </div>
+          <div class="swatches">
+            <i style="background:var(--accent)"></i>
+            <i style="background:var(--text)"></i>
+            <i style="background:var(--text-3)"></i>
+            <i style="background:var(--bg-3)"></i>
+            <i style="background:var(--line-2)"></i>
+          </div>
+        </div>
+        <a class="c-case" href="https://spiree-next.netlify.app/" target="_blank" rel="noopener">CASE: <b>Spiree</b> — gradient system ↗</a>
+      </div>
+
+      <!-- motion -->
+      <div class="card feature span-3" data-reveal data-d="1">
+        <div class="c-ico">[ motion ]</div>
+        <h3>Scroll-driven, cinematic motion</h3>
+        <p>Sectioned scroll, sticky chapters and reveal choreography — performance-budgeted, never gratuitous.</p>
+        <div class="viz">
+          <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <a class="c-case" href="https://miloweiler.com" target="_blank" rel="noopener">CASE: <b>Milo Weiler</b> — 7-chapter scroll ↗</a>
+      </div>
+
+      <!-- i18n -->
+      <div class="card span-2" data-reveal>
+        <div class="c-ico">[ i18n ]</div>
+        <h3>Multilingual routing</h3>
+        <p>EN · FR · NL with localized SEO baked in.</p>
+        <div class="viz"><div class="lang"><b class="on">EN</b><b>FR</b><b>NL</b></div></div>
+        <a class="c-case" href="https://bermuda-events.be" target="_blank" rel="noopener">CASE: <b>Bermuda</b> ↗</a>
+      </div>
+
+      <!-- cms -->
+      <div class="card span-2" data-reveal data-d="1">
+        <div class="c-ico">[ headless_cms ]</div>
+        <h3>Headless CMS</h3>
+        <p>Ship content edits without a developer in the loop.</p>
+        <div class="viz"><div class="codeline"><span class="d">query</span> <span class="g">allProducts</span> {<br>&nbsp;&nbsp;title, price, <span class="g">slug</span><br>}</div></div>
+        <a class="c-case" href="https://nu-site.netlify.app/en" target="_blank" rel="noopener">CASE: <b>Nu</b> · Sanity ↗</a>
+      </div>
+
+      <!-- commerce -->
+      <div class="card span-2" data-reveal data-d="2">
+        <div class="c-ico">[ commerce ]</div>
+        <h3>Commerce &amp; payments</h3>
+        <p>Stripe &amp; Twint checkouts that convert.</p>
+        <div class="viz"><div class="codeline"><span class="g">POST</span> /checkout <span class="d">→ 200</span><br><span class="d">stripe.session.create()</span></div></div>
+        <a class="c-case" href="https://nu-site.netlify.app/en" target="_blank" rel="noopener">CASE: <b>Nu</b> store ↗</a>
+      </div>
+
+      <!-- performance wide -->
+      <div class="card span-4" data-reveal>
+        <div class="c-ico">[ performance · seo ]</div>
+        <h3>Lighthouse-tuned, search-ready</h3>
+        <p>Deferred imagery, semantic markup and clean Core Web Vitals — fast for users and for Google.</p>
+        <div class="viz">
+          <div class="gauge">
+            <div class="num" data-count="100">0</div>
+            <div class="metrics">
+              <b>Performance</b> · <b>SEO</b> · <b>Best Practices</b><br>
+              LCP <b>1.1s</b> · CLS <b>0.00</b> · TTI <b>1.4s</b>
+            </div>
+          </div>
+        </div>
+        <a class="c-case" href="https://miloweiler.com" target="_blank" rel="noopener">CASE: <b>Milo Weiler</b> ↗</a>
+      </div>
+
+      <!-- AI accent -->
+      <div class="card accent-card span-2" data-reveal data-d="1">
+        <div class="c-ico">[ ai_assisted ]</div>
+        <h3>AI, mastered</h3>
+        <p>Prompt → reviewed, refactored, understood code. Speed without surrendering the architecture.</p>
+        <a class="c-case" href="#ai">Read the philosophy ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STACK DEEP DIVE ============ -->
+<section id="stack" class="tex-dots" data-screen-label="Stack">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow"><span class="tk">02</span> The stack, in depth</span>
+      <h2 class="display">No WordPress.<br>Personalized&nbsp;code.</h2>
+      <p>No page builders, no plugin sprawl, no theme to fight. Every site is written from scratch in a modern stack I know deep enough to bend. The three tools below do the heavy lifting — scroll, and each one opens itself as the line reaches it.</p>
+    </div>
+
+    <div class="stack-deep">
+      <div class="deep-rows" id="stack-acc">
+        <div class="deep-rail" aria-hidden="true">
+          <div class="deep-rail-track"></div>
+          <div class="deep-rail-fill" id="deep-fill"></div>
+        </div>
+        <article class="deep is-open" data-reveal>
+          <button class="deep-bar" type="button" aria-expanded="true">
+            <span class="deep-node" aria-hidden="true"></span>
+            <span class="deep-mark">N</span>
+            <span class="deep-meta">
+              <span class="deep-name">Next.js</span>
+              <span class="deep-tag">The foundation — every site runs on it</span>
+            </span>
+            <span class="deep-role">framework</span>
+            <span class="deep-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="deep-panel">
+            <div class="deep-panel-in"><div class="deep-panel-pad">
+              <p>Every site I build is a Next.js application. The App Router gives me server components, streaming and file-based routing — pages render on the server for speed and SEO, then hydrate only the parts that need to be interactive. One framework, from marketing page to checkout.</p>
+              <ul class="deep-points">
+                <li>App Router &amp; React Server Components</li>
+                <li>SSG · ISR · SSR chosen per route</li>
+                <li>next/image — automatic optimisation</li>
+                <li>Native i18n routing — en · fr · nl</li>
+                <li>Route-level code splitting</li>
+                <li>Edge-ready, deployed on Vercel</li>
+              </ul>
+              <a class="c-case" href="https://miloweiler.com" target="_blank" rel="noopener">CASE: <b>Milo Weiler</b> — 55 projects, top Lighthouse ↗</a>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="deep" data-reveal data-d="1">
+          <button class="deep-bar" type="button" aria-expanded="false">
+            <span class="deep-node" aria-hidden="true"></span>
+            <span class="deep-mark">S</span>
+            <span class="deep-meta">
+              <span class="deep-name">Sanity</span>
+              <span class="deep-tag">Headless content the client edits themselves</span>
+            </span>
+            <span class="deep-role">headless cms</span>
+            <span class="deep-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="deep-panel">
+            <div class="deep-panel-in"><div class="deep-panel-pad">
+              <p>Content lives in Sanity, fully decoupled from the front-end. Editors update products, posts and imagery inside a Studio I tailor to their workflow; I query exactly the shape each page needs with GROQ and render it through Portable Text. No developer in the loop for day-to-day edits.</p>
+              <ul class="deep-points">
+                <li>Custom Studio schemas per client</li>
+                <li>GROQ — query only what's rendered</li>
+                <li>Portable Text rich content</li>
+                <li>Draft preview &amp; real-time updates</li>
+                <li>Image pipeline on a global CDN</li>
+                <li>Webhook-triggered rebuilds</li>
+              </ul>
+              <a class="c-case" href="https://nu-site.netlify.app/en" target="_blank" rel="noopener">CASE: <b>Nu</b> — a CMS-driven clean-beauty catalog ↗</a>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="deep" data-reveal data-d="2">
+          <button class="deep-bar" type="button" aria-expanded="false">
+            <span class="deep-node" aria-hidden="true"></span>
+            <span class="deep-mark">St</span>
+            <span class="deep-meta">
+              <span class="deep-name">Stripe</span>
+              <span class="deep-tag">Secure checkout — multi-currency &amp; Twint</span>
+            </span>
+            <span class="deep-role">payments</span>
+            <span class="deep-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="deep-panel">
+            <div class="deep-panel-in"><div class="deep-panel-pad">
+              <p>Checkout runs on Stripe. Sessions are created server-side, confirmed by signed webhooks and reconciled before anything ships — secure by construction, never trusting the browser. Multi-currency plus Twint gives Belgian and EU customers the payment methods they actually reach for.</p>
+              <ul class="deep-points">
+                <li>Server-side Checkout Sessions</li>
+                <li>Signed-webhook fulfilment</li>
+                <li>Multi-currency pricing</li>
+                <li>Twint &amp; cards for the EU</li>
+                <li>PaymentIntents with SCA</li>
+                <li>Tax &amp; shipping logic</li>
+              </ul>
+              <a class="c-case" href="https://nu-site.netlify.app/en" target="_blank" rel="noopener">CASE: <b>Nu</b> store — a frictionless buying flow ↗</a>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="deep" data-reveal data-d="2">
+          <button class="deep-bar" type="button" aria-expanded="false">
+            <span class="deep-node" aria-hidden="true"></span>
+            <span class="deep-mark">G</span>
+            <span class="deep-meta">
+              <span class="deep-name">GSAP</span>
+              <span class="deep-tag">The motion engine — scroll &amp; timeline animation</span>
+            </span>
+            <span class="deep-role">animation</span>
+            <span class="deep-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="deep-panel">
+            <div class="deep-panel-in"><div class="deep-panel-pad">
+              <p>Every reveal, scroll chapter and hover flourish runs on GSAP. ScrollTrigger pins sections and ties animation to scroll position; timelines sequence the choreography frame-accurately. It's the difference between a site that loads and one that <em>moves</em> — performance-budgeted, never gratuitous.</p>
+              <ul class="deep-points">
+                <li>ScrollTrigger — scroll-driven scenes</li>
+                <li>Timelines for sequenced motion</li>
+                <li>Pin &amp; scrub sticky chapters</li>
+                <li>GPU-friendly transforms only</li>
+                <li>Reduced-motion aware</li>
+                <li>60fps on mid-range mobile</li>
+              </ul>
+              <a class="c-case" href="https://miloweiler.com" target="_blank" rel="noopener">CASE: <b>Milo Weiler</b> — 7-chapter scroll choreography ↗</a>
+            </div></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="stack-term" data-reveal>
+      <div class="term" id="terminal">
+        <div class="term-bar"><i></i><i></i><i></i><span>yolan@ywdesign — zsh</span></div>
+        <div class="term-body" id="term-body"></div>
+      </div>
+      <div class="stack-term-side">
+        <span class="eyebrow"><span class="tk">//</span> From scratch, every time</span>
+        <h3>This is what<br>“no template” looks like.</h3>
+        <p>A site spun up the way I actually work — architecture first, design system second, then shipped. The judgement is human; the speed is the tooling.</p>
+        <a class="btn btn-ghost" href="technology.html">Deep-dive the technology <span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <div class="tech-mini-wrap" data-reveal>
+      <span class="eyebrow"><span class="tk">//</span> Plus the supporting cast</span>
+      <div class="tech-grid">
+        <div class="tech-mini"><span class="tm-mark">R</span><span class="tm-text"><span class="tm-name">React 18</span><span class="tm-role">UI · components</span></span></div>
+        <div class="tech-mini"><span class="tm-mark">TS</span><span class="tm-text"><span class="tm-name">TypeScript</span><span class="tm-role">Types · safety</span></span></div>
+        <div class="tech-mini"><span class="tm-mark">T</span><span class="tm-text"><span class="tm-name">Tailwind</span><span class="tm-role">Styling · tokens</span></span></div>
+        <div class="tech-mini"><span class="tm-mark">N</span><span class="tm-text"><span class="tm-name">Node.js</span><span class="tm-role">Runtime · APIs</span></span></div>
+        <div class="tech-mini"><span class="tm-mark">M</span><span class="tm-text"><span class="tm-name">MongoDB</span><span class="tm-role">NoSQL · data</span></span></div>
+        <div class="tech-mini"><span class="tm-mark">Rx</span><span class="tm-text"><span class="tm-name">Redux</span><span class="tm-role">State · cart</span></span></div>
+        <div class="tech-mini"><span class="tm-mark">GQ</span><span class="tm-text"><span class="tm-name">GraphQL</span><span class="tm-role">Typed queries</span></span></div>
+        <div class="tech-mini"><span class="tm-mark">V</span><span class="tm-text"><span class="tm-name">Vercel</span><span class="tm-role">Hosting · edge</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section id="work" data-screen-label="Work">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow"><span class="tk">03</span> Selected work</span>
+      <h2 class="display">Shipped, in production.</h2>
+      <p>Real sites for real clients across Belgium and beyond. Drop a screenshot onto any frame to fill it.</p>
+    </div>
+
+    <div class="work-grid" id="work-grid">
+      <article class="proj" data-reveal style="--i:0">
+        <a class="shot" href="projects/nu.html"><span class="num">01</span>
+          <image-slot id="nu" shape="rect" placeholder="Drop Nu screenshot — nu-hero-desktop.png"></image-slot>
+        </a>
+        <div class="p-in">
+          <span class="p-cat">Beauty &amp; wellness e-commerce</span>
+          <h3><a href="projects/nu.html">Nu</a></h3>
+          <p>A multilingual clean-beauty storefront — calm editorial pacing around a frictionless, CMS-driven buying flow.</p>
+          <div class="p-foot">
+            <a class="visit case" href="projects/nu.html">Case study <span class="arr">→</span></a>
+            <a class="visit" href="https://nu-site.netlify.app/en" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-reveal data-d="1" style="--i:1">
+        <a class="shot" href="projects/milo.html"><span class="num">02</span>
+          <image-slot id="milo" shape="rect" placeholder="Drop Milo Weiler screenshot — milo-hero.png"></image-slot>
+        </a>
+        <div class="p-in">
+          <span class="p-cat">Photography portfolio</span>
+          <h3><a href="projects/milo.html">Milo Weiler</a></h3>
+          <p>A cinematic, dark portfolio split into seven scroll chapters — 55 projects, sticky chapter nav, top Lighthouse scores.</p>
+          <div class="p-foot">
+            <a class="visit case" href="projects/milo.html">Case study <span class="arr">→</span></a>
+            <a class="visit" href="https://miloweiler.com" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-reveal style="--i:2">
+        <a class="shot" href="projects/bermuda.html"><span class="num">03</span>
+          <image-slot id="bermuda" shape="rect" placeholder="Drop Bermuda screenshot — bermuda-hero.png"></image-slot>
+        </a>
+        <div class="p-in">
+          <span class="p-cat">Events agency · Belgium</span>
+          <h3><a href="projects/bermuda.html">Bermuda Events</a></h3>
+          <p>A premium brand site framing past productions at scale, with a contact funnel built to qualify the right leads.</p>
+          <div class="p-foot">
+            <a class="visit case" href="projects/bermuda.html">Case study <span class="arr">→</span></a>
+            <a class="visit" href="https://bermuda-events.be" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-reveal data-d="1" style="--i:3">
+        <a class="shot" href="projects/spiree.html"><span class="num">04</span>
+          <image-slot id="spiree" shape="rect" placeholder="Drop Spiree screenshot — spiree-hero.png"></image-slot>
+        </a>
+        <div class="p-in">
+          <span class="p-cat">Activewear brand · 100% Merino</span>
+          <h3><a href="projects/spiree.html">Spiree</a></h3>
+          <p>An independent sportswear brand site — bold gradient system, Sun &amp; Moon collections, a story-first arc.</p>
+          <div class="p-foot">
+            <a class="visit case" href="projects/spiree.html">Case study <span class="arr">→</span></a>
+            <a class="visit" href="https://spiree-next.netlify.app/" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AI MANIFESTO ============ -->
+<section id="ai" class="ai">
+  <div class="wrap ai-grid">
+    <div>
+      <span class="eyebrow" data-reveal><span class="tk">04</span> The philosophy</span>
+      <h2 class="display" data-reveal data-d="1">A power tool.<br><em data-scramble>Mastered</em>,<br>not enslaved.</h2>
+      <p class="lede" data-reveal data-d="2">I harness AI the way a craftsman harnesses a power tool — for speed and leverage, never to hand over the thinking. The app isn't the work. The judgement is.</p>
+    </div>
+    <div class="principles" data-reveal data-d="1">
+      <div class="principle"><span class="n">01</span><div><b>I own the architecture</b><p>AI drafts; I decide structure, trade-offs and the data model. The blueprint is human.</p></div></div>
+      <div class="principle"><span class="n">02</span><div><b>Every line ships understood</b><p>Nothing reaches production I can't read, refactor and defend. No black boxes.</p></div></div>
+      <div class="principle"><span class="n">03</span><div><b>Speed, without losing the why</b><p>AI removes the busywork so more time goes to craft, performance and the details that matter.</p></div></div>
+      <div class="principle"><span class="n">04</span><div><b>The tool serves the developer</b><p>Mastered, not enslaved. The senior engineer stays in the driver's seat — always.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process" class="tex-lines">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow"><span class="tk">05</span> How I work</span>
+      <h2 class="display">A transparent pipeline.</h2>
+      <p>Five stages, start to ship. The line draws as you scroll — each stage lights up the moment you reach it.</p>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <svg class="tl-spine" aria-hidden="true" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="tl-rows">
+        <div class="tl-row" data-tl><div class="tl-mark"><span>01</span></div>
+          <div class="tl-card"><h4>Discovery</h4><p>Goals, audience, budget — and what success actually means before a line is written.</p></div></div>
+        <div class="tl-row" data-tl><div class="tl-mark"><span>02</span></div>
+          <div class="tl-card"><h4>Architecture</h4><p>Stack, data model and structure decided up front — the blueprint is human.</p></div></div>
+        <div class="tl-row" data-tl><div class="tl-mark"><span>03</span></div>
+          <div class="tl-card"><h4>Design</h4><p>A real system you can see early and react to, refined together — not a static mockup.</p></div></div>
+        <div class="tl-row" data-tl><div class="tl-mark"><span>04</span></div>
+          <div class="tl-card"><h4>Build</h4><p>Hand-coded, AI-accelerated, multilingual and SEO-ready — every line shipped understood.</p></div></div>
+        <div class="tl-row" data-tl><div class="tl-mark"><span>05</span></div>
+          <div class="tl-card"><h4>Ship</h4><p>Measure, iterate, and I stay on for whatever comes next.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap contact">
+    <span class="eyebrow" data-reveal><span class="tk">//</span> Contact</span>
+    <h2 class="display" data-reveal data-d="1">Got something<br>worth <em data-scramble>building?</em></h2>
+    <p data-reveal data-d="2">From blank file to shipped product. Tell me what you have in mind — I'll tell you how I'd build it.</p>
+    <div class="hero-cta" data-reveal data-d="2">
+      <a href="mailto:contact@ywdesign.co?subject=Project" class="btn btn-primary">Start a project <span class="arr">→</span></a>
+      <a href="https://wa.me/32471124525" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp</a>
+    </div>
+    <div class="lines" data-reveal data-d="3">
+      <a href="mailto:contact@ywdesign.co">contact@ywdesign.co</a> &nbsp;·&nbsp; <a href="tel:+33638565302">+33 6 38 56 53 02</a> &nbsp;·&nbsp; Mortsel · Antwerp, BE
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <div class="mark">YW<b>design</b></div>
+      <p>Senior web development &amp; design. Hand-coded, AI-accelerated, end to end.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Site</h5>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#stack">Stack</a>
+      <a href="#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="#ai">AI philosophy</a>
+      <a href="#process">Process</a>
+    </div>
+    <div class="foot-col">
+      <h5>Contact</h5>
+      <a href="mailto:contact@ywdesign.co">Email</a>
+      <a href="https://wa.me/32471124525" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="tel:+33638565302">Call</a>
+    </div>
+  </div>
+  <div class="wrap"><div class="foot-legal">
+    <span>© 2026 YWdesign</span><span>VAT BE0794.586.584</span><span>Hof Savelkoul 40, 2640 Mortsel, Antwerp, Belgium</span>
+  </div></div>
+</footer>
+
+<div id="tweak-root"></div>
+
+<script src="app.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks-app.jsx"></script>
+</body>
+</html>

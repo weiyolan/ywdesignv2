@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.className='js';</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bermuda Events — Case study · YWdesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Unbounded:wght@400;600;800&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="../theme-init.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="detail.css">
+<script src="../image-slot.js"></script>
+<style>
+/* Bermuda signature: the real "Get Lost In" morphing icon set (ported from Feature.jsx) */
+.berm-demo{width:100%;display:flex;flex-direction:column;gap:34px}
+.berm-icons{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:760px){.berm-icons{grid-template-columns:1fr}}
+.berm-ico-card{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;
+  border:1px solid var(--line);border-radius:16px;padding:26px 20px 22px;cursor:pointer;outline:none;
+  background:var(--bg);transition:border-color .3s,transform .3s,background .3s}
+.berm-ico-card:hover,.berm-ico-card:focus-visible,.berm-ico-card.is-on{
+  border-color:var(--accent-line);transform:translateY(-4px);background:var(--accent-soft)}
+.berm-ico-card .gl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3)}
+.berm-ico-card h4{font-family:var(--display);font-weight:800;font-size:25px;letter-spacing:-.01em;color:var(--text);margin-bottom:4px}
+.berm-ico{width:122px;height:122px;margin:8px auto 12px}
+.berm-ico svg{width:100%;height:100%;overflow:visible;display:block}
+.berm-ico-card .sub{font-family:var(--mono);font-size:11px;color:var(--text-3);line-height:1.5;max-width:24ch}
+.berm-ico path{fill:var(--text-3);transition:d .6s cubic-bezier(.16,1,.3,1),fill .45s ease}
+/* hover/active: neutral dots brighten to full ink (white), focal morph shapes go accent */
+.berm-ico-card.is-on .berm-ico path{fill:var(--text)}
+
+/* Creativity — circle "o" morphs to a triangle */
+.berm-ico-card.is-on #CreativeSpecialO{fill:var(--accent);
+  d:path("M151.999 3.00113C153.428 3.12023 158.769 12.069 163.84 21.4212C168.71 30.4031 173.331 39.7571 173.997 42.0189C174.385 43.3343 129.995 43.6262 130 42.0189C130.01 39.1545 149.197 2.76764 151.999 3.00113Z")}
+
+/* Detail — eight petals expand, centre morphs to a triangle */
+.berm-ico-card.is-on #DetailVector_1{d:path("M64.8119 64.8119L35.3084 57.2287C38.1268 54.4021 41.9501 52.5965 46.0763 52.1948L29.2257 35.3443L35.2357 29.3343L52.154 46.2526C52.5163 42.0526 54.3557 38.1733 57.2287 35.3084L64.8119 64.8119Z")}
+.berm-ico-card.is-on #DetailVector_2{d:path("M55 88.5L28.7757 104C28.7699 100.008 30.1967 96.0282 32.8303 92.8264L9.00001 92.8265L9.00001 84.3271L32.9261 84.3271C30.2124 81.101 28.77 77.0573 28.7757 73L55 88.5Z")}
+.berm-ico-card.is-on #DetailVector_3{d:path("M64.812 112.188L57.2287 141.692C54.4022 138.873 52.5966 135.05 52.1949 130.924L35.3443 147.774L29.3344 141.764L46.2527 124.846C42.0526 124.484 38.1733 122.644 35.3084 119.771L64.812 112.188Z")}
+.berm-ico-card.is-on #DetailVector_4{d:path("M88.5 122L104 148.224C100.008 148.23 96.0282 146.803 92.8264 144.17L92.8265 168H84.3271V144.074C81.101 146.788 77.0573 148.23 73 148.224L88.5 122Z")}
+.berm-ico-card.is-on #DetailVector_5{d:path("M112.188 112.188L141.692 119.771C138.873 122.598 135.05 124.403 130.924 124.805L147.774 141.656L141.764 147.666L124.846 130.747C124.484 134.947 122.644 138.827 119.771 141.692L112.188 112.188Z")}
+.berm-ico-card.is-on #DetailVector_6{d:path("M122 88.5L148.224 73C148.23 76.9915 146.803 80.9718 144.17 84.1736L168 84.1735L168 92.6729L144.074 92.6729C146.788 95.899 148.23 99.9427 148.224 104L122 88.5Z")}
+.berm-ico-card.is-on #DetailVector_7{d:path("M112.188 64.8119L119.771 35.3084C122.598 38.1267 124.403 41.95 124.805 46.0763L141.656 29.2257L147.666 35.2356L130.747 52.154C134.947 52.5163 138.827 54.3556 141.692 57.2287L112.188 64.8119Z")}
+.berm-ico-card.is-on #DetailVector_8{d:path("M88.5 55L73 28.7757C76.9915 28.7699 80.9718 30.1967 84.1736 32.8303L84.1735 9.00001H92.6729V32.9261C95.899 30.2124 99.9427 28.77 104 28.7757L88.5 55Z")}
+.berm-ico-card.is-on #DetailSpecialO{fill:var(--accent);
+  d:path("M87.999 70.0009C89.1036 70.0929 93.2308 77.0078 97.1492 84.2345C100.912 91.1751 104.483 98.4032 104.998 100.151C105.298 101.167 70.9958 101.393 71 100.151C71.0076 97.9376 85.8337 69.8204 87.999 70.0009Z")}
+
+/* Personality — one figure splits into two, head becomes a triangle */
+.berm-ico-card.is-on #PersonalityBody{fill:var(--accent);
+  d:path("M93.4731 109.552C93.4731 99.7705 88.1048 87.0547 82.7365 87.0547C76.8802 87.0547 72 100.26 72 109.552H93.4731Z")}
+.berm-ico-card.is-on #PersonalityHead{fill:var(--accent);
+  d:path("M82.9991 57.0008C83.9737 57.0809 87.6154 63.1036 91.0728 69.3978C94.3933 75.4428 97.5437 81.7383 97.9983 83.2605C98.2626 84.1458 67.9963 84.3423 68 83.2605C68.0067 81.3327 81.0886 56.8436 82.9991 57.0008Z")}
+.berm-ico-card.is-on #PersonalityHeadSecret{fill:var(--accent);
+  d:path("M73.8315 81.0815C73.8315 75.9729 77.9728 71.8315 83.0815 71.8315C88.1901 71.8315 92.3315 75.9728 92.3315 81.0815C92.3315 86.1901 88.1901 90.3315 83.0815 90.3315C77.9728 90.3315 73.8315 86.1901 73.8315 81.0815Z")}
+
+.recolor-note{border-top:1px solid var(--line);padding-top:24px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start}
+@media(max-width:600px){.recolor-note{grid-template-columns:1fr;gap:14px}}
+.rn-swatches{display:flex;gap:8px}
+.rn-swatches i{width:34px;height:34px;border-radius:9px;border:1px solid var(--line-2);display:block}
+.rn-swatches .rn-ink{background:var(--text-3)}
+.rn-swatches .rn-paper{background:var(--text)}
+.rn-swatches .rn-acc{background:var(--accent);border-color:var(--accent)}
+.rn-copy b{font-family:var(--display);font-weight:700;font-size:16px;display:block;margin-bottom:7px;color:var(--text)}
+.rn-copy p{font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--text-3);max-width:62ch}
+.rn-copy .accent{color:var(--accent)}
+.berm-dots{display:flex;gap:7px;justify-content:center}
+.berm-dots i{width:7px;height:7px;border-radius:50%;background:var(--line-2);transition:.25s;cursor:pointer}
+.berm-dots i.on{background:var(--accent);transform:scale(1.3)}
+</style>
+</head>
+<body data-motion="full" data-grid="on">
+<div class="grid-bg"></div>
+<div class="dots-bg"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+
+<nav class="detail-nav" id="detailnav">
+  <a class="back" href="../work.html"><span class="arr">←</span> All work</a>
+  <a class="logo" href="../index.html"><span class="mark">YW<b>design</b></span></a>
+</nav>
+
+<header class="detail-hero">
+  <div class="wrap">
+    <div class="dh-eyebrow"><b>03</b> · Events agency · Belgium · <span>2025</span></div>
+    <h1 class="display" data-reveal>Bermuda Events — get lost in the <span class="accent" data-scramble>experience.</span></h1>
+    <p class="dh-lede" data-reveal data-d="1">A premium brand site for an Antwerp events agency — framing past productions at scale, building credibility through sheer production quality, and funnelling the right leads into a tailored contact flow.</p>
+    <div class="dh-actions" data-reveal data-d="2">
+      <a class="btn btn-primary" href="https://bermuda-events.be" target="_blank" rel="noopener">Visit live site <span class="arr">↗</span></a>
+      <a class="btn btn-ghost" href="#signature">Jump to the build</a>
+    </div>
+    <div class="meta-grid" data-reveal data-d="2">
+      <div><h4>Role</h4><p>Design &amp; build</p></div>
+      <div><h4>Year</h4><p>2025</p></div>
+      <div><h4>Sector</h4><p>Events · Agency</p></div>
+      <div><h4>Stack</h4><div class="chips"><span>Next.js</span><span>Sanity</span><span>i18n</span></div></div>
+    </div>
+  </div>
+</header>
+
+<div class="detail-media" data-reveal>
+  <image-slot id="bermuda-hero" shape="rect" placeholder="Drop Bermuda hero — bermuda-hero.png"></image-slot>
+</div>
+
+<section class="detail-section">
+  <div class="wrap two-col">
+    <div class="ds-head" data-reveal>
+      <span class="eyebrow"><span class="tk">//</span> The brief</span>
+      <h2 class="display">Sell an experience you can't put in a product shot.</h2>
+      <div class="prose" style="margin-top:20px">
+        <p>Bermuda is an event agency from Berchem where creativity is limitless and every event is a new concept. The site had to convey <b>feeling</b> — atmosphere, scale, trust — and then convert that into qualified enquiries.</p>
+        <p>The build leans on a <b>"Get Lost In" motif</b> — Creativity, Details, Personality — past productions framed at premium scale, and a contact funnel designed to qualify rather than just collect. Built bilingual NL · EN.</p>
+      </div>
+    </div>
+    <div class="feature-list" data-reveal data-d="1">
+      <div class="fl"><div class="k">[ brand_motion ]</div><b>"Get Lost In" headline system</b><p>A rotating-word hero that reframes the pitch — creativity, details, personality — without reloading attention.</p></div>
+      <div class="fl"><div class="k">[ premium_scale ]</div><b>Productions framed at scale</b><p>Past events shown large and cinematic — atmosphere and ambition do the selling before a word of copy.</p></div>
+      <div class="fl"><div class="k">[ lead_funnel ]</div><b>Qualifying contact flow</b><p>A contact funnel built to surface the right briefs, not just a generic form.</p></div>
+      <div class="fl"><div class="k">[ i18n ]</div><b>NL · EN</b><p>Localized content and routing for a Belgian audience.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section" id="signature">
+  <div class="wrap">
+    <div class="ds-head" data-reveal>
+      <span class="eyebrow"><span class="tk">//</span> Signature build</span>
+      <h2 class="display">The "Get Lost In" icon set</h2>
+      <p>Three custom SVG icons — Creativity, Detail, Personality — each hand-animated to morph as you explore them. Hover or tap a card to watch it transform. This is the real component, ported from the live site.</p>
+    </div>
+    <div class="demo" data-reveal data-d="1">
+      <div class="demo-head"><span class="lbl"><span class="dot"></span> components/Feature.jsx</span><span>hover to morph</span></div>
+      <div class="demo-stage">
+        <div class="berm-demo">
+          <div class="berm-icons" id="berm-icons">
+            <div class="berm-ico-card" tabindex="0">
+              <span class="gl">Get lost in</span>
+              <h4>Creativity</h4>
+              <div class="berm-ico">
+                <svg viewBox="0 0 176 176" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Creativity">
+                  <path d="M101.807 21.267C101.807 29.1465 95.4193 35.5341 87.5398 35.5341C79.6603 35.5341 73.2727 29.1465 73.2727 21.267C73.2727 13.3876 79.6603 7 87.5398 7C95.4193 7 101.807 13.3876 101.807 21.267Z" fill="#6E4221"/>
+                  <path d="M169 87.5398C169 95.4193 162.612 101.807 154.733 101.807C146.853 101.807 140.466 95.4193 140.466 87.5398C140.466 79.6603 146.853 73.2727 154.733 73.2727C162.612 73.2727 169 79.6603 169 87.5398Z" fill="#6E4221"/>
+                  <path d="M145.601 144.95C140.029 150.522 130.996 150.522 125.424 144.95C119.853 139.379 119.853 130.345 125.424 124.774C130.996 119.202 140.029 119.202 145.601 124.774C151.173 130.345 151.173 139.379 145.601 144.95Z" fill="#6E4221"/>
+                  <path d="M101.807 154.733C101.807 162.612 95.4193 169 87.5398 169C79.6603 169 73.2727 162.612 73.2727 154.733C73.2727 146.853 79.6603 140.466 87.5398 140.466C95.4193 140.466 101.807 146.853 101.807 154.733Z" fill="#6E4221"/>
+                  <path d="M50.5756 144.95C45.004 150.522 35.9706 150.522 30.3989 144.95C24.8273 139.379 24.8273 130.345 30.3989 124.774C35.9706 119.202 45.004 119.202 50.5756 124.774C56.1472 130.345 56.1472 139.379 50.5756 144.95Z" fill="#6E4221"/>
+                  <path d="M35.5341 87.5398C35.5341 95.4193 29.1465 101.807 21.267 101.807C13.3876 101.807 7 95.4193 7 87.5398C7 79.6603 13.3876 73.2727 21.267 73.2727C29.1465 73.2727 35.5341 79.6603 35.5341 87.5398Z" fill="#6E4221"/>
+                  <path d="M51.2265 50.5755C45.6549 56.1471 36.6215 56.1471 31.0498 50.5755C25.4782 45.0038 25.4782 35.9705 31.0498 30.3988C36.6215 24.8272 45.6549 24.8272 51.2265 30.3988C56.7981 35.9705 56.7981 45.0038 51.2265 50.5755Z" fill="#6E4221"/>
+                  <path id="CreativeSpecialO" d="M120.5 40.5C120.5 32.6217 126.887 26.235 134.765 26.235C142.643 26.235 149.03 32.6217 149.03 40.5C149.03 48.3783 142.643 54.765 134.765 54.765C126.887 54.765 120.5 48.3783 120.5 40.5Z" fill="#6E4221"/>
+                </svg>
+              </div>
+              <span class="sub">A new concept to your desire. Every time.</span>
+            </div>
+
+            <div class="berm-ico-card" tabindex="0">
+              <span class="gl">Get lost in</span>
+              <h4>Detail</h4>
+              <div class="berm-ico">
+                <svg viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Detail">
+                  <path id="DetailVector_1" d="M58.448 58.448L28.9445 50.8648C31.7628 48.0382 35.5861 46.2326 39.7124 45.8309L22.8618 28.9804L28.8718 22.9704L45.7901 39.8887C46.1524 35.6887 47.9917 31.8094 50.8648 28.9445L58.448 58.448Z" fill="#A8947F"/>
+                  <path id="DetailVector_2" d="M46 88.5L19.7757 104C19.7699 100.008 21.1967 96.0282 23.8303 92.8264L1.05774e-05 92.8265L1.0949e-05 84.3271L23.9261 84.3271C21.2124 81.101 19.77 77.0573 19.7757 73L46 88.5Z" fill="#A8947F"/>
+                  <path id="DetailVector_3" d="M58.448 118.552L50.8647 148.056C48.0382 145.237 46.2326 141.414 45.8309 137.288L28.9803 154.138L22.9704 148.128L39.8887 131.21C35.6886 130.848 31.8093 129.008 28.9444 126.135L58.448 118.552Z" fill="#A8947F"/>
+                  <path id="DetailVector_4" d="M88.5 131L104 157.224C100.008 157.23 96.0282 155.803 92.8264 153.17L92.8265 177H84.3271V153.074C81.101 155.788 77.0573 157.23 73 157.224L88.5 131Z" fill="#A8947F"/>
+                  <path id="DetailVector_5" d="M118.552 118.552L148.056 126.135C145.237 128.962 141.414 130.767 137.288 131.169L154.138 148.02L148.128 154.03L131.21 137.111C130.848 141.311 129.008 145.191 126.135 148.056L118.552 118.552Z" fill="#A8947F"/>
+                  <path id="DetailVector_6" d="M131 88.5L157.224 73C157.23 76.9915 155.803 80.9718 153.17 84.1736L177 84.1735L177 92.6729L153.074 92.6729C155.788 95.899 157.23 99.9427 157.224 104L131 88.5Z" fill="#A8947F"/>
+                  <path id="DetailVector_7" d="M118.552 58.4479L126.135 28.9444C128.962 31.7628 130.767 35.5861 131.169 39.7123L148.02 22.8617L154.03 28.8717L137.111 45.79C141.311 46.1523 145.191 47.9917 148.056 50.8647L118.552 58.4479Z" fill="#A8947F"/>
+                  <path id="DetailVector_8" d="M88.5 46L73 19.7757C76.9915 19.7699 80.9718 21.1967 84.1736 23.8303L84.1735 1.14441e-05H92.6729V23.9261C95.899 21.2124 99.9427 19.77 104 19.7757L88.5 46Z" fill="#A8947F"/>
+                  <path id="DetailSpecialO" d="M79.5147 89C79.5147 84.3137 83.3137 80.5147 88 80.5147C92.6863 80.5147 96.4853 84.3137 96.4853 89C96.4853 93.6863 92.6863 97.4853 88 97.4853C83.3137 97.4853 79.5147 93.6863 79.5147 89Z" fill="#A8947F"/>
+                </svg>
+              </div>
+              <span class="sub">Nothing left to chance. Every detail thought of.</span>
+            </div>
+
+            <div class="berm-ico-card" tabindex="0">
+              <span class="gl">Get lost in</span>
+              <h4>Personality</h4>
+              <div class="berm-ico">
+                <svg viewBox="0 0 163 179" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Personality">
+                  <path d="M90.7725 9.29235C90.7725 14.4244 86.6211 18.5847 81.5 18.5847C76.379 18.5847 72.2276 14.4244 72.2276 9.29235C72.2276 4.16033 76.379 0 81.5 0C86.6211 0 90.7725 4.16033 90.7725 9.29235Z" fill="#BD9159"/>
+                  <path d="M92.2365 39.1257C92.2365 29.3443 86.8683 16.6284 81.5 16.6284C75.6437 16.6284 70.7635 29.8333 70.7635 39.1257H92.2365Z" fill="#BD9159"/>
+                  <path d="M138.237 36.2878C134.616 39.9167 128.745 39.9167 125.124 36.2878C121.503 32.6589 121.503 26.7753 125.124 23.1464C128.745 19.5175 134.616 19.5175 138.237 23.1464C141.858 26.7753 141.858 32.6589 138.237 36.2878Z" fill="#BD9159"/>
+                  <path d="M142.503 58.6885C142.503 48.9071 137.135 36.1913 131.766 36.1913C125.91 36.1913 121.03 49.3962 121.03 58.6885H142.503Z" fill="#BD9159"/>
+                  <path d="M162.024 79.7186C162.024 84.8506 157.873 89.0109 152.751 89.0109C147.63 89.0109 143.479 84.8506 143.479 79.7186C143.479 74.5866 147.63 70.4262 152.751 70.4262C157.873 70.4262 162.024 74.5866 162.024 79.7186Z" fill="#BD9159"/>
+                  <path d="M163 109.552C163 99.7705 157.632 87.0547 152.263 87.0547C146.407 87.0547 141.527 100.26 141.527 109.552H163Z" fill="#BD9159"/>
+                  <path d="M138.927 136.577C135.306 140.206 129.435 140.206 125.814 136.577C122.193 132.948 122.193 127.065 125.814 123.436C129.435 119.807 135.306 119.807 138.927 123.436C142.548 127.065 142.548 132.948 138.927 136.577Z" fill="#BD9159"/>
+                  <path d="M143.479 158.459C143.479 148.678 138.111 135.962 132.743 135.962C126.886 135.962 122.006 149.167 122.006 158.459H143.479Z" fill="#BD9159"/>
+                  <path d="M90.7725 151.123C90.7725 156.255 86.621 160.415 81.5 160.415C76.379 160.415 72.2275 156.255 72.2275 151.123C72.2275 145.991 76.379 141.831 81.5 141.831C86.621 141.831 90.7725 145.991 90.7725 151.123Z" fill="#BD9159"/>
+                  <path d="M91.7485 179C91.7485 169.219 86.3802 156.503 81.012 156.503C75.1557 156.503 70.2755 169.708 70.2755 179H91.7485Z" fill="#BD9159"/>
+                  <path d="M38.1622 136.577C34.5411 140.206 28.6701 140.206 25.049 136.577C21.4279 132.948 21.4279 127.065 25.049 123.436C28.6701 119.807 34.5411 119.807 38.1622 123.436C41.7834 127.065 41.7834 132.948 38.1622 136.577Z" fill="#BD9159"/>
+                  <path d="M42.9461 158.459C42.9461 148.678 37.5778 135.962 32.2096 135.962C26.3533 135.962 21.4731 149.167 21.4731 158.459H42.9461Z" fill="#BD9159"/>
+                  <path d="M38.8525 36.2877C35.2313 39.9166 29.3603 39.9166 25.7392 36.2877C22.1181 32.6588 22.1181 26.7752 25.7392 23.1463C29.3603 19.5175 35.2313 19.5175 38.8525 23.1463C42.4736 26.7752 42.4736 32.6588 38.8525 36.2877Z" fill="#BD9159"/>
+                  <path d="M42.9461 58.6885C42.9461 48.9071 37.5778 36.1913 32.2096 36.1913C26.3533 36.1913 21.4731 49.3962 21.4731 58.6885H42.9461Z" fill="#BD9159"/>
+                  <path id="PersonalityBody" d="M21.4731 109.552C21.4731 99.7705 16.1048 87.0546 10.7365 87.0546C4.88024 87.0546 0 100.26 0 109.552H21.4731Z" fill="#BD9159"/>
+                  <path id="PersonalityHeadSecret" d="M1.83147 81.0815C1.83147 75.9729 5.97284 71.8315 11.0815 71.8315C16.1901 71.8315 20.3315 75.9728 20.3315 81.0815C20.3315 86.1901 16.1901 90.3315 11.0815 90.3315C5.97284 90.3315 1.83147 86.1901 1.83147 81.0815Z" fill="#BD9159"/>
+                  <path id="PersonalityHead" d="M1.83147 81.0815C1.83147 75.9729 5.97284 71.8315 11.0815 71.8315C16.1901 71.8315 20.3315 75.9728 20.3315 81.0815C20.3315 86.1901 16.1901 90.3315 11.0815 90.3315C5.97284 90.3315 1.83147 86.1901 1.83147 81.0815Z" fill="#BD9159"/>
+                </svg>
+              </div>
+              <span class="sub">The same person, always there for you.</span>
+            </div>
+          </div>
+          <div class="recolor-note">
+            <div class="rn-swatches" aria-hidden="true">
+              <i class="rn-ink"></i><i class="rn-paper"></i><i class="rn-acc"></i>
+            </div>
+            <div class="rn-copy">
+              <b>Why it's recolored here</b>
+              <p>Live, Bermuda runs on its own earth-tone identity — clay, sand, olive. For this case study I remapped the exact same morph to the portfolio's own system: <span class="accent">neutral ink</span> at rest, brightening to full contrast on focus, with the morphing focal shape resolving in the <span class="accent">accent</span>. The geometry is untouched — only the palette is swapped to black / white / accent so the component sits inside this site instead of fighting it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="wrap">
+    <div class="ds-head" data-reveal>
+      <span class="eyebrow"><span class="tk">//</span> How it converts</span>
+      <h2 class="display">Feeling first, then the funnel</h2>
+      <p>Selling an experience you can't put in a product shot means leading with atmosphere — then turning that interest into the right kind of enquiry.</p>
+    </div>
+    <div class="approach" data-reveal data-d="1">
+      <div class="step"><div class="sn">01 / positioning</div><h4>Frame the feeling</h4><p>Past productions shown at premium scale, so atmosphere and ambition do the selling before a word of copy.</p></div>
+      <div class="step"><div class="sn">02 / proof</div><h4>Anchor it in the work</h4><p>Past productions, shown at premium scale, turn the pitch into proof — the portfolio is the credibility.</p></div>
+      <div class="step"><div class="sn">03 / funnel</div><h4>Qualify, don't collect</h4><p>A contact flow designed to surface the right briefs — not just gather another inbox of generic emails.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section" style="padding-top:0">
+  <div class="wrap quote-lead" data-reveal>
+    <span class="qm">&ldquo;</span>
+    <blockquote>Get lost in <span class="accent">creativity, details and personality</span> — a new concept to your desire, every time.</blockquote>
+    <cite>// Bermuda Events — the brand line, built into the hero</cite>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="wrap">
+    <div class="ds-head" data-reveal>
+      <span class="eyebrow"><span class="tk">//</span> Gallery</span>
+      <h2 class="display">Through the site</h2>
+    </div>
+    <div class="gallery" data-reveal data-d="1">
+      <div class="g-wide"><image-slot id="bermuda-g1" shape="rect" placeholder="Hero / events"></image-slot></div>
+      <div class="g-tall"><image-slot id="bermuda-g2" shape="rect" placeholder="About"></image-slot></div>
+      <div class="g-half"><image-slot id="bermuda-g3" shape="rect" placeholder="Network / team"></image-slot></div>
+      <div class="g-half"><image-slot id="bermuda-g4" shape="rect" placeholder="Contact funnel"></image-slot></div>
+    </div>
+  </div>
+</section>
+
+<nav class="detail-section" style="padding-top:0">
+  <div class="wrap">
+    <div class="pager">
+      <a href="milo.html"><span class="dir">← Previous</span><span class="nm">Milo Weiler</span></a>
+      <a href="spiree.html" class="next"><span class="dir">Next →</span><span class="nm">Spiree</span></a>
+    </div>
+  </div>
+</nav>
+
+<footer class="detail-foot">
+  <div class="wrap">
+    <a class="logo" href="../index.html"><span class="mark">YW<b>design</b></span></a>
+    <span class="lg">© 2026 YWdesign · <a href="mailto:contact@ywdesign.co">contact@ywdesign.co</a></span>
+  </div>
+</footer>
+
+<script src="../app.js"></script>
+<script>
+(function(){
+  // "Get Lost In" icon morphs — hover on desktop, tap to pin on touch, keyboard accessible
+  var cards = document.querySelectorAll('#berm-icons .berm-ico-card');
+  cards.forEach(function(card){
+    var pinned = false;
+    function show(){ card.classList.add('is-on'); }
+    function hide(){ if(!pinned) card.classList.remove('is-on'); }
+    function toggle(){ pinned = !pinned; pinned ? show() : card.classList.remove('is-on'); }
+    card.addEventListener('mouseenter', show);
+    card.addEventListener('mouseleave', hide);
+    card.addEventListener('focus', show);
+    card.addEventListener('blur', hide);
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); } });
+  });
+})();
+</script>
+</body>
+</html>

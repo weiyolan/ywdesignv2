@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.className='js';</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Yolan · YWdesign</title>
+<meta name="description" content="Yolan — a biomedical engineer, developer and surfer building fast, considered websites for a global positive impact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Unbounded:wght@400;600;800&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="theme-init.js"></script>
+<script src="image-slot.js"></script>
+<style>
+/* ---------- about page ---------- */
+.ab-hero{padding:165px 0 50px;position:relative}
+.ab-hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+@media(max-width:920px){.ab-hero-grid{grid-template-columns:1fr;gap:42px}}
+.ab-h1{font-size:clamp(56px,10vw,124px);margin:18px 0 0;line-height:.92}
+.ab-lede{font-size:clamp(18px,2.2vw,22px);line-height:1.55;color:var(--text-2);max-width:46ch;margin-top:26px}
+.ab-lede b{color:var(--text);font-weight:600}
+.ab-facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;margin-top:36px}
+.ab-facts > div{background:var(--bg-2);padding:18px 20px;display:flex;flex-direction:column;gap:7px}
+.ab-facts .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.ab-facts .v{font-family:var(--display);font-weight:600;font-size:16px;color:var(--text);line-height:1.2}
+.ab-portrait{position:relative}
+.ab-portrait image-slot{display:block;width:100%;aspect-ratio:4/5;border-radius:18px;border:1px solid var(--line);
+  overflow:hidden;box-shadow:0 40px 90px -50px rgba(0,0,0,.8)}
+/* animated line-art self-portrait */
+.yolan-art{position:relative;width:100%;aspect-ratio:4/5;border-radius:18px;border:1px solid var(--line);
+  overflow:hidden;box-shadow:0 40px 90px -50px rgba(0,0,0,.8);
+  background:
+    radial-gradient(120% 90% at 50% 8%,var(--accent-soft),transparent 60%),
+    linear-gradient(180deg,var(--bg-3),var(--bg-2));
+  display:grid;place-items:center}
+.yolan-svg{width:74%;height:auto;display:block;transform:translateY(2%);
+  filter:drop-shadow(0 18px 40px color-mix(in oklch,var(--accent) 30%,transparent))}
+.yolan-svg .yp{fill:var(--accent);fill-opacity:0;stroke:var(--accent);stroke-width:1.3;
+  stroke-linejoin:round;stroke-linecap:round;
+  transition:stroke-dashoffset 1.9s cubic-bezier(.65,0,.35,1),
+             fill-opacity .9s ease .15s, stroke-opacity .7s ease .35s}
+.yolan-art.draw .yp{stroke-dashoffset:0 !important}
+.yolan-art.filled .yp{fill-opacity:1 !important;stroke-opacity:0 !important}
+.ab-portrait-tag{position:absolute;left:16px;bottom:14px;font-family:var(--mono);font-size:11px;color:var(--text-2);
+  background:color-mix(in oklch,var(--bg) 60%,transparent);border:1px solid var(--line-2);border-radius:7px;
+  padding:5px 11px;backdrop-filter:blur(6px)}
+
+.ab-section{padding:92px 0;position:relative}
+.ab-two{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+@media(max-width:820px){.ab-two{grid-template-columns:1fr;gap:34px}}
+.ab-narr{margin-top:22px;max-width:60ch}
+.ab-narr p{font-size:clamp(17px,1.9vw,20px);line-height:1.62;color:var(--text-2)}
+.ab-narr p + p{margin-top:18px}
+.ab-narr b{color:var(--text);font-weight:600}
+
+.ab-skills .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text-3);display:block;margin-bottom:16px}
+.ab-skills .chips{display:flex;flex-wrap:wrap;gap:9px}
+.ab-skills .chips span{font-family:var(--mono);font-size:12.5px;color:var(--text-2);border:1px solid var(--line);
+  border-radius:100px;padding:7px 14px;transition:.2s;cursor:default}
+.ab-skills .chips span:hover{border-color:var(--accent-line);color:var(--text)}
+.ab-skills .chips span.hot{border-color:var(--accent-line);color:var(--accent)}
+
+.ab-mission{background:
+  radial-gradient(100% 130% at 0 0,var(--accent-soft),transparent 55%),
+  color-mix(in oklch,var(--bg-2) 60%,var(--bg));
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ab-mission-h{font-size:clamp(32px,5vw,62px);line-height:1.02;letter-spacing:-.025em;margin:18px 0 0}
+.ab-mission-p{font-size:clamp(17px,2vw,21px);line-height:1.6;color:var(--text-2);max-width:64ch;margin-top:26px}
+.ab-mission-p .accent{color:var(--accent)}
+
+.ab-values{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.ab-values{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.ab-values{grid-template-columns:1fr}}
+.ab-val{border:1px solid var(--line);border-radius:14px;padding:26px 22px;background:var(--bg-2);transition:.25s}
+.ab-val:hover{border-color:var(--accent-line);transform:translateY(-3px)}
+.ab-val .vn{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.ab-val h3{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.01em;margin:14px 0 10px}
+.ab-val p{font-size:14px;color:var(--text-2);line-height:1.55}
+
+.ab-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:820px){.ab-stats{grid-template-columns:1fr}}
+.ab-stat{border:1px solid var(--line);border-radius:16px;padding:32px 28px;background:var(--bg-2)}
+.ab-stat .num{font-family:var(--display);font-weight:800;font-size:clamp(50px,7vw,78px);color:var(--accent);
+  line-height:1;letter-spacing:-.02em}
+.ab-stat b{font-family:var(--display);font-weight:700;font-size:19px;display:block;margin:18px 0 8px;color:var(--text)}
+.ab-stat p{font-size:14px;color:var(--text-2);line-height:1.55}
+</style>
+</head>
+<body data-motion="full" data-grid="on">
+
+<div class="grid-bg"></div>
+<div class="dots-bg"></div>
+<div class="rules-bg"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+
+<nav id="nav">
+  <a class="logo" href="index.html#top">
+    <span class="mark">YW<b>design</b></span>
+    <span class="stat">available</span>
+  </a>
+  <div class="navlinks">
+    <a href="index.html#top" class="hide-md">Home</a>
+    <a href="work.html" class="hide-md">Work</a>
+    <a href="technology.html" class="hide-md">Technology</a>
+    <a href="about.html" class="hide-md" aria-current="page">About</a>
+    <a href="index.html#contact" class="btn btn-primary hide-sm">Start a project <span class="arr">→</span></a>
+    <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <a href="index.html#top" data-mclose>Home <span class="md-i">01</span></a>
+  <a href="work.html" data-mclose>Work <span class="md-i">02</span></a>
+  <a href="technology.html" data-mclose>Technology <span class="md-i">03</span></a>
+  <a href="about.html" data-mclose aria-current="page">About <span class="md-i">04</span></a>
+  <a href="index.html#contact" class="btn btn-primary md-cta" data-mclose>Start a project <span class="arr">→</span></a>
+</div>
+<div class="nav-scrim" id="nav-scrim" hidden></div>
+
+<a id="top"></a>
+<header class="ab-hero">
+  <div class="wrap ab-hero-grid">
+    <div>
+      <span class="eyebrow" data-reveal><span class="tk">//</span> About · Yolan Wauters · Antwerp, BE</span>
+      <h1 class="display ab-h1" data-reveal data-d="1">Hi, I'm<br><span class="accent" data-scramble>Yolan.</span></h1>
+      <p class="ab-lede" data-reveal data-d="2">A passionate <b>biomedical engineer</b> and surfer, dedicated to having a <b>global positive impact</b> — one fast, considered website at a time.</p>
+      <div class="ab-facts" data-reveal data-d="3">
+        <div><span class="k">Based</span><span class="v">Mortsel · Antwerp, BE</span></div>
+        <div><span class="k">Training</span><span class="v">Biomedical Engineering</span></div>
+        <div><span class="k">Method</span><span class="v">PRINCE2 · code-deep</span></div>
+        <div><span class="k">Off-screen</span><span class="v">In the water, surfing</span></div>
+      </div>
+    </div>
+    <div class="ab-portrait" data-reveal data-d="2">
+      <div class="yolan-art" id="yolan-art">
+        <svg class="yolan-svg" viewBox="0 0 260 328" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Line-art self-portrait of Yolan, drawn in code">
+          <path class="yp" d="M117.724 66.5621C114.993 68.4735 114.993 70.1118 117.178 74.4808C121.82 82.9455 128.373 88.6797 133.288 88.6797C137.111 88.6797 137.384 88.1336 134.107 86.2222C131.104 84.3108 132.196 83.4916 138.203 82.6725L146.122 81.5802L136.565 76.6652L127.008 72.0232L137.93 73.3885C148.306 74.7538 148.579 74.4807 142.026 71.2041C131.923 66.016 122.093 64.1046 117.724 66.5621Z"></path>
+          <path class="yp" fill-rule="evenodd" clip-rule="evenodd" d="M105.436 4.85124C113.628 4.57819 122.366 3.21288 124.823 1.57454C127.554 0.209256 130.558 -0.336838 131.65 0.209276C132.742 1.02845 136.565 2.12065 139.568 2.66676C142.845 3.48594 147.487 5.67041 149.945 7.5818C152.402 9.76626 155.952 10.8585 158.136 10.0393C160.321 9.49321 161.14 10.0393 160.048 11.6777C159.228 13.316 160.867 16.3196 163.87 18.5041C166.874 20.4155 168.512 22.873 167.693 23.9652C166.874 24.7844 168.785 26.6958 171.789 28.6072C176.158 30.7916 177.523 30.7917 177.523 28.0611C177.523 25.8766 178.342 25.6036 180.527 27.788C182.984 30.2455 185.988 46.0828 186.534 58.3704C186.534 60.5549 188.992 64.6507 191.722 67.3813C196.637 72.2963 196.637 73.1155 192.541 79.3958C190.084 83.2186 188.719 87.8605 189.265 89.4989C189.811 91.4103 187.899 96.3253 185.169 100.421C182.165 104.517 180.254 110.251 181.073 113.255C181.892 116.258 180.8 118.989 178.616 119.808C176.431 120.627 173.427 124.45 171.516 128.273C166.601 138.922 161.14 137.011 161.14 124.177C161.14 115.166 161.959 113.255 166.601 113.255C169.332 113.255 173.154 110.797 174.793 108.067C178.616 100.694 178.342 99.8751 172.062 101.513C168.512 102.333 166.601 101.513 166.328 99.329C166.328 97.1445 165.236 97.9637 163.597 100.967C161.686 105.063 161.413 103.152 162.505 94.1408C163.597 82.3994 159.228 58.3704 154.86 54.2746C153.767 53.1823 152.948 48.8134 152.948 44.4445C152.948 37.6181 151.037 35.7067 140.388 30.7916C124.823 23.9652 112.263 23.6922 102.433 30.2455C96.4254 34.3414 95.3331 36.2528 96.6984 43.0792C97.7907 48.8134 96.9715 52.9093 93.9679 56.186C89.872 60.8279 89.872 61.101 96.4254 63.0124C107.621 65.7429 108.986 69.2927 105.982 87.0414C102.979 104.517 104.89 108.34 115.812 105.609C121 104.517 120.727 105.063 113.901 111.343L106.255 118.716H117.178C134.653 118.716 137.111 116.805 129.192 108.886C120.181 99.8751 123.185 97.4176 133.561 105.063C147.76 115.166 142.299 123.904 122.912 122.266C116.085 121.72 108.986 122.539 106.802 123.904C101.613 127.181 105.163 135.099 111.99 135.099C120.181 135.099 118.543 140.561 109.259 143.837C98.0637 147.66 100.248 152.029 113.901 153.394C125.096 154.486 126.462 153.667 145.849 132.642C153.221 124.723 155.952 125.542 152.675 134.28C149.945 142.472 122.093 173.6 113.628 178.242C108.986 180.427 110.624 181.519 124.004 184.25C132.742 185.888 140.934 186.434 142.026 185.069C156.771 169.232 166.601 155.579 165.509 152.575C162.778 145.203 170.697 149.025 176.158 157.763C179.435 162.951 196.091 176.331 217.117 190.257C256.146 216.458 256.164 216.743 258.072 247.011L258.075 247.053C259.53 273.573 259.609 297.487 258 320C257.669 324.33 252 328 248 328H0.276703C0.906786 324.34 1.50644 319.498 1.94766 314.498C3.85906 293.746 6.58963 288.011 14.5083 288.011C20.2425 288.011 21.0617 285.827 25.7036 258.794C31.7109 223.843 37.172 205.548 43.7254 197.083C46.4559 193.807 57.3782 187.526 67.7544 182.884C85.23 175.512 86.8684 173.873 89.599 163.77C92.3295 153.394 92.0565 151.756 80.315 132.369C73.7616 121.174 68.3005 110.524 68.3005 108.613C68.3005 106.701 67.2083 105.063 66.1161 105.063C64.7508 105.063 63.9316 102.333 64.2047 99.0559C64.4777 95.7792 61.4741 87.5875 57.6513 80.7611C53.5554 73.6616 52.4632 69.5657 54.9207 70.931C58.1974 73.1155 58.1974 72.5694 54.9207 68.7466C51.9171 64.9238 51.9171 62.7393 55.7399 54.8207C58.1974 49.6326 59.2896 43.3523 58.1974 40.6217C57.1052 37.345 57.3782 36.5258 59.8357 37.8911C62.0202 39.5295 62.8394 38.4373 62.2933 35.1606C61.7471 31.6108 63.1124 29.9725 66.3891 30.2455C68.8466 30.5186 71.0311 29.6994 71.0311 28.6072C71.0311 27.515 75.4 21.7808 80.8611 16.0466C89.872 6.76265 92.3295 5.39736 105.436 4.85124ZM85.5031 100.421C89.3259 101.786 96.4254 93.0486 93.6948 90.3181C92.6026 89.4989 89.599 88.6797 86.8684 88.6797C81.1342 88.6797 80.042 98.2367 85.5031 100.421ZM117.178 194.353C108.713 194.899 104.071 194.08 105.163 192.441C105.982 190.803 106.255 189.711 105.436 189.711C104.89 189.711 101.613 194.08 98.3368 199.541C95.0601 204.729 91.5103 208.552 90.9642 207.733C88.5067 205.275 78.9497 211.555 80.5881 214.559C81.6803 215.924 80.8611 217.016 79.2228 217.016C75.1269 217.016 65.843 238.588 65.2969 250.056C64.7508 255.244 63.9316 260.433 62.8394 262.071C62.0202 263.436 60.928 269.17 60.6549 274.358C60.3819 283.096 60.6549 283.369 62.8394 277.089C64.7508 271.901 65.0238 273.266 64.4777 283.915C63.6585 291.288 64.2047 300.026 65.5699 303.029C67.7544 308.218 68.0275 308.218 68.0275 302.483C68.3005 299.207 69.6658 295.657 71.0311 294.838C72.6694 293.746 73.2155 291.834 72.3964 290.469C71.3041 289.104 71.8502 288.011 73.2155 288.011C76.7653 288.011 82.2264 274.358 80.315 271.082C79.2228 269.17 79.7689 268.897 81.4072 269.99C83.3186 271.082 84.6839 270.809 84.6839 269.443C84.6839 267.805 92.8756 254.698 102.706 240.226C117.997 217.29 119.908 213.194 116.905 209.371C115.373 207.283 114.623 206.259 114.761 206.119C114.895 205.985 115.85 206.667 117.724 208.006C121.274 211.009 122.912 210.736 126.189 206.64C133.015 198.995 137.111 189.711 133.834 189.711C132.469 189.711 131.104 190.53 131.104 191.622C131.104 192.987 124.823 194.08 117.178 194.353Z"></path>
+        </svg>
+      </div>
+      <span class="ab-portrait-tag">// drawn in code · not a photo</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT ME ============ -->
+<section class="ab-section tex-dots">
+  <div class="wrap ab-two">
+    <div data-reveal>
+      <span class="eyebrow"><span class="tk">01</span> A little bit about me</span>
+      <div class="ab-narr">
+        <p>I'm an open-minded, ambitious person who takes every challenge as a chance to learn. I love working with people — and I tend to get the best out of everyone around me.</p>
+        <p>Listening and planning are what let me <b>pull a team forward</b>, toward results that keep improving, together. It's the same instinct I bring to a build: understand deeply, then move.</p>
+      </div>
+    </div>
+    <div class="ab-skills" data-reveal data-d="1">
+      <span class="lbl">// what I bring to the table</span>
+      <div class="chips">
+        <span class="hot">Computer Science</span>
+        <span class="hot">Biomedical Engineering</span>
+        <span>PRINCE2</span>
+        <span>Project Management</span>
+        <span>Digital Strategy</span>
+        <span>Graphic Design</span>
+        <span>SEO Optimisation</span>
+        <span>Storytelling</span>
+        <span>Leadership</span>
+        <span>Communication</span>
+        <span>Adaptability</span>
+        <span>Listening</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MISSION ============ -->
+<section class="ab-section ab-mission">
+  <div class="wrap" data-reveal>
+    <span class="eyebrow"><span class="tk">02</span> Mission</span>
+    <h2 class="display ab-mission-h">A positive impact on the planet<br>and the people on it.</h2>
+    <p class="ab-mission-p">I want to use my passion for <span class="accent">graphic design</span> and <span class="accent">computer science</span> to inspire and motivate the many. By building digital tools that leverage the internet, more people can understand the ideas that will change the world.</p>
+  </div>
+</section>
+
+<!-- ============ VISION ============ -->
+<section class="ab-section tex-lines">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow"><span class="tk">03</span> Vision</span>
+      <h2 class="display">Everything starts<br>with a vision.</h2>
+      <p>Four values I build and work by — on the screen and off it.</p>
+    </div>
+    <div class="ab-values">
+      <div class="ab-val" data-reveal><span class="vn">01</span><h3>Impact</h3><p>To have an impact is to share your ideas — and to have the many truly understand them.</p></div>
+      <div class="ab-val" data-reveal data-d="1"><span class="vn">02</span><h3>Excellence</h3><p>To succeed at whatever you do is to stay open-minded about improving yourself.</p></div>
+      <div class="ab-val" data-reveal data-d="2"><span class="vn">03</span><h3>Listening</h3><p>Great victories are shared — achieved only when you open your ears and listen.</p></div>
+      <div class="ab-val" data-reveal data-d="3"><span class="vn">04</span><h3>Learning</h3><p>On the road to understanding, you have to become free of the values that shaped your reality.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NUMBERS ============ -->
+<section class="ab-section">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow"><span class="tk">04</span> Numbers</span>
+      <h2 class="display">Measure to<br>drive impact.</h2>
+      <p>Why the web matters — and why it's worth doing properly.</p>
+    </div>
+    <div class="ab-stats">
+      <div class="ab-stat" data-reveal>
+        <div class="num"><span data-count="3">0</span>x</div>
+        <b>Get your brand online</b>
+        <p>Growth of retail sales through e-commerce worldwide since 2015.</p>
+      </div>
+      <div class="ab-stat" data-reveal data-d="1">
+        <div class="num"><span data-count="58">0</span>%</div>
+        <b>Have a responsive site</b>
+        <p>Share of global website traffic coming through mobile devices.</p>
+      </div>
+      <div class="ab-stat" data-reveal data-d="2">
+        <div class="num"><span data-count="92">0</span>%</div>
+        <b>Optimise your SEO</b>
+        <p>Internet searches globally going through Google's search engine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="ab-section">
+  <div class="wrap contact">
+    <span class="eyebrow" data-reveal><span class="tk">//</span> Contact</span>
+    <h2 class="display" data-reveal data-d="1">Let's build<br>something <em data-scramble>worth it.</em></h2>
+    <p data-reveal data-d="2">Got an idea, a brand, or a site that needs to move faster? Tell me what you have in mind — I'll tell you how I'd build it.</p>
+    <div class="hero-cta" data-reveal data-d="2">
+      <a href="mailto:contact@ywdesign.co?subject=Project" class="btn btn-primary">Start a project <span class="arr">→</span></a>
+      <a href="https://wa.me/32471124525" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp</a>
+    </div>
+    <div class="lines" data-reveal data-d="3">
+      <a href="mailto:contact@ywdesign.co">contact@ywdesign.co</a> &nbsp;·&nbsp; <a href="tel:+33638565302">+33 6 38 56 53 02</a> &nbsp;·&nbsp; Mortsel · Antwerp, BE
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <div class="mark">YW<b>design</b></div>
+      <p>Senior web development &amp; design. Hand-coded, AI-accelerated, end to end.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Site</h5>
+      <a href="index.html#capabilities">Capabilities</a>
+      <a href="index.html#stack">Stack</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="foot-col">
+      <h5>Contact</h5>
+      <a href="mailto:contact@ywdesign.co">Email</a>
+      <a href="https://wa.me/32471124525" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="tel:+33638565302">Call</a>
+    </div>
+  </div>
+  <div class="wrap"><div class="foot-legal">
+    <span>© 2026 YWdesign</span><span>VAT BE0794.586.584</span><span>Hof Savelkoul 40, 2640 Mortsel, Antwerp, Belgium</span>
+  </div></div>
+</footer>
+
+<div id="tweak-root"></div>
+
+<script src="app.js"></script>
+<script>
+/* Yolan self-portrait: draw the strokes in, then fill — like the live site */
+(function(){
+  var art = document.getElementById('yolan-art');
+  if(!art) return;
+  var paths = art.querySelectorAll('.yp');
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  paths.forEach(function(p){
+    var len = 0; try { len = p.getTotalLength(); } catch(e){}
+    p.style.strokeDasharray  = len;
+    p.style.strokeDashoffset = reduced ? 0 : len;
+  });
+  function run(){
+    if(art.dataset.run) return; art.dataset.run = '1';
+    if(reduced){ art.classList.add('filled'); return; }
+    setTimeout(function(){
+      art.classList.add('draw');
+      setTimeout(function(){ art.classList.add('filled'); }, 1850);
+    }, 40);
+  }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ if(es[0].isIntersecting){ run(); } }, {threshold:.2})
+      .observe(art);
+  }
+  /* portrait sits in the hero (above the fold) — guarantee it plays on load */
+  window.addEventListener('load', function(){ setTimeout(run, 350); });
+  setTimeout(run, 1200);
+})();
+</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks-app.jsx"></script>
+</body>
+</html>
