@@ -1,0 +1,10 @@
+[build]
+  command = "next build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Official Next.js adapter — handles App Router, SSG and next/image on Netlify.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
