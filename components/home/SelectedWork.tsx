@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { home } from "@/content/home";
@@ -77,8 +78,7 @@ export function SelectedWork() {
               style={{ "--i": i } as React.CSSProperties}
               key={item.title}
             >
-              {/* Links point to the live site for now; swap to case-study routes later. */}
-              <a className="shot" href={item.href} target="_blank" rel="noopener noreferrer">
+              <Link className="shot" href={`/work/${item.slug}`}>
                 <span className="num">{item.num}</span>
                 <Image
                   src={item.img}
@@ -86,19 +86,17 @@ export function SelectedWork() {
                   fill
                   sizes="(max-width: 820px) 100vw, 50vw"
                 />
-              </a>
+              </Link>
               <div className="p-in">
                 <span className="p-cat">{item.cat}</span>
                 <h3>
-                  <a href={item.href} target="_blank" rel="noopener noreferrer">
-                    {item.title}
-                  </a>
+                  <Link href={`/work/${item.slug}`}>{item.title}</Link>
                 </h3>
                 <p>{item.body}</p>
                 <div className="p-foot">
-                  <a className="visit case" href={item.href} target="_blank" rel="noopener noreferrer">
+                  <Link className="visit case" href={`/work/${item.slug}`}>
                     Case study <span className="arr">→</span>
-                  </a>
+                  </Link>
                   <a className="visit" href={item.href} target="_blank" rel="noopener noreferrer">
                     Visit <span className="arr">↗</span>
                   </a>

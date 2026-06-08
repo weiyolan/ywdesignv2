@@ -173,10 +173,10 @@ export const home = {
     intro:
       "Real sites for real clients across Belgium and beyond — multilingual, fast, and built to convert.",
     items: [
-      { num: "01", cat: "Beauty & wellness e-commerce", title: "Nu", body: "A multilingual clean-beauty storefront — calm editorial pacing around a frictionless, CMS-driven buying flow.", href: "https://nu-site.netlify.app/en", img: "/work/nu.svg" },
-      { num: "02", cat: "Photography portfolio", title: "Milo Weiler", body: "A cinematic, dark portfolio split into seven scroll chapters — 55 projects, sticky chapter nav, top Lighthouse scores.", href: "https://miloweiler.com", img: "/work/milo.svg" },
-      { num: "03", cat: "Events agency · Belgium", title: "Bermuda Events", body: "A premium brand site framing past productions at scale, with a contact funnel built to qualify the right leads.", href: "https://bermuda-events.be", img: "/work/bermuda.svg" },
-      { num: "04", cat: "Activewear brand · 100% Merino", title: "Spiree", body: "An independent sportswear brand site — bold gradient system, Sun & Moon collections, a story-first arc.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.svg" },
+      { num: "01", cat: "Beauty & wellness e-commerce", slug: "nu", title: "Nu", body: "A multilingual clean-beauty storefront — calm editorial pacing around a frictionless, CMS-driven buying flow.", href: "https://nu-site.netlify.app/en", img: "/work/nu.svg" },
+      { num: "02", cat: "Photography portfolio", slug: "milo", title: "Milo Weiler", body: "A cinematic, dark portfolio split into seven scroll chapters — 55 projects, sticky chapter nav, top Lighthouse scores.", href: "https://miloweiler.com", img: "/work/milo.svg" },
+      { num: "03", cat: "Events agency · Belgium", slug: "bermuda", title: "Bermuda Events", body: "A premium brand site framing past productions at scale, with a contact funnel built to qualify the right leads.", href: "https://bermuda-events.be", img: "/work/bermuda.svg" },
+      { num: "04", cat: "Activewear brand · 100% Merino", slug: "spiree", title: "Spiree", body: "An independent sportswear brand site — bold gradient system, Sun & Moon collections, a story-first arc.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.svg" },
     ],
   },
 

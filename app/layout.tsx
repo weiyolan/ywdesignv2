@@ -4,8 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { GsapProvider } from "@/components/providers/GsapProvider";
 import { BackgroundFX } from "@/components/layout/BackgroundFX";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import { SiteFooter } from "@/components/layout/SiteFooter";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -51,11 +49,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <BackgroundFX />
-          <GsapProvider>
-            <SiteHeader />
-            {children}
-            <SiteFooter />
-          </GsapProvider>
+          <GsapProvider>{children}</GsapProvider>
         </ThemeProvider>
       </body>
     </html>

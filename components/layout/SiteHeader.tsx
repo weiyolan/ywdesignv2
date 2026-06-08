@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useTheme } from "next-themes";
 import { site } from "@/content/site";
 import { Button } from "@/components/primitives/Button";
@@ -42,19 +43,19 @@ export function SiteHeader() {
   return (
     <>
       <nav id="nav" className={scrolled ? "scrolled" : undefined}>
-        <a className="logo" href="#top">
+        <Link className="logo" href="/">
           <span className="mark">
             {site.brand.lead}
             <b>{site.brand.tail}</b>
           </span>
           <span className="stat">{site.status}</span>
-        </a>
+        </Link>
 
         <div className="navlinks">
           {site.nav.map((l) => (
-            <a key={l.label} href={l.href} className="hide-md">
+            <Link key={l.label} href={l.href} className="hide-md">
               {l.label}
-            </a>
+            </Link>
           ))}
           <Button href={site.cta.href} variant="primary" className="hide-sm">
             {site.cta.label} <span className="arr">→</span>
@@ -76,13 +77,13 @@ export function SiteHeader() {
 
       <div className="nav-drawer" id="nav-drawer" aria-hidden={!open}>
         {site.nav.map((l, i) => (
-          <a key={l.label} href={l.href} onClick={close}>
+          <Link key={l.label} href={l.href} onClick={close}>
             {l.label} <span className="md-i">{String(i + 1).padStart(2, "0")}</span>
-          </a>
+          </Link>
         ))}
-        <a href={site.cta.href} className="btn btn-primary md-cta" onClick={close}>
+        <Link href={site.cta.href} className="btn btn-primary md-cta" onClick={close}>
           {site.cta.label} <span className="arr">→</span>
-        </a>
+        </Link>
       </div>
       <div className="nav-scrim" id="nav-scrim" onClick={close} aria-hidden="true" />
     </>

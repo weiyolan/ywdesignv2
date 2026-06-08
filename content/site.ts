@@ -18,13 +18,13 @@ export const site = {
   status: "available",
 
   nav: [
-    { label: "Home", href: "#top" },
-    { label: "Work", href: "#work" },
-    { label: "Technology", href: "#stack" },
-    { label: "About", href: "#ai" },
+    { label: "Home", href: "/" },
+    { label: "Work", href: "/work" },
+    { label: "Technology", href: "/technology" },
+    { label: "About", href: "/about" },
   ] as NavLink[],
 
-  cta: { label: "Start a project", href: "#contact" },
+  cta: { label: "Start a project", href: "/#contact" },
 
   // tech marquee — app.js :44-45
   marquee: [
@@ -61,12 +61,12 @@ export const site = {
       {
         title: "Site",
         links: [
-          { label: "Capabilities", href: "#capabilities" },
-          { label: "Stack", href: "#stack" },
-          { label: "Work", href: "#work" },
-          { label: "About", href: "#ai" },
-          { label: "AI philosophy", href: "#ai" },
-          { label: "Process", href: "#process" },
+          { label: "Capabilities", href: "/#capabilities" },
+          { label: "Stack", href: "/#stack" },
+          { label: "Work", href: "/work" },
+          { label: "About", href: "/about" },
+          { label: "AI philosophy", href: "/#ai" },
+          { label: "Process", href: "/#process" },
         ] as NavLink[],
       },
       {

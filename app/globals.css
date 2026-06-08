@@ -144,6 +144,9 @@ section{isolation:isolate;padding:104px 0;position:relative}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;position:relative;z-index:1}
 @media(max-width:720px){.wrap{padding:0 20px}}
 
+/* inner pages whose first section isn't a tall hero — clear the fixed nav */
+.page-pad{padding-top:48px}
+
 /* ============ shared type ============ */
 .eyebrow{
   font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--text-3);
