@@ -15,6 +15,13 @@ const eslintConfig = defineConfig([
     // Read-only design reference — not part of the app.
     "Claude Design/**",
   ]),
+  {
+    rules: {
+      // The UI displays code snippets and uses quotes/apostrophes throughout;
+      // React escapes these safely at runtime, so the rule is just noise here.
+      "react/no-unescaped-entities": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;
