@@ -1,9 +1,9 @@
 /* ============================================================
    YWdesign — Technology deep-dive page
    Route-scoped global CSS (App Router supports this). Ported
-   verbatim from Claude Design/tech.css; the prototype's
-   body[data-surface="glass"] glass-panel overrides are dropped
-   (no surface switcher on this build).
+   verbatim from Claude Design/tech.css. The prototype's
+   body[data-surface="glass"] surface is locked on (set in app/layout.tsx);
+   glass overrides for this page's panel shells are at the bottom of this file.
    ============================================================ */
 
 /* section-head — borrowed from detail.css (:52-56), used by the stack recap.
@@ -233,3 +233,16 @@
 .tech-cta h2 em{font-style:normal;color:var(--accent)}
 .tech-cta p{color:var(--text-2);font-size:18px;margin:22px auto 0;max-width:46ch}
 .tech-cta .hero-cta{justify-content:center;margin-top:32px}
+
+/* ===== GLASS SURFACE — frost the device/panel shells (prototype glassed .stage) =====
+   Gated on body[data-surface="glass"] (locked on in app/layout.tsx). Brand/gradient
+   surfaces (.no-wp .good, .recap, .tw-card, .star-stage, .chapter-stage) are left solid. */
+body[data-surface="glass"] .panel,
+body[data-surface="glass"] .studio{
+  background:color-mix(in oklch, var(--bg-2) 52%, transparent) !important;
+  backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border-color:color-mix(in oklch, var(--text) 14%, transparent);
+  box-shadow:inset 0 1px 0 color-mix(in oklch,var(--text) 10%,transparent),
+             0 22px 50px -34px rgba(0,0,0,.6);
+}

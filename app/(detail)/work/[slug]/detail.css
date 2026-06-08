@@ -3,7 +3,8 @@
    Ported verbatim from Claude Design/projects/detail.css + the four
    per-project inline <style> blocks (nu / milo / bermuda / spiree).
    Changes from the prototype:
-     · body[data-surface="glass"] rules dropped (no glass surface here).
+     · body[data-surface="glass"] surface is locked on (set in app/layout.tsx);
+       glass overrides for neutral content cards are at the bottom of this file.
      · image-slot selectors → next/image `fill` frames: the media/gallery/shot
        cells are position:relative with the right aspect-ratio so a fill image
        covers them (img{object-fit:cover} is set globally by next/image).
@@ -367,4 +368,23 @@
 /* reduced-motion: drop the demo transitions */
 @media(prefers-reduced-motion: reduce){
   .morph,.chapter-fade,.berm-ico path,.orb,.orb::after{transition:none !important}
+}
+
+/* ===== GLASS SURFACE — frost neutral content cards (prototype glassed .detail-card) =====
+   Gated on body[data-surface="glass"] (locked on in app/layout.tsx). Excludes brand/gradient
+   surfaces: .nu-shop & .nu-* (fixed brand palette), .chapter-stage, .orb, and image frames
+   (.detail-media .media / .gallery .cell). */
+body[data-surface="glass"] .demo,
+body[data-surface="glass"] .compare .col,
+body[data-surface="glass"] .approach .step,
+body[data-surface="glass"] .pager a,
+body[data-surface="glass"] .feature-list .fl,
+body[data-surface="glass"] .meta-grid > div,
+body[data-surface="glass"] .stat-band > div{
+  background:color-mix(in oklch, var(--bg-2) 52%, transparent) !important;
+  backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border-color:color-mix(in oklch, var(--text) 14%, transparent);
+  box-shadow:inset 0 1px 0 color-mix(in oklch,var(--text) 10%,transparent),
+             0 22px 50px -34px rgba(0,0,0,.6);
 }

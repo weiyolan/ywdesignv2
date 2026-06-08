@@ -46,7 +46,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${bricolage.variable} ${jetbrains.variable}`}
     >
-      <body>
+      <body data-surface="glass">
         <ThemeProvider>
           <BackgroundFX />
           <GsapProvider>{children}</GsapProvider>
