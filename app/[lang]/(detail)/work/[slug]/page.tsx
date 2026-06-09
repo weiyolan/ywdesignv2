@@ -2,7 +2,8 @@ import "./detail.css";
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { projects, order, type Slug } from "@/content/work";
+import { getProjects, order, type Slug } from "@/content/work";
+import type { Locale } from "@/lib/i18n";
 import { corben, mulish } from "@/lib/projectFonts";
 import { DetailHero } from "@/components/work/DetailHero";
 import { DetailMedia } from "@/components/work/DetailMedia";
@@ -21,23 +22,23 @@ export const dynamicParams = false;
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { lang, slug } = await params;
   if (!isSlug(slug)) return {};
-  const p = projects[slug];
+  const p = getProjects(lang as Locale)[slug];
   return { title: p.metaTitle, description: p.metaDescription };
 }
 
 export default async function ProjectPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { lang, slug } = await params;
   if (!isSlug(slug)) notFound();
 
-  const project = projects[slug];
+  const project = getProjects(lang as Locale)[slug];
   // The first signature section owns the #signature anchor (hero "Jump to the
   // build" target).
   const firstSig = project.sections.findIndex((s) => s.kind === "signature");
@@ -61,7 +62,7 @@ export default async function ProjectPage({
         />
       ))}
 
-      <Pager slug={slug} />
+      <Pager slug={slug} lang={lang as Locale} />
     </main>
   );
 }

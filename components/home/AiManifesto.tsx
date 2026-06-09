@@ -1,11 +1,12 @@
 import { Fragment } from "react";
-import { home } from "@/content/home";
+import { getHome } from "@/content/home";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 
 // Section 04 — AI manifesto (index.html :441-456).
-export function AiManifesto() {
-  const a = home.ai;
+export function AiManifesto({ lang }: { lang: Locale }) {
+  const a = getHome(lang).ai;
   return (
     <section id="ai" className="ai">
       <div className="wrap ai-grid">

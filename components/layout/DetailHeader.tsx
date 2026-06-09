@@ -2,12 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { site } from "@/content/site";
+import { getSite } from "@/content/site";
+import { localizedHref } from "@/lib/i18n";
+import { useLocale } from "@/components/providers/LocaleProvider";
+import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 
 // Slim case-study nav: "← All work" → /work and the YWdesign logo → /.
 // Scrolled state at scrollY > 20 (ports Claude Design/app.js :10-14 and the home
 // nav pattern in SiteHeader.tsx).
 export function DetailHeader() {
+  const lang = useLocale();
+  const site = getSite(lang);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -19,10 +24,11 @@ export function DetailHeader() {
 
   return (
     <nav className={`detail-nav${scrolled ? " scrolled" : ""}`}>
-      <Link className="back" href="/work">
+      <Link className="back" href={localizedHref("/work", lang)}>
         <span className="arr">←</span> All work
       </Link>
-      <Link className="logo" href="/">
+      <LocaleSwitcher />
+      <Link className="logo" href={localizedHref("/", lang)}>
         <span className="mark">
           {site.brand.lead}
           <b>{site.brand.tail}</b>

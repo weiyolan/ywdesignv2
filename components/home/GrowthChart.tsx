@@ -1,7 +1,8 @@
 "use client";
 
 import { Fragment, useEffect, useRef } from "react";
-import { home } from "@/content/home";
+import { getHome } from "@/content/home";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { fmtValue } from "@/lib/format";
 
 // Live, self-renewing growth graph — ported from app.js :314-498.
@@ -19,6 +20,8 @@ export function GrowthChart() {
   const headRef = useRef<SVGCircleElement>(null);
   const burstRef = useRef<HTMLDivElement>(null);
 
+  const lang = useLocale();
+  const home = getHome(lang);
   const funnel = home.growth.funnel;
 
   useEffect(() => {

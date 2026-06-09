@@ -1,9 +1,11 @@
 import { Fragment } from "react";
-import { site } from "@/content/site";
+import { getSite } from "@/content/site";
+import type { Locale } from "@/lib/i18n";
 
 // Infinite-scroll tech strip (CSS-only, pauses on hover — styles.css :279-289).
 // The row is rendered twice so the -50% keyframe loops seamlessly.
-export function Marquee() {
+export function Marquee({ lang }: { lang: Locale }) {
+  const site = getSite(lang);
   return (
     <div className="strip">
       <div className="strip-track">

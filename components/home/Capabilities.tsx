@@ -1,11 +1,12 @@
-import { home } from "@/content/home";
+import { getHome } from "@/content/home";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 import { CountUp } from "@/components/primitives/CountUp";
 import { CaseLink } from "@/components/primitives/CaseLink";
 
 // Section 01 — capabilities bento grid (index.html :117-212).
-export function Capabilities() {
-  const c = home.capabilities;
+export function Capabilities({ lang }: { lang: Locale }) {
+  const c = getHome(lang).capabilities;
   return (
     <section id="capabilities" className="tex-dots">
       <div className="wrap">
@@ -28,7 +29,7 @@ export function Capabilities() {
               <h3>{card.h}</h3>
               <p>{card.p}</p>
               <Viz kind={card.viz} />
-              <CaseLink data={card.case} />
+              <CaseLink data={card.case} lang={lang} />
             </Reveal>
           ))}
         </div>

@@ -1,13 +1,15 @@
 import Link from "next/link";
-import { site } from "@/content/site";
+import { getSite } from "@/content/site";
+import { localizedHref, type Locale } from "@/lib/i18n";
 
 // Slim case-study footer: logo + copyright + email (ports the .detail-foot block
 // from the prototype project pages).
-export function DetailFooter() {
+export function DetailFooter({ lang }: { lang: Locale }) {
+  const site = getSite(lang);
   return (
     <footer className="detail-foot">
       <div className="wrap">
-        <Link className="logo" href="/">
+        <Link className="logo" href={localizedHref("/", lang)}>
           <span className="mark">
             {site.brand.lead}
             <b>{site.brand.tail}</b>

@@ -3,12 +3,17 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { site } from "@/content/site";
+import { getSite } from "@/content/site";
+import { localizedHref } from "@/lib/i18n";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { Button } from "@/components/primitives/Button";
+import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 
 // Fixed nav + mobile drawer + scrim + theme toggle.
 // Ports app.js :9-40 (scrolled state, burger, scrim, Escape/resize close).
 export function SiteHeader() {
+  const lang = useLocale();
+  const site = getSite(lang);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -43,7 +48,7 @@ export function SiteHeader() {
   return (
     <>
       <nav id="nav" className={scrolled ? "scrolled" : undefined}>
-        <Link className="logo" href="/">
+        <Link className="logo" href={localizedHref("/", lang)}>
           <span className="mark">
             {site.brand.lead}
             <b>{site.brand.tail}</b>
@@ -53,13 +58,14 @@ export function SiteHeader() {
 
         <div className="navlinks">
           {site.nav.map((l) => (
-            <Link key={l.label} href={l.href} className="hide-md">
+            <Link key={l.label} href={localizedHref(l.href, lang)} className="hide-md">
               {l.label}
             </Link>
           ))}
-          <Button href={site.cta.href} variant="primary" className="hide-sm">
+          <Button href={localizedHref(site.cta.href, lang)} variant="primary" className="hide-sm">
             {site.cta.label} <span className="arr">→</span>
           </Button>
+          <LocaleSwitcher />
           <ThemeToggle />
           <button
             className="nav-burger"
@@ -77,11 +83,11 @@ export function SiteHeader() {
 
       <div className="nav-drawer" id="nav-drawer" aria-hidden={!open}>
         {site.nav.map((l, i) => (
-          <Link key={l.label} href={l.href} onClick={close}>
+          <Link key={l.label} href={localizedHref(l.href, lang)} onClick={close}>
             {l.label} <span className="md-i">{String(i + 1).padStart(2, "0")}</span>
           </Link>
         ))}
-        <Link href={site.cta.href} className="btn btn-primary md-cta" onClick={close}>
+        <Link href={localizedHref(site.cta.href, lang)} className="btn btn-primary md-cta" onClick={close}>
           {site.cta.label} <span className="arr">→</span>
         </Link>
       </div>
