@@ -12,7 +12,7 @@ export type Stat = { value: number; suffix: string; label: string; p: string };
 
 export const about = {
   hero: {
-    eyebrow: "About · Yolan Wauters · Lyon, FR",
+    eyebrow: "About · Yolan Weiler · Lyon, FR",
     h1: [
       { t: "Hi, I'm" },
       { t: "Yolan.", scramble: true, accent: true },
