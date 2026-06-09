@@ -26,7 +26,7 @@ export function Gallery({
             <div className={`g-${it.span}`} key={it.id}>
               <div className="cell">
                 <Image
-                  src={`/work/${it.id}.svg`}
+                  src={`/work/${it.id}.jpg`}
                   alt={it.alt}
                   fill
                   sizes="(max-width: 780px) 50vw, 33vw"

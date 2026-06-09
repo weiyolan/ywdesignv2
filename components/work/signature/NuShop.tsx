@@ -90,7 +90,7 @@ export function NuShop({ shop }: { shop: Shop }) {
             <div className="nu-card" key={p.id}>
               <div className="shot">
                 <Image
-                  src={`/work/${p.id}.svg`}
+                  src={`/work/${p.id}.jpg`}
                   alt={t[`p${n}n`]}
                   fill
                   sizes="(max-width: 640px) 50vw, 33vw"
