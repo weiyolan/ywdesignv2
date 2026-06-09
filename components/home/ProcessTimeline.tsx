@@ -3,7 +3,8 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { home } from "@/content/home";
+import { getHome } from "@/content/home";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { Reveal } from "@/components/primitives/Reveal";
 
 // Section 05 — process timeline (index.html :458-483, ports app.js :532-595).
@@ -11,7 +12,8 @@ import { Reveal } from "@/components/primitives/Reveal";
 // measured row positions; a ScrollTrigger scrub draws the fill and lights each
 // dot/row as it's reached. Reduced motion renders fully drawn + all lit.
 export function ProcessTimeline() {
-  const p = home.process;
+  const lang = useLocale();
+  const p = getHome(lang).process;
   const tlRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 

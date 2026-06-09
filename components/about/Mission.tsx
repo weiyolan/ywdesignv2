@@ -1,11 +1,12 @@
 import { Fragment } from "react";
-import { about } from "@/content/about";
+import { getAbout } from "@/content/about";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 
 // Mission section (about.html :182-189) — accent-tinted band.
-export function Mission() {
-  const m = about.mission;
+export function Mission({ lang }: { lang: Locale }) {
+  const m = getAbout(lang).mission;
   return (
     <section className="ab-section ab-mission">
       <Reveal as="div" className="wrap">

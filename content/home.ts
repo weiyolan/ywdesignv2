@@ -3,6 +3,7 @@
 // mini-graphics, charts, terminal) live in their components; only translatable
 // copy lives here.
 import type { NumFmt } from "@/lib/format";
+import type { Locale } from "@/lib/i18n";
 
 /** An inline text run: plain, or flagged to scramble / accent / bold / emphasise. */
 export type Seg = {
@@ -25,7 +26,7 @@ const nbsp = " ";
 
 export const home = {
   hero: {
-    eyebrow: "Senior web developer & designer · Antwerp, BE",
+    eyebrow: "Senior web developer & designer · Lyon, FR",
     headline: [
       [{ t: "Websites,", scramble: true }, { t: " built" }],
       [{ t: "from " }, { t: "scratch", scramble: true, accent: true }, { t: "—" }],
@@ -226,3 +227,10 @@ export const home = {
     ],
   },
 };
+
+export type Home = typeof home;
+const homeByLocale: Record<Locale, Home> = { fr: home, en: home, nl: home };
+// FR/NL reuse the EN dictionary until translations are written.
+export function getHome(lang: Locale): Home {
+  return homeByLocale[lang];
+}

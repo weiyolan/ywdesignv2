@@ -2,7 +2,8 @@ import "./technology.css";
 
 import { Fragment } from "react";
 import type { Metadata } from "next";
-import { technology } from "@/content/technology";
+import { getTechnology } from "@/content/technology";
+import { localizedHref, type Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 import { Button } from "@/components/primitives/Button";
@@ -43,11 +44,16 @@ function Demo({ demo }: { demo: string }) {
   }
 }
 
-export default function TechnologyPage() {
-  const t = technology;
+export default async function TechnologyPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const lang = (await params).lang as Locale;
+  const t = getTechnology(lang);
   return (
     <main>
-      <TechHero />
+      <TechHero lang={lang} />
 
       {t.sections.map((section) => (
         <TechDeep
@@ -59,7 +65,7 @@ export default function TechnologyPage() {
         </TechDeep>
       ))}
 
-      <StackRecap />
+      <StackRecap lang={lang} />
 
       <section className="tech-cta">
         <div className="wrap">
@@ -78,7 +84,7 @@ export default function TechnologyPage() {
             {t.cta.ctas.map((cta) => (
               <Button
                 key={cta.label}
-                href={cta.href}
+                href={localizedHref(cta.href, lang)}
                 variant={cta.variant}
                 external={Boolean((cta as { external?: boolean }).external)}
               >

@@ -1,8 +1,9 @@
-import { home } from "@/content/home";
+import { getHome } from "@/content/home";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 
-export function SupportingTech() {
-  const s = home.stack.supporting;
+export function SupportingTech({ lang }: { lang: Locale }) {
+  const s = getHome(lang).stack.supporting;
   return (
     <Reveal as="div" className="tech-mini-wrap">
       <span className="eyebrow">

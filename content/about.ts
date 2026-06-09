@@ -3,6 +3,7 @@
 // paths live in the SelfPortrait component; only translatable copy lives here.
 import type { Seg } from "@/content/home";
 import type { ContactData } from "@/components/shared/ContactBlock";
+import type { Locale } from "@/lib/i18n";
 
 export type Fact = { k: string; v: string };
 export type SkillChip = { label: string; hot?: boolean };
@@ -11,7 +12,7 @@ export type Stat = { value: number; suffix: string; label: string; p: string };
 
 export const about = {
   hero: {
-    eyebrow: "About · Yolan Wauters · Antwerp, BE",
+    eyebrow: "About · Yolan Wauters · Lyon, FR",
     h1: [
       { t: "Hi, I'm" },
       { t: "Yolan.", scramble: true, accent: true },
@@ -24,7 +25,7 @@ export const about = {
       { t: " — one fast, considered website at a time." },
     ] as Seg[],
     facts: [
-      { k: "Based", v: "Mortsel · Antwerp, BE" },
+      { k: "Based", v: "Lyon, FR" },
       { k: "Training", v: "Biomedical Engineering" },
       { k: "Method", v: "PRINCE2 · code-deep" },
       { k: "Off-screen", v: "In the water, surfing" },
@@ -115,3 +116,10 @@ export const about = {
     ],
   } as ContactData,
 };
+
+export type About = typeof about;
+const aboutByLocale: Record<Locale, About> = { fr: about, en: about, nl: about };
+// FR/NL reuse the EN dictionary until translations are written.
+export function getAbout(lang: Locale): About {
+  return aboutByLocale[lang];
+}
