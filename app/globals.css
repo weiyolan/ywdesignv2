@@ -46,6 +46,48 @@
   --accent-soft: color-mix(in oklch, var(--accent) 20%, transparent);
 }
 
+/* ============================================================
+   EDITOR TYPE THEME — visitor toggle (data-type="editor" on <html>,
+   set by AppearanceProvider). Serif typefaces + a warm "editorial"
+   remap of the neutral ramp. Crosses with data-theme: editor+dark =
+   warm/salmon, editor+light = sepia paper. --accent stays visitor-set.
+   Ordered after the light block so equal-specificity rules resolve right;
+   the combined editor+light selector (0,2,0) wins for sepia.
+   ============================================================ */
+[data-type="editor"]{
+  /* serif pair — Fraunces (display) + Newsreader (body); mono stays for real code */
+  --display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --sans:    var(--font-newsreader), Georgia, "Times New Roman", serif;
+  /* editor DARK — warm charcoal / salmon (default editor scheme) */
+  --bg:    oklch(0.180 0.016 35);
+  --bg-2:  oklch(0.214 0.020 34);
+  --bg-3:  oklch(0.249 0.024 33);
+  --line:  oklch(0.33 0.028 33);
+  --line-2:oklch(0.43 0.030 32);
+  --text:  oklch(0.950 0.014 60);
+  --text-2:oklch(0.750 0.020 48);
+  --text-3:oklch(0.600 0.022 42);
+}
+/* editor LIGHT — sepia paper (combined selector outranks both base ramps) */
+[data-type="editor"][data-theme="light"]{
+  --bg:    oklch(0.965 0.018 88);
+  --bg-2:  oklch(0.935 0.024 84);
+  --bg-3:  oklch(0.905 0.028 80);
+  --line:  oklch(0.86 0.030 78);
+  --line-2:oklch(0.76 0.032 70);
+  --text:  oklch(0.305 0.030 55);
+  --text-2:oklch(0.455 0.030 53);
+  --text-3:oklch(0.575 0.028 52);
+  --accent-soft: color-mix(in oklch, var(--accent) 20%, transparent);
+}
+/* editorial label softening — mono UI chrome → serif. Real code (.term/.code/.mono)
+   is intentionally left alone so code still reads as code. Higher specificity than the
+   base rules, so source order vs. their later definitions doesn't matter. */
+[data-type="editor"] .eyebrow{font-family:var(--sans);font-style:italic;text-transform:none;letter-spacing:.01em}
+[data-type="editor"] .btn{font-family:var(--sans);letter-spacing:0}
+[data-type="editor"] .navlinks a:not(.btn){font-family:var(--sans);letter-spacing:0}
+[data-type="editor"] .logo .stat{font-family:var(--sans);letter-spacing:.01em}
+
 /* ============ Expose tokens to Tailwind utilities (theme-reactive via `inline`) ============ */
 @theme inline{
   --color-bg: var(--bg);
@@ -195,6 +237,20 @@ section{isolation:isolate;padding:104px 0;position:relative}
 .logo .stat::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);
   box-shadow:0 0 0 0 var(--accent);animation:pulse 2.4s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 var(--accent-line)}70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
+/* leading cluster: optional case-study back-link + logo */
+.nav-lead{display:flex;align-items:center;gap:18px}
+.back{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;
+  color:var(--text-2);text-decoration:none;transition:.2s;white-space:nowrap}
+.back:hover{color:var(--accent)}
+.back .arr{transition:transform .2s}
+.back:hover .arr{transform:translateX(-3px)}
+/* Narrow screens: the back-link adds width the marketing header doesn't carry, so
+   collapse it to just the arrow and drop the status pill to keep the right-side
+   controls (theme · accent · burger) on screen. Scoped to detail via :has(.back). */
+@media(max-width:600px){
+  .back .lbl{display:none}
+  .nav-lead:has(.back) .logo .stat{display:none}
+}
 .navlinks{display:flex;align-items:center;gap:30px}
 /* :not(.btn) so this generic nav-link colour doesn't out-specificity-win over
    .btn-primary's ink on the CTA (which would render its label grey). */
@@ -212,6 +268,46 @@ section{isolation:isolate;padding:104px 0;position:relative}
 .theme-toggle .ic-moon{display:none}
 [data-theme="light"] .theme-toggle .ic-sun{display:none}
 [data-theme="light"] .theme-toggle .ic-moon{display:block}
+
+/* ============ appearance menu (visitor accent + type-theme picker) ============ */
+.appearance{position:relative;display:inline-flex}
+.appearance-trigger{display:inline-grid;place-items:center;width:38px;height:38px;flex:none;
+  border:1px solid var(--line);border-radius:10px;background:transparent;cursor:pointer;
+  transition:border-color .2s,background .2s}
+.appearance-trigger:hover,.appearance-trigger[aria-expanded="true"]{
+  border-color:var(--accent-line);background:var(--accent-soft)}
+.appearance-trigger .dot{width:13px;height:13px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 1px color-mix(in oklch,var(--text) 18%,transparent),0 0 10px -1px var(--accent)}
+.appearance-panel{position:absolute;top:calc(100% + 10px);right:0;z-index:60;width:248px;
+  display:flex;flex-direction:column;gap:16px;padding:16px;border-radius:14px;
+  border:1px solid color-mix(in oklch,var(--text) 14%,transparent);
+  background:color-mix(in oklch,var(--bg-2) 88%,transparent);
+  backdrop-filter:blur(16px) saturate(1.4);
+  box-shadow:0 18px 50px -20px rgba(0,0,0,.55),inset 0 1px 0 color-mix(in oklch,var(--text) 10%,transparent)}
+.appearance-panel .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-3);margin-bottom:9px;display:block}
+.appearance-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:10px;
+  background:var(--bg);border:1px solid var(--line)}
+.appearance-seg button{font-family:var(--mono);font-size:12px;padding:7px 0;border:0;border-radius:7px;
+  background:transparent;color:var(--text-2);cursor:pointer;transition:.18s}
+.appearance-seg button[data-on="true"]{background:var(--accent);color:var(--accent-ink);font-weight:600}
+.appearance-swatches{display:flex;gap:8px;flex-wrap:wrap}
+.appearance-swatches button{width:24px;height:24px;border-radius:50%;padding:0;cursor:pointer;
+  border:1px solid color-mix(in oklch,var(--text) 16%,transparent);transition:transform .15s}
+.appearance-swatches button:hover{transform:scale(1.12)}
+.appearance-swatches button[data-on="true"]{box-shadow:0 0 0 2px var(--bg-2),0 0 0 4px var(--accent)}
+.appearance-hue{-webkit-appearance:none;appearance:none;width:100%;height:10px;margin-top:12px;
+  border-radius:100px;cursor:pointer;border:1px solid color-mix(in oklch,var(--text) 14%,transparent);
+  background:linear-gradient(90deg,oklch(0.84 0.185 0),oklch(0.84 0.185 60),oklch(0.84 0.185 120),
+    oklch(0.84 0.185 180),oklch(0.84 0.185 240),oklch(0.84 0.185 300),oklch(0.84 0.185 360))}
+.appearance-hue::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--accent);border:2px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,.4);cursor:pointer}
+.appearance-hue::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);
+  border:2px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,.4);cursor:pointer}
+.appearance-random{font-family:var(--mono);font-size:12px;padding:9px 0;border-radius:9px;
+  border:1px solid var(--line-2);background:transparent;color:var(--text);cursor:pointer;transition:.18s;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.appearance-random:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
 @media(max-width:900px){.navlinks .hide-md{display:none}}
 
 /* ============ mobile nav (burger + drawer) ============ */
