@@ -11,6 +11,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { AppearanceProvider } from "@/components/providers/AppearanceProvider";
 import { ACCENT_LC, TYPE_KEY, ACCENT_KEY } from "@/lib/appearance";
 import { GsapProvider } from "@/components/providers/GsapProvider";
+import { LenisProvider } from "@/components/providers/LenisProvider";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
 import { BackgroundFX } from "@/components/layout/BackgroundFX";
 import { getSite } from "@/content/site";
@@ -142,7 +143,6 @@ export default async function RootLayout({
   return (
     <html
       lang={lang}
-      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${bricolage.variable} ${jetbrains.variable} ${fraunces.variable} ${newsreader.variable}`}
     >
@@ -158,7 +158,9 @@ export default async function RootLayout({
           <BackgroundFX />
           <LocaleProvider lang={lang}>
             <AppearanceProvider>
-              <GsapProvider>{children}</GsapProvider>
+              <LenisProvider>
+                <GsapProvider>{children}</GsapProvider>
+              </LenisProvider>
             </AppearanceProvider>
           </LocaleProvider>
         </ThemeProvider>

@@ -107,7 +107,7 @@
 
 /* ============ base reset (styles.css :27-34) ============ */
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;background:var(--bg)}
+html{background:var(--bg)}
 body{
   background:transparent;color:var(--text);font-family:var(--sans);
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
