@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { technology } from "@/content/technology";
+import type { Technology } from "@/content/technology";
 
 // Sanity Studio dashboard (technology.html :132-206, ports the switcher :418-445).
 // Clicking a sidebar doc-type swaps the middle document list; the editor pane
 // and the GROQ → JSON panels are static dressing. Initial active type is the one
 // flagged `on` in content (Products).
-export function SanityStudio() {
-  const s = technology.studio;
+export function SanityStudio({ studio }: { studio: Technology["studio"] }) {
+  const s = studio;
   const initial = Math.max(
     0,
     s.types.findIndex((t) => t.on),

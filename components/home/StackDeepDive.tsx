@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { home } from "@/content/home";
+import type { Home } from "@/content/home";
+import type { Site } from "@/content/site";
 import { Reveal } from "@/components/primitives/Reveal";
 import { CaseLink } from "@/components/primitives/CaseLink";
 import { Button } from "@/components/primitives/Button";
@@ -15,8 +16,16 @@ import { SupportingTech } from "@/components/home/SupportingTech";
 // `railIndex` is how far the scroll-driven rail/lit state has progressed. A
 // ScrollTrigger advances both as each bar crosses 42% of the viewport; clicks
 // drive them too. The rail-fill height is measured from the active bar's centre.
-export function StackDeepDive() {
-  const s = home.stack;
+export function StackDeepDive({
+  stack,
+  terminal,
+  terminalTitle,
+}: {
+  stack: Home["stack"];
+  terminal: Site["terminal"];
+  terminalTitle: Site["terminalTitle"];
+}) {
+  const s = stack;
   const [openIndex, setOpenIndex] = useState(0);
   const [railIndex, setRailIndex] = useState(-1);
   const rowsRef = useRef<HTMLDivElement>(null);
@@ -175,7 +184,7 @@ export function StackDeepDive() {
         </div>
 
         <Reveal as="div" className="stack-term">
-          <Terminal />
+          <Terminal terminal={terminal} terminalTitle={terminalTitle} />
           <div className="stack-term-side">
             <span className="eyebrow">
               <span className="tk">{"//"}</span> {s.side.eyebrow}
@@ -192,7 +201,7 @@ export function StackDeepDive() {
           </div>
         </Reveal>
 
-        <SupportingTech />
+        <SupportingTech supporting={s.supporting} />
       </div>
     </section>
   );

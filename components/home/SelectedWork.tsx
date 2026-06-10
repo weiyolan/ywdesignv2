@@ -2,17 +2,17 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { home } from "@/content/home";
+import type { Home } from "@/content/home";
 import { Reveal } from "@/components/primitives/Reveal";
+import { LocaleLink } from "@/components/primitives/LocaleLink";
 
 // Section 03 — selected work. Cards are CSS position:sticky (styles.css :578-595);
 // this adds the scale/brightness fall-off as each card is overlapped by the next
 // (ports app.js :503-527). Desktop + no-reduced-motion only.
-export function SelectedWork() {
-  const w = home.work;
+export function SelectedWork({ work }: { work: Home["work"] }) {
+  const w = work;
   const gridRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -78,7 +78,7 @@ export function SelectedWork() {
               style={{ "--i": i } as React.CSSProperties}
               key={item.title}
             >
-              <Link className="shot" href={`/work/${item.slug}`}>
+              <LocaleLink className="shot" href={`/work/${item.slug}`}>
                 <span className="num">{item.num}</span>
                 <Image
                   src={item.img}
@@ -86,19 +86,19 @@ export function SelectedWork() {
                   fill
                   sizes="(max-width: 820px) 100vw, 50vw"
                 />
-              </Link>
+              </LocaleLink>
               <div className="p-in">
                 <span className="p-cat">{item.cat}</span>
                 <h3>
-                  <Link href={`/work/${item.slug}`}>{item.title}</Link>
+                  <LocaleLink href={`/work/${item.slug}`}>{item.title}</LocaleLink>
                 </h3>
                 <p>{item.body}</p>
                 <div className="p-foot">
-                  <Link className="visit case" href={`/work/${item.slug}`}>
-                    Case study <span className="arr">→</span>
-                  </Link>
+                  <LocaleLink className="visit case" href={`/work/${item.slug}`}>
+                    {w.cta.caseStudy} <span className="arr">→</span>
+                  </LocaleLink>
                   <a className="visit" href={item.href} target="_blank" rel="noopener noreferrer">
-                    Visit <span className="arr">↗</span>
+                    {w.cta.visit} <span className="arr">↗</span>
                   </a>
                 </div>
               </div>

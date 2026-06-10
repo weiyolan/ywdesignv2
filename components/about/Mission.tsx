@@ -1,11 +1,11 @@
 import { Fragment } from "react";
-import { about } from "@/content/about";
+import type { About } from "@/content/about";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 
 // Mission section (about.html :182-189) — accent-tinted band.
-export function Mission() {
-  const m = about.mission;
+export function Mission({ mission }: { mission: About["mission"] }) {
+  const m = mission;
   return (
     <section className="ab-section ab-mission">
       <Reveal as="div" className="wrap">

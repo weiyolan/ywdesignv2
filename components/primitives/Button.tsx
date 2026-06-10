@@ -1,10 +1,11 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { LocaleLink } from "@/components/primitives/LocaleLink";
 
 type Variant = "primary" | "ghost";
 
-// Renders the design-system .btn. Hash/mailto/tel/external links use a plain
-// <a> (so same-page anchors smooth-scroll); internal routes use next/link.
+// Renders the design-system .btn. Delegates link handling to LocaleLink, which
+// prefixes internal routes by locale and falls back to a plain <a> for
+// hash/mailto/tel/external hrefs.
 export function Button({
   href,
   variant = "primary",
@@ -19,22 +20,9 @@ export function Button({
   children: ReactNode;
 }) {
   const cls = `btn btn-${variant}${className ? " " + className : ""}`;
-  const isPlain = external || /^(#|mailto:|tel:|https?:)/.test(href);
-
-  if (isPlain) {
-    return (
-      <a
-        href={href}
-        className={cls}
-        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      >
-        {children}
-      </a>
-    );
-  }
   return (
-    <Link href={href} className={cls}>
+    <LocaleLink href={href} external={external} className={cls}>
       {children}
-    </Link>
+    </LocaleLink>
   );
 }

@@ -1,18 +1,24 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { site } from "@/content/site";
+import type { Site } from "@/content/site";
 
 // Typing terminal — ported from app.js :97-146. Builds its lines imperatively
 // (like the prototype) and starts when scrolled into view. Reduced motion shows
 // every line at once.
-export function Terminal() {
+export function Terminal({
+  terminal,
+  terminalTitle,
+}: {
+  terminal: Site["terminal"];
+  terminalTitle: Site["terminalTitle"];
+}) {
   const bodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const body = bodyRef.current;
     if (!body) return;
-    const lines = site.terminal;
+    const lines = terminal;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const timers: number[] = [];
     let cancelled = false;
@@ -88,7 +94,7 @@ export function Terminal() {
       timers.forEach((t) => clearTimeout(t));
       io.disconnect();
     };
-  }, []);
+  }, [terminal]);
 
   return (
     <div className="term" id="terminal">
@@ -96,7 +102,7 @@ export function Terminal() {
         <i />
         <i />
         <i />
-        <span>{site.terminalTitle}</span>
+        <span>{terminalTitle}</span>
       </div>
       <div className="term-body" id="term-body" ref={bodyRef} />
     </div>

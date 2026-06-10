@@ -1,11 +1,11 @@
 import { Fragment } from "react";
-import { about } from "@/content/about";
+import type { About } from "@/content/about";
 import { Reveal } from "@/components/primitives/Reveal";
 import { CountUp } from "@/components/primitives/CountUp";
 
 // Numbers section (about.html :208-234) — three count-up stats.
-export function Stats() {
-  const n = about.numbers;
+export function Stats({ numbers }: { numbers: About["numbers"] }) {
+  const n = numbers;
   return (
     <section className="ab-section">
       <div className="wrap">

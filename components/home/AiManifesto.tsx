@@ -1,11 +1,11 @@
 import { Fragment } from "react";
-import { home } from "@/content/home";
+import type { Home } from "@/content/home";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 
 // Section 04 — AI manifesto (index.html :441-456).
-export function AiManifesto() {
-  const a = home.ai;
+export function AiManifesto({ ai }: { ai: Home["ai"] }) {
+  const a = ai;
   return (
     <section id="ai" className="ai">
       <div className="wrap ai-grid">

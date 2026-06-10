@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { site } from "@/content/site";
+import type { Site } from "@/content/site";
 import type { Seg } from "@/content/home";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
@@ -21,8 +21,16 @@ export type ContactData = {
 };
 
 // The centered contact/CTA block shared by the home, about (and any) page.
-// Contact lines (email · phone · location) come from the global site dictionary.
-export function ContactBlock({ data, id = "contact" }: { data: ContactData; id?: string }) {
+// Contact lines (email · phone · location) come from the resolved site dict.
+export function ContactBlock({
+  data,
+  contact,
+  id = "contact",
+}: {
+  data: ContactData;
+  contact: Site["contact"];
+  id?: string;
+}) {
   return (
     <section id={id}>
       <div className="wrap contact">
@@ -54,11 +62,11 @@ export function ContactBlock({ data, id = "contact" }: { data: ContactData; id?:
           ))}
         </Reveal>
         <Reveal as="div" className="lines" delay={3}>
-          <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
           {"  ·  "}
-          <a href={site.contact.phoneHref}>{site.contact.phone}</a>
+          <a href={contact.phoneHref}>{contact.phone}</a>
           {"  ·  "}
-          {site.contact.location}
+          {contact.location}
         </Reveal>
       </div>
     </section>

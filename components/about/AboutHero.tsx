@@ -1,11 +1,10 @@
-import { about } from "@/content/about";
+import type { About } from "@/content/about";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 import { SelfPortrait } from "@/components/about/SelfPortrait";
 
 // About hero (about.html :127-150) — copy + animated self-portrait.
-export function AboutHero() {
-  const { hero } = about;
+export function AboutHero({ hero }: { hero: About["hero"] }) {
   return (
     <header className="ab-hero">
       <div className="wrap ab-hero-grid">

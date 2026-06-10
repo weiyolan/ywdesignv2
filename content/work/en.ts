@@ -112,6 +112,14 @@ export type Project = {
     spireeOrb?: {
       sun: { t: string; s: string };
       moon: { t: string; s: string };
+      meta: string;
+      add: string;
+      added: string;
+    };
+    bermudaIcons?: {
+      getLostIn: string;
+      cards: { title: string; sub: string }[];
+      note: { heading: string; body: Seg[] };
     };
   };
 };
@@ -582,6 +590,26 @@ export const projects: Record<Slug, Project> = {
         ],
       },
     ],
+    signatureData: {
+      bermudaIcons: {
+        getLostIn: "Get lost in",
+        cards: [
+          { title: "Creativity", sub: "A new concept to your desire. Every time." },
+          { title: "Detail", sub: "Nothing left to chance. Every detail thought of." },
+          { title: "Personality", sub: "The same person, always there for you." },
+        ],
+        note: {
+          heading: "Why it's recolored here",
+          body: [
+            { t: "Live, Bermuda runs on its own earth-tone identity — clay, sand, olive. For this case study I remapped the exact same morph to the portfolio's own system: " },
+            { t: "neutral ink", accent: true },
+            { t: " at rest, brightening to full contrast on focus, with the morphing focal shape resolving in the " },
+            { t: "accent", accent: true },
+            { t: ". The geometry is untouched — only the palette is swapped to black / white / accent so the component sits inside this site instead of fighting it." },
+          ],
+        },
+      },
+    },
   },
 
   // ── 04 · Spiree ─────────────────────────────────────────────────────────
@@ -701,6 +729,9 @@ export const projects: Record<Slug, Project> = {
       spireeOrb: {
         sun: { t: "Sun", s: "Unleash your inner fire" },
         moon: { t: "Moon", s: "Embrace your ethereal side" },
+        meta: "Incl. VAT & shipping in EU",
+        add: "Add to cart",
+        added: "✓ Added to cart",
       },
     },
   },

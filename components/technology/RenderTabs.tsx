@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { technology } from "@/content/technology";
+import type { Technology } from "@/content/technology";
 import { Segments } from "@/components/primitives/Segments";
 
 // Next.js panel (technology.html :98-118, ports the tab script :397-416).
 // Clicking SSG/ISR/SSR swaps the strategy blurb and animates the wave bars to
 // the selected heights (the .render-wave i transition handles the easing).
-export function RenderTabs() {
-  const { file, strats, seoFlags } = technology.render;
+export function RenderTabs({ render }: { render: Technology["render"] }) {
+  const { file, strats, seoFlags } = render;
   const [active, setActive] = useState(0);
   const cur = strats[active];
 

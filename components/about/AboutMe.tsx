@@ -1,10 +1,10 @@
-import { about } from "@/content/about";
+import type { About } from "@/content/about";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 
 // "A little bit about me" — narrative + skill chips (about.html :152-180).
-export function AboutMe() {
-  const a = about.aboutMe;
+export function AboutMe({ aboutMe }: { aboutMe: About["aboutMe"] }) {
+  const a = aboutMe;
   return (
     <section className="ab-section tex-dots">
       <div className="wrap ab-two">

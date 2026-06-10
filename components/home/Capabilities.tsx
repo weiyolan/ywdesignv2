@@ -1,11 +1,11 @@
-import { home } from "@/content/home";
+import type { Home } from "@/content/home";
 import { Reveal } from "@/components/primitives/Reveal";
 import { CountUp } from "@/components/primitives/CountUp";
 import { CaseLink } from "@/components/primitives/CaseLink";
 
 // Section 01 — capabilities bento grid (index.html :117-212).
-export function Capabilities() {
-  const c = home.capabilities;
+export function Capabilities({ capabilities }: { capabilities: Home["capabilities"] }) {
+  const c = capabilities;
   return (
     <section id="capabilities" className="tex-dots">
       <div className="wrap">

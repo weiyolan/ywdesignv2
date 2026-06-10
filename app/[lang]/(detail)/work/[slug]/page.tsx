@@ -2,7 +2,10 @@ import "./detail.css";
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { projects, order, type Slug } from "@/content/work";
+import { getWork, order, type Slug } from "@/content/work";
+import { getSite } from "@/content/site";
+import { isLocale } from "@/lib/i18n";
+import { pageMetadata } from "@/lib/metadata";
 import { corben, mulish } from "@/lib/projectFonts";
 import { DetailHero } from "@/components/work/DetailHero";
 import { DetailMedia } from "@/components/work/DetailMedia";
@@ -12,6 +15,7 @@ import { Pager } from "@/components/work/Pager";
 const SLUGS = new Set<string>(order);
 const isSlug = (s: string): s is Slug => SLUGS.has(s);
 
+// lang comes from the parent [lang] segment; this only enumerates the slugs.
 export function generateStaticParams() {
   return order.map((slug) => ({ slug }));
 }
@@ -21,23 +25,31 @@ export const dynamicParams = false;
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  if (!isSlug(slug)) return {};
-  const p = projects[slug];
-  return { title: p.metaTitle, description: p.metaDescription };
+  const { lang, slug } = await params;
+  if (!isLocale(lang) || !isSlug(slug)) return {};
+  const p = getWork(lang)[slug];
+  return pageMetadata({
+    locale: lang,
+    path: `/work/${slug}`,
+    title: p.metaTitle,
+    description: p.metaDescription,
+  });
 }
 
 export default async function ProjectPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  if (!isSlug(slug)) notFound();
+  const { lang, slug } = await params;
+  if (!isLocale(lang) || !isSlug(slug)) notFound();
 
+  const projects = getWork(lang);
   const project = projects[slug];
+  const { ui } = getSite(lang);
+
   // The first signature section owns the #signature anchor (hero "Jump to the
   // build" target).
   const firstSig = project.sections.findIndex((s) => s.kind === "signature");
@@ -49,7 +61,7 @@ export default async function ProjectPage({
 
   return (
     <main className={rootClass}>
-      <DetailHero project={project} />
+      <DetailHero project={project} labels={ui} />
       <DetailMedia src={project.heroImg} alt={project.heroAlt} />
 
       {project.sections.map((section, i) => (
@@ -61,7 +73,7 @@ export default async function ProjectPage({
         />
       ))}
 
-      <Pager slug={slug} />
+      <Pager slug={slug} projects={projects} labels={ui} />
     </main>
   );
 }

@@ -1,8 +1,8 @@
-import { home } from "@/content/home";
+import type { Home } from "@/content/home";
 import { Reveal } from "@/components/primitives/Reveal";
 
-export function SupportingTech() {
-  const s = home.stack.supporting;
+export function SupportingTech({ supporting }: { supporting: Home["stack"]["supporting"] }) {
+  const s = supporting;
   return (
     <Reveal as="div" className="tech-mini-wrap">
       <span className="eyebrow">

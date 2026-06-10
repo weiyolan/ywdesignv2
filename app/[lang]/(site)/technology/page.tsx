@@ -2,7 +2,11 @@ import "./technology.css";
 
 import { Fragment } from "react";
 import type { Metadata } from "next";
-import { technology } from "@/content/technology";
+import { notFound } from "next/navigation";
+import { getTechnology } from "@/content/technology";
+import { getSite } from "@/content/site";
+import { isLocale } from "@/lib/i18n";
+import { pageMetadata } from "@/lib/metadata";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 import { Button } from "@/components/primitives/Button";
@@ -15,21 +19,23 @@ import { ReactCounter } from "@/components/technology/ReactCounter";
 import { TsPanel } from "@/components/technology/TsPanel";
 import { TwPanel } from "@/components/technology/TwPanel";
 import { StackRecap } from "@/components/technology/StackRecap";
+import type { Technology } from "@/content/technology";
 
-export const metadata: Metadata = {
-  title: "The technology — deep dive",
-  description:
-    "No WordPress, no page builders — every site is hand-built on a modern stack: Next.js, Sanity, GSAP, React, TypeScript and Tailwind. Here's exactly what runs under the hood, and why each piece earns its place.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const seo = getSite(lang).seo.technology;
+  return pageMetadata({ locale: lang, path: "/technology", title: seo.title, description: seo.description });
+}
 
 // Maps each deep section's `demo` discriminator to its visual + layout. Sanity
 // uses the full-width "studio" layout; the rest are side-by-side .row panels.
-function Demo({ demo }: { demo: string }) {
+function Demo({ demo, render, studio }: { demo: string; render: Technology["render"]; studio: Technology["studio"] }) {
   switch (demo) {
     case "next":
-      return <RenderTabs />;
+      return <RenderTabs render={render} />;
     case "sanity":
-      return <SanityStudio />;
+      return <SanityStudio studio={studio} />;
     case "gsap":
       return <GsapStar />;
     case "react":
@@ -43,11 +49,13 @@ function Demo({ demo }: { demo: string }) {
   }
 }
 
-export default function TechnologyPage() {
-  const t = technology;
+export default async function TechnologyPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+  const t = getTechnology(lang);
   return (
     <main>
-      <TechHero />
+      <TechHero hero={t.hero} />
 
       {t.sections.map((section) => (
         <TechDeep
@@ -55,11 +63,11 @@ export default function TechnologyPage() {
           section={section}
           layout={section.demo === "sanity" ? "full" : "row"}
         >
-          <Demo demo={section.demo} />
+          <Demo demo={section.demo} render={t.render} studio={t.studio} />
         </TechDeep>
       ))}
 
-      <StackRecap />
+      <StackRecap recap={t.recap} />
 
       <section className="tech-cta">
         <div className="wrap">

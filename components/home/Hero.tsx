@@ -1,12 +1,20 @@
-import { home } from "@/content/home";
+import type { Home } from "@/content/home";
+import type { Site } from "@/content/site";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 import { Button } from "@/components/primitives/Button";
 import { GrowthChart } from "@/components/home/GrowthChart";
 import { Marquee } from "@/components/home/Marquee";
 
-export function Hero() {
-  const { hero } = home;
+export function Hero({
+  hero,
+  growth,
+  marquee,
+}: {
+  hero: Home["hero"];
+  growth: Home["growth"];
+  marquee: Site["marquee"];
+}) {
   return (
     <header id="top">
       <div className="wrap hero-grid">
@@ -43,13 +51,13 @@ export function Hero() {
         </div>
 
         <Reveal as="div" delay={2}>
-          <GrowthChart />
+          <GrowthChart growth={growth} />
         </Reveal>
       </div>
 
       <div className="wrap">
         <Reveal as="div">
-          <Marquee />
+          <Marquee marquee={marquee} />
         </Reveal>
       </div>
     </header>

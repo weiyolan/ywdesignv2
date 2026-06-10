@@ -1,10 +1,10 @@
 import { Fragment } from "react";
-import { about } from "@/content/about";
+import type { About } from "@/content/about";
 import { Reveal } from "@/components/primitives/Reveal";
 
 // Vision section — the four values (about.html :191-206).
-export function Values() {
-  const v = about.vision;
+export function Values({ vision }: { vision: About["vision"] }) {
+  const v = vision;
   return (
     <section className="ab-section tex-lines">
       <div className="wrap">

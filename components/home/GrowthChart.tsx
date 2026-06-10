@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useRef } from "react";
-import { home } from "@/content/home";
+import type { Home } from "@/content/home";
 import { fmtValue } from "@/lib/format";
 
 // Live, self-renewing growth graph — ported from app.js :314-498.
@@ -9,7 +9,7 @@ import { fmtValue } from "@/lib/format";
 // deliberately timer-driven so it keeps advancing under rAF throttling, and the
 // SVG references var(--accent) so it tracks the theme for free. Visibility-gated
 // and reduced-motion aware.
-export function GrowthChart() {
+export function GrowthChart({ growth }: { growth: Home["growth"] }) {
   const boxRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -19,7 +19,7 @@ export function GrowthChart() {
   const headRef = useRef<SVGCircleElement>(null);
   const burstRef = useRef<HTMLDivElement>(null);
 
-  const funnel = home.growth.funnel;
+  const funnel = growth.funnel;
 
   useEffect(() => {
     const box = boxRef.current;
@@ -256,11 +256,11 @@ export function GrowthChart() {
     <div className="growth" id="growth" ref={boxRef}>
       <div className="growth-bar">
         <span className="gb-title">
-          <i className="gb-dot" /> {home.growth.title}
+          <i className="gb-dot" /> {growth.title}
         </span>
         <span className="gb-live">
           <i />
-          {home.growth.live}
+          {growth.live}
         </span>
       </div>
       <div className="growth-body">

@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useTheme } from "next-themes";
-import { site } from "@/content/site";
+import type { Site } from "@/content/site";
 import { Button } from "@/components/primitives/Button";
+import { LocaleLink } from "@/components/primitives/LocaleLink";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
-// Fixed nav + mobile drawer + scrim + theme toggle.
+// Fixed nav + mobile drawer + scrim + theme toggle + language switch.
 // Ports app.js :9-40 (scrolled state, burger, scrim, Escape/resize close).
-export function SiteHeader() {
+export function SiteHeader({ site }: { site: Site }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -43,23 +44,24 @@ export function SiteHeader() {
   return (
     <>
       <nav id="nav" className={scrolled ? "scrolled" : undefined}>
-        <Link className="logo" href="/">
+        <LocaleLink className="logo" href="/">
           <span className="mark">
             {site.brand.lead}
             <b>{site.brand.tail}</b>
           </span>
           <span className="stat">{site.status}</span>
-        </Link>
+        </LocaleLink>
 
         <div className="navlinks">
           {site.nav.map((l) => (
-            <Link key={l.label} href={l.href} className="hide-md">
+            <LocaleLink key={l.label} href={l.href} className="hide-md">
               {l.label}
-            </Link>
+            </LocaleLink>
           ))}
           <Button href={site.cta.href} variant="primary" className="hide-sm">
             {site.cta.label} <span className="arr">→</span>
           </Button>
+          <LanguageSwitcher className="hide-md" />
           <ThemeToggle />
           <button
             className="nav-burger"
@@ -77,13 +79,14 @@ export function SiteHeader() {
 
       <div className="nav-drawer" id="nav-drawer" aria-hidden={!open}>
         {site.nav.map((l, i) => (
-          <Link key={l.label} href={l.href} onClick={close}>
+          <LocaleLink key={l.label} href={l.href} onClick={close}>
             {l.label} <span className="md-i">{String(i + 1).padStart(2, "0")}</span>
-          </Link>
+          </LocaleLink>
         ))}
-        <Link href={site.cta.href} className="btn btn-primary md-cta" onClick={close}>
+        <LocaleLink href={site.cta.href} className="btn btn-primary md-cta" onClick={close}>
           {site.cta.label} <span className="arr">→</span>
-        </Link>
+        </LocaleLink>
+        <LanguageSwitcher className="md-lang" />
       </div>
       <div className="nav-scrim" id="nav-scrim" onClick={close} aria-hidden="true" />
     </>

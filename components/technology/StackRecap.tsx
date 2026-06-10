@@ -1,9 +1,9 @@
-import { technology } from "@/content/technology";
+import type { Technology } from "@/content/technology";
 import { Reveal } from "@/components/primitives/Reveal";
 
 // Full-stack recap (technology.html :355-373) — "the rest of the toolbox" chips.
-export function StackRecap() {
-  const r = technology.recap;
+export function StackRecap({ recap }: { recap: Technology["recap"] }) {
+  const r = recap;
   return (
     <section className="stack-recap">
       <div className="wrap">

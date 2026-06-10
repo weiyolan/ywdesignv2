@@ -172,6 +172,7 @@ export const home = {
     title: "Shipped, in production.",
     intro:
       "Real sites for real clients across Belgium and beyond — multilingual, fast, and built to convert.",
+    cta: { caseStudy: "Case study", visit: "Visit" },
     items: [
       { num: "01", cat: "Beauty & wellness e-commerce", slug: "nu", title: "Nu", body: "A multilingual clean-beauty storefront — calm editorial pacing around a frictionless, CMS-driven buying flow.", href: "https://nu-site.netlify.app/en", img: "/work/nu.svg" },
       { num: "02", cat: "Photography portfolio", slug: "milo", title: "Milo Weiler", body: "A cinematic, dark portfolio split into seven scroll chapters — 55 projects, sticky chapter nav, top Lighthouse scores.", href: "https://miloweiler.com", img: "/work/milo.svg" },
