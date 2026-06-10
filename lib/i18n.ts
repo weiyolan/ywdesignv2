@@ -11,6 +11,13 @@ export const localeLabels: Record<Locale, string> = {
   nl: "NL",
 };
 
+// Open Graph locale codes (og:locale) per app locale.
+export const ogLocale: Record<Locale, string> = {
+  fr: "fr_FR",
+  en: "en_US",
+  nl: "nl_NL",
+};
+
 export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }

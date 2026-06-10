@@ -38,7 +38,9 @@ export function proxy(request: NextRequest) {
 
   const locale = getLocale(request);
   request.nextUrl.pathname = `/${locale}${pathname}`;
-  return NextResponse.redirect(request.nextUrl);
+  // 308 (permanent) so search engines consolidate ranking onto the locale URLs.
+  // All internal links are already locale-prefixed; the switcher stays available.
+  return NextResponse.redirect(request.nextUrl, 308);
 }
 
 export const config = {

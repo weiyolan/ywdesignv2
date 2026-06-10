@@ -13,10 +13,11 @@ import { Reveal } from "@/components/primitives/Reveal";
 // Section 03 — selected work. Cards are CSS position:sticky (styles.css :578-595);
 // this adds the scale/brightness fall-off as each card is overlapped by the next
 // (ports app.js :503-527). Desktop + no-reduced-motion only.
-export function SelectedWork() {
+export function SelectedWork({ titleAs = "h2" }: { titleAs?: "h1" | "h2" } = {}) {
   const lang = useLocale();
   const w = getHome(lang).work;
   const gridRef = useRef<HTMLDivElement>(null);
+  const Title = titleAs;
 
   useGSAP(
     () => {
@@ -70,7 +71,7 @@ export function SelectedWork() {
           <span className="eyebrow">
             <span className="tk">{w.tk}</span> {w.eyebrow}
           </span>
-          <h2 className="display">{w.title}</h2>
+          <Title className="display">{w.title}</Title>
           <p>{w.intro}</p>
         </Reveal>
 
@@ -98,10 +99,10 @@ export function SelectedWork() {
                 <p>{item.body}</p>
                 <div className="p-foot">
                   <Link className="visit case" href={localizedHref(`/work/${item.slug}`, lang)}>
-                    Case study <span className="arr">→</span>
+                    {w.cta.caseStudy} <span className="arr">→</span>
                   </Link>
                   <a className="visit" href={item.href} target="_blank" rel="noopener noreferrer">
-                    Visit <span className="arr">↗</span>
+                    {w.cta.visit} <span className="arr">↗</span>
                   </a>
                 </div>
               </div>

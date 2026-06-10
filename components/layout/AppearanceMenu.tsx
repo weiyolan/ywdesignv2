@@ -2,10 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useAppearance } from "@/components/providers/AppearanceProvider";
-import { accentFromHue } from "@/lib/appearance";
-
-// Curated accent presets (OKLCH hues, even-ish around the wheel).
-const PRESETS = [152, 195, 255, 300, 340, 35];
+import { accentFromHue, ACCENT_PRESETS as PRESETS } from "@/lib/appearance";
 
 // Header popover: switch the type "feel" (code ⇄ editor) and pick the accent
 // (presets, a hue slider, or a random surprise). All writes go through

@@ -3,7 +3,6 @@
 // paths live in the SelfPortrait component; only translatable copy lives here.
 import type { Seg } from "@/content/home";
 import type { ContactData } from "@/components/shared/ContactBlock";
-import type { Locale } from "@/lib/i18n";
 
 export type Fact = { k: string; v: string };
 export type SkillChip = { label: string; hot?: boolean };
@@ -118,8 +117,3 @@ export const about = {
 };
 
 export type About = typeof about;
-const aboutByLocale: Record<Locale, About> = { fr: about, en: about, nl: about };
-// FR/NL reuse the EN dictionary until translations are written.
-export function getAbout(lang: Locale): About {
-  return aboutByLocale[lang];
-}

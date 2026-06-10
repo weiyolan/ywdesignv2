@@ -13,46 +13,70 @@ import { Terminal } from "@/components/home/Terminal";
 import { SupportingTech } from "@/components/home/SupportingTech";
 
 // Section 02 — stack deep-dive (index.html :214-366, ports app.js :188-302).
-// `openIndex` is which panel is expanded (grid-rows accordion, CSS-animated);
-// `railIndex` is how far the scroll-driven rail/lit state has progressed. A
-// ScrollTrigger advances both as each bar crosses 42% of the viewport; clicks
-// drive them too. The rail-fill height is measured from the active bar's centre.
+// A single ScrollTrigger reads a "line" at 42% of the viewport every frame:
+//   • the rail fill height is the continuous distance from the section top to
+//     that line (smoothed with gsap.quickTo, so it grows fluidly with scroll);
+//   • each row lights + expands (`lit` / `is-open`) the moment its node centre
+//     passes the line. `openIndex` also responds to clicks; the next scroll tick
+//     recomputes it (scroll wins). The accordion changes the section height, so
+//     we ScrollTrigger.refresh() after a panel settles to re-sync.
 export function StackDeepDive() {
   const lang = useLocale();
   const s = getHome(lang).stack;
   const [openIndex, setOpenIndex] = useState(0);
-  const [railIndex, setRailIndex] = useState(-1);
+  const [litIndex, setLitIndex] = useState(-1);
+  const [railActive, setRailActive] = useState(false);
   const rowsRef = useRef<HTMLDivElement>(null);
   const fillRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-driven active row (GSAP ScrollTrigger). Reduced motion: row 0 open.
   useGSAP(
     () => {
       const rowsEl = rowsRef.current;
-      if (!rowsEl) return;
+      const fillEl = fillRef.current;
+      if (!rowsEl || !fillEl) return;
+
+      // quickTo lerps toward the latest target each frame → buttery fill that
+      // tracks rapid wheel steps without a CSS transition fighting the JS.
+      const setFill = gsap.quickTo(fillEl, "height", {
+        duration: 0.25,
+        ease: "power3.out",
+      });
 
       const computeActive = () => {
         const vh = window.innerHeight || 800;
-        const sect = rowsEl.getBoundingClientRect();
-        if (sect.top > vh * 0.55) {
-          setRailIndex(-1);
-          return;
-        }
-        const threshold = vh * 0.42;
+        const line = vh * 0.42;
+        const base = rowsEl.getBoundingClientRect();
+
+        // Continuous fill: how far the read-line has travelled into the section.
+        const fillPx = Math.min(Math.max(line - base.top, 0), base.height);
+        setFill(fillPx);
+        setRailActive(fillPx > 0.5);
+
+        // Discrete states: a row is reached once its node centre passes the line.
         const bars = rowsEl.querySelectorAll<HTMLElement>(".deep-bar");
-        let idx = 0;
+        let idx = -1;
         bars.forEach((b, i) => {
-          if (b.getBoundingClientRect().top <= threshold) idx = i;
+          const r = b.getBoundingClientRect();
+          if (r.top + r.height / 2 <= line) idx = i;
         });
+        setLitIndex(idx);
         setOpenIndex(idx);
-        setRailIndex(idx);
       };
 
       const mm = gsap.matchMedia();
+
       mm.add("(prefers-reduced-motion: reduce)", () => {
         setOpenIndex(0);
-        setRailIndex(0);
+        setLitIndex(0);
+        setRailActive(true);
+        const first = rowsEl.querySelector<HTMLElement>(".deep-bar");
+        if (first) {
+          const r = first.getBoundingClientRect();
+          const base = rowsEl.getBoundingClientRect();
+          gsap.set(fillEl, { height: r.top - base.top + r.height / 2 });
+        }
       });
+
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const st = ScrollTrigger.create({
           trigger: rowsEl,
@@ -60,7 +84,6 @@ export function StackDeepDive() {
           end: "bottom top",
           onUpdate: computeActive,
           onRefresh: computeActive,
-          onLeaveBack: () => setRailIndex(-1),
         });
         computeActive();
         return () => st.kill();
@@ -69,45 +92,16 @@ export function StackDeepDive() {
     { scope: rowsRef },
   );
 
-  // Measure rail-fill height from the active bar's centre (app.js :201-206).
+  // The accordion (grid-rows .44s) changes the section height; once it settles,
+  // refresh so the rail — and every Reveal trigger below — re-measures.
   useEffect(() => {
-    const rowsEl = rowsRef.current;
-    const fill = fillRef.current;
-    if (!rowsEl || !fill) return;
+    const t = window.setTimeout(() => ScrollTrigger.refresh(), 500);
+    return () => window.clearTimeout(t);
+  }, [openIndex]);
 
-    const measure = () => {
-      if (railIndex < 0) {
-        fill.style.height = "0px";
-        return;
-      }
-      const bars = rowsEl.querySelectorAll<HTMLElement>(".deep-bar");
-      const bar = bars[railIndex];
-      if (!bar) return;
-      const b = bar.getBoundingClientRect();
-      const base = rowsEl.getBoundingClientRect();
-      const px = Math.max(0, b.top - base.top + b.height / 2);
-      fill.style.height = px.toFixed(1) + "px";
-    };
-
-    measure();
-    const t = window.setTimeout(measure, 480); // after the panel settles
-    window.addEventListener("resize", measure);
-    if ("fonts" in document) document.fonts.ready.then(measure).catch(() => {});
-    return () => {
-      window.clearTimeout(t);
-      window.removeEventListener("resize", measure);
-    };
-  }, [railIndex, openIndex]);
-
+  // Clicks just toggle the panel; the next scroll tick reconciles lit/open.
   const onBarClick = (i: number) => {
-    if (i === openIndex) {
-      // collapse the active row, retreat the rail one step
-      setOpenIndex(-1);
-      setRailIndex(i - 1);
-    } else {
-      setOpenIndex(i);
-      setRailIndex(i);
-    }
+    setOpenIndex((cur) => (cur === i ? -1 : i));
   };
 
   return (
@@ -130,7 +124,7 @@ export function StackDeepDive() {
             <div className="deep-rail" aria-hidden="true">
               <div className="deep-rail-track" />
               <div
-                className={"deep-rail-fill" + (railIndex < 0 ? " empty" : "")}
+                className={"deep-rail-fill" + (railActive ? "" : " empty")}
                 ref={fillRef}
               />
             </div>
@@ -140,7 +134,7 @@ export function StackDeepDive() {
                 className={
                   "deep" +
                   (i === openIndex ? " is-open" : "") +
-                  (i <= railIndex ? " lit" : "")
+                  (i <= litIndex ? " lit" : "")
                 }
                 key={row.name}
               >

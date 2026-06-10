@@ -3,7 +3,6 @@
 // Decorative visuals live in their components (components/technology/*); only
 // translatable copy + the small data tables the demos render live here.
 import type { Seg } from "@/content/home";
-import type { Locale } from "@/lib/i18n";
 
 const nbsp = " ";
 
@@ -339,12 +338,3 @@ export const technology = {
 };
 
 export type Technology = typeof technology;
-const technologyByLocale: Record<Locale, Technology> = {
-  fr: technology,
-  en: technology,
-  nl: technology,
-};
-// FR/NL reuse the EN dictionary until translations are written.
-export function getTechnology(lang: Locale): Technology {
-  return technologyByLocale[lang];
-}

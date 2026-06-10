@@ -1,78 +1,96 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
-// Animated line-art self-portrait — ports about.html:281-307.
-// Each path's stroke draws on, then the fill fades in (stroke out), like the
-// live site. The CSS (about.css) defaults the paths to the FINISHED look so
-// no-JS / pre-hydration shows a filled portrait; on mount we add `.js` (which
-// hides the fill to the un-drawn start state) and set each path's dashoffset,
-// then toggle `.draw` → `.filled` when the art scrolls into view. Reduced
-// motion skips straight to the filled state.
+// Animated line-art self-portrait — ports about.html:281-307, looped.
+// Each path draws its stroke on, the fill fades in (stroke out), holds, then
+// reverses (fill out, stroke back, un-draw) so the cycle ends exactly where it
+// started and repeats seamlessly. The CSS (about.css) defaults the paths to the
+// FINISHED look so no-JS / pre-hydration shows a filled portrait; on mount we
+// add `.js` (which hides the fill to the un-drawn start) and GSAP drives the
+// rest. ScrollTrigger plays the loop only while the art is in view. Reduced
+// motion shows the static filled portrait.
 //
 // The two `d` strings are lifted verbatim from about.html:143-148.
 export function SelfPortrait() {
   const artRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const art = artRef.current;
-    if (!art) return;
+  useGSAP(
+    () => {
+      const art = artRef.current;
+      if (!art) return;
+      const paths = gsap.utils.toArray<SVGPathElement>(".yp", art);
+      if (!paths.length) return;
 
-    const paths = Array.from(art.querySelectorAll<SVGPathElement>(".yp"));
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      // Per-path stroke length (getTotalLength can throw pre-layout → bail safe).
+      let ok = true;
+      const lens = paths.map((p) => {
+        try {
+          return p.getTotalLength();
+        } catch {
+          ok = false;
+          return 0;
+        }
+      });
 
-    // Switch from the no-JS finished look to the JS-driven start state.
-    art.classList.add("js");
-    paths.forEach((p) => {
-      let len = 0;
-      try {
-        len = p.getTotalLength();
-      } catch {
-        /* getTotalLength can throw if the path isn't laid out yet */
-      }
-      p.style.strokeDasharray = String(len);
-      p.style.strokeDashoffset = reduced ? "0" : String(len);
-    });
+      // Switch from the no-JS finished look to the JS-driven start state.
+      art.classList.add("js");
 
-    let drawTimer = 0;
-    let fillTimer = 0;
-    let ran = false;
+      const mm = gsap.matchMedia();
 
-    const run = () => {
-      if (ran) return;
-      ran = true;
-      if (reduced) {
-        art.classList.add("filled");
-        return;
-      }
-      drawTimer = window.setTimeout(() => {
-        art.classList.add("draw");
-        fillTimer = window.setTimeout(() => {
-          art.classList.add("filled");
-        }, 1850);
-      }, 40);
-    };
+      // Reduced motion (or unmeasurable paths): straight to the filled portrait.
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(paths, { strokeDashoffset: 0, fillOpacity: 1, strokeOpacity: 0 });
+      });
 
-    let io: IntersectionObserver | null = null;
-    if ("IntersectionObserver" in window) {
-      io = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) run();
-        },
-        { threshold: 0.2 },
-      );
-      io.observe(art);
-    }
-    // Portrait sits in the hero (above the fold) — guarantee it plays.
-    const loadTimer = window.setTimeout(run, 1200);
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        if (!ok) {
+          gsap.set(paths, { strokeDashoffset: 0, fillOpacity: 1, strokeOpacity: 0 });
+          return;
+        }
 
-    return () => {
-      io?.disconnect();
-      window.clearTimeout(drawTimer);
-      window.clearTimeout(fillTimer);
-      window.clearTimeout(loadTimer);
-    };
-  }, []);
+        // Un-drawn start: dash hides the stroke, fill is off.
+        gsap.set(paths, {
+          strokeDasharray: (i) => lens[i],
+          strokeDashoffset: (i) => lens[i],
+          fillOpacity: 0,
+          strokeOpacity: 1,
+        });
+
+        const tl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 0.9 });
+        tl
+          // draw the outline on
+          .to(paths, { strokeDashoffset: 0, duration: 1.9, ease: "power2.inOut" })
+          // fill fades in as the stroke fades out
+          .to(paths, { fillOpacity: 1, duration: 0.9, ease: "power1.out" }, "-=0.35")
+          .to(paths, { strokeOpacity: 0, duration: 0.7, ease: "power1.out" }, "<")
+          // hold the finished portrait
+          .to({}, { duration: 1.6 })
+          // reverse: fill out, stroke back, then un-draw → back to the start state
+          .to(paths, { fillOpacity: 0, duration: 0.7, ease: "power1.in" })
+          .to(paths, { strokeOpacity: 1, duration: 0.5, ease: "power1.in" }, "<")
+          .to(paths, { strokeDashoffset: (i) => lens[i], duration: 1.2, ease: "power2.in" }, "-=0.1");
+
+        const st = ScrollTrigger.create({
+          trigger: art,
+          start: "top 85%",
+          end: "bottom top",
+          onEnter: () => tl.play(),
+          onEnterBack: () => tl.play(),
+          onLeave: () => tl.pause(),
+          onLeaveBack: () => tl.pause(),
+        });
+
+        return () => {
+          st.kill();
+          tl.kill();
+        };
+      });
+    },
+    { scope: artRef },
+  );
 
   return (
     <div className="yolan-art" ref={artRef}>

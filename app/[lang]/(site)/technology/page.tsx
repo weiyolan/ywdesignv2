@@ -16,12 +16,23 @@ import { ReactCounter } from "@/components/technology/ReactCounter";
 import { TsPanel } from "@/components/technology/TsPanel";
 import { TwPanel } from "@/components/technology/TwPanel";
 import { StackRecap } from "@/components/technology/StackRecap";
+import { getSite } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "The technology — deep dive",
-  description:
-    "No WordPress, no page builders — every site is hand-built on a modern stack: Next.js, Sanity, GSAP, React, TypeScript and Tailwind. Here's exactly what runs under the hood, and why each piece earns its place.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const lang = (await params).lang as Locale;
+  const seo = getSite(lang).seo.technology;
+  return pageMetadata({
+    lang,
+    path: "/technology",
+    title: seo.title,
+    description: seo.description,
+  });
+}
 
 // Maps each deep section's `demo` discriminator to its visual + layout. Sanity
 // uses the full-width "studio" layout; the rest are side-by-side .row panels.

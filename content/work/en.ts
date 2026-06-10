@@ -7,7 +7,6 @@
 // their interactive payload in `signatureData` so the (server) page can hand it
 // to the matching "use client" demo.
 import type { Seg } from "@/content/home";
-import type { Locale } from "@/lib/i18n";
 
 export type Slug = "nu" | "milo" | "bermuda" | "spiree";
 export const order: Slug[] = ["nu", "milo", "bermuda", "spiree"];
@@ -706,13 +705,3 @@ export const projects: Record<Slug, Project> = {
     },
   },
 };
-
-const projectsByLocale: Record<Locale, Record<Slug, Project>> = {
-  fr: projects,
-  en: projects,
-  nl: projects,
-};
-// FR/NL reuse the EN case-study copy until translations are written.
-export function getProjects(lang: Locale): Record<Slug, Project> {
-  return projectsByLocale[lang];
-}

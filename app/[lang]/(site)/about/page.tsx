@@ -9,12 +9,23 @@ import { Mission } from "@/components/about/Mission";
 import { Values } from "@/components/about/Values";
 import { Stats } from "@/components/about/Stats";
 import { ContactBlock } from "@/components/shared/ContactBlock";
+import { getSite } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Yolan — a biomedical engineer, developer and surfer building fast, considered websites for a global positive impact.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const lang = (await params).lang as Locale;
+  const seo = getSite(lang).seo.about;
+  return pageMetadata({
+    lang,
+    path: "/about",
+    title: seo.title,
+    description: seo.description,
+  });
+}
 
 export default async function AboutPage({
   params,

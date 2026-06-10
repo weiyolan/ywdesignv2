@@ -3,7 +3,6 @@
 // mini-graphics, charts, terminal) live in their components; only translatable
 // copy lives here.
 import type { NumFmt } from "@/lib/format";
-import type { Locale } from "@/lib/i18n";
 
 /** An inline text run: plain, or flagged to scramble / accent / bold / emphasise. */
 export type Seg = {
@@ -22,7 +21,7 @@ export type CaseLink = {
   external?: boolean;
 };
 
-const nbsp = " ";
+const nbsp = " ";
 
 export const home = {
   hero: {
@@ -61,6 +60,7 @@ export const home = {
     title: ["Not a template.", "A toolkit, hand-built."],
     intro:
       "Every capability below is engineered from scratch and proven on a real, shipped project. No page builders, no boilerplate — just code I understand top to bottom.",
+    themeToggle: { light: "Light", dark: "Dark" },
     cards: [
       {
         span: "feature span-3", d: 0, ico: "design_systems",
@@ -105,11 +105,11 @@ export const home = {
         case: { pre: "CASE:", strong: "Milo Weiler", post: "↗", href: "https://miloweiler.com", external: true },
       },
       {
-        span: "accent-card span-2", d: 1, ico: "ai_assisted",
-        h: "AI, mastered",
-        p: "Prompt → reviewed, refactored, understood code. Speed without surrendering the architecture.",
-        viz: "none",
-        case: { pre: "Read the philosophy ↓", href: "#ai" },
+        span: "accent-card span-2", d: 1, ico: "theme · accent",
+        h: "Light & dark, by design",
+        p: "Theme, accent, typeface — every visual decision is a token. Flip one and the whole system follows, live.",
+        viz: "theme",
+        case: { pre: "Make it yours ↑", href: "#capabilities" },
       },
     ],
   },
@@ -173,6 +173,7 @@ export const home = {
     title: "Shipped, in production.",
     intro:
       "Real sites for real clients across Belgium and beyond — multilingual, fast, and built to convert.",
+    cta: { caseStudy: "Case study", visit: "Visit" },
     items: [
       { num: "01", cat: "Beauty & wellness e-commerce", slug: "nu", title: "Nu", body: "A multilingual clean-beauty storefront — calm editorial pacing around a frictionless, CMS-driven buying flow.", href: "https://nu-site.netlify.app/en", img: "/work/nu.jpg" },
       { num: "02", cat: "Photography portfolio", slug: "milo", title: "Milo Weiler", body: "A cinematic, dark portfolio split into seven scroll chapters — 55 projects, sticky chapter nav, top Lighthouse scores.", href: "https://miloweiler.com", img: "/work/milo.jpg" },
@@ -229,8 +230,3 @@ export const home = {
 };
 
 export type Home = typeof home;
-const homeByLocale: Record<Locale, Home> = { fr: home, en: home, nl: home };
-// FR/NL reuse the EN dictionary until translations are written.
-export function getHome(lang: Locale): Home {
-  return homeByLocale[lang];
-}

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProjects, order, type Slug } from "@/content/work";
 import type { Locale } from "@/lib/i18n";
+import { pageMetadata } from "@/lib/metadata";
 import { corben, mulish } from "@/lib/projectFonts";
 import { DetailHero } from "@/components/work/DetailHero";
 import { DetailMedia } from "@/components/work/DetailMedia";
@@ -27,7 +28,12 @@ export async function generateMetadata({
   const { lang, slug } = await params;
   if (!isSlug(slug)) return {};
   const p = getProjects(lang as Locale)[slug];
-  return { title: p.metaTitle, description: p.metaDescription };
+  return pageMetadata({
+    lang: lang as Locale,
+    path: `/work/${slug}`,
+    title: p.metaTitle,
+    description: p.metaDescription,
+  });
 }
 
 export default async function ProjectPage({
@@ -50,7 +56,7 @@ export default async function ProjectPage({
 
   return (
     <main className={rootClass}>
-      <DetailHero project={project} />
+      <DetailHero project={project} lang={lang as Locale} />
       <DetailMedia src={project.heroImg} alt={project.heroAlt} />
 
       {project.sections.map((section, i) => (

@@ -13,7 +13,8 @@ import { ACCENT_LC, TYPE_KEY, ACCENT_KEY } from "@/lib/appearance";
 import { GsapProvider } from "@/components/providers/GsapProvider";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
 import { BackgroundFX } from "@/components/layout/BackgroundFX";
-import { locales, defaultLocale, isLocale, type Locale } from "@/lib/i18n";
+import { getSite } from "@/content/site";
+import { locales, defaultLocale, isLocale, ogLocale } from "@/lib/i18n";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -45,12 +46,6 @@ const newsreader = Newsreader({
   preload: false,
 });
 
-const OG_LOCALE: Record<Locale, string> = {
-  fr: "fr_FR",
-  en: "en_US",
-  nl: "nl_NL",
-};
-
 // Runs before first paint (mirrors next-themes' own data-theme script) so a returning
 // visitor's editor theme + custom accent are applied with no flash of the defaults.
 const appearanceInit = `(function(){try{var d=document.documentElement;if(localStorage.getItem('${TYPE_KEY}')==='editor')d.setAttribute('data-type','editor');var h=localStorage.getItem('${ACCENT_KEY}');if(h)d.style.setProperty('--accent','oklch(${ACCENT_LC} '+h+')');}catch(e){}})();`;
@@ -69,31 +64,25 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const locale = isLocale(lang) ? lang : defaultLocale;
+  const seo = getSite(locale).seo.home;
 
+  // No `alternates` here on purpose: each page sets its own self-referencing
+  // canonical + hreflang (a layout-level canonical would make every page claim
+  // the homepage URL). This block is the localized default title/description +
+  // shared social card.
   return {
     metadataBase: new URL("https://ywdesign.co"),
-    title: {
-      default: "YWdesign — Senior web developer & designer, Lyon",
-      template: "%s · YWdesign",
-    },
-    description:
-      "Yolan — a senior developer who architects fast, multilingual websites and stores line by line. Hand-coded, AI-accelerated. Mastered, not enslaved.",
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        ...Object.fromEntries(locales.map((l) => [l, `/${l}`])),
-        "x-default": `/${defaultLocale}`,
-      },
-    },
+    title: { default: seo.title, template: "%s · YWdesign" },
+    description: seo.description,
     openGraph: {
-      title: "YWdesign — Senior web developer & designer, Lyon",
-      description:
-        "Hand-coded, AI-accelerated websites & stores. Next.js · Sanity · GSAP · Stripe.",
-      url: `/${locale}`,
+      title: seo.ogTitle,
+      description: seo.ogDescription,
       siteName: "YWdesign",
-      locale: OG_LOCALE[locale],
+      locale: ogLocale[locale],
       type: "website",
+      images: [{ url: "/og.png", width: 1200, height: 630, alt: "YWdesign" }],
     },
+    twitter: { card: "summary_large_image", images: ["/og.png"] },
   };
 }
 
@@ -107,6 +96,49 @@ export default async function RootLayout({
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
 
+  const site = getSite(lang);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://ywdesign.co/#yolan",
+        name: "Yolan Weiler",
+        jobTitle: "Senior web developer & designer",
+        email: "contact@ywdesign.co",
+        telephone: "+33765601415",
+        url: `https://ywdesign.co/${lang}`,
+        image: "https://ywdesign.co/og.png",
+        knowsLanguage: ["fr", "en", "nl"],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Lyon",
+          addressCountry: "FR",
+        },
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://ywdesign.co/#ywdesign",
+        name: "YWdesign",
+        url: `https://ywdesign.co/${lang}`,
+        image: "https://ywdesign.co/og.png",
+        description: site.seo.home.description,
+        email: "contact@ywdesign.co",
+        telephone: "+33765601415",
+        vatID: "FR65984069609",
+        founder: { "@id": "https://ywdesign.co/#yolan" },
+        areaServed: "Worldwide",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "504 Chemin de la Rivière",
+          addressLocality: "Pollionnay",
+          postalCode: "69290",
+          addressCountry: "FR",
+        },
+      },
+    ],
+  };
+
   return (
     <html
       lang={lang}
@@ -116,6 +148,12 @@ export default async function RootLayout({
     >
       <body data-surface="glass">
         <script dangerouslySetInnerHTML={{ __html: appearanceInit }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <ThemeProvider>
           <BackgroundFX />
           <LocaleProvider lang={lang}>

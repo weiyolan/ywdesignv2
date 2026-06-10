@@ -399,7 +399,7 @@ header{padding:170px 0 60px;position:relative}
 /* ============ section heads ============ */
 .sec-head{margin-bottom:54px;max-width:760px}
 .sec-head .eyebrow{margin-bottom:18px}
-.sec-head h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,4.6vw,56px);
+.sec-head :is(h1,h2){font-family:var(--display);font-weight:800;font-size:clamp(32px,4.6vw,56px);
   line-height:1.02;letter-spacing:-.02em}
 .sec-head p{color:var(--text-2);font-size:17px;line-height:1.6;margin-top:18px;max-width:60ch}
 
@@ -442,12 +442,30 @@ header{padding:170px 0 60px;position:relative}
 .viz-scale span{font-family:var(--display);font-weight:700;color:var(--text-2);line-height:1}
 .swatches{display:flex;gap:6px;margin-top:12px}
 .swatches i{width:26px;height:26px;border-radius:6px;display:block}
+.swatches button{width:26px;height:26px;border-radius:6px;display:block;padding:0;border:1px solid transparent;
+  cursor:pointer;outline:2px solid transparent;outline-offset:2px;
+  transition:transform .15s,outline-color .15s}
+.swatches button:hover{transform:translateY(-2px)}
+.swatches button:focus-visible{outline-color:var(--text)}
+.swatches button[data-on="true"]{outline-color:var(--text);box-shadow:0 0 0 1px var(--bg)}
 .bars{display:flex;align-items:flex-end;gap:6px;height:60px}
 .bars i{flex:1;background:var(--accent);border-radius:3px 3px 0 0;opacity:.8;
   animation:bar 2.6s ease-in-out infinite}
 .lang{display:flex;gap:6px;font-family:var(--mono);font-size:12px}
-.lang b{padding:5px 10px;border-radius:6px;border:1px solid var(--line-2);color:var(--text-3)}
-.lang b.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.lang b,.lang a{padding:5px 10px;border-radius:6px;border:1px solid var(--line-2);color:var(--text-3);
+  text-decoration:none;transition:.18s}
+.lang a:hover{border-color:var(--accent-line);color:var(--text)}
+.lang a:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+.lang b.on,.lang a.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+/* theme bento card — active pill keyed on [data-theme] (no JS state → FOUC-safe) */
+.viz-theme{display:flex;gap:6px;font-family:var(--mono);font-size:12px}
+.viz-theme .vt{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:7px;
+  border:1px solid var(--line-2);background:transparent;color:var(--text-3);cursor:pointer;transition:.18s}
+.viz-theme .vt:hover{border-color:var(--accent-line);color:var(--text)}
+.viz-theme .vt:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+.viz-theme .vt svg{flex:none}
+[data-theme="light"] .viz-theme .vt-light,
+[data-theme="dark"] .viz-theme .vt-dark{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .gauge{display:flex;align-items:center;gap:16px}
 .gauge .num{font-family:var(--display);font-weight:800;font-size:46px;line-height:1;color:var(--accent)}
 .gauge .metrics{font-family:var(--mono);font-size:11.5px;color:var(--text-3);line-height:1.9}
@@ -550,7 +568,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 46px;position:relative;z-
 .deep-rail-track{position:absolute;inset:0;width:2px;border-radius:2px;
   background:color-mix(in oklch,var(--line-2) 70%,transparent)}
 .deep-rail-fill{position:absolute;left:0;top:0;width:2px;height:0;border-radius:2px;
-  background:var(--accent);box-shadow:0 0 8px var(--accent-line)}
+  will-change:height;background:var(--accent);box-shadow:0 0 8px var(--accent-line)}
 .deep-rail-fill::after{content:"";position:absolute;left:50%;bottom:0;width:9px;height:9px;border-radius:50%;
   background:var(--accent);transform:translate(-50%,50%);box-shadow:0 0 11px var(--accent);transition:opacity .3s}
 .deep-rail-fill.empty::after{opacity:0}

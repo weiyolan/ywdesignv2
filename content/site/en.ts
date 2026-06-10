@@ -1,12 +1,8 @@
-// Global site chrome copy (nav, marquee, terminal, contact, footer).
-// English only for now — kept here as a typed dictionary so EN/FR/NL can be
-// lifted later via a getDictionary(lang) loader without touching components.
-//
-// NOTE: cross-page links (Work / Technology / About) point at on-page anchors
-// for now because only the home page is built. Repoint to /work, /technology,
-// /about routes when those pages exist.
-
-import type { Locale } from "@/lib/i18n";
+// Global site chrome copy (nav, marquee, terminal, contact, footer) + per-page
+// SEO. English source of truth; fr.ts / nl.ts mirror this shape (declared
+// `satisfies Site`) and are loaded per-locale via getSite(locale) from ./index.
+// Internal hrefs are stored locale-agnostic ("/work", "/#contact") and prefixed
+// at render by localizedHref.
 
 export type NavLink = { label: string; href: string; external?: boolean };
 export type TerminalLine = {
@@ -19,6 +15,35 @@ export const site = {
   brand: { lead: "YW", tail: "design" },
   status: "available",
 
+  // Per-page SEO. `home` feeds the root layout default + the home route; the
+  // rest feed their routes' generateMetadata. Titles (except home) get the
+  // "%s · YWdesign" template appended automatically.
+  seo: {
+    home: {
+      title: "YWdesign — Senior web developer & designer, Lyon",
+      description:
+        "Yolan — a senior developer who architects fast, multilingual websites and stores line by line. Hand-coded, AI-accelerated. Mastered, not enslaved.",
+      ogTitle: "YWdesign — Senior web developer & designer, Lyon",
+      ogDescription:
+        "Hand-coded, AI-accelerated websites & stores. Next.js · Sanity · GSAP · Stripe.",
+    },
+    work: {
+      title: "Work",
+      description:
+        "Shipped, in production — selected client work: multilingual, fast, conversion-focused websites and stores across Belgium and beyond.",
+    },
+    technology: {
+      title: "The technology — deep dive",
+      description:
+        "No WordPress, no page builders — every site is hand-built on a modern stack: Next.js, Sanity, GSAP, React, TypeScript and Tailwind. Here's exactly what runs under the hood, and why each piece earns its place.",
+    },
+    about: {
+      title: "About",
+      description:
+        "Yolan — a biomedical engineer, developer and surfer building fast, considered websites for a global positive impact.",
+    },
+  },
+
   nav: [
     { label: "Home", href: "/" },
     { label: "Work", href: "/work" },
@@ -27,6 +52,15 @@ export const site = {
   ] as NavLink[],
 
   cta: { label: "Start a project", href: "/#contact" },
+
+  // Cross-cutting micro-copy for the case-study template (hero actions + pager).
+  ui: {
+    prev: "Previous",
+    next: "Next",
+    visitLive: "Visit live site",
+    jumpToBuild: "Jump to the build",
+    meta: { role: "Role", year: "Year", sector: "Sector", stack: "Stack" },
+  },
 
   // tech marquee — app.js :44-45
   marquee: [
@@ -89,8 +123,3 @@ export const site = {
 };
 
 export type Site = typeof site;
-const siteByLocale: Record<Locale, Site> = { fr: site, en: site, nl: site };
-// FR/NL reuse the EN dictionary until translations are written.
-export function getSite(lang: Locale): Site {
-  return siteByLocale[lang];
-}

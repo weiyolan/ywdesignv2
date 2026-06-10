@@ -10,4 +10,8 @@ export const DEFAULT_HUE = 152; // matches globals.css --accent default
 export const TYPE_KEY = "yw-type";
 export const ACCENT_KEY = "yw-accent";
 
+// Curated accent presets (OKLCH hues, even-ish around the wheel). Shared by the
+// nav AppearanceMenu and the home "Design systems" bento card so they agree.
+export const ACCENT_PRESETS = [152, 195, 255, 300, 340, 35];
+
 export const accentFromHue = (hue: number) => `oklch(${ACCENT_LC} ${hue})`;
