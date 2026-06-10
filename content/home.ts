@@ -3,6 +3,7 @@
 // mini-graphics, charts, terminal) live in their components; only translatable
 // copy lives here.
 import type { NumFmt } from "@/lib/format";
+import type { Locale } from "@/lib/i18n";
 
 /** An inline text run: plain, or flagged to scramble / accent / bold / emphasise. */
 export type Seg = {
@@ -25,7 +26,7 @@ const nbsp = " ";
 
 export const home = {
   hero: {
-    eyebrow: "Senior web developer & designer · Antwerp, BE",
+    eyebrow: "Senior web developer & designer · Lyon, FR",
     headline: [
       [{ t: "Websites,", scramble: true }, { t: " built" }],
       [{ t: "from " }, { t: "scratch", scramble: true, accent: true }, { t: "—" }],
@@ -173,10 +174,10 @@ export const home = {
     intro:
       "Real sites for real clients across Belgium and beyond — multilingual, fast, and built to convert.",
     items: [
-      { num: "01", cat: "Beauty & wellness e-commerce", slug: "nu", title: "Nu", body: "A multilingual clean-beauty storefront — calm editorial pacing around a frictionless, CMS-driven buying flow.", href: "https://nu-site.netlify.app/en", img: "/work/nu.svg" },
-      { num: "02", cat: "Photography portfolio", slug: "milo", title: "Milo Weiler", body: "A cinematic, dark portfolio split into seven scroll chapters — 55 projects, sticky chapter nav, top Lighthouse scores.", href: "https://miloweiler.com", img: "/work/milo.svg" },
-      { num: "03", cat: "Events agency · Belgium", slug: "bermuda", title: "Bermuda Events", body: "A premium brand site framing past productions at scale, with a contact funnel built to qualify the right leads.", href: "https://bermuda-events.be", img: "/work/bermuda.svg" },
-      { num: "04", cat: "Activewear brand · 100% Merino", slug: "spiree", title: "Spiree", body: "An independent sportswear brand site — bold gradient system, Sun & Moon collections, a story-first arc.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.svg" },
+      { num: "01", cat: "Beauty & wellness e-commerce", slug: "nu", title: "Nu", body: "A multilingual clean-beauty storefront — calm editorial pacing around a frictionless, CMS-driven buying flow.", href: "https://nu-site.netlify.app/en", img: "/work/nu.jpg" },
+      { num: "02", cat: "Photography portfolio", slug: "milo", title: "Milo Weiler", body: "A cinematic, dark portfolio split into seven scroll chapters — 55 projects, sticky chapter nav, top Lighthouse scores.", href: "https://miloweiler.com", img: "/work/milo.jpg" },
+      { num: "03", cat: "Events agency · Belgium", slug: "bermuda", title: "Bermuda Events", body: "A premium brand site framing past productions at scale, with a contact funnel built to qualify the right leads.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
+      { num: "04", cat: "Activewear brand · 100% Merino", slug: "spiree", title: "Spiree", body: "An independent sportswear brand site — bold gradient system, Sun & Moon collections, a story-first arc.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.jpg" },
     ],
   },
 
@@ -226,3 +227,10 @@ export const home = {
     ],
   },
 };
+
+export type Home = typeof home;
+const homeByLocale: Record<Locale, Home> = { fr: home, en: home, nl: home };
+// FR/NL reuse the EN dictionary until translations are written.
+export function getHome(lang: Locale): Home {
+  return homeByLocale[lang];
+}

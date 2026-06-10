@@ -1,0 +1,25 @@
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.link {
+  padding: 3px 6px;
+  border-radius: 6px;
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.link:hover {
+  color: var(--text);
+}
+
+.active {
+  color: var(--accent);
+  font-weight: 700;
+}

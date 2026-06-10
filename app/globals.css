@@ -714,6 +714,11 @@ body[data-surface="glass"] .term{
   box-shadow:inset 0 1px 0 color-mix(in oklch,var(--text) 10%,transparent),
              0 22px 50px -34px rgba(0,0,0,.6);
 }
+/* Stacked work cards overlap on scroll — keep them near-opaque so text from the
+   card behind doesn't bleed through. Blur/border still come from the shared rule. */
+body[data-surface="glass"] .work-grid .proj{
+  background:color-mix(in oklch, var(--bg-2) 98%, transparent) !important;
+}
 body[data-surface="glass"] #nav.scrolled{ background:color-mix(in oklch, var(--bg) 55%, transparent); }
 body[data-surface="glass"] .principle,
 body[data-surface="glass"] .term-bar{ background:transparent !important }

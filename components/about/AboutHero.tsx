@@ -1,11 +1,12 @@
-import { about } from "@/content/about";
+import { getAbout } from "@/content/about";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 import { SelfPortrait } from "@/components/about/SelfPortrait";
 
 // About hero (about.html :127-150) — copy + animated self-portrait.
-export function AboutHero() {
-  const { hero } = about;
+export function AboutHero({ lang }: { lang: Locale }) {
+  const { hero } = getAbout(lang);
   return (
     <header className="ab-hero">
       <div className="wrap ab-hero-grid">

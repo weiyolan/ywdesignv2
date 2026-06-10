@@ -3,8 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { site } from "@/content/site";
+import { getSite } from "@/content/site";
+import { localizedHref } from "@/lib/i18n";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { Button } from "@/components/primitives/Button";
+import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 import { AppearanceMenu } from "@/components/layout/AppearanceMenu";
 
 type Props = {
@@ -13,11 +16,15 @@ type Props = {
 };
 
 // The single primary navigation, shared by every screen (marketing + case studies).
-// Keeping one source means the full nav — links, CTA, theme + accent controls, mobile
-// drawer — can never drift out of sync between layouts again (the divergence that left
-// case studies without the appearance menu). `back` adds the case-study back-link.
+// Keeping one source means the full nav — links, CTA, locale + theme + accent controls,
+// mobile drawer — can never drift out of sync between layouts again (the divergence that
+// left case studies without the appearance menu). `back` adds the case-study back-link.
+// Locale-aware: reads the active locale from context (useLocale) and prefixes every
+// internal link with localizedHref so visitors stay in their chosen language.
 // Ports app.js :9-40 (scrolled state, burger, scrim, Escape/resize close).
 export function PrimaryNav({ back }: Props) {
+  const lang = useLocale();
+  const site = getSite(lang);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -54,12 +61,12 @@ export function PrimaryNav({ back }: Props) {
       <nav id="nav" className={scrolled ? "scrolled" : undefined}>
         <div className="nav-lead">
           {back && (
-            <Link className="back" href={back.href} aria-label={back.label}>
+            <Link className="back" href={localizedHref(back.href, lang)} aria-label={back.label}>
               <span className="arr">←</span>
               <span className="lbl">{back.label}</span>
             </Link>
           )}
-          <Link className="logo" href="/">
+          <Link className="logo" href={localizedHref("/", lang)}>
             <span className="mark">
               {site.brand.lead}
               <b>{site.brand.tail}</b>
@@ -70,13 +77,14 @@ export function PrimaryNav({ back }: Props) {
 
         <div className="navlinks">
           {site.nav.map((l) => (
-            <Link key={l.label} href={l.href} className="hide-md">
+            <Link key={l.label} href={localizedHref(l.href, lang)} className="hide-md">
               {l.label}
             </Link>
           ))}
-          <Button href={site.cta.href} variant="primary" className="hide-sm">
+          <Button href={localizedHref(site.cta.href, lang)} variant="primary" className="hide-sm">
             {site.cta.label} <span className="arr">→</span>
           </Button>
+          <LocaleSwitcher />
           <ThemeToggle />
           <AppearanceMenu />
           <button
@@ -95,11 +103,11 @@ export function PrimaryNav({ back }: Props) {
 
       <div className="nav-drawer" id="nav-drawer" aria-hidden={!open}>
         {site.nav.map((l, i) => (
-          <Link key={l.label} href={l.href} onClick={close}>
+          <Link key={l.label} href={localizedHref(l.href, lang)} onClick={close}>
             {l.label} <span className="md-i">{String(i + 1).padStart(2, "0")}</span>
           </Link>
         ))}
-        <Link href={site.cta.href} className="btn btn-primary md-cta" onClick={close}>
+        <Link href={localizedHref(site.cta.href, lang)} className="btn btn-primary md-cta" onClick={close}>
           {site.cta.label} <span className="arr">→</span>
         </Link>
       </div>

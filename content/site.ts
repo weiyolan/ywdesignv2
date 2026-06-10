@@ -6,6 +6,8 @@
 // for now because only the home page is built. Repoint to /work, /technology,
 // /about routes when those pages exist.
 
+import type { Locale } from "@/lib/i18n";
+
 export type NavLink = { label: string; href: string; external?: boolean };
 export type TerminalLine = {
   cls: "prompt" | "ok" | "key" | "dim";
@@ -48,10 +50,10 @@ export const site = {
 
   contact: {
     email: "contact@ywdesign.co",
-    phone: "+33 6 38 56 53 02",
-    phoneHref: "tel:+33638565302",
+    phone: "+33 7 65 60 14 15",
+    phoneHref: "tel:+33765601415",
     whatsapp: "https://wa.me/32471124525",
-    location: "Mortsel · Antwerp, BE",
+    location: "Lyon, FR",
   },
 
   footer: {
@@ -74,14 +76,21 @@ export const site = {
         links: [
           { label: "Email", href: "mailto:contact@ywdesign.co" },
           { label: "WhatsApp", href: "https://wa.me/32471124525", external: true },
-          { label: "Call", href: "tel:+33638565302" },
+          { label: "Call", href: "tel:+33765601415" },
         ] as NavLink[],
       },
     ],
     legal: [
       "© 2026 YWdesign",
-      "VAT BE0794.586.584",
-      "Hof Savelkoul 40, 2640 Mortsel, Antwerp, Belgium",
+      "VAT FR65984069609",
+      "504 Chemin de la Rivière, Pollionnay, France",
     ],
   },
 };
+
+export type Site = typeof site;
+const siteByLocale: Record<Locale, Site> = { fr: site, en: site, nl: site };
+// FR/NL reuse the EN dictionary until translations are written.
+export function getSite(lang: Locale): Site {
+  return siteByLocale[lang];
+}

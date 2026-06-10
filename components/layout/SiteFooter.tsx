@@ -1,6 +1,8 @@
-import { site } from "@/content/site";
+import { getSite } from "@/content/site";
+import { localizedHref, type Locale } from "@/lib/i18n";
 
-export function SiteFooter() {
+export function SiteFooter({ lang }: { lang: Locale }) {
+  const site = getSite(lang);
   return (
     <footer>
       <div className="wrap foot-grid">
@@ -21,7 +23,7 @@ export function SiteFooter() {
                   {l.label}
                 </a>
               ) : (
-                <a key={l.label} href={l.href}>
+                <a key={l.label} href={localizedHref(l.href, lang)}>
                   {l.label}
                 </a>
               ),

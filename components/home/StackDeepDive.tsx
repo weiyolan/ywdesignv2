@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { home } from "@/content/home";
+import { getHome } from "@/content/home";
+import { localizedHref } from "@/lib/i18n";
+import { useLocale } from "@/components/providers/LocaleProvider";
 import { Reveal } from "@/components/primitives/Reveal";
 import { CaseLink } from "@/components/primitives/CaseLink";
 import { Button } from "@/components/primitives/Button";
@@ -16,7 +18,8 @@ import { SupportingTech } from "@/components/home/SupportingTech";
 // ScrollTrigger advances both as each bar crosses 42% of the viewport; clicks
 // drive them too. The rail-fill height is measured from the active bar's centre.
 export function StackDeepDive() {
-  const s = home.stack;
+  const lang = useLocale();
+  const s = getHome(lang).stack;
   const [openIndex, setOpenIndex] = useState(0);
   const [railIndex, setRailIndex] = useState(-1);
   const rowsRef = useRef<HTMLDivElement>(null);
@@ -165,7 +168,7 @@ export function StackDeepDive() {
                           <li key={k}>{pt}</li>
                         ))}
                       </ul>
-                      <CaseLink data={row.case} />
+                      <CaseLink data={row.case} lang={lang} />
                     </div>
                   </div>
                 </div>
@@ -186,13 +189,13 @@ export function StackDeepDive() {
               {s.side.h[1]}
             </h3>
             <p>{s.side.p}</p>
-            <Button href={s.side.cta.href} variant="ghost">
+            <Button href={localizedHref(s.side.cta.href, lang)} variant="ghost">
               {s.side.cta.label} <span className="arr">→</span>
             </Button>
           </div>
         </Reveal>
 
-        <SupportingTech />
+        <SupportingTech lang={lang} />
       </div>
     </section>
   );

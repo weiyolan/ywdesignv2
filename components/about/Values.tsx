@@ -1,10 +1,11 @@
 import { Fragment } from "react";
-import { about } from "@/content/about";
+import { getAbout } from "@/content/about";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 
 // Vision section — the four values (about.html :191-206).
-export function Values() {
-  const v = about.vision;
+export function Values({ lang }: { lang: Locale }) {
+  const v = getAbout(lang).vision;
   return (
     <section className="ab-section tex-lines">
       <div className="wrap">

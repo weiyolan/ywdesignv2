@@ -7,6 +7,7 @@
 // their interactive payload in `signatureData` so the (server) page can hand it
 // to the matching "use client" demo.
 import type { Seg } from "@/content/home";
+import type { Locale } from "@/lib/i18n";
 
 export type Slug = "nu" | "milo" | "bermuda" | "spiree";
 export const order: Slug[] = ["nu", "milo", "bermuda", "spiree"];
@@ -136,7 +137,7 @@ export const projects: Record<Slug, Project> = {
       sector: "E-commerce · DTC",
       stack: ["Next.js", "Sanity", "Stripe"],
     },
-    heroImg: "/work/nu-hero.svg",
+    heroImg: "/work/nu-hero.jpg",
     heroAlt: "Nu — clean beauty storefront hero",
     metaTitle: "Nu — Case study",
     metaDescription:
@@ -311,7 +312,7 @@ export const projects: Record<Slug, Project> = {
       sector: "Portfolio · Arts",
       stack: ["Next.js", "Sanity", "Figma"],
     },
-    heroImg: "/work/milo-hero.svg",
+    heroImg: "/work/milo-hero.jpg",
     heroAlt: "Milo Weiler — cinematic photography portfolio hero",
     metaTitle: "Milo Weiler — Case study",
     metaDescription:
@@ -471,7 +472,7 @@ export const projects: Record<Slug, Project> = {
       sector: "Events · Agency",
       stack: ["Next.js", "Sanity", "i18n"],
     },
-    heroImg: "/work/bermuda-hero.svg",
+    heroImg: "/work/bermuda-hero.jpg",
     heroAlt: "Bermuda Events — premium events agency hero",
     metaTitle: "Bermuda Events — Case study",
     metaDescription:
@@ -603,7 +604,7 @@ export const projects: Record<Slug, Project> = {
       sector: "E-commerce · DTC",
       stack: ["Next.js", "React", "Tailwind"],
     },
-    heroImg: "/work/spiree-hero.svg",
+    heroImg: "/work/spiree-hero.jpg",
     heroAlt: "Spiree — celestial activewear brand hero",
     metaTitle: "Spiree — Case study",
     metaDescription:
@@ -705,3 +706,13 @@ export const projects: Record<Slug, Project> = {
     },
   },
 };
+
+const projectsByLocale: Record<Locale, Record<Slug, Project>> = {
+  fr: projects,
+  en: projects,
+  nl: projects,
+};
+// FR/NL reuse the EN case-study copy until translations are written.
+export function getProjects(lang: Locale): Record<Slug, Project> {
+  return projectsByLocale[lang];
+}

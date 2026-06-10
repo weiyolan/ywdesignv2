@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { site } from "@/content/site";
+import { getSite } from "@/content/site";
+import { useLocale } from "@/components/providers/LocaleProvider";
 
 // Typing terminal — ported from app.js :97-146. Builds its lines imperatively
 // (like the prototype) and starts when scrolled into view. Reduced motion shows
 // every line at once.
 export function Terminal() {
+  const lang = useLocale();
+  const site = getSite(lang);
   const bodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -88,7 +91,7 @@ export function Terminal() {
       timers.forEach((t) => clearTimeout(t));
       io.disconnect();
     };
-  }, []);
+  }, [site]);
 
   return (
     <div className="term" id="terminal">
