@@ -1,11 +1,15 @@
-import { home } from "@/content/home";
+import { getHome } from "@/content/home";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 import { CountUp } from "@/components/primitives/CountUp";
 import { CaseLink } from "@/components/primitives/CaseLink";
+import { LangViz } from "@/components/home/viz/LangViz";
+import { AccentViz } from "@/components/home/viz/AccentViz";
+import { ThemeViz } from "@/components/home/viz/ThemeViz";
 
 // Section 01 — capabilities bento grid (index.html :117-212).
-export function Capabilities() {
-  const c = home.capabilities;
+export function Capabilities({ lang }: { lang: Locale }) {
+  const c = getHome(lang).capabilities;
   return (
     <section id="capabilities" className="tex-dots">
       <div className="wrap">
@@ -27,8 +31,8 @@ export function Capabilities() {
               <div className="c-ico">[ {card.ico} ]</div>
               <h3>{card.h}</h3>
               <p>{card.p}</p>
-              <Viz kind={card.viz} />
-              <CaseLink data={card.case} />
+              <Viz kind={card.viz} themeLabels={c.themeToggle} />
+              <CaseLink data={card.case} lang={lang} />
             </Reveal>
           ))}
         </div>
@@ -37,7 +41,13 @@ export function Capabilities() {
   );
 }
 
-function Viz({ kind }: { kind: string }) {
+function Viz({
+  kind,
+  themeLabels,
+}: {
+  kind: string;
+  themeLabels: { light: string; dark: string };
+}) {
   if (kind === "scale")
     return (
       <div className="viz">
@@ -47,13 +57,7 @@ function Viz({ kind }: { kind: string }) {
           <span style={{ fontSize: 20 }}>Aa</span>
           <span style={{ fontSize: 15 }}>Aa</span>
         </div>
-        <div className="swatches">
-          <i style={{ background: "var(--accent)" }} />
-          <i style={{ background: "var(--text)" }} />
-          <i style={{ background: "var(--text-3)" }} />
-          <i style={{ background: "var(--bg-3)" }} />
-          <i style={{ background: "var(--line-2)" }} />
-        </div>
+        <AccentViz />
       </div>
     );
 
@@ -71,11 +75,14 @@ function Viz({ kind }: { kind: string }) {
   if (kind === "lang")
     return (
       <div className="viz">
-        <div className="lang">
-          <b className="on">EN</b>
-          <b>FR</b>
-          <b>NL</b>
-        </div>
+        <LangViz />
+      </div>
+    );
+
+  if (kind === "theme")
+    return (
+      <div className="viz">
+        <ThemeViz labels={themeLabels} />
       </div>
     );
 

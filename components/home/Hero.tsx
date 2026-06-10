@@ -1,12 +1,13 @@
-import { home } from "@/content/home";
+import { getHome } from "@/content/home";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 import { Button } from "@/components/primitives/Button";
 import { GrowthChart } from "@/components/home/GrowthChart";
 import { Marquee } from "@/components/home/Marquee";
 
-export function Hero() {
-  const { hero } = home;
+export function Hero({ lang }: { lang: Locale }) {
+  const { hero } = getHome(lang);
   return (
     <header id="top">
       <div className="wrap hero-grid">
@@ -49,7 +50,7 @@ export function Hero() {
 
       <div className="wrap">
         <Reveal as="div">
-          <Marquee />
+          <Marquee lang={lang} />
         </Reveal>
       </div>
     </header>

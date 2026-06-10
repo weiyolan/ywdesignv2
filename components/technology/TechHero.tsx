@@ -1,11 +1,12 @@
-import { technology } from "@/content/technology";
+import { getTechnology } from "@/content/technology";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 import { Segments } from "@/components/primitives/Segments";
 
 // Technology hero (technology.html :49-78) — kicker, scrambled-accent h1, lede,
 // and the "no-WP" contrast band. Mirrors the home hero's Reveal/Segments feel.
-export function TechHero() {
-  const h = technology.hero;
+export function TechHero({ lang }: { lang: Locale }) {
+  const h = getTechnology(lang).hero;
   return (
     <header className="tech-hero">
       <div className="wrap">

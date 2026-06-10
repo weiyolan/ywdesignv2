@@ -1,9 +1,10 @@
-import { technology } from "@/content/technology";
+import { getTechnology } from "@/content/technology";
+import type { Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/primitives/Reveal";
 
 // Full-stack recap (technology.html :355-373) — "the rest of the toolbox" chips.
-export function StackRecap() {
-  const r = technology.recap;
+export function StackRecap({ lang }: { lang: Locale }) {
+  const r = getTechnology(lang).recap;
   return (
     <section className="stack-recap">
       <div className="wrap">
