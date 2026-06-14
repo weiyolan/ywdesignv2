@@ -46,6 +46,7 @@ export const siteFR = {
     next: "Suivant",
     visitLive: "Voir le site en ligne",
     jumpToBuild: "Aller à la construction",
+    language: "Langue",
     meta: { role: "Rôle", year: "Année", sector: "Secteur", stack: "Stack" },
   },
 

@@ -46,6 +46,7 @@ export const siteNL = {
     next: "Volgende",
     visitLive: "Bekijk de live site",
     jumpToBuild: "Spring naar de build",
+    language: "Taal",
     meta: { role: "Rol", year: "Jaar", sector: "Sector", stack: "Stack" },
   },
 
