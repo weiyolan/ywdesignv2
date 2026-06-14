@@ -8,12 +8,18 @@ import styles from "./LocaleSwitcher.module.css";
 
 // FR / EN / NL toggle. Swaps the leading locale segment of the current path so
 // the visitor stays on the same page in the chosen language.
-export function LocaleSwitcher() {
+// `className` lets callers extend the root (e.g. `hide-md` to drop it from the
+// top bar on mobile, where it lives in the hamburger drawer instead).
+export function LocaleSwitcher({ className }: { className?: string }) {
   const pathname = usePathname();
   const active = useLocale();
 
   return (
-    <div className={styles.switch} role="group" aria-label="Language">
+    <div
+      className={`${styles.switch}${className ? ` ${className}` : ""}`}
+      role="group"
+      aria-label="Language"
+    >
       {locales.map((l) => (
         <Link
           key={l}

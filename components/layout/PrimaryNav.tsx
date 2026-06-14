@@ -84,7 +84,7 @@ export function PrimaryNav({ back }: Props) {
           <Button href={localizedHref(site.cta.href, lang)} variant="primary" className="hide-sm">
             {site.cta.label} <span className="arr">→</span>
           </Button>
-          <LocaleSwitcher />
+          <LocaleSwitcher className="hide-md" />
           <ThemeToggle />
           <AppearanceMenu />
           <button
@@ -110,6 +110,12 @@ export function PrimaryNav({ back }: Props) {
         <Link href={localizedHref(site.cta.href, lang)} className="btn btn-primary md-cta" onClick={close}>
           {site.cta.label} <span className="arr">→</span>
         </Link>
+        {/* Language lives in the drawer on mobile (hidden from the top bar via
+            hide-md), so the switch stays reachable without crowding the header. */}
+        <div className="md-locale">
+          <span className="md-locale-label">{site.ui.language}</span>
+          <LocaleSwitcher className="md-switch" />
+        </div>
       </div>
       <div className="nav-scrim" id="nav-scrim" onClick={close} aria-hidden="true" />
     </>

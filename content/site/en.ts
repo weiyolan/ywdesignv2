@@ -59,6 +59,7 @@ export const site = {
     next: "Next",
     visitLive: "Visit live site",
     jumpToBuild: "Jump to the build",
+    language: "Language",
     meta: { role: "Role", year: "Year", sector: "Sector", stack: "Stack" },
   },
 
