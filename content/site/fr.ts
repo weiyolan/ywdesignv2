@@ -42,6 +42,8 @@ export const siteFR = {
   cta: { label: "Démarrer un projet", href: "/#contact" },
 
   ui: {
+    allWork: "Tous les projets",
+    moreWork: "Autres projets",
     prev: "Précédent",
     next: "Suivant",
     visitLive: "Voir le site en ligne",

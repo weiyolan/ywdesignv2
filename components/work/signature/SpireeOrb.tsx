@@ -33,6 +33,7 @@ export function SpireeOrb({ data }: { data: Orb }) {
         <div className="sp-toggle">
           <button
             type="button"
+            aria-pressed={mode === "sun"}
             className={mode === "sun" ? "on" : undefined}
             onClick={() => setMode("sun")}
           >
@@ -40,6 +41,7 @@ export function SpireeOrb({ data }: { data: Orb }) {
           </button>
           <button
             type="button"
+            aria-pressed={mode === "moon"}
             className={mode === "moon" ? "on" : undefined}
             onClick={() => setMode("moon")}
           >
@@ -49,12 +51,13 @@ export function SpireeOrb({ data }: { data: Orb }) {
         <div className="sp-title">{copy.t}</div>
         <div className="sp-sub">{copy.s}</div>
         <div className="sp-price">€99,-</div>
-        <div className="sp-meta">Incl. VAT &amp; shipping in EU</div>
+        <div className="sp-meta">{data.meta}</div>
         <div className="sp-sizes">
           {SIZES.map((s) => (
             <button
               type="button"
               key={s}
+              aria-pressed={s === size}
               className={s === size ? "on" : undefined}
               onClick={() => setSize(s)}
             >
@@ -67,7 +70,7 @@ export function SpireeOrb({ data }: { data: Orb }) {
           className={`btn btn-primary sp-add${added ? " added" : ""}`}
           onClick={addToCart}
         >
-          {added ? "✓ Added to cart" : "Add to cart"}
+          {added ? data.added : data.add}
         </button>
       </div>
     </div>

@@ -160,6 +160,7 @@ export const homeNL = {
       { num: "02", cat: "Fotografieportfolio", slug: "milo", title: "Milo Weiler", body: "Een cinematische, donkere portfolio opgedeeld in zeven scrollhoofdstukken — 55 projecten, sticky hoofdstuknavigatie, topscores op Lighthouse.", href: "https://miloweiler.com", img: "/work/milo.jpg" },
       { num: "03", cat: "Eventbureau · België", slug: "bermuda", title: "Bermuda Events", body: "Een premium merksite die voorbije producties op schaal in beeld brengt, met een contacttrechter gebouwd om de juiste leads te kwalificeren.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
       { num: "04", cat: "Activewearmerk · 100% Merino", slug: "spiree", title: "Spiree", body: "Een onafhankelijke sportkledingsite — gedurfd gradiëntsysteem, Sun- & Moon-collecties, een verhaalgedreven boog.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.jpg" },
+      { num: "05", cat: "Analoge fotografie · België", slug: "analoog", title: "Milo Weiler Analoog", body: "Een rustige, redactionele dienstensite voor fine-art filmfotografie — uitvaarten, portretten en huwelijken op middenformaat, op een tempo dat vertraagt.", href: "https://analoog.miloweiler.com/nl", img: "/work/analoog.jpg" },
     ],
   },
 

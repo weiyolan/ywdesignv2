@@ -34,6 +34,7 @@ export function MiloChapterRail({ chapters }: { chapters: Chapter[] }) {
           <button
             type="button"
             key={c.rail}
+            aria-pressed={i === active}
             className={i === active ? "on" : undefined}
             onClick={() => pick(i)}
           >
@@ -47,7 +48,7 @@ export function MiloChapterRail({ chapters }: { chapters: Chapter[] }) {
           {String(shown + 1).padStart(2, "0")}
         </div>
         <div className={`cap ${fade}`}>
-          <h4>{cap.t}</h4>
+          <h3>{cap.t}</h3>
           <p>{cap.p}</p>
         </div>
       </div>

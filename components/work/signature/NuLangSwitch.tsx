@@ -40,6 +40,7 @@ export function NuLangSwitch({ dict }: { dict: Dict }) {
         <div className="nu-lang">
           <button
             type="button"
+            aria-pressed={lang === "en"}
             className={lang === "en" ? "on" : undefined}
             onClick={() => switchLang("en")}
           >
@@ -47,6 +48,7 @@ export function NuLangSwitch({ dict }: { dict: Dict }) {
           </button>
           <button
             type="button"
+            aria-pressed={lang === "fr"}
             className={lang === "fr" ? "on" : undefined}
             onClick={() => switchLang("fr")}
           >

@@ -23,7 +23,7 @@ export function Compare({
           {cols.map((c) => (
             <div className="col" key={c.h}>
               <div className="ct">{c.ct}</div>
-              <h4>{c.h}</h4>
+              <h3>{c.h}</h3>
               <p>{c.p}</p>
               <ul>
                 {c.items.map((it) => (

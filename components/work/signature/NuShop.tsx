@@ -14,7 +14,7 @@ const LIVE = "https://nu-site.netlify.app/";
 // ★★★★★ / ★★★★<span class="e">★</span> markup.
 function Stars({ filled }: { filled: number }) {
   return (
-    <div className="nu-stars" aria-label={`${filled} / 5`}>
+    <div className="nu-stars" role="img" aria-label={`${filled} / 5`}>
       {Array.from({ length: 5 }, (_, i) =>
         i < filled ? (
           <span key={i}>★</span>
@@ -60,6 +60,7 @@ export function NuShop({ shop }: { shop: Shop }) {
         <div className="nu-lang2">
           <button
             type="button"
+            aria-pressed={lang === "fr"}
             className={lang === "fr" ? "on" : undefined}
             onClick={() => setLang("fr")}
           >
@@ -67,6 +68,7 @@ export function NuShop({ shop }: { shop: Shop }) {
           </button>
           <button
             type="button"
+            aria-pressed={lang === "en"}
             className={lang === "en" ? "on" : undefined}
             onClick={() => setLang("en")}
           >

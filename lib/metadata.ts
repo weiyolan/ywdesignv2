@@ -10,7 +10,7 @@ import {
 // Per-page metadata builder. Produces a SELF-referencing canonical + the full
 // hreflang alternate set for `path` (so every page points at its own locale URL,
 // not the homepage — the duplicate-canonical bug we're fixing), plus localized
-// Open Graph + Twitter cards sharing one static brand image.
+// Open Graph + Twitter cards (static brand image unless a page passes its own).
 //
 // `path` is locale-agnostic ("/", "/work", "/work/nu"); localizedHref prefixes it.
 // URLs stay relative — metadataBase (set in the root layout) resolves them.
@@ -22,6 +22,8 @@ export function pageMetadata({
   absoluteTitle = false,
   ogTitle,
   ogDescription,
+  image = { url: "/og.png", width: 1200, height: 630, alt: "YWdesign" },
+  type = "website",
 }: {
   lang: Locale;
   path: string;
@@ -30,6 +32,8 @@ export function pageMetadata({
   absoluteTitle?: boolean; // home uses its full title (skips the "· YWdesign" template)
   ogTitle?: string;
   ogDescription?: string;
+  image?: { url: string; width: number; height: number; alt: string };
+  type?: "website" | "article";
 }): Metadata {
   const canonical = localizedHref(path, lang);
   return {
@@ -48,14 +52,14 @@ export function pageMetadata({
       url: canonical,
       siteName: "YWdesign",
       locale: ogLocale[lang],
-      type: "website",
-      images: [{ url: "/og.png", width: 1200, height: 630, alt: "YWdesign" }],
+      type,
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle ?? title,
       description: ogDescription ?? description,
-      images: ["/og.png"],
+      images: [image.url],
     },
   };
 }

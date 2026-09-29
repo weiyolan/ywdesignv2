@@ -34,7 +34,7 @@ export function Approach({
           {steps.map((s) => (
             <div className="step" key={s.sn}>
               <div className="sn">{s.sn}</div>
-              <h4>{s.h}</h4>
+              <h3>{s.h}</h3>
               <p>{s.p}</p>
             </div>
           ))}

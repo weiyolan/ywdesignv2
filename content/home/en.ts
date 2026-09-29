@@ -179,6 +179,7 @@ export const home = {
       { num: "02", cat: "Photography portfolio", slug: "milo", title: "Milo Weiler", body: "A cinematic, dark portfolio split into seven scroll chapters — 55 projects, sticky chapter nav, top Lighthouse scores.", href: "https://miloweiler.com", img: "/work/milo.jpg" },
       { num: "03", cat: "Events agency · Belgium", slug: "bermuda", title: "Bermuda Events", body: "A premium brand site framing past productions at scale, with a contact funnel built to qualify the right leads.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
       { num: "04", cat: "Activewear brand · 100% Merino", slug: "spiree", title: "Spiree", body: "An independent sportswear brand site — bold gradient system, Sun & Moon collections, a story-first arc.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.jpg" },
+      { num: "05", cat: "Analogue photography · Belgium", slug: "analoog", title: "Milo Weiler Analogue", body: "A quiet, editorial service site for fine-art film photography — funerals, portraits and weddings on medium format, paced to slow you down.", href: "https://analoog.miloweiler.com/en", img: "/work/analoog.jpg" },
     ],
   },
 

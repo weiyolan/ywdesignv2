@@ -69,14 +69,14 @@ export const homeFR = {
         h: "CMS headless",
         p: "Publiez vos modifications de contenu sans développeur dans la boucle.",
         viz: "cms",
-        case: { pre: "CAS :", strong: "Nu", post: "· Sanity ↗", href: "https://nu-site.netlify.app/en", external: true },
+        case: { pre: "CAS :", strong: "Nu", post: "· Sanity ↗", href: "https://nu-site.netlify.app/", external: true },
       },
       {
         span: "span-2", d: 2, ico: "commerce",
         h: "Commerce & paiements",
         p: "Des paiements Stripe & Twint qui convertissent.",
         viz: "commerce",
-        case: { pre: "CAS :", strong: "Nu", post: "boutique ↗", href: "https://nu-site.netlify.app/en", external: true },
+        case: { pre: "CAS :", strong: "Nu", post: "boutique ↗", href: "https://nu-site.netlify.app/", external: true },
       },
       {
         span: "span-4", d: 0, ico: "performance · seo",
@@ -112,13 +112,13 @@ export const homeFR = {
         mark: "S", name: "Sanity", tag: "Du contenu headless que le client édite lui-même", role: "headless cms",
         body: "Le contenu vit dans Sanity, totalement découplé du front-end. Les éditeurs mettent à jour produits, articles et imagerie dans un Studio que je taille sur mesure pour leur workflow ; j’interroge exactement la forme dont chaque page a besoin avec GROQ et je la rends via Portable Text. Aucun développeur dans la boucle pour les modifications du quotidien.",
         points: ["Schémas Studio sur mesure par client", "GROQ — n’interroger que ce qui est rendu", "Contenu riche en Portable Text", "Aperçu des brouillons & mises à jour en temps réel", "Pipeline d’images sur un CDN global", "Rebuilds déclenchés par webhook"],
-        case: { pre: "CAS :", strong: "Nu", post: "— un catalogue clean-beauty piloté par CMS ↗", href: "https://nu-site.netlify.app/en", external: true },
+        case: { pre: "CAS :", strong: "Nu", post: "— un catalogue clean-beauty piloté par CMS ↗", href: "https://nu-site.netlify.app/", external: true },
       },
       {
         mark: "St", name: "Stripe", tag: "Paiement sécurisé — multidevise & Twint", role: "payments",
         body: "Le paiement tourne sur Stripe. Les sessions sont créées côté serveur, confirmées par des webhooks signés et réconciliées avant toute expédition — sécurisé par conception, sans jamais faire confiance au navigateur. Le multidevise et Twint donnent aux clients belges et de l’UE les moyens de paiement qu’ils utilisent réellement.",
         points: ["Checkout Sessions côté serveur", "Traitement par webhook signé", "Tarification multidevise", "Twint & cartes pour l’UE", "PaymentIntents avec SCA", "Logique de TVA & d’expédition"],
-        case: { pre: "CAS :", strong: "Nu", post: "boutique — un parcours d’achat sans friction ↗", href: "https://nu-site.netlify.app/en", external: true },
+        case: { pre: "CAS :", strong: "Nu", post: "boutique — un parcours d’achat sans friction ↗", href: "https://nu-site.netlify.app/", external: true },
       },
       {
         mark: "G", name: "GSAP", tag: "Le moteur de motion — animation au scroll & timeline", role: "animation",
@@ -156,10 +156,11 @@ export const homeFR = {
       "De vrais sites pour de vrais clients, en Belgique et au-delà — multilingues, rapides et conçus pour convertir.",
     cta: { caseStudy: "Étude de cas", visit: "Visiter" },
     items: [
-      { num: "01", cat: "E-commerce beauté & bien-être", slug: "nu", title: "Nu", body: "Une boutique clean-beauty multilingue — un rythme éditorial posé autour d’un parcours d’achat sans friction, piloté par CMS.", href: "https://nu-site.netlify.app/en", img: "/work/nu.jpg" },
+      { num: "01", cat: "E-commerce beauté & bien-être", slug: "nu", title: "Nu", body: "Une boutique clean-beauty multilingue — un rythme éditorial posé autour d’un parcours d’achat sans friction, piloté par CMS.", href: "https://nu-site.netlify.app/", img: "/work/nu.jpg" },
       { num: "02", cat: "Portfolio de photographie", slug: "milo", title: "Milo Weiler", body: "Un portfolio sombre et cinématique découpé en sept chapitres de scroll — 55 projets, navigation de chapitres collante, scores Lighthouse au top.", href: "https://miloweiler.com", img: "/work/milo.jpg" },
       { num: "03", cat: "Agence événementielle · Belgique", slug: "bermuda", title: "Bermuda Events", body: "Un site de marque premium qui met en scène les productions passées à grande échelle, avec un tunnel de contact conçu pour qualifier les bons leads.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
       { num: "04", cat: "Marque d’activewear · 100 % Merino", slug: "spiree", title: "Spiree", body: "Le site d’une marque de sportswear indépendante — système de dégradés audacieux, collections Sun & Moon, un récit qui prime.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.jpg" },
+      { num: "05", cat: "Photographie argentique · Belgique", slug: "analoog", title: "Milo Weiler Analogique", body: "Un site de services éditorial et posé pour la photographie argentique fine art — funérailles, portraits et mariages en moyen format, rythmé pour ralentir.", href: "https://analoog.miloweiler.com/fr", img: "/work/analoog.jpg" },
     ],
   },
 

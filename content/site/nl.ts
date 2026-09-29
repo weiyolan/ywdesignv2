@@ -42,6 +42,8 @@ export const siteNL = {
   cta: { label: "Start een project", href: "/#contact" },
 
   ui: {
+    allWork: "Alle projecten",
+    moreWork: "Meer projecten",
     prev: "Vorige",
     next: "Volgende",
     visitLive: "Bekijk de live site",

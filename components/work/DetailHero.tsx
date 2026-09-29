@@ -28,9 +28,11 @@ export function DetailHero({ project, lang }: { project: Project; lang: Locale }
           <Button href={project.liveHref} variant="primary" external>
             {ui.visitLive} <span className="arr">↗</span>
           </Button>
-          <Button href="#signature" variant="ghost">
-            {ui.jumpToBuild}
-          </Button>
+          {project.sections.some((s) => s.kind === "signature") && (
+            <Button href="#signature" variant="ghost">
+              {ui.jumpToBuild}
+            </Button>
+          )}
         </Reveal>
         <Reveal as="div" delay={2}>
           <MetaGrid meta={project.meta} lang={lang} />

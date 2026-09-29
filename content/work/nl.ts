@@ -469,6 +469,24 @@ export const projectsNL = {
         ],
       },
     ],
+    signatureData: {
+      bermudaIcons: {
+        gl: "Verlies je in",
+        cards: [
+          { t: "Creativiteit", sub: "Een nieuw concept naar jouw wens. Elke keer." },
+          { t: "Detail", sub: "Niets aan het toeval overgelaten. Aan elk detail gedacht." },
+          { t: "Persoonlijkheid", sub: "Dezelfde persoon, altijd voor je klaar." },
+        ],
+        noteH: "Waarom het hier herkleurd is",
+        note: [
+          { t: "Live draait Bermuda op een eigen identiteit in aardetinten — klei, zand, olijf. Voor deze case study heb ik exact dezelfde morph omgezet naar het systeem van dit portfolio: " },
+          { t: "neutrale inkt", accent: true },
+          { t: " in rust, oplichtend naar vol contrast bij focus, met de morphende focusvorm die uitkomt in het " },
+          { t: "accent", accent: true },
+          { t: ". De geometrie is onaangeroerd — alleen het palet is gewisseld naar zwart / wit / accent, zodat het component in deze site past in plaats van ermee te vechten." },
+        ],
+      },
+    },
   },
 
   // ── 04 · Spiree ─────────────────────────────────────────────────────────
@@ -588,7 +606,130 @@ export const projectsNL = {
       spireeOrb: {
         sun: { t: "Sun", s: "Ontketen je innerlijke vuur" },
         moon: { t: "Moon", s: "Omarm je etherische kant" },
+        meta: "Incl. btw & verzending in de EU",
+        add: "In winkelmand",
+        added: "✓ In winkelmand",
       },
     },
+  },
+
+  // ── 05 · Milo Weiler — Analoog ──────────────────────────────────────────
+  analoog: {
+    slug: "analoog",
+    eyebrowNum: "05",
+    category: "Analoge fotografie · België",
+    year: "2026",
+    titleSegs: [
+      { t: "Milo Weiler Analoog — gemaakt om " },
+      { t: "door te geven.", scramble: true, accent: true },
+    ],
+    lede:
+      "Een rustige, redactionele dienstensite voor fine-art filmfotografie — uitvaarten, karakterportretten en huwelijken op middenformaat. Gebouwd om de bezoeker te laten vertragen, vertrouwen te winnen op de meest delicate dagen van een leven, en dat om te zetten in een eerste gesprek.",
+    liveHref: "https://analoog.miloweiler.com/nl",
+    meta: {
+      role: "Ontwerp & build",
+      year: "2026",
+      sector: "Fotografie · Diensten",
+      stack: ["Next.js", "Sanity", "i18n"],
+    },
+    heroImg: "/work/analoog-hero.jpg",
+    heroAlt: "Milo Weiler Analoog — hero in serif “Analoog gemaakt om door te geven”",
+    metaTitle: "Milo Weiler Analoog — Case study",
+    metaDescription:
+      "Een redactionele dienstensite voor een analoog fotograaf in Antwerpen & Brussel — uitvaartreportages, karakterportretten en huwelijken op middenformaat, een traject in vier stappen en een drietalige NL · EN · FR-build.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "De briefing",
+          title: "Traagheid verkopen in een wereld gemaakt om te scrollen.",
+        },
+        paras: [
+          [
+            {
+              t: "Milo fotografeert met een Mamiya RB67 — middenformaat film, elk beeld gewogen. De site moest die ",
+            },
+            { t: "intentie", b: true },
+            {
+              t: " voelbaar maken nog voor er gelezen wordt: warme papiertinten, een klassieke serif, veel witruimte en beelden die één voor één binnenkomen.",
+            },
+          ],
+          [
+            { t: "Het moeilijkste was de toon. Een " },
+            { t: "uitvaartdienst", b: true },
+            {
+              t: " staat naast portretten en huwelijken, dus elke zin moest rustig, respectvol en helder zijn over prijs en traject — eerst geruststellen, dan pas verkopen.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ editorial_pacing ]",
+            b: "Scrollen dat vertraagt",
+            p: "Titels letter per letter, een ingekaderde showcase die uitgroeit tot volledig beeld, en gestapelde dienstkaarten die lezen als de pagina’s van een album.",
+          },
+          {
+            k: "[ three_services ]",
+            b: "Afscheid · Gezicht · Belofte",
+            p: "Uitvaartreportage, karakterportretten en analoge huwelijken — elk met een eigen belofte, eindstuk en detailpagina.",
+          },
+          {
+            k: "[ headless_cms ]",
+            b: "Content beheerd in Sanity",
+            p: "Diensten, beelden en teksten door Milo aanpasbaar in drie talen, zonder deploys.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "NL · EN · FR",
+            p: "Gelokaliseerde routing en metadata voor een Belgisch publiek in alle drie de talen.",
+          },
+        ],
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "Hoe het converteert",
+          title: "Van eerste gesprek tot stuk in handen",
+          intro:
+            "De trajectsectie neemt elke twijfel weg: één aanspreekpunt, een vaste prijs vooraf, hetzelfde eenvoudige pad voor elke dienst.",
+        },
+        steps: [
+          {
+            sn: "01 / acquaintance",
+            h: "Een vrijblijvend gesprek",
+            p: "Telefonisch of in persoon — de site leidt meteen naar een rechtstreeks nummer, geen formulier op een zware dag.",
+          },
+          {
+            sn: "02 / booking & sitting",
+            h: "Heldere prijs, rustige dag",
+            p: "Datum, omvang en prijs vooraf vastgelegd; op de dag zelf komt Milo rustig langs, op film, en laat hij de dag zich ontvouwen.",
+          },
+          {
+            sn: "03 / the piece",
+            h: "Met de hand gebonden",
+            p: "Ontwikkeld, geselecteerd en met de hand gebonden — geleverd binnen vier tot acht weken. Het object is het product, en de site zegt het.",
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        quote: [
+          { t: "Geen vluchtige digitale opname, maar " },
+          { t: "een tastbaar, handgemaakt beeld", accent: true },
+          { t: " — om door te geven aan de generaties die volgen." },
+        ],
+        cite: "// Milo Weiler — de filosofie, als ruggengraat van de site",
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Galerij", title: "Doorheen de site" },
+        items: [
+          { id: "analoog-g1", span: "wide", alt: "Showcase op volledig scherm — “Analoog blijft.”" },
+          { id: "analoog-g2", span: "tall", alt: "Filosofiesectie met een zwart-wit filmbeeld" },
+          { id: "analoog-g3", span: "half", alt: "Traject in vier stappen — kennismaking, boeking, opname, het stuk" },
+          { id: "analoog-g4", span: "half", alt: "Ingekaderde showcase van een middenformaatportret" },
+        ],
+      },
+    ],
   },
 } satisfies Record<Slug, Project>;

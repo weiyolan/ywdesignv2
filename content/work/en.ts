@@ -8,8 +8,8 @@
 // to the matching "use client" demo.
 import type { Seg } from "@/content/home";
 
-export type Slug = "nu" | "milo" | "bermuda" | "spiree";
-export const order: Slug[] = ["nu", "milo", "bermuda", "spiree"];
+export type Slug = "nu" | "milo" | "bermuda" | "spiree" | "analoog";
+export const order: Slug[] = ["nu", "milo", "bermuda", "spiree", "analoog"];
 
 /** A meta chip group head + body — the .ds-head / .sec-kicker intro of a section. */
 export type Head = {
@@ -112,6 +112,16 @@ export type Project = {
     spireeOrb?: {
       sun: { t: string; s: string };
       moon: { t: string; s: string };
+      meta: string;
+      add: string;
+      added: string;
+    };
+    /** cards in markup order: creativity, detail, personality */
+    bermudaIcons?: {
+      gl: string;
+      cards: { t: string; sub: string }[];
+      noteH: string;
+      note: Seg[];
     };
   };
 };
@@ -582,6 +592,24 @@ export const projects: Record<Slug, Project> = {
         ],
       },
     ],
+    signatureData: {
+      bermudaIcons: {
+        gl: "Get lost in",
+        cards: [
+          { t: "Creativity", sub: "A new concept to your desire. Every time." },
+          { t: "Detail", sub: "Nothing left to chance. Every detail thought of." },
+          { t: "Personality", sub: "The same person, always there for you." },
+        ],
+        noteH: "Why it's recolored here",
+        note: [
+          { t: "Live, Bermuda runs on its own earth-tone identity — clay, sand, olive. For this case study I remapped the exact same morph to the portfolio's own system: " },
+          { t: "neutral ink", accent: true },
+          { t: " at rest, brightening to full contrast on focus, with the morphing focal shape resolving in the " },
+          { t: "accent", accent: true },
+          { t: ". The geometry is untouched — only the palette is swapped to black / white / accent so the component sits inside this site instead of fighting it." },
+        ],
+      },
+    },
   },
 
   // ── 04 · Spiree ─────────────────────────────────────────────────────────
@@ -701,7 +729,130 @@ export const projects: Record<Slug, Project> = {
       spireeOrb: {
         sun: { t: "Sun", s: "Unleash your inner fire" },
         moon: { t: "Moon", s: "Embrace your ethereal side" },
+        meta: "Incl. VAT & shipping in EU",
+        add: "Add to cart",
+        added: "✓ Added to cart",
       },
     },
+  },
+
+  // ── 05 · Milo Weiler — Analogue ─────────────────────────────────────────
+  analoog: {
+    slug: "analoog",
+    eyebrowNum: "05",
+    category: "Analogue photography · Belgium",
+    year: "2026",
+    titleSegs: [
+      { t: "Milo Weiler Analogue — made to be " },
+      { t: "passed down.", scramble: true, accent: true },
+    ],
+    lede:
+      "A quiet, editorial service site for fine-art film photography — funerals, character portraits and weddings on medium format. Built to slow the visitor down, earn trust on the most delicate days of a life, and turn that into a first conversation.",
+    liveHref: "https://analoog.miloweiler.com/en",
+    meta: {
+      role: "Design & build",
+      year: "2026",
+      sector: "Photography · Services",
+      stack: ["Next.js", "Sanity", "i18n"],
+    },
+    heroImg: "/work/analoog-hero.jpg",
+    heroAlt: "Milo Weiler Analogue — serif hero reading “Analogue made to be passed down”",
+    metaTitle: "Milo Weiler Analogue — Case study",
+    metaDescription:
+      "An editorial service site for an Antwerp & Brussels film photographer — funeral reportage, character portraits and weddings on medium format, a four-step process and a trilingual NL · EN · FR build.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "The brief",
+          title: "Sell slowness in a world built for scrolling.",
+        },
+        paras: [
+          [
+            {
+              t: "Milo shoots on a Mamiya RB67 — medium-format film, every frame weighed. The site had to make that ",
+            },
+            { t: "intention", b: true },
+            {
+              t: " felt before a word is read: warm paper tones, a classic serif, generous whitespace and images that arrive one at a time.",
+            },
+          ],
+          [
+            { t: "The hardest part was tone. A " },
+            { t: "funeral service", b: true },
+            {
+              t: " sits next to portraits and weddings, so every line had to be calm, respectful and clear on price and process — reassurance first, sales second.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ editorial_pacing ]",
+            b: "Scroll that slows you down",
+            p: "Letter-by-letter headlines, a framed showcase that grows to full bleed, and stacked service cards read like the pages of an album.",
+          },
+          {
+            k: "[ three_services ]",
+            b: "Farewell · Face · Promise",
+            p: "Funeral reportage, character portraits and analogue weddings — each with its own promise, deliverable and detail page.",
+          },
+          {
+            k: "[ headless_cms ]",
+            b: "Sanity-managed content",
+            p: "Services, images and copy editable by Milo in three languages, no deploys.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "NL · EN · FR",
+            p: "Localized routing and metadata for a Belgian audience across all three languages.",
+          },
+        ],
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "How it converts",
+          title: "From first conversation to a piece in hand",
+          intro:
+            "The process section removes every reason to hesitate: one point of contact, a fixed price up front, the same simple path for every service.",
+        },
+        steps: [
+          {
+            sn: "01 / acquaintance",
+            h: "A no-obligation call",
+            p: "Phone or in person — the site leads straight to a direct number, not a form to fill in on a hard day.",
+          },
+          {
+            sn: "02 / booking & sitting",
+            h: "Clear price, calm day",
+            p: "Date, scope and price fixed up front; on the day Milo arrives quietly, on film, and lets it unfold.",
+          },
+          {
+            sn: "03 / the piece",
+            h: "Bound by hand",
+            p: "Developed, selected and hand-bound — delivered in four to eight weeks. The object is the product, and the site says so.",
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        quote: [
+          { t: "Not a fleeting digital snapshot, but " },
+          { t: "a tangible, handcrafted image", accent: true },
+          { t: " — made to pass down to the generations that follow." },
+        ],
+        cite: "// Milo Weiler — the philosophy, set as the site's backbone",
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Gallery", title: "Through the site" },
+        items: [
+          { id: "analoog-g1", span: "wide", alt: "Full-bleed showcase — “Analogue stays.”" },
+          { id: "analoog-g2", span: "tall", alt: "Philosophy section with a black-and-white film still" },
+          { id: "analoog-g3", span: "half", alt: "Four-step process — acquaintance, booking, sitting, the piece" },
+          { id: "analoog-g4", span: "half", alt: "Framed showcase of a medium-format portrait" },
+        ],
+      },
+    ],
   },
 };

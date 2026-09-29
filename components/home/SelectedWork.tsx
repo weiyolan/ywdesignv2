@@ -18,6 +18,8 @@ export function SelectedWork({ titleAs = "h2" }: { titleAs?: "h1" | "h2" } = {})
   const w = getHome(lang).work;
   const gridRef = useRef<HTMLDivElement>(null);
   const Title = titleAs;
+  // cards sit one level below the section title
+  const CardTitle = titleAs === "h1" ? "h2" : "h3";
 
   useGSAP(
     () => {
@@ -93,15 +95,25 @@ export function SelectedWork({ titleAs = "h2" }: { titleAs?: "h1" | "h2" } = {})
               </Link>
               <div className="p-in">
                 <span className="p-cat">{item.cat}</span>
-                <h3>
+                <CardTitle>
                   <Link href={localizedHref(`/work/${item.slug}`, lang)}>{item.title}</Link>
-                </h3>
+                </CardTitle>
                 <p>{item.body}</p>
                 <div className="p-foot">
-                  <Link className="visit case" href={localizedHref(`/work/${item.slug}`, lang)}>
+                  <Link
+                    className="visit case"
+                    href={localizedHref(`/work/${item.slug}`, lang)}
+                    aria-label={`${w.cta.caseStudy}: ${item.title}`}
+                  >
                     {w.cta.caseStudy} <span className="arr">→</span>
                   </Link>
-                  <a className="visit" href={item.href} target="_blank" rel="noopener noreferrer">
+                  <a
+                    className="visit"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${w.cta.visit}: ${item.title} ↗`}
+                  >
                     {w.cta.visit} <span className="arr">↗</span>
                   </a>
                 </div>

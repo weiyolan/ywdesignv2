@@ -20,7 +20,7 @@ export function Pager({ slug, lang }: { slug: Slug; lang: Locale }) {
   const ui = getSite(lang).ui;
 
   return (
-    <nav className="detail-section" style={{ paddingTop: 0 }}>
+    <nav className="detail-section" style={{ paddingTop: 0 }} aria-label={ui.moreWork}>
       <div className="wrap">
         <div className="pager">
           <Link href={localizedHref(`/work/${prev}`, lang)}>

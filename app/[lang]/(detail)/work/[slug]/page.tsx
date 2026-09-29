@@ -3,7 +3,8 @@ import "./detail.css";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProjects, order, type Slug } from "@/content/work";
-import type { Locale } from "@/lib/i18n";
+import { localizedHref, type Locale } from "@/lib/i18n";
+import { getSite } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 import { corben, mulish } from "@/lib/projectFonts";
 import { DetailHero } from "@/components/work/DetailHero";
@@ -33,6 +34,9 @@ export async function generateMetadata({
     path: `/work/${slug}`,
     title: p.metaTitle,
     description: p.metaDescription,
+    // hero shots are 1600×900
+    image: { url: p.heroImg, width: 1600, height: 900, alt: p.heroAlt },
+    type: "article",
   });
 }
 
@@ -54,8 +58,50 @@ export default async function ProjectPage({
   const rootClass =
     slug === "nu" ? `${corben.variable} ${mulish.variable}` : undefined;
 
+  const site = "https://ywdesign.co";
+  const url = site + localizedHref(`/work/${slug}`, lang as Locale);
+  const name = project.metaTitle.split(" — ")[0];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        name,
+        headline: project.metaTitle,
+        description: project.metaDescription,
+        url,
+        image: site + project.heroImg,
+        inLanguage: lang,
+        dateCreated: project.year,
+        creator: { "@id": `${site}/#yolan` },
+        publisher: { "@id": `${site}/#ywdesign` },
+        sameAs: project.liveHref,
+        keywords: project.meta.stack.join(", "),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { name: "YWdesign", path: "/" },
+          { name: getSite(lang as Locale).seo.work.title, path: "/work" },
+          { name, path: `/work/${slug}` },
+        ].map((c, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: c.name,
+          item: site + localizedHref(c.path, lang as Locale),
+        })),
+      },
+    ],
+  };
+
   return (
     <main className={rootClass}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <DetailHero project={project} lang={lang as Locale} />
       <DetailMedia src={project.heroImg} alt={project.heroAlt} />
 

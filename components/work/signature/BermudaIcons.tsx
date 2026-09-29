@@ -1,6 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { Segments } from "@/components/primitives/Segments";
+import type { Project } from "@/content/work";
+
+type Icons = NonNullable<NonNullable<Project["signatureData"]>["bermudaIcons"]>;
 
 // Bermuda signature — the real "Get Lost In" morphing icon set (ported from the
 // live Feature.jsx). The morph is PURE CSS (detail.css: `transition:d` + per-id
@@ -11,46 +15,43 @@ import { useState } from "react";
 // are kept on the markup but the CSS overrides them to the portfolio palette.
 
 type CardProps = {
+  gl: string;
   title: string;
   sub: string;
   children: React.ReactNode; // the <svg>
 };
 
-function IconCard({ title, sub, children }: CardProps) {
+function IconCard({ gl, title, sub, children }: CardProps) {
   const [pinned, setPinned] = useState(false);
   const [hover, setHover] = useState(false);
   const on = pinned || hover;
 
   return (
-    <div
+    <button
+      type="button"
+      aria-pressed={pinned}
       className={`berm-ico-card${on ? " is-on" : ""}`}
-      tabIndex={0}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onFocus={() => setHover(true)}
       onBlur={() => setHover(false)}
       onClick={() => setPinned((p) => !p)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          setPinned((p) => !p);
-        }
-      }}
     >
-      <span className="gl">Get lost in</span>
-      <h4>{title}</h4>
-      <div className="berm-ico">{children}</div>
+      <span className="gl">{gl}</span>
+      <span className="t">{title}</span>
+      <span className="berm-ico" aria-hidden="true">{children}</span>
       <span className="sub">{sub}</span>
-    </div>
+    </button>
   );
 }
 
-export function BermudaIcons() {
+export function BermudaIcons({ data }: { data: Icons }) {
+  const [c1, c2, c3] = data.cards;
   return (
     <div className="berm-demo">
       <div className="berm-icons">
-        <IconCard title="Creativity" sub="A new concept to your desire. Every time.">
-          <svg viewBox="0 0 176 176" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Creativity">
+        <IconCard gl={data.gl} title={c1.t} sub={c1.sub}>
+          <svg viewBox="0 0 176 176" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M101.807 21.267C101.807 29.1465 95.4193 35.5341 87.5398 35.5341C79.6603 35.5341 73.2727 29.1465 73.2727 21.267C73.2727 13.3876 79.6603 7 87.5398 7C95.4193 7 101.807 13.3876 101.807 21.267Z" fill="#6E4221" />
             <path d="M169 87.5398C169 95.4193 162.612 101.807 154.733 101.807C146.853 101.807 140.466 95.4193 140.466 87.5398C140.466 79.6603 146.853 73.2727 154.733 73.2727C162.612 73.2727 169 79.6603 169 87.5398Z" fill="#6E4221" />
             <path d="M145.601 144.95C140.029 150.522 130.996 150.522 125.424 144.95C119.853 139.379 119.853 130.345 125.424 124.774C130.996 119.202 140.029 119.202 145.601 124.774C151.173 130.345 151.173 139.379 145.601 144.95Z" fill="#6E4221" />
@@ -62,8 +63,8 @@ export function BermudaIcons() {
           </svg>
         </IconCard>
 
-        <IconCard title="Detail" sub="Nothing left to chance. Every detail thought of.">
-          <svg viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Detail">
+        <IconCard gl={data.gl} title={c2.t} sub={c2.sub}>
+          <svg viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path id="DetailVector_1" d="M58.448 58.448L28.9445 50.8648C31.7628 48.0382 35.5861 46.2326 39.7124 45.8309L22.8618 28.9804L28.8718 22.9704L45.7901 39.8887C46.1524 35.6887 47.9917 31.8094 50.8648 28.9445L58.448 58.448Z" fill="#A8947F" />
             <path id="DetailVector_2" d="M46 88.5L19.7757 104C19.7699 100.008 21.1967 96.0282 23.8303 92.8264L1.05774e-05 92.8265L1.0949e-05 84.3271L23.9261 84.3271C21.2124 81.101 19.77 77.0573 19.7757 73L46 88.5Z" fill="#A8947F" />
             <path id="DetailVector_3" d="M58.448 118.552L50.8647 148.056C48.0382 145.237 46.2326 141.414 45.8309 137.288L28.9803 154.138L22.9704 148.128L39.8887 131.21C35.6886 130.848 31.8093 129.008 28.9444 126.135L58.448 118.552Z" fill="#A8947F" />
@@ -76,8 +77,8 @@ export function BermudaIcons() {
           </svg>
         </IconCard>
 
-        <IconCard title="Personality" sub="The same person, always there for you.">
-          <svg viewBox="0 0 163 179" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Personality">
+        <IconCard gl={data.gl} title={c3.t} sub={c3.sub}>
+          <svg viewBox="0 0 163 179" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M90.7725 9.29235C90.7725 14.4244 86.6211 18.5847 81.5 18.5847C76.379 18.5847 72.2276 14.4244 72.2276 9.29235C72.2276 4.16033 76.379 0 81.5 0C86.6211 0 90.7725 4.16033 90.7725 9.29235Z" fill="#BD9159" />
             <path d="M92.2365 39.1257C92.2365 29.3443 86.8683 16.6284 81.5 16.6284C75.6437 16.6284 70.7635 29.8333 70.7635 39.1257H92.2365Z" fill="#BD9159" />
             <path d="M138.237 36.2878C134.616 39.9167 128.745 39.9167 125.124 36.2878C121.503 32.6589 121.503 26.7753 125.124 23.1464C128.745 19.5175 134.616 19.5175 138.237 23.1464C141.858 26.7753 141.858 32.6589 138.237 36.2878Z" fill="#BD9159" />
@@ -106,15 +107,9 @@ export function BermudaIcons() {
           <i className="rn-acc" />
         </div>
         <div className="rn-copy">
-          <b>Why it&apos;s recolored here</b>
+          <b>{data.noteH}</b>
           <p>
-            Live, Bermuda runs on its own earth-tone identity — clay, sand, olive.
-            For this case study I remapped the exact same morph to the portfolio&apos;s
-            own system: <span className="accent">neutral ink</span> at rest,
-            brightening to full contrast on focus, with the morphing focal shape
-            resolving in the <span className="accent">accent</span>. The geometry
-            is untouched — only the palette is swapped to black / white / accent so
-            the component sits inside this site instead of fighting it.
+            <Segments segs={data.note} />
           </p>
         </div>
       </div>

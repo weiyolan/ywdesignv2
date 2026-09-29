@@ -500,15 +500,15 @@ header{padding:170px 0 60px;position:relative}
 .proj .shot{position:relative;overflow:hidden;display:block;text-decoration:none;
   border-right:1px solid var(--line);min-height:340px}
 .proj .shot img{object-fit:cover}
-.proj h3 a{color:inherit;text-decoration:none}
-.proj h3 a:hover{color:var(--accent)}
+.proj :is(h2,h3) a{color:inherit;text-decoration:none}
+.proj :is(h2,h3) a:hover{color:var(--accent)}
 .proj .num{position:absolute;top:12px;left:14px;z-index:2;font-family:var(--mono);font-size:12px;
   color:var(--text);background:color-mix(in oklch,var(--bg) 60%,transparent);
   border:1px solid var(--line-2);border-radius:6px;padding:3px 8px;backdrop-filter:blur(6px)}
 .proj .p-in{padding:34px 40px;display:flex;flex-direction:column;justify-content:center}
 .proj .p-cat{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--accent);
   text-transform:uppercase;display:block;margin-bottom:10px}
-.proj h3{font-family:var(--display);font-weight:700;font-size:34px;letter-spacing:-.01em}
+.proj :is(h2,h3){font-family:var(--display);font-weight:700;font-size:34px;letter-spacing:-.01em}
 .proj p{font-size:15.5px;line-height:1.55;color:var(--text-2);margin:12px 0 22px;max-width:42ch}
 .proj .p-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .proj .p-foot .visit.case{color:var(--accent)}

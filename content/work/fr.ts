@@ -16,7 +16,7 @@ export const projectsFR = {
     ],
     lede:
       "Une boutique multilingue pour une marque de clean beauty — un rythme éditorial enveloppant un parcours d’achat sans friction, piloté par le CMS, que l’équipe gère elle-même.",
-    liveHref: "https://nu-site.netlify.app/en",
+    liveHref: "https://nu-site.netlify.app/",
     meta: {
       role: "Design & développement",
       year: "2024",
@@ -469,6 +469,24 @@ export const projectsFR = {
         ],
       },
     ],
+    signatureData: {
+      bermudaIcons: {
+        gl: "Perdez-vous dans",
+        cards: [
+          { t: "Créativité", sub: "Un nouveau concept selon vos envies. À chaque fois." },
+          { t: "Détail", sub: "Rien n’est laissé au hasard. Chaque détail est pensé." },
+          { t: "Personnalité", sub: "La même personne, toujours là pour vous." },
+        ],
+        noteH: "Pourquoi il est recoloré ici",
+        note: [
+          { t: "En ligne, Bermuda vit dans sa propre identité aux tons de terre — argile, sable, olive. Pour cette étude de cas, j’ai remappé exactement la même métamorphose sur le système du portfolio : " },
+          { t: "une encre neutre", accent: true },
+          { t: " au repos, qui passe en plein contraste au focus, la forme focale se résolvant dans l’" },
+          { t: "accent", accent: true },
+          { t: ". La géométrie est intacte — seule la palette passe en noir / blanc / accent pour que le composant s’intègre au site au lieu de le combattre." },
+        ],
+      },
+    },
   },
 
   // ── 04 · Spiree ─────────────────────────────────────────────────────────
@@ -588,7 +606,130 @@ export const projectsFR = {
       spireeOrb: {
         sun: { t: "Sun", s: "Libérez votre feu intérieur" },
         moon: { t: "Moon", s: "Embrassez votre part éthérée" },
+        meta: "TVA & livraison UE incluses",
+        add: "Ajouter au panier",
+        added: "✓ Ajouté au panier",
       },
     },
+  },
+
+  // ── 05 · Milo Weiler — Analogique ───────────────────────────────────────
+  analoog: {
+    slug: "analoog",
+    eyebrowNum: "05",
+    category: "Photographie argentique · Belgique",
+    year: "2026",
+    titleSegs: [
+      { t: "Milo Weiler Analogique — fait pour être " },
+      { t: "transmis.", scramble: true, accent: true },
+    ],
+    lede:
+      "Un site de services éditorial et posé pour la photographie argentique fine art — funérailles, portraits de caractère et mariages en moyen format. Conçu pour ralentir le visiteur, gagner sa confiance pour les jours les plus délicats d’une vie, et en faire une première conversation.",
+    liveHref: "https://analoog.miloweiler.com/fr",
+    meta: {
+      role: "Design & développement",
+      year: "2026",
+      sector: "Photographie · Services",
+      stack: ["Next.js", "Sanity", "i18n"],
+    },
+    heroImg: "/work/analoog-hero.jpg",
+    heroAlt: "Milo Weiler Analogique — hero à empattements « Analoog gemaakt om door te geven »",
+    metaTitle: "Milo Weiler Analogique — Étude de cas",
+    metaDescription:
+      "Un site de services éditorial pour un photographe argentique à Anvers & Bruxelles — reportage funéraire, portraits de caractère et mariages en moyen format, un parcours en quatre étapes et un build trilingue NL · EN · FR.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "Le brief",
+          title: "Vendre la lenteur dans un monde fait pour scroller.",
+        },
+        paras: [
+          [
+            {
+              t: "Milo photographie au Mamiya RB67 — du film moyen format, chaque image pesée. Le site devait faire ressentir cette ",
+            },
+            { t: "intention", b: true },
+            {
+              t: " avant même d’être lu : des tons de papier chauds, une serif classique, beaucoup d’air et des images qui arrivent une à une.",
+            },
+          ],
+          [
+            { t: "Le plus délicat était le ton. Un " },
+            { t: "service funéraire", b: true },
+            {
+              t: " côtoie portraits et mariages : chaque ligne devait être calme, respectueuse et claire sur le prix et le parcours — rassurer d’abord, vendre ensuite.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ editorial_pacing ]",
+            b: "Un scroll qui ralentit",
+            p: "Des titres lettre par lettre, une vitrine encadrée qui s’ouvre en plein écran et des cartes de services empilées qui se lisent comme les pages d’un album.",
+          },
+          {
+            k: "[ three_services ]",
+            b: "Un adieu · Un visage · Une promesse",
+            p: "Reportage funéraire, portraits de caractère et mariages analogiques — chacun avec sa promesse, son objet livré et sa page dédiée.",
+          },
+          {
+            k: "[ headless_cms ]",
+            b: "Contenu géré dans Sanity",
+            p: "Services, images et textes modifiables par Milo en trois langues, sans déploiement.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "NL · EN · FR",
+            p: "Routing et métadonnées localisés pour un public belge, dans les trois langues.",
+          },
+        ],
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "Comment ça convertit",
+          title: "Du premier échange à l’œuvre en main",
+          intro:
+            "La section parcours lève chaque hésitation : un seul interlocuteur, un prix fixé d’avance, le même chemin simple pour chaque service.",
+        },
+        steps: [
+          {
+            sn: "01 / acquaintance",
+            h: "Un appel sans engagement",
+            p: "Par téléphone ou en personne — le site mène directement à un numéro, pas à un formulaire à remplir un jour difficile.",
+          },
+          {
+            sn: "02 / booking & sitting",
+            h: "Prix clair, journée sereine",
+            p: "Date, ampleur et prix fixés d’avance ; le jour venu, Milo arrive en douceur, sur film, et laisse la journée se dérouler.",
+          },
+          {
+            sn: "03 / the piece",
+            h: "Relié à la main",
+            p: "Développé, sélectionné et relié à la main — livré en quatre à huit semaines. L’objet est le produit, et le site le dit.",
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        quote: [
+          { t: "Pas un instantané numérique éphémère, mais " },
+          { t: "une image tangible, faite à la main", accent: true },
+          { t: " — pour être transmise aux générations qui suivent." },
+        ],
+        cite: "// Milo Weiler — la philosophie, colonne vertébrale du site",
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Galerie", title: "À travers le site" },
+        items: [
+          { id: "analoog-g1", span: "wide", alt: "Vitrine plein écran — « Analoog blijft. »" },
+          { id: "analoog-g2", span: "tall", alt: "Section philosophie avec une image argentique noir et blanc" },
+          { id: "analoog-g3", span: "half", alt: "Parcours en quatre étapes — rencontre, réservation, séance, l’œuvre" },
+          { id: "analoog-g4", span: "half", alt: "Vitrine encadrée d’un portrait moyen format" },
+        ],
+      },
+    ],
   },
 } satisfies Record<Slug, Project>;

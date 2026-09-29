@@ -30,7 +30,7 @@ function SignatureDemo({
     case "miloRail":
       return data?.miloRail ? <MiloChapterRail chapters={data.miloRail} /> : null;
     case "bermudaIcons":
-      return <BermudaIcons />;
+      return data?.bermudaIcons ? <BermudaIcons data={data.bermudaIcons} /> : null;
     case "spireeOrb":
       return data?.spireeOrb ? <SpireeOrb data={data.spireeOrb} /> : null;
   }
