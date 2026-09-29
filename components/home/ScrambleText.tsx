@@ -50,19 +50,39 @@ export function ScrambleText({
           el.textContent = out;
           frame++;
           if (frame <= maxF) timer = window.setTimeout(tick, 38);
-          else el.textContent = text;
+          else unlock();
+        };
+
+        // Glyphs are wider than most letters in the proportional display font,
+        // so a scrambling word can grow and briefly wrap, making the heading jump.
+        // Pin the word to its final width for the duration (single-line words only).
+        const unlock = () => {
+          el.textContent = text;
+          el.style.removeProperty("display");
+          el.style.removeProperty("width");
+          el.style.removeProperty("white-space");
+        };
+        const start = () => {
+          if (el.getClientRects().length === 1) {
+            const w = el.getBoundingClientRect().width;
+            el.style.display = "inline-block";
+            el.style.width = `${w}px`;
+            el.style.whiteSpace = "nowrap";
+          }
+          tick();
         };
 
         const st = ScrollTrigger.create({
           trigger: el,
           start: "top 92%",
           once: true,
-          onEnter: tick,
+          onEnter: start,
         });
 
         return () => {
           window.clearTimeout(timer);
           st.kill();
+          unlock();
         };
       });
     },
