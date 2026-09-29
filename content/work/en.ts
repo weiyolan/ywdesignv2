@@ -8,8 +8,8 @@
 // to the matching "use client" demo.
 import type { Seg } from "@/content/home";
 
-export type Slug = "nu" | "milo" | "bermuda" | "spiree" | "analoog";
-export const order: Slug[] = ["nu", "milo", "bermuda", "spiree", "analoog"];
+export type Slug = "nu" | "milo" | "ywdesign" | "bermuda" | "analoog" | "spiree";
+export const order: Slug[] = ["nu", "milo", "ywdesign", "bermuda", "analoog", "spiree"];
 
 /** A meta chip group head + body — the .ds-head / .sec-kicker intro of a section. */
 export type Head = {
@@ -68,7 +68,7 @@ export type Section =
   | {
       kind: "signature";
       head: Head;
-      demo: "nuLang" | "nuShop" | "miloRail" | "bermudaIcons" | "spireeOrb";
+      demo: "nuLang" | "nuShop" | "miloRail" | "bermudaIcons" | "spireeOrb" | "ywGlass";
       /** the .demo-head label (file path) and right-hand caption */
       label: string;
       note: string;
@@ -123,6 +123,8 @@ export type Project = {
       noteH: string;
       note: Seg[];
     };
+    /** cards in icon order: responsive, animations, performance, ux/ui, cms, seo */
+    ywGlass?: { toggle: string; cards: { t: string; d: string }[] };
   };
 };
 
@@ -462,10 +464,153 @@ export const projects: Record<Slug, Project> = {
     },
   },
 
-  // ── 03 · Bermuda Events ─────────────────────────────────────────────────
+  // ── 03 · YWdesign v1 ────────────────────────────────────────────────────
+  ywdesign: {
+    slug: "ywdesign",
+    eyebrowNum: "03",
+    category: "Studio site · Previous version",
+    year: "2023",
+    titleSegs: [
+      { t: "YWdesign v1 — your " },
+      { t: "digital partner.", scramble: true, accent: true },
+    ],
+    lede:
+      "The first YWdesign studio site: frosted-glass panels floating over a drifting blue-teal gradient, a service grid, a fully transparent roadmap and a quote funnel. Built to make a one-person studio feel like a dependable partner.",
+    liveHref: "https://ywdesign2.netlify.app/",
+    meta: {
+      role: "Brand, design & build",
+      year: "2023",
+      sector: "Web studio · Freelance",
+      stack: ["Next.js", "Tailwind CSS", "Sanity", "Framer Motion"],
+    },
+    heroImg: "/work/ywdesign-hero.jpg",
+    heroAlt: "YWdesign v1 home — “Your Digital Partner” over a blue-teal gradient with glass navigation",
+    metaTitle: "YWdesign v1 — Case study",
+    metaDescription:
+      "The previous YWdesign studio site: a glassmorphism design system in Tailwind, a feature grid with custom icons, a transparent step-by-step roadmap and an EN · FR build.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "The brief",
+          title: "Make a one-person studio feel like a partner.",
+        },
+        paras: [
+          [
+            { t: "Clients hiring a freelancer worry about one thing: " },
+            { t: "what happens after launch", b: true },
+            {
+              t: ". The site had to answer that before anyone asked — clear services, a visible process and a direct line to a human.",
+            },
+          ],
+          [
+            { t: "The look carried the message: " },
+            { t: "light, layered glass", b: true },
+            {
+              t: " over a living gradient. Nothing heavy, everything readable, and every panel a little window onto the brand behind it.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ glass_system ]",
+            b: "Frosted panels, one recipe",
+            p: "White at 10% opacity, backdrop blur, a hairline border and a soft shadow — the same Tailwind recipe for the nav, cards, footer and buttons.",
+          },
+          {
+            k: "[ feature_icons ]",
+            b: "Six promises, six icons",
+            p: "Responsiveness, animations, performance, UX/UI, CMS and SEO — each a custom icon and a two-line promise.",
+          },
+          {
+            k: "[ roadmap ]",
+            b: "A process you can see",
+            p: "From project definition to maintenance, every step drawn out so the price and the timeline never surprise.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · FR",
+            p: "Bilingual routing and copy for clients across Belgium, France and Switzerland.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "ywGlass",
+        head: {
+          eyebrow: "Signature build",
+          title: "What makes a better website",
+          intro:
+            "The feature grid from the old services page, rebuilt in plain CSS: frosted cards over a drifting gradient, staggered columns, and a lift and border pulse on hover. Switch the glass off to see what the blur is doing.",
+        },
+        label: "components/FeatureCard.jsx",
+        note: "hover · toggle the glass",
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "How it converts",
+          title: "Transparency as the sales pitch",
+          intro:
+            "The roadmap page does the selling: every step from first meeting to handover is laid out, so a quote request feels like the natural next step.",
+        },
+        steps: [
+          {
+            sn: "01 / definition & contract",
+            h: "Scope, timing, budget",
+            p: "The first meeting fixes goals and resources; a contract proposal follows before any work starts.",
+          },
+          {
+            sn: "02 / ideation & iteration",
+            h: "Two rounds, then code",
+            p: "Values, branding and style preferences become ideas, then two iterations on structure and design before sign-off.",
+          },
+          {
+            sn: "03 / handover & maintenance",
+            h: "You own all the code",
+            p: "The finished product is handed over in full, with a maintenance plan to keep it healthy.",
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        quote: [
+          { t: "An apple a day keeps the doctor away. " },
+          { t: "A maintenance plan", accent: true },
+          { t: " is crucial for the health of your product." },
+        ],
+        cite: "// YWdesign v1 — the roadmap, last step",
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Gallery", title: "Through the site" },
+        items: [
+          { id: "ywdesign-g1", span: "wide", alt: "Projects — recent work under a glass navigation bar and skill ticker" },
+          { id: "ywdesign-g2", span: "tall", alt: "Feature grid — six glass cards with custom icons" },
+          { id: "ywdesign-g3", span: "half", alt: "Roadmap — the collaboration visualised step by step" },
+          { id: "ywdesign-g4", span: "half", alt: "About — “Hi, I am Yolan”" },
+        ],
+      },
+    ],
+    signatureData: {
+      ywGlass: {
+        toggle: "Glass",
+        cards: [
+          { t: "Responsiveness", d: "Beautiful layout on all screen sizes." },
+          { t: "Animations", d: "Dynamic interactions that bring your website alive." },
+          { t: "Performance", d: "Tell your story using fast internet technology." },
+          { t: "UX/UI Focused", d: "Users love an easy to use and lightweight design." },
+          { t: "CMS", d: "You can manage the content yourself." },
+          { t: "SEO Optimisation", d: "Organically reach new customers." },
+        ],
+      },
+    },
+  },
+
+  // ── 04 · Bermuda Events ─────────────────────────────────────────────────
   bermuda: {
     slug: "bermuda",
-    eyebrowNum: "03",
+    eyebrowNum: "04",
     category: "Events agency · Belgium",
     year: "2025",
     titleSegs: [
@@ -612,10 +757,10 @@ export const projects: Record<Slug, Project> = {
     },
   },
 
-  // ── 04 · Spiree ─────────────────────────────────────────────────────────
+  // ── 06 · Spiree ─────────────────────────────────────────────────────────
   spiree: {
     slug: "spiree",
-    eyebrowNum: "04",
+    eyebrowNum: "06",
     category: "Activewear brand · 100% Merino",
     year: "2025",
     titleSegs: [

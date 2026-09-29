@@ -339,10 +339,153 @@ export const projectsFR = {
     },
   },
 
-  // ── 03 · Bermuda Events ─────────────────────────────────────────────────
+  // ── 03 · YWdesign v1 ────────────────────────────────────────────────────
+  ywdesign: {
+    slug: "ywdesign",
+    eyebrowNum: "03",
+    category: "Site de studio · Version précédente",
+    year: "2023",
+    titleSegs: [
+      { t: "YWdesign v1 — votre " },
+      { t: "partenaire digital.", scramble: true, accent: true },
+    ],
+    lede:
+      "Le premier site du studio YWdesign : des panneaux en verre dépoli flottant sur un dégradé bleu-turquoise mouvant, une grille de services, une feuille de route entièrement transparente et un tunnel de devis. Pensé pour qu’un studio d’une personne inspire la confiance d’un vrai partenaire.",
+    liveHref: "https://ywdesign2.netlify.app/fr",
+    meta: {
+      role: "Marque, design & développement",
+      year: "2023",
+      sector: "Studio web · Freelance",
+      stack: ["Next.js", "Tailwind CSS", "Sanity", "Framer Motion"],
+    },
+    heroImg: "/work/ywdesign-hero.jpg",
+    heroAlt: "Accueil de YWdesign v1 — « Your Digital Partner » sur un dégradé bleu-turquoise avec une navigation en verre",
+    metaTitle: "YWdesign v1 — Étude de cas",
+    metaDescription:
+      "L’ancien site du studio YWdesign : un design system glassmorphism en Tailwind, une grille de fonctionnalités aux icônes sur mesure, une feuille de route transparente étape par étape et une version EN · FR.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "Le brief",
+          title: "Faire d’un studio d’une personne un vrai partenaire.",
+        },
+        paras: [
+          [
+            { t: "Qui engage un freelance s’inquiète d’une chose : " },
+            { t: "ce qui se passe après la mise en ligne", b: true },
+            {
+              t: ". Le site devait y répondre avant même la question — des services clairs, un processus visible et une ligne directe vers une vraie personne.",
+            },
+          ],
+          [
+            { t: "Le style portait le message : " },
+            { t: "du verre léger, en couches", b: true },
+            {
+              t: ", sur un dégradé vivant. Rien de lourd, tout reste lisible, et chaque panneau devient une petite fenêtre sur la marque.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ glass_system ]",
+            b: "Des panneaux dépolis, une seule recette",
+            p: "Du blanc à 10 % d’opacité, un flou d’arrière-plan, une bordure fine et une ombre douce — la même recette Tailwind pour la navigation, les cartes, le pied de page et les boutons.",
+          },
+          {
+            k: "[ feature_icons ]",
+            b: "Six promesses, six icônes",
+            p: "Responsive, animations, performances, UX/UI, CMS et référencement — chacune avec son icône sur mesure et une promesse en deux lignes.",
+          },
+          {
+            k: "[ roadmap ]",
+            b: "Un processus visible",
+            p: "De la définition du projet à la maintenance, chaque étape est dessinée pour que le prix et le calendrier ne surprennent jamais.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · FR",
+            p: "Un routage et des textes bilingues pour des clients en Belgique, en France et en Suisse.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "ywGlass",
+        head: {
+          eyebrow: "Réalisation phare",
+          title: "Ce qui fait un meilleur site web",
+          intro:
+            "La grille de fonctionnalités de l’ancienne page services, reconstruite en CSS pur : des cartes dépolies sur un dégradé mouvant, des colonnes décalées, un léger soulèvement et une bordure qui pulse au survol. Désactivez le verre pour voir ce que fait le flou.",
+        },
+        label: "components/FeatureCard.jsx",
+        note: "survoler · activer le verre",
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "Comment ça convertit",
+          title: "La transparence comme argument",
+          intro:
+            "La page de la méthode fait la vente : chaque étape, du premier rendez-vous à la livraison, est exposée — la demande de devis devient l’étape naturelle suivante.",
+        },
+        steps: [
+          {
+            sn: "01 / définition & contrat",
+            h: "Portée, calendrier, budget",
+            p: "Le premier rendez-vous fixe les objectifs et les ressources ; une proposition de contrat suit avant tout travail.",
+          },
+          {
+            sn: "02 / idéation & itération",
+            h: "Deux tours, puis le code",
+            p: "Valeurs, image de marque et préférences deviennent des idées, puis deux itérations sur la structure et le design avant validation.",
+          },
+          {
+            sn: "03 / livraison & maintenance",
+            h: "Tout le code vous appartient",
+            p: "Le produit fini est livré dans son intégralité, avec un plan de maintenance pour le garder en bonne santé.",
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        quote: [
+          { t: "Une pomme par jour éloigne le médecin. " },
+          { t: "Un plan de maintenance", accent: true },
+          { t: " est essentiel à la santé de votre produit." },
+        ],
+        cite: "// YWdesign v1 — la feuille de route, dernière étape",
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Galerie", title: "À travers le site" },
+        items: [
+          { id: "ywdesign-g1", span: "wide", alt: "Projets — travaux récents sous une barre de navigation en verre et un bandeau de compétences" },
+          { id: "ywdesign-g2", span: "tall", alt: "Grille de fonctionnalités — six cartes en verre aux icônes sur mesure" },
+          { id: "ywdesign-g3", span: "half", alt: "Méthode — la collaboration visualisée étape par étape" },
+          { id: "ywdesign-g4", span: "half", alt: "À propos — « Hi, I am Yolan »" },
+        ],
+      },
+    ],
+    signatureData: {
+      ywGlass: {
+        toggle: "Verre",
+        cards: [
+          { t: "Responsive", d: "Une belle mise en page sur toutes les tailles d’écran." },
+          { t: "Animations", d: "Des interactions dynamiques qui donnent vie à votre site web." },
+          { t: "Performances", d: "Racontez votre histoire avec des technologies rapides." },
+          { t: "Axé sur l’UX/UI", d: "Les utilisateurs apprécient un design léger et facile à utiliser." },
+          { t: "CMS", d: "Gérez vous-même le contenu de votre site web." },
+          { t: "Référencement", d: "Atteignez de nouveaux clients de manière organique." },
+        ],
+      },
+    },
+  },
+
+  // ── 04 · Bermuda Events ─────────────────────────────────────────────────
   bermuda: {
     slug: "bermuda",
-    eyebrowNum: "03",
+    eyebrowNum: "04",
     category: "Agence événementielle · Belgique",
     year: "2025",
     titleSegs: [
@@ -489,10 +632,10 @@ export const projectsFR = {
     },
   },
 
-  // ── 04 · Spiree ─────────────────────────────────────────────────────────
+  // ── 06 · Spiree ─────────────────────────────────────────────────────────
   spiree: {
     slug: "spiree",
-    eyebrowNum: "04",
+    eyebrowNum: "06",
     category: "Marque de sportswear · 100% Merino",
     year: "2025",
     titleSegs: [

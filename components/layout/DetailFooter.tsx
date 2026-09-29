@@ -10,10 +10,7 @@ export function DetailFooter({ lang }: { lang: Locale }) {
     <footer className="detail-foot">
       <div className="wrap">
         <Link className="logo" href={localizedHref("/", lang)}>
-          <span className="mark">
-            {site.brand.lead}
-            <b>{site.brand.tail}</b>
-          </span>
+          <span className="mark" role="img" aria-label={site.brand.lead + site.brand.tail} />
         </Link>
         <span className="lg">
           © 2026 YWdesign ·{" "}

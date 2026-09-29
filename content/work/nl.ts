@@ -339,10 +339,153 @@ export const projectsNL = {
     },
   },
 
-  // ── 03 · Bermuda Events ─────────────────────────────────────────────────
+  // ── 03 · YWdesign v1 ────────────────────────────────────────────────────
+  ywdesign: {
+    slug: "ywdesign",
+    eyebrowNum: "03",
+    category: "Studiosite · Vorige versie",
+    year: "2023",
+    titleSegs: [
+      { t: "YWdesign v1 — je " },
+      { t: "digitale partner.", scramble: true, accent: true },
+    ],
+    lede:
+      "De eerste studiosite van YWdesign: matglazen panelen die zweven boven een bewegend blauwgroen verloop, een dienstenraster, een volledig transparante roadmap en een offertetrechter. Gebouwd om een eenmansstudio als een betrouwbare partner te laten voelen.",
+    liveHref: "https://ywdesign2.netlify.app/",
+    meta: {
+      role: "Merk, design & bouw",
+      year: "2023",
+      sector: "Webstudio · Freelance",
+      stack: ["Next.js", "Tailwind CSS", "Sanity", "Framer Motion"],
+    },
+    heroImg: "/work/ywdesign-hero.jpg",
+    heroAlt: "Homepage van YWdesign v1 — “Your Digital Partner” op een blauwgroen verloop met glazen navigatie",
+    metaTitle: "YWdesign v1 — Case study",
+    metaDescription:
+      "De vorige studiosite van YWdesign: een glassmorphism-designsysteem in Tailwind, een featureraster met eigen iconen, een transparante roadmap stap voor stap en een EN · FR-versie.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "De briefing",
+          title: "Laat een eenmansstudio voelen als een partner.",
+        },
+        paras: [
+          [
+            { t: "Wie een freelancer inhuurt, maakt zich zorgen over één ding: " },
+            { t: "wat er na de lancering gebeurt", b: true },
+            {
+              t: ". De site moest dat beantwoorden vóór iemand het vroeg — duidelijke diensten, een zichtbaar proces en een directe lijn naar een mens.",
+            },
+          ],
+          [
+            { t: "De look droeg de boodschap: " },
+            { t: "licht, gelaagd glas", b: true },
+            {
+              t: " boven een levend verloop. Niets zwaar, alles leesbaar, en elk paneel een klein venster op het merk erachter.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ glass_system ]",
+            b: "Matglazen panelen, één recept",
+            p: "Wit op 10% dekking, achtergrondvervaging, een fijne rand en een zachte schaduw — hetzelfde Tailwind-recept voor navigatie, kaarten, footer en knoppen.",
+          },
+          {
+            k: "[ feature_icons ]",
+            b: "Zes beloftes, zes iconen",
+            p: "Responsiveness, animaties, performance, UX/UI, CMS en SEO — elk met een eigen icoon en een belofte in twee regels.",
+          },
+          {
+            k: "[ roadmap ]",
+            b: "Een proces dat je ziet",
+            p: "Van projectdefinitie tot onderhoud is elke stap uitgetekend, zodat prijs en planning nooit verrassen.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · FR",
+            p: "Tweetalige routing en teksten voor klanten in België, Frankrijk en Zwitserland.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "ywGlass",
+        head: {
+          eyebrow: "Signature build",
+          title: "Wat maakt een betere website",
+          intro:
+            "Het featureraster van de oude dienstenpagina, herbouwd in pure CSS: matglazen kaarten op een bewegend verloop, verspringende kolommen, en een lift met pulserende rand bij hover. Zet het glas uit om te zien wat de vervaging doet.",
+        },
+        label: "components/FeatureCard.jsx",
+        note: "hover · glas aan/uit",
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "Hoe het converteert",
+          title: "Transparantie als verkoopargument",
+          intro:
+            "De roadmap-pagina doet de verkoop: elke stap van eerste gesprek tot oplevering ligt open, zodat een offerteaanvraag de logische volgende stap wordt.",
+        },
+        steps: [
+          {
+            sn: "01 / definitie & contract",
+            h: "Scope, timing, budget",
+            p: "Het eerste gesprek legt doelen en middelen vast; een contractvoorstel volgt vóór er gewerkt wordt.",
+          },
+          {
+            sn: "02 / ideeën & iteratie",
+            h: "Twee rondes, dan code",
+            p: "Waarden, huisstijl en stijlvoorkeuren worden ideeën, gevolgd door twee iteraties op structuur en design vóór goedkeuring.",
+          },
+          {
+            sn: "03 / oplevering & onderhoud",
+            h: "Alle code is van jou",
+            p: "Het afgewerkte product wordt volledig overgedragen, met een onderhoudsplan om het gezond te houden.",
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        quote: [
+          { t: "Voorkomen is beter dan genezen. " },
+          { t: "Een onderhoudsplan", accent: true },
+          { t: " is cruciaal voor de gezondheid van je product." },
+        ],
+        cite: "// YWdesign v1 — de roadmap, laatste stap",
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Galerij", title: "Door de site" },
+        items: [
+          { id: "ywdesign-g1", span: "wide", alt: "Projecten — recent werk onder een glazen navigatiebalk en een skill-ticker" },
+          { id: "ywdesign-g2", span: "tall", alt: "Featureraster — zes glazen kaarten met eigen iconen" },
+          { id: "ywdesign-g3", span: "half", alt: "Roadmap — de samenwerking stap voor stap gevisualiseerd" },
+          { id: "ywdesign-g4", span: "half", alt: "Over mij — “Hi, I am Yolan”" },
+        ],
+      },
+    ],
+    signatureData: {
+      ywGlass: {
+        toggle: "Glas",
+        cards: [
+          { t: "Responsiveness", d: "Een mooie lay-out op elk schermformaat." },
+          { t: "Animaties", d: "Dynamische interacties die je website tot leven brengen." },
+          { t: "Performance", d: "Vertel je verhaal met snelle internettechnologie." },
+          { t: "UX/UI-gericht", d: "Gebruikers houden van een licht en eenvoudig design." },
+          { t: "CMS", d: "Je beheert de inhoud zelf." },
+          { t: "SEO", d: "Bereik organisch nieuwe klanten." },
+        ],
+      },
+    },
+  },
+
+  // ── 04 · Bermuda Events ─────────────────────────────────────────────────
   bermuda: {
     slug: "bermuda",
-    eyebrowNum: "03",
+    eyebrowNum: "04",
     category: "Eventbureau · België",
     year: "2025",
     titleSegs: [
@@ -489,10 +632,10 @@ export const projectsNL = {
     },
   },
 
-  // ── 04 · Spiree ─────────────────────────────────────────────────────────
+  // ── 06 · Spiree ─────────────────────────────────────────────────────────
   spiree: {
     slug: "spiree",
-    eyebrowNum: "04",
+    eyebrowNum: "06",
     category: "Activewear merk · 100% Merino",
     year: "2025",
     titleSegs: [

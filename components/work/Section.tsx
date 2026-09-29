@@ -12,6 +12,7 @@ import { NuShop } from "@/components/work/signature/NuShop";
 import { MiloChapterRail } from "@/components/work/signature/MiloChapterRail";
 import { BermudaIcons } from "@/components/work/signature/BermudaIcons";
 import { SpireeOrb } from "@/components/work/signature/SpireeOrb";
+import { YwGlass } from "@/components/work/signature/YwGlass";
 import type { Section as SectionT, Project } from "@/content/work";
 
 // Picks the right demo for a signature section from the project's signatureData.
@@ -33,6 +34,8 @@ function SignatureDemo({
       return data?.bermudaIcons ? <BermudaIcons data={data.bermudaIcons} /> : null;
     case "spireeOrb":
       return data?.spireeOrb ? <SpireeOrb data={data.spireeOrb} /> : null;
+    case "ywGlass":
+      return data?.ywGlass ? <YwGlass data={data.ywGlass} /> : null;
   }
 }
 

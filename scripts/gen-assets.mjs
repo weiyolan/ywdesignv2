@@ -8,7 +8,7 @@ import { chromium } from "playwright";
 import sharp from "sharp";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 
-const MARK = `<rect width="32" height="32" rx="7" fill="#1d232a"/><path d="M7 9 L12 9 L16 15 L20 9 L25 9 L18 19 L18 24 L14 24 L14 19 Z" fill="#3fe39a"/>`;
+const MARK = `<rect width="32" height="32" rx="7" fill="#1d232a"/><svg x="5" y="5" width="22" height="22" viewBox="25 21 471 383"><path d="M260.79 21.7247C270.806 21.6198 281.859 22.6423 294.109 24.8644L299.499 75.34C258.291 68.1893 239.076 71.2069 227.071 110.324L265.122 233.976L303.079 110.324H364.134L402.127 234.824L440.026 110.324H495.207L432.684 315.683H371.608L333.541 190.927L295.241 315.683H235.019L196.667 190.861L158.601 315.683C138.454 380.403 108.901 415.357 30.5004 401.136L25.1097 350.66C66.3182 357.811 85.5328 354.79 97.5824 315.675L34.9642 110.324H90.139L128.088 234.774L166.031 110.317C183.017 55.7076 206.709 22.2914 260.79 21.7247Z" fill="#3fe39a"/></svg>`;
 
 const OG_HTML = `<!doctype html><html><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,7 @@ body{width:1200px;height:630px;overflow:hidden;font-family:'Bricolage Grotesque'
 </div></body></html>`;
 
 async function genOg() {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ channel: process.env.PW_CHANNEL });
   const page = await browser.newPage({
     viewport: { width: 1200, height: 630 },
     deviceScaleFactor: 2,

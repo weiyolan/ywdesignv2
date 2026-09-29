@@ -67,10 +67,7 @@ export function PrimaryNav({ back }: Props) {
             </Link>
           )}
           <Link className="logo" href={localizedHref("/", lang)}>
-            <span className="mark">
-              {site.brand.lead}
-              <b>{site.brand.tail}</b>
-            </span>
+            <span className="mark" role="img" aria-label={site.brand.lead + site.brand.tail} />
             <span className="stat">{site.status}</span>
           </Link>
         </div>

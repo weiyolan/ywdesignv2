@@ -158,9 +158,10 @@ export const homeNL = {
     items: [
       { num: "01", cat: "Beauty & wellness e-commerce", slug: "nu", title: "Nu", body: "Een meertalige clean-beauty-winkel — rustige redactionele cadans rond een wrijvingsloze, CMS-gestuurde koopstroom.", href: "https://nu-site.netlify.app/en", img: "/work/nu.jpg" },
       { num: "02", cat: "Fotografieportfolio", slug: "milo", title: "Milo Weiler", body: "Een cinematische, donkere portfolio opgedeeld in zeven scrollhoofdstukken — 55 projecten, sticky hoofdstuknavigatie, topscores op Lighthouse.", href: "https://miloweiler.com", img: "/work/milo.jpg" },
-      { num: "03", cat: "Eventbureau · België", slug: "bermuda", title: "Bermuda Events", body: "Een premium merksite die voorbije producties op schaal in beeld brengt, met een contacttrechter gebouwd om de juiste leads te kwalificeren.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
-      { num: "04", cat: "Activewearmerk · 100% Merino", slug: "spiree", title: "Spiree", body: "Een onafhankelijke sportkledingsite — gedurfd gradiëntsysteem, Sun- & Moon-collecties, een verhaalgedreven boog.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.jpg" },
+      { num: "03", cat: "Studiosite · Vorige versie", slug: "ywdesign", title: "YWdesign v1", body: "De vorige studiosite van YWdesign — matglazen panelen op een bewegend verloop, een transparante roadmap stap voor stap en een dienstenraster dat vertrouwen wekt.", href: "https://ywdesign2.netlify.app/", img: "/work/ywdesign.jpg" },
+      { num: "04", cat: "Eventbureau · België", slug: "bermuda", title: "Bermuda Events", body: "Een premium merksite die voorbije producties op schaal in beeld brengt, met een contacttrechter gebouwd om de juiste leads te kwalificeren.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
       { num: "05", cat: "Analoge fotografie · België", slug: "analoog", title: "Milo Weiler Analoog", body: "Een rustige, redactionele dienstensite voor fine-art filmfotografie — uitvaarten, portretten en huwelijken op middenformaat, op een tempo dat vertraagt.", href: "https://analoog.miloweiler.com/nl", img: "/work/analoog.jpg" },
+      { num: "06", cat: "Activewearmerk · 100% Merino", slug: "spiree", title: "Spiree", body: "Een onafhankelijke sportkledingsite — gedurfd gradiëntsysteem, Sun- & Moon-collecties, een verhaalgedreven boog.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.jpg" },
     ],
   },
 

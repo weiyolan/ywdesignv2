@@ -97,9 +97,8 @@
 /* footer slim */
 .detail-foot{border-top:1px solid var(--line);padding:48px 0;margin-top:30px}
 .detail-foot .wrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
-.detail-foot .mark{font-family:var(--display);font-weight:800;font-size:22px;color:var(--text)}
-.detail-foot .mark b{color:var(--accent)}
 .detail-foot .lg{font-family:var(--mono);font-size:12px;color:var(--text-3)}
+.detail-foot .logo{color:var(--text)}
 .detail-foot a{color:var(--text-2);text-decoration:none}.detail-foot a:hover{color:var(--accent)}
 
 /* ============================================================
@@ -378,3 +377,42 @@ body[data-surface="glass"] .stat-band > div{
   box-shadow:inset 0 1px 0 color-mix(in oklch,var(--text) 10%,transparent),
              0 22px 50px -34px rgba(0,0,0,.6);
 }
+
+/* ── YWdesign v1 signature — glass feature grid (ports ywdesign2 /services:
+   bg-white/10 + backdrop-blur-md + rounded-3xl + shadow-xl, hover scale 1.02 +
+   borderPulse). Fixed palette like the old site; independent of the theme. */
+.ywg{position:relative;width:100%;overflow:hidden;border-radius:14px;padding:64px 28px 92px;color:#fff;
+  background:linear-gradient(135deg,#3a5bd9 0%,#1f8fc4 50%,#13b0a4 100%);isolation:isolate}
+.ywg-blob{position:absolute;z-index:-1;width:320px;aspect-ratio:1;border-radius:50%;top:8%;left:12%;
+  background:radial-gradient(circle,#ffd66b 0%,#ff7aa8 55%,transparent 72%);animation:ywg-drift 14s ease-in-out infinite alternate}
+.ywg-blob.b2{top:auto;left:auto;bottom:-6%;right:10%;width:380px;
+  background:radial-gradient(circle,#7c5cff 0%,#4ae3c4 60%,transparent 72%);animation-duration:18s;animation-direction:alternate-reverse}
+@keyframes ywg-drift{to{transform:translate(160px,90px) scale(1.15)}}
+.ywg-toggle{position:absolute;top:18px;right:18px;font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  color:#fff;padding:9px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);
+  backdrop-filter:blur(4px);cursor:pointer}
+.ywg-toggle[aria-pressed="false"]{background:transparent;border-style:dashed}
+.ywg-toggle:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.ywg-grid{list-style:none;margin:0 auto;padding:0;max-width:920px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px 26px}
+.ywg-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:18px 16px 20px;
+  border-radius:24px;border:2px solid transparent;background:rgba(255,255,255,.1);backdrop-filter:blur(12px);
+  box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);
+  transition:transform .3s,background .4s,backdrop-filter .4s,box-shadow .4s}
+.ywg-card:nth-child(3n+2){transform:translateY(32px)}
+.ywg-card:nth-child(3n){transform:translateY(64px)}
+.ywg-card:hover{transform:scale(1.02);animation:ywg-pulse 1.6s ease-in-out infinite}
+.ywg-card:nth-child(3n+2):hover{transform:translateY(32px) scale(1.02)}
+.ywg-card:nth-child(3n):hover{transform:translateY(64px) scale(1.02)}
+@keyframes ywg-pulse{50%{border-color:rgba(255,255,255,.3)}}
+.ywg-card svg{width:26px;height:26px;margin-bottom:4px}
+.ywg-card h3{margin:0;font:300 22px/1.2 var(--sans);letter-spacing:.005em;color:#fff}
+.ywg-card p{margin:0;font:300 13.5px/1.5 var(--sans);color:rgba(255,255,255,.88);max-width:24ch}
+.ywg.is-flat .ywg-card{background:transparent;backdrop-filter:none;box-shadow:none;border-color:rgba(255,255,255,.18)}
+@media(max-width:760px){
+  .ywg{padding:64px 18px 28px}
+  .ywg-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .ywg-card:nth-child(n),.ywg-card:nth-child(n):hover{transform:none}
+  .ywg-card h3{font-size:18px}
+}
+@media(max-width:480px){.ywg-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.ywg-blob,.ywg-card:hover{animation:none}}

@@ -7,10 +7,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
     <footer>
       <div className="wrap foot-grid">
         <div className="foot-brand">
-          <div className="mark">
-            {site.brand.lead}
-            <b>{site.brand.tail}</b>
-          </div>
+          <span className="mark" role="img" aria-label={site.brand.lead + site.brand.tail} />
           <p>{site.footer.tagline}</p>
         </div>
 
