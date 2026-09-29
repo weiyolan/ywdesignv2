@@ -103,15 +103,15 @@ export const homeFR = {
       [{ t: "Une scène 3D " }, { t: "en direct", accent: true, scramble: true }, { t: "." }],
     ] as Seg[][],
     lede:
-      "Rendue par votre carte graphique à 60 fps — un shader GLSL écrit à la main pour le plasma du soleil et les cratères de la lune, une physique à ressort pour le glisser, une timeline GSAP pour la bascule. Attrapez-la et faites-la tourner.",
+      "Rendue par votre carte graphique à 60 fps — des shaders GLSL écrits à la main pour la lumière et les couleurs, des reflets qui traversent la page, une physique à ressort pour le glisser, une timeline GSAP pour la bascule. Attrapez-la et faites-la tourner.",
     sun: "Soleil",
     moon: "Lune",
     toggle: "Basculer entre soleil et lune",
     hint: "Glissez pour tourner",
     chips: ["three.js", "React Three Fiber", "Shaders GLSL", "GSAP", "60 fps"],
     aria: {
-      sun: "Un soleil 3D lumineux à la surface de plasma en mouvement, glissez pour le faire tourner",
-      moon: "Une lune 3D sombre avec des cratères et un croissant éclairé, glissez pour la faire tourner",
+      sun: "Un soleil 3D lumineux dont les reflets traversent la page, glissez pour le faire tourner",
+      moon: "Une lune 3D sombre au croissant bleu lumineux, glissez pour la faire tourner",
     },
   },
 

@@ -103,15 +103,15 @@ export const homeNL = {
       [{ t: "Een " }, { t: "live", accent: true, scramble: true }, { t: " 3D-scène." }],
     ] as Seg[][],
     lede:
-      "Gerenderd op je GPU aan 60 fps — een zelfgeschreven GLSL-shader voor het plasma van de zon en de kraters van de maan, veerfysica bij het slepen, een GSAP-timeline bij de wissel. Pak hem vast en laat hem draaien.",
+      "Gerenderd op je GPU aan 60 fps — zelfgeschreven GLSL-shaders voor licht en kleur, lens flares die over de pagina schieten, veerfysica bij het slepen, een GSAP-timeline bij de wissel. Pak hem vast en laat hem draaien.",
     sun: "Zon",
     moon: "Maan",
     toggle: "Wissel tussen zon en maan",
     hint: "Sleep om te draaien",
     chips: ["three.js", "React Three Fiber", "GLSL-shaders", "GSAP", "60 fps"],
     aria: {
-      sun: "Een gloeiende 3D-zon met een kolkend plasma-oppervlak, sleep om te draaien",
-      moon: "Een donkere 3D-maan met kraters en een verlichte sikkel, sleep om te draaien",
+      sun: "Een gloeiende 3D-zon met lens flares over de pagina, sleep om te draaien",
+      moon: "Een donkere 3D-maan met een gloeiende blauwe sikkel, sleep om te draaien",
     },
   },
 

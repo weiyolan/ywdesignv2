@@ -122,15 +122,15 @@ export const home = {
       [{ t: "A ", }, { t: "live", accent: true, scramble: true }, { t: " 3D scene." }],
     ] as Seg[][],
     lede:
-      "Rendered on your GPU at 60 fps — a hand-written GLSL shader for the sun's plasma and the moon's craters, spring physics on the drag, a GSAP timeline on the switch. Grab it and spin it.",
+      "Rendered on your GPU at 60 fps — hand-written GLSL shaders for the glow and colour, lens flares that cross the page, spring physics on the drag, a GSAP timeline on the switch. Grab it and spin it.",
     sun: "Sun",
     moon: "Moon",
     toggle: "Switch sun and moon",
     hint: "Drag to spin",
     chips: ["three.js", "React Three Fiber", "GLSL shaders", "GSAP", "60 fps"],
     aria: {
-      sun: "A glowing 3D sun with a churning plasma surface, drag to rotate",
-      moon: "A dark 3D moon with craters and a lit crescent, drag to rotate",
+      sun: "A glowing 3D sun with lens flares across the page, drag to rotate",
+      moon: "A dark 3D moon with a glowing blue crescent, drag to rotate",
     },
   },
 
