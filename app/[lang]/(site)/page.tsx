@@ -1,5 +1,6 @@
 import { Hero } from "@/components/home/Hero";
 import { Capabilities } from "@/components/home/Capabilities";
+import { SunMoon } from "@/components/home/SunMoon";
 import { StackDeepDive } from "@/components/home/StackDeepDive";
 import { SelectedWork } from "@/components/home/SelectedWork";
 import { AiManifesto } from "@/components/home/AiManifesto";
@@ -38,6 +39,7 @@ export default async function HomePage({
     <main>
       <Hero lang={lang} />
       <Capabilities lang={lang} />
+      <SunMoon lang={lang} />
       <StackDeepDive />
       <SelectedWork />
       <AiManifesto lang={lang} />

@@ -48,7 +48,7 @@ export const homeFR = {
         h: "Design systems, des tokens jusqu’en haut",
         p: "Échelles typographiques, couleurs, espacements, motion et composants — un système cohérent, pas un tas de CSS.",
         viz: "scale",
-        case: { pre: "CAS :", strong: "Spiree", post: "— système de dégradés ↗", href: "https://spiree-next.netlify.app/", external: true },
+        case: { pre: "CAS :", strong: "YWdesign v1", post: "— système en verre ↗", href: "https://ywdesign2.netlify.app/fr", external: true },
       },
       {
         span: "feature span-3", d: 1, ico: "motion",
@@ -95,8 +95,28 @@ export const homeFR = {
     ],
   },
 
-  stack: {
+  orb: {
     tk: "02",
+    eyebrow: "3D temps réel",
+    title: [
+      [{ t: "Pas une vidéo." }],
+      [{ t: "Une scène 3D " }, { t: "en direct", accent: true, scramble: true }, { t: "." }],
+    ] as Seg[][],
+    lede:
+      "Rendue par votre carte graphique à 60 fps — un shader GLSL écrit à la main pour le plasma du soleil et les cratères de la lune, une physique à ressort pour le glisser, une timeline GSAP pour la bascule. Attrapez-la et faites-la tourner.",
+    sun: "Soleil",
+    moon: "Lune",
+    toggle: "Basculer entre soleil et lune",
+    hint: "Glissez pour tourner",
+    chips: ["three.js", "React Three Fiber", "Shaders GLSL", "GSAP", "60 fps"],
+    aria: {
+      sun: "Un soleil 3D lumineux à la surface de plasma en mouvement, glissez pour le faire tourner",
+      moon: "Une lune 3D sombre avec des cratères et un croissant éclairé, glissez pour la faire tourner",
+    },
+  },
+
+  stack: {
+    tk: "03",
     eyebrow: "La stack, en profondeur",
     title: ["Pas de WordPress.", "Du code" + nbsp + "personnalisé."],
     intro:
@@ -149,7 +169,7 @@ export const homeFR = {
   },
 
   work: {
-    tk: "03",
+    tk: "04",
     eyebrow: "Réalisations choisies",
     title: "Livré, en production.",
     intro:
@@ -161,12 +181,11 @@ export const homeFR = {
       { num: "03", cat: "Site de studio · Version précédente", slug: "ywdesign", title: "YWdesign v1", body: "L’ancien site du studio YWdesign — des panneaux en verre dépoli sur un dégradé mouvant, une feuille de route transparente étape par étape et une grille de services pensée pour inspirer confiance.", href: "https://ywdesign2.netlify.app/fr", img: "/work/ywdesign.jpg" },
       { num: "04", cat: "Agence événementielle · Belgique", slug: "bermuda", title: "Bermuda Events", body: "Un site de marque premium qui met en scène les productions passées à grande échelle, avec un tunnel de contact conçu pour qualifier les bons leads.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
       { num: "05", cat: "Photographie argentique · Belgique", slug: "analoog", title: "Milo Weiler Analogique", body: "Un site de services éditorial et posé pour la photographie argentique fine art — funérailles, portraits et mariages en moyen format, rythmé pour ralentir.", href: "https://analoog.miloweiler.com/fr", img: "/work/analoog.jpg" },
-      { num: "06", cat: "Marque d’activewear · 100 % Merino", slug: "spiree", title: "Spiree", body: "Le site d’une marque de sportswear indépendante — système de dégradés audacieux, collections Sun & Moon, un récit qui prime.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.jpg" },
     ],
   },
 
   ai: {
-    tk: "04",
+    tk: "05",
     eyebrow: "La philosophie",
     title: [
       [{ t: "Un outil puissant." }],
@@ -184,7 +203,7 @@ export const homeFR = {
   },
 
   process: {
-    tk: "05",
+    tk: "06",
     eyebrow: "Ma façon de travailler",
     title: "Un pipeline transparent.",
     intro:

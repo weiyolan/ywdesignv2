@@ -15,7 +15,7 @@ export type Seg = {
 
 export type CaseLink = {
   pre?: string; // e.g. "CASE:" or a standalone label
-  strong?: string; // e.g. "Spiree"
+  strong?: string; // e.g. "Nu"
   post?: string; // e.g. "— gradient system ↗"
   href: string;
   external?: boolean;
@@ -67,7 +67,7 @@ export const home = {
         h: "Design systems, from tokens up",
         p: "Type scales, color, spacing, motion and components — a coherent system, not a pile of CSS.",
         viz: "scale",
-        case: { pre: "CASE:", strong: "Spiree", post: "— gradient system ↗", href: "https://spiree-next.netlify.app/", external: true },
+        case: { pre: "CASE:", strong: "YWdesign v1", post: "— glass system ↗", href: "https://ywdesign2.netlify.app/", external: true },
       },
       {
         span: "feature span-3", d: 1, ico: "motion",
@@ -114,8 +114,28 @@ export const home = {
     ],
   },
 
-  stack: {
+  orb: {
     tk: "02",
+    eyebrow: "Real-time 3D",
+    title: [
+      [{ t: "Not a video." }],
+      [{ t: "A ", }, { t: "live", accent: true, scramble: true }, { t: " 3D scene." }],
+    ] as Seg[][],
+    lede:
+      "Rendered on your GPU at 60 fps — a hand-written GLSL shader for the sun's plasma and the moon's craters, spring physics on the drag, a GSAP timeline on the switch. Grab it and spin it.",
+    sun: "Sun",
+    moon: "Moon",
+    toggle: "Switch sun and moon",
+    hint: "Drag to spin",
+    chips: ["three.js", "React Three Fiber", "GLSL shaders", "GSAP", "60 fps"],
+    aria: {
+      sun: "A glowing 3D sun with a churning plasma surface, drag to rotate",
+      moon: "A dark 3D moon with craters and a lit crescent, drag to rotate",
+    },
+  },
+
+  stack: {
+    tk: "03",
     eyebrow: "The stack, in depth",
     title: ["No WordPress.", "Personalized" + nbsp + "code."],
     intro:
@@ -168,7 +188,7 @@ export const home = {
   },
 
   work: {
-    tk: "03",
+    tk: "04",
     eyebrow: "Selected work",
     title: "Shipped, in production.",
     intro:
@@ -180,12 +200,11 @@ export const home = {
       { num: "03", cat: "Studio site · Previous version", slug: "ywdesign", title: "YWdesign v1", body: "The previous YWdesign studio site — frosted-glass panels over a drifting gradient, a transparent step-by-step roadmap and a service grid built to earn trust.", href: "https://ywdesign2.netlify.app/", img: "/work/ywdesign.jpg" },
       { num: "04", cat: "Events agency · Belgium", slug: "bermuda", title: "Bermuda Events", body: "A premium brand site framing past productions at scale, with a contact funnel built to qualify the right leads.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
       { num: "05", cat: "Analogue photography · Belgium", slug: "analoog", title: "Milo Weiler Analogue", body: "A quiet, editorial service site for fine-art film photography — funerals, portraits and weddings on medium format, paced to slow you down.", href: "https://analoog.miloweiler.com/en", img: "/work/analoog.jpg" },
-      { num: "06", cat: "Activewear brand · 100% Merino", slug: "spiree", title: "Spiree", body: "An independent sportswear brand site — bold gradient system, Sun & Moon collections, a story-first arc.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.jpg" },
     ],
   },
 
   ai: {
-    tk: "04",
+    tk: "05",
     eyebrow: "The philosophy",
     title: [
       [{ t: "A power tool." }],
@@ -203,7 +222,7 @@ export const home = {
   },
 
   process: {
-    tk: "05",
+    tk: "06",
     eyebrow: "How I work",
     title: "A transparent pipeline.",
     intro:

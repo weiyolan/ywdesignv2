@@ -4,7 +4,7 @@ import { getSite } from "@/content/site";
 import { localizedHref, type Locale } from "@/lib/i18n";
 
 // Prev / next project, wrapping circularly through order[] (matches the
-// prototype: nu ← spiree / nu → milo, spiree → nu, …). The display name is the
+// prototype: nu ← last / nu → milo, last → nu, …). The display name is the
 // linked project's hero title (its first title segment, trimmed of the trailing
 // " — …"). Renders the .pager grid inside the closing nav block.
 function nameOf(slug: Slug, lang: Locale): string {

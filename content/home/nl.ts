@@ -48,7 +48,7 @@ export const homeNL = {
         h: "Designsystemen, vanaf de tokens",
         p: "Typeschalen, kleur, ruimte, beweging en componenten — een samenhangend systeem, geen hoop CSS.",
         viz: "scale",
-        case: { pre: "CASE:", strong: "Spiree", post: "— gradiëntsysteem ↗", href: "https://spiree-next.netlify.app/", external: true },
+        case: { pre: "CASE:", strong: "YWdesign v1", post: "— glassysteem ↗", href: "https://ywdesign2.netlify.app/", external: true },
       },
       {
         span: "feature span-3", d: 1, ico: "motion",
@@ -95,8 +95,28 @@ export const homeNL = {
     ],
   },
 
-  stack: {
+  orb: {
     tk: "02",
+    eyebrow: "Realtime 3D",
+    title: [
+      [{ t: "Geen video." }],
+      [{ t: "Een " }, { t: "live", accent: true, scramble: true }, { t: " 3D-scène." }],
+    ] as Seg[][],
+    lede:
+      "Gerenderd op je GPU aan 60 fps — een zelfgeschreven GLSL-shader voor het plasma van de zon en de kraters van de maan, veerfysica bij het slepen, een GSAP-timeline bij de wissel. Pak hem vast en laat hem draaien.",
+    sun: "Zon",
+    moon: "Maan",
+    toggle: "Wissel tussen zon en maan",
+    hint: "Sleep om te draaien",
+    chips: ["three.js", "React Three Fiber", "GLSL-shaders", "GSAP", "60 fps"],
+    aria: {
+      sun: "Een gloeiende 3D-zon met een kolkend plasma-oppervlak, sleep om te draaien",
+      moon: "Een donkere 3D-maan met kraters en een verlichte sikkel, sleep om te draaien",
+    },
+  },
+
+  stack: {
+    tk: "03",
     eyebrow: "De stack, in detail",
     title: ["Geen WordPress.", "Code" + nbsp + "op maat."],
     intro:
@@ -149,7 +169,7 @@ export const homeNL = {
   },
 
   work: {
-    tk: "03",
+    tk: "04",
     eyebrow: "Geselecteerd werk",
     title: "Gelanceerd, in productie.",
     intro:
@@ -161,12 +181,11 @@ export const homeNL = {
       { num: "03", cat: "Studiosite · Vorige versie", slug: "ywdesign", title: "YWdesign v1", body: "De vorige studiosite van YWdesign — matglazen panelen op een bewegend verloop, een transparante roadmap stap voor stap en een dienstenraster dat vertrouwen wekt.", href: "https://ywdesign2.netlify.app/", img: "/work/ywdesign.jpg" },
       { num: "04", cat: "Eventbureau · België", slug: "bermuda", title: "Bermuda Events", body: "Een premium merksite die voorbije producties op schaal in beeld brengt, met een contacttrechter gebouwd om de juiste leads te kwalificeren.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
       { num: "05", cat: "Analoge fotografie · België", slug: "analoog", title: "Milo Weiler Analoog", body: "Een rustige, redactionele dienstensite voor fine-art filmfotografie — uitvaarten, portretten en huwelijken op middenformaat, op een tempo dat vertraagt.", href: "https://analoog.miloweiler.com/nl", img: "/work/analoog.jpg" },
-      { num: "06", cat: "Activewearmerk · 100% Merino", slug: "spiree", title: "Spiree", body: "Een onafhankelijke sportkledingsite — gedurfd gradiëntsysteem, Sun- & Moon-collecties, een verhaalgedreven boog.", href: "https://spiree-next.netlify.app/", img: "/work/spiree.jpg" },
     ],
   },
 
   ai: {
-    tk: "04",
+    tk: "05",
     eyebrow: "De filosofie",
     title: [
       [{ t: "Een power tool." }],
@@ -184,7 +203,7 @@ export const homeNL = {
   },
 
   process: {
-    tk: "05",
+    tk: "06",
     eyebrow: "Hoe ik werk",
     title: "Een transparante pijplijn.",
     intro:

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ElementType, type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 
@@ -15,13 +15,13 @@ export function Reveal({
   id,
   children,
 }: {
-  as?: ElementType;
+  as?: keyof HTMLElementTagNameMap;
   delay?: number; // data-d index → 0.07s steps
   className?: string;
   id?: string;
   children?: ReactNode;
 }) {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -42,7 +42,9 @@ export function Reveal({
     { scope: ref },
   );
 
-  const Tag = (as ?? "div") as ElementType;
+  // Cast to an HTML-only tag type: R3F augments JSX with three.js intrinsics,
+  // which would otherwise poison a plain ElementType union.
+  const Tag = (as ?? "div") as "div";
   return (
     <Tag ref={ref} className={className} id={id}>
       {children}

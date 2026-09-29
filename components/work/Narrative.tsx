@@ -4,7 +4,7 @@ import type { Head } from "@/content/work";
 import type { Seg } from "@/content/home";
 
 // Single-column story block — .ds-head + .narrative (nu "The challenge",
-// spiree "The story").
+// nu "The story").
 export function Narrative({
   head,
   paras,

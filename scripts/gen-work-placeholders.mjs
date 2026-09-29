@@ -17,7 +17,6 @@ const projects = [
   { file: "nu", num: "01", title: "Nu", cat: "Beauty & wellness e-commerce" },
   { file: "milo", num: "02", title: "Milo Weiler", cat: "Photography portfolio" },
   { file: "bermuda", num: "03", title: "Bermuda Events", cat: "Events agency · Belgium" },
-  { file: "spiree", num: "04", title: "Spiree", cat: "Activewear · 100% Merino" },
 ];
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -83,11 +82,6 @@ const detailSlots = [
   { file: "bermuda-g2", title: "Bermuda", tag: "about" },
   { file: "bermuda-g3", title: "Bermuda", tag: "network" },
   { file: "bermuda-g4", title: "Bermuda", tag: "contact" },
-  { file: "spiree-hero", title: "Spiree", tag: "hero" },
-  { file: "spiree-g1", title: "Spiree", tag: "collection" },
-  { file: "spiree-g2", title: "Spiree", tag: "product detail" },
-  { file: "spiree-g3", title: "Spiree", tag: "merino story" },
-  { file: "spiree-g4", title: "Spiree", tag: "meet astrid" },
 ];
 
 await mkdir(outDir, { recursive: true });

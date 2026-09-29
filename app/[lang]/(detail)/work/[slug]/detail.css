@@ -1,7 +1,7 @@
 /* ============================================================
    YWdesign — project detail pages
    Ported verbatim from Claude Design/projects/detail.css + the four
-   per-project inline <style> blocks (nu / milo / bermuda / spiree).
+   per-project inline <style> blocks (nu / milo / bermuda).
    Changes from the prototype:
      · body[data-surface="glass"] surface is locked on (set in app/layout.tsx);
        glass overrides for neutral content cards are at the bottom of this file.
@@ -139,17 +139,6 @@
 .approach .step h3{font-family:var(--display);font-weight:700;font-size:20px;margin-bottom:8px}
 .approach .step p{font-size:14.5px;color:var(--text-2);line-height:1.55}
 
-/* two-column comparison */
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:720px){.compare{grid-template-columns:1fr}}
-.compare .col{border:1px solid var(--line);border-radius:16px;padding:30px 28px;background:var(--bg-2)}
-.compare .col .ct{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:12px}
-.compare .col h3{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:-.01em;margin-bottom:10px}
-.compare .col > p{font-size:15px;color:var(--text-2);line-height:1.6}
-.compare .col ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:9px}
-.compare .col li{font-family:var(--mono);font-size:12.5px;color:var(--text-2);display:flex;gap:9px;line-height:1.4}
-.compare .col li::before{content:"—";color:var(--accent)}
 
 /* chapter / scope index */
 .chapter-index{border-top:1px solid var(--line)}
@@ -321,50 +310,16 @@
 .berm-dots i{width:7px;height:7px;border-radius:50%;background:var(--line-2);transition:.25s;cursor:pointer}
 .berm-dots i.on{background:var(--accent);transform:scale(1.3)}
 
-/* ============================================================
-   Spiree signature: Sun ↔ Moon morphing toggle
-   (spiree.html inline <style> :16-45)
-   ============================================================ */
-.spiree-demo{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;width:100%}
-@media(max-width:760px){.spiree-demo{grid-template-columns:1fr;gap:26px}}
-.orb-wrap{display:flex;align-items:center;justify-content:center;min-height:260px;position:relative}
-.orb{width:200px;height:200px;border-radius:50%;position:relative;transition:background 1s cubic-bezier(.4,0,.2,1),box-shadow 1s,transform 1s;
-  background:radial-gradient(circle at 35% 30%, #ffd17a, #ff7a3c 55%, #d64500);
-  box-shadow:0 0 90px 10px rgba(255,140,60,.45)}
-.orb::after{content:"";position:absolute;border-radius:50%;inset:0;transition:transform 1s cubic-bezier(.4,0,.2,1),opacity .8s;
-  background:radial-gradient(circle at 70% 30%, transparent 60%, var(--bg) 62%);opacity:0;transform:translateX(40%)}
-.spiree-demo[data-mode="moon"] .orb{
-  background:radial-gradient(circle at 35% 30%, #cfe0ff, #8aa0d8 55%, #5566a8);
-  box-shadow:0 0 90px 10px rgba(120,150,230,.4);transform:scale(.92)}
-.spiree-demo[data-mode="moon"] .orb::after{opacity:1;transform:translateX(0)}
-.spiree-card{}
-.sp-toggle{display:inline-flex;border:1px solid var(--line-2);border-radius:100px;padding:4px;gap:4px;margin-bottom:22px}
-.sp-toggle button{font-family:var(--mono);font-size:13px;border:0;background:transparent;color:var(--text-2);
-  padding:8px 20px;border-radius:100px;cursor:pointer;transition:.25s;white-space:nowrap}
-.sp-toggle button.on{background:var(--accent);color:var(--accent-ink);font-weight:700}
-.sp-title{font-family:var(--display);font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em}
-.sp-sub{font-family:var(--display);font-weight:600;font-size:18px;color:var(--text-2);margin-top:8px}
-.sp-price{font-family:var(--mono);font-size:22px;color:var(--accent);margin-top:18px}
-.sp-meta{font-family:var(--mono);font-size:12px;color:var(--text-3);margin-top:4px}
-.sp-sizes{display:flex;gap:8px;margin-top:20px}
-.sp-sizes button{width:40px;height:40px;border:1px solid var(--line-2);background:transparent;color:var(--text-2);
-  border-radius:9px;font-family:var(--mono);font-size:13px;cursor:pointer;transition:.2s}
-.sp-sizes button:hover{border-color:var(--accent)}
-.sp-sizes button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
-.sp-add{margin-top:22px;width:100%;justify-content:center}
-.sp-add.added{background:var(--text);color:var(--bg);box-shadow:none}
-
 /* reduced-motion: drop the demo transitions */
 @media(prefers-reduced-motion: reduce){
-  .morph,.chapter-fade,.berm-ico path,.orb,.orb::after{transition:none !important}
+  .morph,.chapter-fade,.berm-ico path{transition:none !important}
 }
 
 /* ===== GLASS SURFACE — frost neutral content cards (prototype glassed .detail-card) =====
    Gated on body[data-surface="glass"] (locked on in app/layout.tsx). Excludes brand/gradient
-   surfaces: .nu-shop & .nu-* (fixed brand palette), .chapter-stage, .orb, and image frames
+   surfaces: .nu-shop & .nu-* (fixed brand palette), .chapter-stage, .ywg, and image frames
    (.detail-media .media / .gallery .cell). */
 body[data-surface="glass"] .demo,
-body[data-surface="glass"] .compare .col,
 body[data-surface="glass"] .approach .step,
 body[data-surface="glass"] .pager a,
 body[data-surface="glass"] .feature-list .fl,

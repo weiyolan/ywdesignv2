@@ -2,7 +2,7 @@ import { Reveal } from "@/components/primitives/Reveal";
 import type { Head } from "@/content/work";
 
 // Outcome / metric band — .stat-band. Optional .ds-head (nu "Outcome" has one,
-// spiree's band is bare). Values are static, exactly as the prototype shows them
+// a band may be bare). Values are static, exactly as the prototype shows them
 // (mixed formats: "0", "2", "100%", "40°", "€99").
 export function StatBand({
   head,

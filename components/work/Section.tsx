@@ -4,14 +4,12 @@ import { Approach } from "@/components/work/Approach";
 import { FeatureList } from "@/components/work/FeatureList";
 import { StatBand } from "@/components/work/StatBand";
 import { QuoteLead } from "@/components/work/QuoteLead";
-import { Compare } from "@/components/work/Compare";
 import { ChapterIndex } from "@/components/work/ChapterIndex";
 import { Gallery } from "@/components/work/Gallery";
 import { NuLangSwitch } from "@/components/work/signature/NuLangSwitch";
 import { NuShop } from "@/components/work/signature/NuShop";
 import { MiloChapterRail } from "@/components/work/signature/MiloChapterRail";
 import { BermudaIcons } from "@/components/work/signature/BermudaIcons";
-import { SpireeOrb } from "@/components/work/signature/SpireeOrb";
 import { YwGlass } from "@/components/work/signature/YwGlass";
 import type { Section as SectionT, Project } from "@/content/work";
 
@@ -32,8 +30,6 @@ function SignatureDemo({
       return data?.miloRail ? <MiloChapterRail chapters={data.miloRail} /> : null;
     case "bermudaIcons":
       return data?.bermudaIcons ? <BermudaIcons data={data.bermudaIcons} /> : null;
-    case "spireeOrb":
-      return data?.spireeOrb ? <SpireeOrb data={data.spireeOrb} /> : null;
     case "ywGlass":
       return data?.ywGlass ? <YwGlass data={data.ywGlass} /> : null;
   }
@@ -70,8 +66,6 @@ export function Section({
       return <StatBand head={section.head} stats={section.stats} />;
     case "quote":
       return <QuoteLead quote={section.quote} cite={section.cite} />;
-    case "compare":
-      return <Compare head={section.head} cols={section.cols} />;
     case "chapterIndex":
       return <ChapterIndex head={section.head} chapters={section.chapters} />;
     case "gallery":

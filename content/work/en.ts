@@ -1,5 +1,5 @@
 // Project case-study content — ported verbatim from the prototype's per-project
-// HTML (Claude Design/projects/{nu,milo,bermuda,spiree}.html). English only for
+// HTML (Claude Design/projects/{nu,milo,bermuda,…}.html). English only for
 // now, typed so EN/FR/NL can be lifted later via a getDictionary(lang) loader.
 //
 // Every section is a discriminated union member keyed by `kind`; the Section
@@ -8,8 +8,8 @@
 // to the matching "use client" demo.
 import type { Seg } from "@/content/home";
 
-export type Slug = "nu" | "milo" | "ywdesign" | "bermuda" | "analoog" | "spiree";
-export const order: Slug[] = ["nu", "milo", "ywdesign", "bermuda", "analoog", "spiree"];
+export type Slug = "nu" | "milo" | "ywdesign" | "bermuda" | "analoog";
+export const order: Slug[] = ["nu", "milo", "ywdesign", "bermuda", "analoog"];
 
 /** A meta chip group head + body — the .ds-head / .sec-kicker intro of a section. */
 export type Head = {
@@ -56,11 +56,6 @@ export type Section =
       cite: string;
     }
   | {
-      kind: "compare";
-      head: Head;
-      cols: { ct: string; h: string; p: string; items: string[] }[];
-    }
-  | {
       kind: "chapterIndex";
       head: Head;
       chapters: { cn: string; ct: string; cd: string }[];
@@ -68,7 +63,7 @@ export type Section =
   | {
       kind: "signature";
       head: Head;
-      demo: "nuLang" | "nuShop" | "miloRail" | "bermudaIcons" | "spireeOrb" | "ywGlass";
+      demo: "nuLang" | "nuShop" | "miloRail" | "bermudaIcons" | "ywGlass";
       /** the .demo-head label (file path) and right-hand caption */
       label: string;
       note: string;
@@ -109,13 +104,6 @@ export type Project = {
       };
     };
     miloRail?: { rail: string; t: string; p: string }[];
-    spireeOrb?: {
-      sun: { t: string; s: string };
-      moon: { t: string; s: string };
-      meta: string;
-      add: string;
-      added: string;
-    };
     /** cards in markup order: creativity, detail, personality */
     bermudaIcons?: {
       gl: string;
@@ -753,130 +741,6 @@ export const projects: Record<Slug, Project> = {
           { t: "accent", accent: true },
           { t: ". The geometry is untouched — only the palette is swapped to black / white / accent so the component sits inside this site instead of fighting it." },
         ],
-      },
-    },
-  },
-
-  // ── 06 · Spiree ─────────────────────────────────────────────────────────
-  spiree: {
-    slug: "spiree",
-    eyebrowNum: "06",
-    category: "Activewear brand · 100% Merino",
-    year: "2025",
-    titleSegs: [
-      { t: "Spiree — running, " },
-      { t: "celestial.", scramble: true, accent: true },
-    ],
-    lede:
-      "A bold, story-first brand site for an independent women's sportswear label. A custom gradient system and a Sun & Moon identity carry a crowdfunding launch — product second, story first.",
-    liveHref: "https://spiree-next.netlify.app/",
-    meta: {
-      role: "Design & build",
-      year: "2025",
-      sector: "E-commerce · DTC",
-      stack: ["Next.js", "React", "Tailwind"],
-    },
-    heroImg: "/work/spiree-hero.jpg",
-    heroAlt: "Spiree — celestial activewear brand hero",
-    metaTitle: "Spiree — Case study",
-    metaDescription:
-      "A bold, story-first brand site for an independent women's sportswear label — a custom gradient system and a Sun & Moon identity carrying a crowdfunding launch.",
-    sections: [
-      {
-        kind: "narrative",
-        head: { eyebrow: "The story", title: "Product second. Story first." },
-        paras: [
-          [
-            { t: "Spiree makes " },
-            { t: "100% Merino wool base layers", b: true },
-            {
-              t: " for running and mountain sports — thermoregulating from +30°C to −10°C. But a spec sheet doesn't fund a launch. The site had to sell a premium, sustainable product ",
-            },
-            { t: "and", b: true },
-            { t: " rally backers for a crowdfunding campaign." },
-          ],
-          [
-            { t: "The answer was a " },
-            { t: "celestial identity", b: true },
-            {
-              t: " built around Astrid — the runner the brand is named for. A Sun line to ",
-            },
-            { t: "unleash your inner fire", accent: true },
-            { t: ", a Moon line to " },
-            { t: "embrace your ethereal side", accent: true },
-            { t: " — each with its own gradient world, tied together by one story." },
-          ],
-        ],
-      },
-      {
-        kind: "signature",
-        demo: "spireeOrb",
-        head: {
-          eyebrow: "Signature build",
-          title: "The Sun ↔ Moon collection switch",
-          intro:
-            "The centrepiece interaction: one toggle morphs the entire product world — gradient, copy, price context and palette — between the two celestial collections. Hand-built, no library. Try it:",
-        },
-        label: "CollectionSwitch.tsx",
-        note: "live component",
-      },
-      {
-        kind: "compare",
-        head: {
-          eyebrow: "Two worlds, one system",
-          title: "Sun & Moon",
-          intro:
-            "The collection switch isn't a gimmick — each world drives its own palette, copy and product context from a single hand-built gradient engine.",
-        },
-        cols: [
-          {
-            ct: "☀ Collection",
-            h: "Sun",
-            p: "Unleash your inner fire.",
-            items: [
-              "Warm amber → ember gradient world",
-              "High-energy copy for race day",
-              "Daytime, heat-regulating story",
-            ],
-          },
-          {
-            ct: "☾ Collection",
-            h: "Moon",
-            p: "Embrace your ethereal side.",
-            items: [
-              "Cool indigo → silver gradient world",
-              "Calm, reflective copy for recovery",
-              "Night running, warmth-keeping story",
-            ],
-          },
-        ],
-      },
-      {
-        kind: "statBand",
-        stats: [
-          { sv: "2", sl: "Collections — Sun & Moon from one gradient engine" },
-          { sv: "40°", sl: "Thermal range — Merino comfort from +30 to −10°C" },
-          { sv: "€99", sl: "Base layer — full storefront with size & cart" },
-        ],
-      },
-      {
-        kind: "gallery",
-        head: { eyebrow: "Gallery", title: "Through the site" },
-        items: [
-          { id: "spiree-g1", span: "wide", alt: "Collection page" },
-          { id: "spiree-g2", span: "tall", alt: "Product detail" },
-          { id: "spiree-g3", span: "half", alt: "Merino story" },
-          { id: "spiree-g4", span: "half", alt: "Meet Astrid" },
-        ],
-      },
-    ],
-    signatureData: {
-      spireeOrb: {
-        sun: { t: "Sun", s: "Unleash your inner fire" },
-        moon: { t: "Moon", s: "Embrace your ethereal side" },
-        meta: "Incl. VAT & shipping in EU",
-        add: "Add to cart",
-        added: "✓ Added to cart",
       },
     },
   },
