@@ -570,6 +570,16 @@ header{padding:170px 0 60px;position:relative}
 /* square, never taller than wide: the camera fov is vertical, so a tall stage would crop the corona left/right */
 .sm-hero .sm-stage{width:min(100%,640px);aspect-ratio:1;max-height:none;margin-inline:auto}
 @media(max-width:980px){.sm-hero .sm-stage{width:min(100%,420px)}} /* flares span the page width, never widen it */
+/* one column: the sun leads (CSS order only — copy stays first in the DOM), toggle under it,
+   chips dropped and spacing tightened so the h1 still starts above the fold */
+@media(max-width:980px){
+  .sm-hero{padding-top:96px}
+  .sm-hero .hero-grid{gap:20px}
+  .sm-hero .hero-grid>:last-child{order:-1}
+  .sm-hero .sm-stagewrap{order:-1}
+  .sm-hero .sm-toggle{align-self:center}
+  .sm-hero .sm-chips{display:none}
+  .sm-hero .sm-stage{width:min(100%,420px,46svh)}}
 /* big screens: the hero grid outgrows --maxw so the orb column (≈526px at 1280) keeps growing;
    the stage stays square and short of the viewport height (header pad + toggle + chips) */
 .sm-hero .hero-grid{width:100%} /* .sunmoon is a flex column → the auto-margin wrap would shrink to its content */
