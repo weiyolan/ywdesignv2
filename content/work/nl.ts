@@ -339,145 +339,138 @@ export const projectsNL = {
     },
   },
 
-  // ── 03 · YWdesign v1 ────────────────────────────────────────────────────
-  ywdesign: {
-    slug: "ywdesign",
+  // ── 03 · AutomatX Labs ──────────────────────────────────────────────────
+  automatx: {
+    slug: "automatx",
     eyebrowNum: "03",
-    category: "Studiosite · Vorige versie",
-    year: "2023",
+    category: "Ingenieurspraktijk · Lyon",
+    year: "2026",
     titleSegs: [
-      { t: "YWdesign v1 — je " },
-      { t: "digitale partner.", scramble: true, accent: true },
+      { t: "AutomatX — één ingenieur, " },
+      { t: "X labs.", scramble: true, accent: true },
     ],
     lede:
-      "De eerste studiosite van YWdesign: matglazen panelen die zweven boven een bewegend blauwgroen verloop, een dienstenraster, een volledig transparante roadmap en een offertetrechter. Gebouwd om een eenmansstudio als een betrouwbare partner te laten voelen.",
-    liveHref: "https://ywdesign2.netlify.app/",
+      "De site van AutomatX Labs, mijn onafhankelijke ingenieurspraktijk. Vier labs, ingedeeld naar wat ze verbeteren (een proces, een lichaam, iets fysieks, een berekening), acht vaardigheden die erdoorheen lopen, en een 3D-sterrenkaart die het hele model op één scherm zet.",
+    liveHref: "https://automatx.eu",
     meta: {
       role: "Merk, design & bouw",
-      year: "2023",
-      sector: "Webstudio · Freelance",
-      stack: ["Next.js", "Tailwind CSS", "Sanity", "Framer Motion"],
+      year: "2026",
+      sector: "Engineering · Labautomatisering",
+      stack: ["HTML", "CSS", "Vanilla JS", "three.js"],
     },
-    heroImg: "/work/ywdesign-hero.jpg",
-    heroAlt: "Homepage van YWdesign v1 — “Your Digital Partner” op een blauwgroen verloop met glazen navigatie",
-    metaTitle: "YWdesign v1 — Case study",
+    heroImg: "/work/automatx-hero.jpg",
+    heroAlt: "Home van AutomatX Labs — “One engineer. X labs.” op een donker ingenieursraster",
+    metaTitle: "AutomatX Labs — Case study",
     metaDescription:
-      "De vorige studiosite van YWdesign: een glassmorphism-designsysteem in Tailwind, een featureraster met eigen iconen, een transparante roadmap stap voor stap en een EN · FR-versie.",
+      "De bouw van automatx.eu: een statische, tweetalige site zonder externe verzoeken, een X Labs-structuur en een interactieve three.js-constellatie van labs en vaardigheden.",
     sections: [
       {
         kind: "twoColFeature",
         head: {
-          eyebrow: "De briefing",
-          title: "Laat een eenmansstudio voelen als een partner.",
+          eyebrow: "De opdracht",
+          title: "Veel vakgebieden, één methode, één site.",
         },
         paras: [
           [
-            { t: "Wie een freelancer inhuurt, maakt zich zorgen over één ding: " },
-            { t: "wat er na de lancering gebeurt", b: true },
-            {
-              t: ". De site moest dat beantwoorden vóór iemand het vroeg — duidelijke diensten, een zichtbaar proces en een directe lijn naar een mens.",
-            },
+            { t: "Labautomatisering, bewegingsanalyse, 3D-printen, AI. Op een cv oogt dat versnipperd. De site moest tonen dat het " },
+            { t: "één methode is, overal toegepast", b: true },
+            { t: ": meten, automatiseren, reproduceerbaar maken." },
           ],
           [
-            { t: "De look droeg de boodschap: " },
-            { t: "licht, gelaagd glas", b: true },
+            { t: "Het antwoord werd het " },
+            { t: "X Labs-model", b: true },
             {
-              t: " boven een levend verloop. Niets zwaar, alles leesbaar, en elk paneel een klein venster op het merk erachter.",
+              t: ". Labs zijn ingedeeld naar het systeem dat ze verbeteren, en vaardigheden zijn de tools die ze delen. Een project hoort bij het lab waarvan het het systeem verbetert, niet bij de tools die het gebruikt.",
             },
           ],
         ],
         features: [
           {
-            k: "[ glass_system ]",
-            b: "Matglazen panelen, één recept",
-            p: "Wit op 10% dekking, achtergrondvervaging, een fijne rand en een zachte schaduw — hetzelfde Tailwind-recept voor navigatie, kaarten, footer en knoppen.",
+            k: "[ x_labs ]",
+            b: "Vier labs, acht vaardigheden",
+            p: "Proces · Pharma, Lichaam · Sport, Materie · Robotica en Rekenen · AI delen sensoren, elektronica, mechanica, software, data, AI/ML, validatie en industrialisatie.",
           },
           {
-            k: "[ feature_icons ]",
-            b: "Zes beloftes, zes iconen",
-            p: "Responsiveness, animaties, performance, UX/UI, CMS en SEO — elk met een eigen icoon en een belofte in twee regels.",
+            k: "[ zero_requests ]",
+            b: "Niets komt van elders",
+            p: "Fonts, scripts en three.js worden allemaal zelf gehost. Geen CDN, geen Google Fonts, geen analytics, dus niets dat een AVG-vraag oproept.",
           },
           {
-            k: "[ roadmap ]",
-            b: "Een proces dat je ziet",
-            p: "Van projectdefinitie tot onderhoud is elke stap uitgetekend, zodat prijs en planning nooit verrassen.",
+            k: "[ progressive ]",
+            b: "Werkt zonder JavaScript",
+            p: "Eerst gewone HTML en CSS. Scripts voegen alleen iets toe: de 3D-kaart, live sportfiguren en onthullingen bij het scrollen.",
           },
           {
             k: "[ i18n ]",
             b: "EN · FR",
-            p: "Tweetalige routing en teksten voor klanten in België, Frankrijk en Zwitserland.",
+            p: "Tien URL’s, elk via hreflang gekoppeld aan de Franse versie, plus een sitemap en JSON-LD.",
           },
         ],
       },
       {
         kind: "signature",
-        demo: "ywGlass",
+        demo: "automatxWeb",
         head: {
           eyebrow: "Signature build",
-          title: "Wat maakt een betere website",
+          title: "De labs als sterrenbeeld",
           intro:
-            "Het featureraster van de oude dienstenpagina, herbouwd in pure CSS: matglazen kaarten op een bewegend verloop, verspringende kolommen, en een lift met pulserende rand bij hover. Zet het glas uit om te zien wat de vervaging doet.",
+            "De kaart van de homepage, die hier draait zoals op de live site. De vier labs staan op twee diagonalen, zodat hun verbindingen de X van het logo tekenen. Vaardigheden draaien op een buitenste bol, dicht bij de labs die ze bedienen. Sleep om te draaien, gooi een ster weg, hover om de verbindingen op te lichten.",
         },
-        label: "components/FeatureCard.jsx",
-        note: "hover · glas aan/uit",
+        label: "web3d.js",
+        note: "slepen · hover · ctrl + scroll om te zoomen",
       },
       {
         kind: "approach",
         head: {
-          eyebrow: "Hoe het converteert",
-          title: "Transparantie als verkoopargument",
+          eyebrow: "Hoe het gebouwd is",
+          title: "De SVG blijft de bron van waarheid",
           intro:
-            "De roadmap-pagina doet de verkoop: elke stap van eerste gesprek tot oplevering ligt open, zodat een offerteaanvraag de logische volgende stap wordt.",
+            "De kaart begint als een toegankelijke SVG: echte links, focusbare nodes, leesbare labels. three.js is een laag erachter, en de SVG blijft werken als die laag niet laadt.",
         },
         steps: [
           {
-            sn: "01 / definitie & contract",
-            h: "Scope, timing, budget",
-            p: "Het eerste gesprek legt doelen en middelen vast; een contractvoorstel volgt vóór er gewerkt wordt.",
+            sn: "01 / lees de markup",
+            h: "Nodes & lijnen uit de DOM",
+            p: "web3d.js bouwt de graaf op uit de SVG-cirkels en <line data-a data-b>-lijnen, dus de kaart aanpassen is een markup-aanpassing.",
           },
           {
-            sn: "02 / ideeën & iteratie",
-            h: "Twee rondes, dan code",
-            p: "Waarden, huisstijl en stijlvoorkeuren worden ideeën, gevolgd door twee iteraties op structuur en design vóór goedkeuring.",
+            sn: "02 / elke frame vastplakken",
+            h: "Terug op het scherm geprojecteerd",
+            p: "Elke frame wordt elke ster op het scherm geprojecteerd en zijn SVG-node erheen verplaatst, zodat labels, focusringen en klikvlakken op de sterren blijven.",
           },
           {
-            sn: "03 / oplevering & onderhoud",
-            h: "Alle code is van jou",
-            p: "Het afgewerkte product wordt volledig overgedragen, met een onderhoudsplan om het gezond te houden.",
+            sn: "03 / niets in rust",
+            h: "Lazy, gepauzeerd, optioneel",
+            p: "Het script laadt pas als de kaart in beeld komt en pauzeert buiten beeld. Met beperkte beweging of zonder WebGL blijft de platte kaart staan.",
           },
         ],
       },
       {
-        kind: "quote",
-        quote: [
-          { t: "Voorkomen is beter dan genezen. " },
-          { t: "Een onderhoudsplan", accent: true },
-          { t: " is cruciaal voor de gezondheid van je product." },
+        kind: "statBand",
+        stats: [
+          { sv: "0", sl: "externe verzoeken" },
+          { sv: "4 × 8", sl: "labs × vaardigheden" },
+          { sv: "10", sl: "URL’s · EN + FR" },
+          { sv: "1", sl: "externe library" },
         ],
-        cite: "// YWdesign v1 — de roadmap, laatste stap",
       },
       {
         kind: "gallery",
         head: { eyebrow: "Galerij", title: "Door de site" },
         items: [
-          { id: "ywdesign-g1", span: "wide", alt: "Projecten — recent werk onder een glazen navigatiebalk en een skill-ticker" },
-          { id: "ywdesign-g2", span: "tall", alt: "Featureraster — zes glazen kaarten met eigen iconen" },
-          { id: "ywdesign-g3", span: "half", alt: "Roadmap — de samenwerking stap voor stap gevisualiseerd" },
-          { id: "ywdesign-g4", span: "half", alt: "Over mij — “Hi, I am Yolan”" },
+          { id: "automatx-g1", span: "wide", alt: "Hub — de sterrenkaart van labs × vaardigheden" },
+          { id: "automatx-g2", span: "tall", alt: "Pharma-lab — Hamilton VENUS-automatisering en GMP-validatie" },
+          { id: "automatx-g3", span: "half", alt: "Sportlab — gesimuleerde bewegingssignalen als fijne SVG-lijnen" },
+          { id: "automatx-g4", span: "half", alt: "Oorsprong — onderzoek aan de KU Leuven en het loopbaanpad" },
         ],
       },
     ],
     signatureData: {
-      ywGlass: {
-        toggle: "Glas",
-        cards: [
-          { t: "Responsiveness", d: "Een mooie lay-out op elk schermformaat." },
-          { t: "Animaties", d: "Dynamische interacties die je website tot leven brengen." },
-          { t: "Performance", d: "Vertel je verhaal met snelle internettechnologie." },
-          { t: "UX/UI-gericht", d: "Gebruikers houden van een licht en eenvoudig design." },
-          { t: "CMS", d: "Je beheert de inhoud zelf." },
-          { t: "SEO", d: "Bereik organisch nieuwe klanten." },
-        ],
+      automatxWeb: {
+        intro:
+          "AutomatX Labs is de onafhankelijke ingenieurspraktijk van Yolan Weiler, biomedisch & elektrotechnisch ingenieur (KU Leuven), gevestigd in Lyon. Eén methode, overal toegepast: meten, automatiseren, reproduceerbaar maken.",
+        hint: "Sleep om te draaien · ⌘/Ctrl + scroll of knijp om te zoomen · tik op een ster om te lezen →",
+        go: "Open lab →",
       },
     },
   },
@@ -632,10 +625,153 @@ export const projectsNL = {
     },
   },
 
-  // ── 05 · Milo Weiler — Analoog ──────────────────────────────────────────
+  // ── 05 · YWdesign v1 ────────────────────────────────────────────────────
+  ywdesign: {
+    slug: "ywdesign",
+    eyebrowNum: "05",
+    category: "Studiosite · Vorige versie",
+    year: "2023",
+    titleSegs: [
+      { t: "YWdesign v1 — je " },
+      { t: "digitale partner.", scramble: true, accent: true },
+    ],
+    lede:
+      "De eerste studiosite van YWdesign: matglazen panelen die zweven boven een bewegend blauwgroen verloop, een dienstenraster, een volledig transparante roadmap en een offertetrechter. Gebouwd om een eenmansstudio als een betrouwbare partner te laten voelen.",
+    liveHref: "https://ywdesign2.netlify.app/",
+    meta: {
+      role: "Merk, design & bouw",
+      year: "2023",
+      sector: "Webstudio · Freelance",
+      stack: ["Next.js", "Tailwind CSS", "Sanity", "Framer Motion"],
+    },
+    heroImg: "/work/ywdesign-hero.jpg",
+    heroAlt: "Homepage van YWdesign v1 — “Your Digital Partner” op een blauwgroen verloop met glazen navigatie",
+    metaTitle: "YWdesign v1 — Case study",
+    metaDescription:
+      "De vorige studiosite van YWdesign: een glassmorphism-designsysteem in Tailwind, een featureraster met eigen iconen, een transparante roadmap stap voor stap en een EN · FR-versie.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "De briefing",
+          title: "Laat een eenmansstudio voelen als een partner.",
+        },
+        paras: [
+          [
+            { t: "Wie een freelancer inhuurt, maakt zich zorgen over één ding: " },
+            { t: "wat er na de lancering gebeurt", b: true },
+            {
+              t: ". De site moest dat beantwoorden vóór iemand het vroeg — duidelijke diensten, een zichtbaar proces en een directe lijn naar een mens.",
+            },
+          ],
+          [
+            { t: "De look droeg de boodschap: " },
+            { t: "licht, gelaagd glas", b: true },
+            {
+              t: " boven een levend verloop. Niets zwaar, alles leesbaar, en elk paneel een klein venster op het merk erachter.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ glass_system ]",
+            b: "Matglazen panelen, één recept",
+            p: "Wit op 10% dekking, achtergrondvervaging, een fijne rand en een zachte schaduw — hetzelfde Tailwind-recept voor navigatie, kaarten, footer en knoppen.",
+          },
+          {
+            k: "[ feature_icons ]",
+            b: "Zes beloftes, zes iconen",
+            p: "Responsiveness, animaties, performance, UX/UI, CMS en SEO — elk met een eigen icoon en een belofte in twee regels.",
+          },
+          {
+            k: "[ roadmap ]",
+            b: "Een proces dat je ziet",
+            p: "Van projectdefinitie tot onderhoud is elke stap uitgetekend, zodat prijs en planning nooit verrassen.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · FR",
+            p: "Tweetalige routing en teksten voor klanten in België, Frankrijk en Zwitserland.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "ywGlass",
+        head: {
+          eyebrow: "Signature build",
+          title: "Wat maakt een betere website",
+          intro:
+            "Het featureraster van de oude dienstenpagina, herbouwd in pure CSS: matglazen kaarten op een bewegend verloop, verspringende kolommen, en een lift met pulserende rand bij hover. Zet het glas uit om te zien wat de vervaging doet.",
+        },
+        label: "components/FeatureCard.jsx",
+        note: "hover · glas aan/uit",
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "Hoe het converteert",
+          title: "Transparantie als verkoopargument",
+          intro:
+            "De roadmap-pagina doet de verkoop: elke stap van eerste gesprek tot oplevering ligt open, zodat een offerteaanvraag de logische volgende stap wordt.",
+        },
+        steps: [
+          {
+            sn: "01 / definitie & contract",
+            h: "Scope, timing, budget",
+            p: "Het eerste gesprek legt doelen en middelen vast; een contractvoorstel volgt vóór er gewerkt wordt.",
+          },
+          {
+            sn: "02 / ideeën & iteratie",
+            h: "Twee rondes, dan code",
+            p: "Waarden, huisstijl en stijlvoorkeuren worden ideeën, gevolgd door twee iteraties op structuur en design vóór goedkeuring.",
+          },
+          {
+            sn: "03 / oplevering & onderhoud",
+            h: "Alle code is van jou",
+            p: "Het afgewerkte product wordt volledig overgedragen, met een onderhoudsplan om het gezond te houden.",
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        quote: [
+          { t: "Voorkomen is beter dan genezen. " },
+          { t: "Een onderhoudsplan", accent: true },
+          { t: " is cruciaal voor de gezondheid van je product." },
+        ],
+        cite: "// YWdesign v1 — de roadmap, laatste stap",
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Galerij", title: "Door de site" },
+        items: [
+          { id: "ywdesign-g1", span: "wide", alt: "Projecten — recent werk onder een glazen navigatiebalk en een skill-ticker" },
+          { id: "ywdesign-g2", span: "tall", alt: "Featureraster — zes glazen kaarten met eigen iconen" },
+          { id: "ywdesign-g3", span: "half", alt: "Roadmap — de samenwerking stap voor stap gevisualiseerd" },
+          { id: "ywdesign-g4", span: "half", alt: "Over mij — “Hi, I am Yolan”" },
+        ],
+      },
+    ],
+    signatureData: {
+      ywGlass: {
+        toggle: "Glas",
+        cards: [
+          { t: "Responsiveness", d: "Een mooie lay-out op elk schermformaat." },
+          { t: "Animaties", d: "Dynamische interacties die je website tot leven brengen." },
+          { t: "Performance", d: "Vertel je verhaal met snelle internettechnologie." },
+          { t: "UX/UI-gericht", d: "Gebruikers houden van een licht en eenvoudig design." },
+          { t: "CMS", d: "Je beheert de inhoud zelf." },
+          { t: "SEO", d: "Bereik organisch nieuwe klanten." },
+        ],
+      },
+    },
+  },
+
+  // ── 06 · Milo Weiler — Analoog ──────────────────────────────────────────
   analoog: {
     slug: "analoog",
-    eyebrowNum: "05",
+    eyebrowNum: "06",
     category: "Analoge fotografie · België",
     year: "2026",
     titleSegs: [

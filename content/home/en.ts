@@ -197,9 +197,10 @@ export const home = {
     items: [
       { num: "01", cat: "Beauty & wellness e-commerce", slug: "nu", title: "Nu", body: "A multilingual clean-beauty storefront — calm editorial pacing around a frictionless, CMS-driven buying flow.", href: "https://nu-site.netlify.app/en", img: "/work/nu.jpg" },
       { num: "02", cat: "Photography portfolio", slug: "milo", title: "Milo Weiler", body: "A cinematic, dark portfolio split into seven scroll chapters — 55 projects, sticky chapter nav, top Lighthouse scores.", href: "https://miloweiler.com", img: "/work/milo.jpg" },
-      { num: "03", cat: "Studio site · Previous version", slug: "ywdesign", title: "YWdesign v1", body: "The previous YWdesign studio site — frosted-glass panels over a drifting gradient, a transparent step-by-step roadmap and a service grid built to earn trust.", href: "https://ywdesign2.netlify.app/", img: "/work/ywdesign.jpg" },
+      { num: "03", cat: "Engineering practice · Lyon", slug: "automatx", title: "AutomatX Labs", body: "One engineer, X labs — a static, bilingual site with zero external requests and an interactive 3D constellation of labs and capabilities.", href: "https://automatx.eu", img: "/work/automatx.jpg" },
       { num: "04", cat: "Events agency · Belgium", slug: "bermuda", title: "Bermuda Events", body: "A premium brand site framing past productions at scale, with a contact funnel built to qualify the right leads.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
-      { num: "05", cat: "Analogue photography · Belgium", slug: "analoog", title: "Milo Weiler Analogue", body: "A quiet, editorial service site for fine-art film photography — funerals, portraits and weddings on medium format, paced to slow you down.", href: "https://analoog.miloweiler.com/en", img: "/work/analoog.jpg" },
+      { num: "05", cat: "Studio site · Previous version", slug: "ywdesign", title: "YWdesign v1", body: "The previous YWdesign studio site — frosted-glass panels over a drifting gradient, a transparent step-by-step roadmap and a service grid built to earn trust.", href: "https://ywdesign2.netlify.app/", img: "/work/ywdesign.jpg" },
+      { num: "06", cat: "Analogue photography · Belgium", slug: "analoog", title: "Milo Weiler Analogue", body: "A quiet, editorial service site for fine-art film photography — funerals, portraits and weddings on medium format, paced to slow you down.", href: "https://analoog.miloweiler.com/en", img: "/work/analoog.jpg" },
     ],
   },
 

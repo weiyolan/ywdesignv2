@@ -339,145 +339,138 @@ export const projectsFR = {
     },
   },
 
-  // ── 03 · YWdesign v1 ────────────────────────────────────────────────────
-  ywdesign: {
-    slug: "ywdesign",
+  // ── 03 · AutomatX Labs ──────────────────────────────────────────────────
+  automatx: {
+    slug: "automatx",
     eyebrowNum: "03",
-    category: "Site de studio · Version précédente",
-    year: "2023",
+    category: "Cabinet d’ingénierie · Lyon",
+    year: "2026",
     titleSegs: [
-      { t: "YWdesign v1 — votre " },
-      { t: "partenaire digital.", scramble: true, accent: true },
+      { t: "AutomatX — un ingénieur, " },
+      { t: "X labs.", scramble: true, accent: true },
     ],
     lede:
-      "Le premier site du studio YWdesign : des panneaux en verre dépoli flottant sur un dégradé bleu-turquoise mouvant, une grille de services, une feuille de route entièrement transparente et un tunnel de devis. Pensé pour qu’un studio d’une personne inspire la confiance d’un vrai partenaire.",
-    liveHref: "https://ywdesign2.netlify.app/fr",
+      "Le site d’AutomatX Labs, mon cabinet d’ingénierie indépendant. Quatre labs répartis selon ce qu’ils améliorent (un procédé, un corps, un objet physique, un calcul), huit compétences qui les traversent, et une carte stellaire en 3D qui réunit tout le modèle sur un seul écran.",
+    liveHref: "https://automatx.eu/fr/",
     meta: {
       role: "Marque, design & développement",
-      year: "2023",
-      sector: "Studio web · Freelance",
-      stack: ["Next.js", "Tailwind CSS", "Sanity", "Framer Motion"],
+      year: "2026",
+      sector: "Ingénierie · Automatisation de laboratoire",
+      stack: ["HTML", "CSS", "Vanilla JS", "three.js"],
     },
-    heroImg: "/work/ywdesign-hero.jpg",
-    heroAlt: "Accueil de YWdesign v1 — « Your Digital Partner » sur un dégradé bleu-turquoise avec une navigation en verre",
-    metaTitle: "YWdesign v1 — Étude de cas",
+    heroImg: "/work/automatx-hero.jpg",
+    heroAlt: "Accueil d’AutomatX Labs — « One engineer. X labs. » sur une grille d’ingénierie sombre",
+    metaTitle: "AutomatX Labs — Étude de cas",
     metaDescription:
-      "L’ancien site du studio YWdesign : un design system glassmorphism en Tailwind, une grille de fonctionnalités aux icônes sur mesure, une feuille de route transparente étape par étape et une version EN · FR.",
+      "La réalisation d’automatx.eu : un site statique et bilingue sans aucune requête externe, une structure X Labs et une constellation three.js interactive des labs et des compétences.",
     sections: [
       {
         kind: "twoColFeature",
         head: {
           eyebrow: "Le brief",
-          title: "Faire d’un studio d’une personne un vrai partenaire.",
+          title: "Plusieurs domaines, une méthode, un site.",
         },
         paras: [
           [
-            { t: "Qui engage un freelance s’inquiète d’une chose : " },
-            { t: "ce qui se passe après la mise en ligne", b: true },
-            {
-              t: ". Le site devait y répondre avant même la question — des services clairs, un processus visible et une ligne directe vers une vraie personne.",
-            },
+            { t: "Automatisation de laboratoire, analyse du mouvement, impression 3D, IA. Sur un CV, ça paraît dispersé. Le site devait montrer qu’il s’agit d’" },
+            { t: "une seule méthode appliquée partout", b: true },
+            { t: " : mesurer, automatiser, rendre reproductible." },
           ],
           [
-            { t: "Le style portait le message : " },
-            { t: "du verre léger, en couches", b: true },
+            { t: "La réponse, c’est le " },
+            { t: "modèle X Labs", b: true },
             {
-              t: ", sur un dégradé vivant. Rien de lourd, tout reste lisible, et chaque panneau devient une petite fenêtre sur la marque.",
+              t: ". Les labs sont répartis selon le système qu’ils améliorent, et les compétences sont les outils qu’ils partagent. Un projet appartient au lab dont il améliore le système, pas à celui des outils qu’il utilise.",
             },
           ],
         ],
         features: [
           {
-            k: "[ glass_system ]",
-            b: "Des panneaux dépolis, une seule recette",
-            p: "Du blanc à 10 % d’opacité, un flou d’arrière-plan, une bordure fine et une ombre douce — la même recette Tailwind pour la navigation, les cartes, le pied de page et les boutons.",
+            k: "[ x_labs ]",
+            b: "Quatre labs, huit compétences",
+            p: "Procédé · Pharma, Corps · Sport, Matière · Robotique et Calcul · IA partagent capteurs, électronique, mécanique, logiciel, données, IA/ML, validation et industrialisation.",
           },
           {
-            k: "[ feature_icons ]",
-            b: "Six promesses, six icônes",
-            p: "Responsive, animations, performances, UX/UI, CMS et référencement — chacune avec son icône sur mesure et une promesse en deux lignes.",
+            k: "[ zero_requests ]",
+            b: "Rien ne vient d’ailleurs",
+            p: "Polices, scripts et three.js sont tous auto-hébergés. Ni CDN, ni Google Fonts, ni analytics, donc rien qui pose une question RGPD.",
           },
           {
-            k: "[ roadmap ]",
-            b: "Un processus visible",
-            p: "De la définition du projet à la maintenance, chaque étape est dessinée pour que le prix et le calendrier ne surprennent jamais.",
+            k: "[ progressive ]",
+            b: "Fonctionne sans JavaScript",
+            p: "D’abord du HTML et du CSS. Les scripts ne font qu’ajouter : la carte 3D, les figures sport animées et les apparitions au défilement.",
           },
           {
             k: "[ i18n ]",
             b: "EN · FR",
-            p: "Un routage et des textes bilingues pour des clients en Belgique, en France et en Suisse.",
+            p: "Dix URL, chacune associée à son miroir français via hreflang, plus un sitemap et du JSON-LD.",
           },
         ],
       },
       {
         kind: "signature",
-        demo: "ywGlass",
+        demo: "automatxWeb",
         head: {
           eyebrow: "Réalisation phare",
-          title: "Ce qui fait un meilleur site web",
+          title: "Les labs en constellation",
           intro:
-            "La grille de fonctionnalités de l’ancienne page services, reconstruite en CSS pur : des cartes dépolies sur un dégradé mouvant, des colonnes décalées, un léger soulèvement et une bordure qui pulse au survol. Désactivez le verre pour voir ce que fait le flou.",
+            "La carte de la page d’accueil, qui tourne ici comme sur le site en ligne. Les quatre labs sont placés sur deux diagonales, si bien que leurs liens dessinent le X du logo. Les compétences gravitent sur une sphère extérieure, près des labs qu’elles servent. Glissez pour tourner autour, lancez une étoile, survolez-la pour allumer ses liens.",
         },
-        label: "components/FeatureCard.jsx",
-        note: "survoler · activer le verre",
+        label: "web3d.js",
+        note: "glisser · survoler · ctrl + molette pour zoomer",
       },
       {
         kind: "approach",
         head: {
-          eyebrow: "Comment ça convertit",
-          title: "La transparence comme argument",
+          eyebrow: "Comment c’est construit",
+          title: "Le SVG reste la source de vérité",
           intro:
-            "La page de la méthode fait la vente : chaque étape, du premier rendez-vous à la livraison, est exposée — la demande de devis devient l’étape naturelle suivante.",
+            "La carte part d’un SVG accessible : vrais liens, nœuds focalisables, libellés lisibles. three.js est une couche placée derrière, et le SVG reste utilisable si cette couche ne se charge pas.",
         },
         steps: [
           {
-            sn: "01 / définition & contrat",
-            h: "Portée, calendrier, budget",
-            p: "Le premier rendez-vous fixe les objectifs et les ressources ; une proposition de contrat suit avant tout travail.",
+            sn: "01 / lire le balisage",
+            h: "Nœuds & liens depuis le DOM",
+            p: "web3d.js construit le graphe à partir des cercles du SVG et des liens <line data-a data-b> : modifier la carte, c’est modifier le balisage.",
           },
           {
-            sn: "02 / idéation & itération",
-            h: "Deux tours, puis le code",
-            p: "Valeurs, image de marque et préférences deviennent des idées, puis deux itérations sur la structure et le design avant validation.",
+            sn: "02 / recaler chaque image",
+            h: "Reprojeté à l’écran",
+            p: "À chaque image, chaque étoile est projetée à l’écran et son nœud SVG déplacé au même endroit, pour que libellés, anneaux de focus et zones cliquables restent sur les étoiles.",
           },
           {
-            sn: "03 / livraison & maintenance",
-            h: "Tout le code vous appartient",
-            p: "Le produit fini est livré dans son intégralité, avec un plan de maintenance pour le garder en bonne santé.",
+            sn: "03 / rien au repos",
+            h: "Différé, en pause, facultatif",
+            p: "Le script ne se charge qu’à l’approche de la carte et se met en pause hors écran. Avec le mouvement réduit ou sans WebGL, la carte plate reste.",
           },
         ],
       },
       {
-        kind: "quote",
-        quote: [
-          { t: "Une pomme par jour éloigne le médecin. " },
-          { t: "Un plan de maintenance", accent: true },
-          { t: " est essentiel à la santé de votre produit." },
+        kind: "statBand",
+        stats: [
+          { sv: "0", sl: "requête externe" },
+          { sv: "4 × 8", sl: "labs × compétences" },
+          { sv: "10", sl: "URL · EN + FR" },
+          { sv: "1", sl: "bibliothèque tierce" },
         ],
-        cite: "// YWdesign v1 — la feuille de route, dernière étape",
       },
       {
         kind: "gallery",
         head: { eyebrow: "Galerie", title: "À travers le site" },
         items: [
-          { id: "ywdesign-g1", span: "wide", alt: "Projets — travaux récents sous une barre de navigation en verre et un bandeau de compétences" },
-          { id: "ywdesign-g2", span: "tall", alt: "Grille de fonctionnalités — six cartes en verre aux icônes sur mesure" },
-          { id: "ywdesign-g3", span: "half", alt: "Méthode — la collaboration visualisée étape par étape" },
-          { id: "ywdesign-g4", span: "half", alt: "À propos — « Hi, I am Yolan »" },
+          { id: "automatx-g1", span: "wide", alt: "Accueil — la carte stellaire labs × compétences" },
+          { id: "automatx-g2", span: "tall", alt: "Lab Pharma — automatisation Hamilton VENUS et validation GMP" },
+          { id: "automatx-g3", span: "half", alt: "Lab Sport — signaux de mouvement simulés en SVG au trait fin" },
+          { id: "automatx-g4", span: "half", alt: "Origine — la recherche à la KU Leuven et le parcours" },
         ],
       },
     ],
     signatureData: {
-      ywGlass: {
-        toggle: "Verre",
-        cards: [
-          { t: "Responsive", d: "Une belle mise en page sur toutes les tailles d’écran." },
-          { t: "Animations", d: "Des interactions dynamiques qui donnent vie à votre site web." },
-          { t: "Performances", d: "Racontez votre histoire avec des technologies rapides." },
-          { t: "Axé sur l’UX/UI", d: "Les utilisateurs apprécient un design léger et facile à utiliser." },
-          { t: "CMS", d: "Gérez vous-même le contenu de votre site web." },
-          { t: "Référencement", d: "Atteignez de nouveaux clients de manière organique." },
-        ],
+      automatxWeb: {
+        intro:
+          "AutomatX Labs est le cabinet d’ingénierie indépendant de Yolan Weiler, ingénieur biomédical et électrique (KU Leuven) installé à Lyon. Une seule méthode appliquée partout : mesurer, automatiser, rendre reproductible.",
+        hint: "Glissez pour tourner · ⌘/Ctrl + molette ou pincez pour zoomer · touchez une étoile pour lire →",
+        go: "Ouvrir le lab →",
       },
     },
   },
@@ -632,10 +625,153 @@ export const projectsFR = {
     },
   },
 
-  // ── 05 · Milo Weiler — Analogique ───────────────────────────────────────
+  // ── 05 · YWdesign v1 ────────────────────────────────────────────────────
+  ywdesign: {
+    slug: "ywdesign",
+    eyebrowNum: "05",
+    category: "Site de studio · Version précédente",
+    year: "2023",
+    titleSegs: [
+      { t: "YWdesign v1 — votre " },
+      { t: "partenaire digital.", scramble: true, accent: true },
+    ],
+    lede:
+      "Le premier site du studio YWdesign : des panneaux en verre dépoli flottant sur un dégradé bleu-turquoise mouvant, une grille de services, une feuille de route entièrement transparente et un tunnel de devis. Pensé pour qu’un studio d’une personne inspire la confiance d’un vrai partenaire.",
+    liveHref: "https://ywdesign2.netlify.app/fr",
+    meta: {
+      role: "Marque, design & développement",
+      year: "2023",
+      sector: "Studio web · Freelance",
+      stack: ["Next.js", "Tailwind CSS", "Sanity", "Framer Motion"],
+    },
+    heroImg: "/work/ywdesign-hero.jpg",
+    heroAlt: "Accueil de YWdesign v1 — « Your Digital Partner » sur un dégradé bleu-turquoise avec une navigation en verre",
+    metaTitle: "YWdesign v1 — Étude de cas",
+    metaDescription:
+      "L’ancien site du studio YWdesign : un design system glassmorphism en Tailwind, une grille de fonctionnalités aux icônes sur mesure, une feuille de route transparente étape par étape et une version EN · FR.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "Le brief",
+          title: "Faire d’un studio d’une personne un vrai partenaire.",
+        },
+        paras: [
+          [
+            { t: "Qui engage un freelance s’inquiète d’une chose : " },
+            { t: "ce qui se passe après la mise en ligne", b: true },
+            {
+              t: ". Le site devait y répondre avant même la question — des services clairs, un processus visible et une ligne directe vers une vraie personne.",
+            },
+          ],
+          [
+            { t: "Le style portait le message : " },
+            { t: "du verre léger, en couches", b: true },
+            {
+              t: ", sur un dégradé vivant. Rien de lourd, tout reste lisible, et chaque panneau devient une petite fenêtre sur la marque.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ glass_system ]",
+            b: "Des panneaux dépolis, une seule recette",
+            p: "Du blanc à 10 % d’opacité, un flou d’arrière-plan, une bordure fine et une ombre douce — la même recette Tailwind pour la navigation, les cartes, le pied de page et les boutons.",
+          },
+          {
+            k: "[ feature_icons ]",
+            b: "Six promesses, six icônes",
+            p: "Responsive, animations, performances, UX/UI, CMS et référencement — chacune avec son icône sur mesure et une promesse en deux lignes.",
+          },
+          {
+            k: "[ roadmap ]",
+            b: "Un processus visible",
+            p: "De la définition du projet à la maintenance, chaque étape est dessinée pour que le prix et le calendrier ne surprennent jamais.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · FR",
+            p: "Un routage et des textes bilingues pour des clients en Belgique, en France et en Suisse.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "ywGlass",
+        head: {
+          eyebrow: "Réalisation phare",
+          title: "Ce qui fait un meilleur site web",
+          intro:
+            "La grille de fonctionnalités de l’ancienne page services, reconstruite en CSS pur : des cartes dépolies sur un dégradé mouvant, des colonnes décalées, un léger soulèvement et une bordure qui pulse au survol. Désactivez le verre pour voir ce que fait le flou.",
+        },
+        label: "components/FeatureCard.jsx",
+        note: "survoler · activer le verre",
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "Comment ça convertit",
+          title: "La transparence comme argument",
+          intro:
+            "La page de la méthode fait la vente : chaque étape, du premier rendez-vous à la livraison, est exposée — la demande de devis devient l’étape naturelle suivante.",
+        },
+        steps: [
+          {
+            sn: "01 / définition & contrat",
+            h: "Portée, calendrier, budget",
+            p: "Le premier rendez-vous fixe les objectifs et les ressources ; une proposition de contrat suit avant tout travail.",
+          },
+          {
+            sn: "02 / idéation & itération",
+            h: "Deux tours, puis le code",
+            p: "Valeurs, image de marque et préférences deviennent des idées, puis deux itérations sur la structure et le design avant validation.",
+          },
+          {
+            sn: "03 / livraison & maintenance",
+            h: "Tout le code vous appartient",
+            p: "Le produit fini est livré dans son intégralité, avec un plan de maintenance pour le garder en bonne santé.",
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        quote: [
+          { t: "Une pomme par jour éloigne le médecin. " },
+          { t: "Un plan de maintenance", accent: true },
+          { t: " est essentiel à la santé de votre produit." },
+        ],
+        cite: "// YWdesign v1 — la feuille de route, dernière étape",
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Galerie", title: "À travers le site" },
+        items: [
+          { id: "ywdesign-g1", span: "wide", alt: "Projets — travaux récents sous une barre de navigation en verre et un bandeau de compétences" },
+          { id: "ywdesign-g2", span: "tall", alt: "Grille de fonctionnalités — six cartes en verre aux icônes sur mesure" },
+          { id: "ywdesign-g3", span: "half", alt: "Méthode — la collaboration visualisée étape par étape" },
+          { id: "ywdesign-g4", span: "half", alt: "À propos — « Hi, I am Yolan »" },
+        ],
+      },
+    ],
+    signatureData: {
+      ywGlass: {
+        toggle: "Verre",
+        cards: [
+          { t: "Responsive", d: "Une belle mise en page sur toutes les tailles d’écran." },
+          { t: "Animations", d: "Des interactions dynamiques qui donnent vie à votre site web." },
+          { t: "Performances", d: "Racontez votre histoire avec des technologies rapides." },
+          { t: "Axé sur l’UX/UI", d: "Les utilisateurs apprécient un design léger et facile à utiliser." },
+          { t: "CMS", d: "Gérez vous-même le contenu de votre site web." },
+          { t: "Référencement", d: "Atteignez de nouveaux clients de manière organique." },
+        ],
+      },
+    },
+  },
+
+  // ── 06 · Milo Weiler — Analogique ───────────────────────────────────────
   analoog: {
     slug: "analoog",
-    eyebrowNum: "05",
+    eyebrowNum: "06",
     category: "Photographie argentique · Belgique",
     year: "2026",
     titleSegs: [

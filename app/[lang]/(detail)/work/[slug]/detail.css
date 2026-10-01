@@ -371,3 +371,108 @@ body[data-surface="glass"] .stat-band > div{
 }
 @media(max-width:480px){.ywg-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.ywg-blob,.ywg-card:hover{animation:none}}
+
+/* AutomatX signature — labs map ported from automatx.eu styles.css (.web*, wordmark,
+   zoom), scoped under .axw with the site's own dark tokens */
+.axw{position:relative;isolation:isolate;padding:clamp(14px,3vw,32px);
+  background:radial-gradient(120% 90% at 50% 0%,#11151b,#090b0e 70%);color:var(--text);
+  --bg:#090b0e;--bg-1:#0d1014;--bg-2:#11151b;--text:#e7eaef;--text-dim:#99a2ae;--text-faint:#7d8794;
+  --line:rgba(159,178,199,.10);--line-soft:rgba(159,178,199,.06);--line-strong:rgba(159,178,199,.18);
+  --accent:#3aa0c8;--accent-2:#9b7be0;--accent-line:color-mix(in oklab,var(--accent) 38%,transparent)}
+.axw .web{position:relative;z-index:1}
+.axw svg.x { display: inline; height: 0.7em; width: 0.64em; margin-left: 0.02em; }
+.axw svg.x .x__b { fill: color-mix(in oklab, var(--accent) 60%, var(--text-faint)); }
+.axw svg.x .x__a { fill: var(--accent); stroke: var(--bg); stroke-width: 2.4; paint-order: stroke; }
+/* inline wordmark wherever "AutomatX Labs" appears in copy */
+.axw .wm {
+  font-family: var(--sans); font-weight: 600; letter-spacing: -0.02em; text-transform: none;
+  color: var(--text);
+}
+.axw .wm__labs {
+  font-family: var(--mono); font-size: 0.62em; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-faint); padding: 0.1em 0.5em; border: 1px solid var(--line-strong); border-radius: 4px;
+}
+.axw .web__go { display: inline-block; text-decoration: none; }
+.axw .web__go:hover { text-decoration: underline; }
+
+.axw .web {
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.7fr); gap: clamp(20px, 3vw, 40px); align-items: center;
+  border: 1px solid var(--line); border-radius: 14px; padding: clamp(14px, 3vw, 32px);
+  background: linear-gradient(180deg, var(--bg-1), var(--bg));
+}
+.axw .web > svg { width: 100%; height: auto; overflow: visible; }
+.axw .web > svg { grid-column: 1; grid-row: 1; }
+.axw .web__panel { grid-column: 2; grid-row: 1; }
+.axw .web .edge { stroke: var(--line-strong); stroke-width: 1; transition: opacity 0.2s, stroke 0.2s; }
+.axw .web .edge--core { stroke: var(--accent-line); }
+.axw .web .node { transition: opacity 0.2s; cursor: default; }
+.axw .web .node circle { fill: var(--bg-2); stroke: var(--line-strong); stroke-width: 1.2; }
+.axw .web .node text { fill: var(--text-dim); font-family: var(--mono); font-size: 14px; text-anchor: middle; }
+.axw .web .node--lab { cursor: pointer; }
+.axw .web .node--lab circle { stroke: var(--c); fill: color-mix(in oklab, var(--c) 18%, var(--bg-1)); stroke-width: 1.6; }
+.axw .web .node--lab text { fill: var(--text); font-family: var(--sans); font-size: 17px; font-weight: 600; }
+.axw .web .node--lab text.sub { fill: var(--c); font-family: var(--mono); font-size: 12px; font-weight: 500; }
+.axw .web .node--hub circle { fill: var(--bg); stroke: var(--accent); }
+.axw .web .node--hub path { fill: none; stroke: var(--accent); stroke-width: 4.4; stroke-linecap: round; }
+.axw .web .node--lab circle { transition: filter 0.2s; }
+.axw .web .node--lab:hover circle, .axw .web .node--lab:focus-visible circle { filter: drop-shadow(0 0 10px var(--c)); }
+.axw .web .node:focus { outline: none; }
+.axw .web .node:focus-visible circle { stroke: var(--text); stroke-width: 2.4; }
+.axw .web.is-focus .edge, .axw .web.is-focus .node { opacity: 0.18; }
+.axw .web.is-focus .edge.on, .axw .web.is-focus .node.on, .axw .web.is-focus .node.is-pin { opacity: 1; }
+.axw .web.is-focus .edge.on { stroke: var(--text-dim); }
+.axw .web__panel { border-left: 1px dashed var(--line-strong); padding-left: clamp(16px, 2vw, 28px); min-height: 160px; }
+.axw .web__panel b { display: block; font-size: 22px; letter-spacing: -0.02em; margin-bottom: 10px; }
+.axw .web__panel p { color: var(--text-dim); font-size: 15px; }
+.axw .web__panel small { display: block; margin-top: 16px; font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); letter-spacing: 0.03em; }
+
+/* three.js layer (web3d.js): canvas spans the section behind .wrap; SVG keeps labels, rings & hit areas */
+.axw .web3d { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.axw .web.is-3d { background: linear-gradient(180deg, color-mix(in oklab, var(--bg-1) 45%, transparent), transparent); }
+.axw .web.is-3d .edge { visibility: hidden; }
+/* stars + the X are drawn in 3D; SVG discs stay as invisible hit areas (focus ring still shows) */
+.axw .web.is-3d .node circle { fill-opacity: 0; stroke-opacity: 0; }
+.axw .web.is-3d .node:focus-visible circle { stroke-opacity: 1; }
+.axw .web.is-3d .node--hub > path { opacity: 0; }
+.axw .web .node--hub { cursor: pointer; }
+.axw .web.is-3d .node { cursor: pointer; touch-action: none; }
+/* empty map = orbit handle; touch: horizontal swipe rotates, vertical still scrolls */
+.axw .web.is-3d > svg { touch-action: pan-y; user-select: none; overflow: visible; }
+/* fine labels on a thin leader line, brighter when selected / linked (--d = depth from web3d.js) */
+.axw .web.is-3d .node :is(text, .lead, .wm-x) { opacity: calc(var(--d, 1) * 0.55); transition: opacity 0.2s; pointer-events: none; }
+.axw .web.is-3d .node text { text-anchor: start; font-family: var(--sans); font-size: 8.5px; font-weight: 400;
+  letter-spacing: 0.035em; fill: var(--text-dim); stroke: none; paint-order: normal;
+  -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+.axw .web.is-3d .node .lead { fill: none; stroke: var(--text-faint); stroke-width: 0.6; }
+.axw .web.is-3d .node--lab text { font-size: 10px; font-weight: 400; fill: var(--text); }
+.axw .web.is-3d .node--lab .lead { stroke: color-mix(in oklab, var(--c) 60%, transparent); }
+/* the four labs always carry their coloured tag */
+.axw .web.is-3d .node--lab text.sub { font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--c); opacity: calc(var(--d, 1) * 0.9); }
+.axw .web.is-3d .node--hub text { font-size: 11px; font-weight: 500; letter-spacing: -0.01em; fill: var(--text); }
+.axw .web.is-3d .node--hub text.wm-labs { font-weight: 400; fill: var(--text-dim); }
+.axw .web .node--hub .wm-x .x__b { fill: color-mix(in oklab, var(--accent) 60%, var(--text-faint)); }
+.axw .web .node--hub .wm-x .x__a { fill: var(--accent); stroke: var(--bg); stroke-width: 2.4; paint-order: stroke; }
+.axw .web.is-3d .node--hub :is(text, .lead, .wm-x) { opacity: 0.9; }
+.axw .web.is-3d .node--hub .lead { stroke: var(--accent); }
+.axw .web.is-3d .node:is(.is-sel, .is-hover, .is-pin) :is(text, text.sub, .lead, .wm-x) { opacity: 1; }
+.axw .web.is-3d .node.is-pin text:not(.sub) { fill: var(--text); }
+.axw .web.is-3d .node.is-pin .lead { stroke: var(--text-dim); stroke-width: 0.8; }
+
+/* while web3d.js loads: a small loader instead of the flat 2D graph */
+.axw .web.is-loading:not(.is-3d) > svg { visibility: hidden; }
+.axw .web__load { display: none; }
+.axw .web.is-loading:not(.is-3d) .web__load {
+  display: flex; gap: 6px; grid-column: 1; grid-row: 1; place-self: center; align-items: center; pointer-events: none;
+}
+.axw .web__load i { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: web-load 1.1s ease-in-out infinite; }
+.axw .web__zoom { grid-column: 1; grid-row: 1; align-self: end; justify-self: start; display: flex; gap: 4px; z-index: 2; position: relative; }
+.axw .web__zoom button {
+  width: 30px; height: 30px; display: grid; place-items: center; cursor: pointer; padding: 0;
+  font-family: var(--mono); font-size: 14px; line-height: 1; color: var(--text-dim);
+  background: color-mix(in oklab, var(--bg) 70%, transparent); border: 1px solid var(--line-strong); border-radius: 8px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.axw .web__zoom button:hover, .axw .web__zoom button:focus-visible { color: var(--accent); border-color: var(--accent-line); }
+.axw .web__zoom output { align-self: center; margin-left: 6px; font-family: var(--mono); font-size: 10.5px; color: var(--text-faint); min-width: 4ch; }
+@media(max-width:980px){.axw{padding:6px}.axw .web{grid-template-columns:1fr;padding:12px}
+  .axw .web__panel{grid-column:1;grid-row:2;border-left:0;border-top:1px dashed var(--line-strong);padding:18px 0 0;min-height:0}}

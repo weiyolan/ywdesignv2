@@ -11,6 +11,7 @@ import { NuShop } from "@/components/work/signature/NuShop";
 import { MiloChapterRail } from "@/components/work/signature/MiloChapterRail";
 import { BermudaIcons } from "@/components/work/signature/BermudaIcons";
 import { YwGlass } from "@/components/work/signature/YwGlass";
+import { AutomatxWeb } from "@/components/work/signature/AutomatxWeb";
 import type { Section as SectionT, Project } from "@/content/work";
 
 // Picks the right demo for a signature section from the project's signatureData.
@@ -32,6 +33,8 @@ function SignatureDemo({
       return data?.bermudaIcons ? <BermudaIcons data={data.bermudaIcons} /> : null;
     case "ywGlass":
       return data?.ywGlass ? <YwGlass data={data.ywGlass} /> : null;
+    case "automatxWeb":
+      return data?.automatxWeb ? <AutomatxWeb data={data.automatxWeb} /> : null;
   }
 }
 
@@ -88,8 +91,8 @@ export function Section({
                 </span>
                 <span>{section.note}</span>
               </div>
-              {/* nuShop renders its own light-palette shell (no .demo-stage). */}
-              {section.demo === "nuShop" ? (
+              {/* nuShop / automatxWeb render their own shell (no .demo-stage). */}
+              {section.demo === "nuShop" || section.demo === "automatxWeb" ? (
                 <SignatureDemo demo={section.demo} data={signatureData} />
               ) : (
                 <div className="demo-stage">
