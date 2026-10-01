@@ -2,7 +2,6 @@
 // Source of truth: Claude Design/index.html. Decorative visuals (the bento
 // mini-graphics, charts, terminal) live in their components; only translatable
 // copy lives here.
-import type { NumFmt } from "@/lib/format";
 
 /** An inline text run: plain, or flagged to scramble / accent / bold / emphasise. */
 export type Seg = {
@@ -41,16 +40,6 @@ export const home = {
     ctas: [
       { label: "See the work", href: "#work", variant: "primary" as const, arrow: "→" },
       { label: "The philosophy", href: "#ai", variant: "ghost" as const },
-    ],
-  },
-
-  growth: {
-    title: "growth.tsx — what good code earns",
-    live: "live",
-    funnel: [
-      { k: "Visitors", val: 48200, fmt: "k" as NumFmt, d: "+0%" },
-      { k: "Clicks", val: 13100, fmt: "k" as NumFmt, d: "27% CTR" },
-      { k: "Profit", val: 92400, fmt: "eur" as NumFmt, d: "▲ shipped", profit: true },
     ],
   },
 
@@ -115,14 +104,6 @@ export const home = {
   },
 
   orb: {
-    tk: "02",
-    eyebrow: "Real-time 3D",
-    title: [
-      [{ t: "Not a video." }],
-      [{ t: "A ", }, { t: "live", accent: true, scramble: true }, { t: " 3D scene." }],
-    ] as Seg[][],
-    lede:
-      "Rendered on your GPU at 60 fps — hand-written GLSL shaders for the glow and colour, lens flares that cross the page, spring physics on the drag, a GSAP timeline on the switch. Grab it and spin it.",
     sun: "Sun",
     moon: "Moon",
     toggle: "Switch sun and moon",
@@ -135,7 +116,7 @@ export const home = {
   },
 
   stack: {
-    tk: "03",
+    tk: "02",
     eyebrow: "The stack, in depth",
     title: ["No WordPress.", "Personalized" + nbsp + "code."],
     intro:
@@ -188,7 +169,7 @@ export const home = {
   },
 
   work: {
-    tk: "04",
+    tk: "03",
     eyebrow: "Selected work",
     title: "Shipped, in production.",
     intro:
@@ -205,7 +186,7 @@ export const home = {
   },
 
   ai: {
-    tk: "05",
+    tk: "04",
     eyebrow: "The philosophy",
     title: [
       [{ t: "A power tool." }],
@@ -223,7 +204,7 @@ export const home = {
   },
 
   process: {
-    tk: "06",
+    tk: "05",
     eyebrow: "How I work",
     title: "A transparent pipeline.",
     intro:

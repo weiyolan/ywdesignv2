@@ -20,7 +20,7 @@ const GHOSTS = [
   { k: 1.55, s: 38, c: "#fff1c2", t: "hex" },
 ];
 
-// star layers: [parallax px per radian of yaw, tile size px] — tiles match SunMoon.tsx
+// star layers: [parallax px per radian of yaw, tile size px] — tiles match Hero.tsx
 const SKY = [
   [60, 360],
   [110, 520],
@@ -36,18 +36,21 @@ type Copy = {
   aria: { sun: string; moon: string };
 };
 
-export function SunMoonDemo({ copy }: { copy: Copy }) {
+// `hero`: the landing hero — space is on from the first paint and only fades out on the way past.
+export function SunMoonDemo({ copy, hero }: { copy: Copy; hero?: boolean }) {
   const [moon, setMoon] = useState(false);
   const [near, setNear] = useState(false); // ever came close → mount the scene
   const [visible, setVisible] = useState(false); // on screen → run the frame loop
   const [webgl, setWebgl] = useState(true);
+  const [ready, setReady] = useState(false); // first frame rendered → hide the loader
   const ref = useRef<HTMLDivElement>(null);
   const fx = useRef<HTMLDivElement>(null);
   // drag / rotation → CSS vars on the section (no React state per frame): the
   // flares read --fx/--fy, the three star layers slide by --s1..3 (parallax,
   // wrapped to their tile size so they never run out) and --sy.
   const onLight = (x: number, y: number, yaw: number, pitch: number) => {
-    const el = fx.current?.closest("section");
+    if (!ready) setReady(true);
+    const el = fx.current?.closest<HTMLElement>(".sunmoon");
     if (!el) return;
     el.style.setProperty("--fx", x.toFixed(3));
     el.style.setProperty("--fy", y.toFixed(3));
@@ -61,8 +64,16 @@ export function SunMoonDemo({ copy }: { copy: Copy }) {
   // Space fades in as the section scrolls in, holds while it fills the view,
   // and fades out on the way past (scrubbed → reversible, scroll-linked).
   useGSAP(() => {
-    const el = fx.current?.closest("section");
+    const el = fx.current?.closest<HTMLElement>(".sunmoon");
     if (!el) return;
+    if (hero) {
+      gsap.fromTo(el, { "--sp": 1 }, {
+        "--sp": 0,
+        ease: "none",
+        scrollTrigger: { trigger: el, start: "center top", end: "bottom top", scrub: 0.6 },
+      });
+      return;
+    }
     gsap
       .timeline({ scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: 0.6 } })
       .fromTo(el, { "--sp": 0 }, { "--sp": 1, duration: 0.3, ease: "none" }, 0.1)
@@ -106,6 +117,11 @@ export function SunMoonDemo({ copy }: { copy: Copy }) {
           ))}
         </div>
         <div ref={ref} className="sm-stage" role="img" aria-label={copy.aria[mode]}>
+          {webgl && (
+            <span className={"sm-loader" + (ready ? " is-done" : "")} aria-hidden="true">
+              <i />
+            </span>
+          )}
           {webgl ? (
             near && <SunMoonScene moon={moon} active={visible} onLight={onLight} />
           ) : (

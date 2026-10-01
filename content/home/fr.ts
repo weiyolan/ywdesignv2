@@ -1,5 +1,4 @@
 // FR home copy — full French translation, mirroring `home` in ./en.
-import type { NumFmt } from "@/lib/format";
 import type { Seg, Home } from "./en";
 
 const nbsp = " ";
@@ -22,16 +21,6 @@ export const homeFR = {
     ctas: [
       { label: "Voir les réalisations", href: "#work", variant: "primary" as const, arrow: "→" },
       { label: "La philosophie", href: "#ai", variant: "ghost" as const },
-    ],
-  },
-
-  growth: {
-    title: "growth.tsx — ce que rapporte un bon code",
-    live: "en direct",
-    funnel: [
-      { k: "Visiteurs", val: 48200, fmt: "k" as NumFmt, d: "+0 %" },
-      { k: "Clics", val: 13100, fmt: "k" as NumFmt, d: "27 % CTR" },
-      { k: "Profit", val: 92400, fmt: "eur" as NumFmt, d: "▲ livré", profit: true },
     ],
   },
 
@@ -96,14 +85,6 @@ export const homeFR = {
   },
 
   orb: {
-    tk: "02",
-    eyebrow: "3D temps réel",
-    title: [
-      [{ t: "Pas une vidéo." }],
-      [{ t: "Une scène 3D " }, { t: "en direct", accent: true, scramble: true }, { t: "." }],
-    ] as Seg[][],
-    lede:
-      "Rendue par votre carte graphique à 60 fps — des shaders GLSL écrits à la main pour la lumière et les couleurs, des reflets qui traversent la page, une physique à ressort pour le glisser, une timeline GSAP pour la bascule. Attrapez-la et faites-la tourner.",
     sun: "Soleil",
     moon: "Lune",
     toggle: "Basculer entre soleil et lune",
@@ -116,7 +97,7 @@ export const homeFR = {
   },
 
   stack: {
-    tk: "03",
+    tk: "02",
     eyebrow: "La stack, en profondeur",
     title: ["Pas de WordPress.", "Du code" + nbsp + "personnalisé."],
     intro:
@@ -169,7 +150,7 @@ export const homeFR = {
   },
 
   work: {
-    tk: "04",
+    tk: "03",
     eyebrow: "Réalisations choisies",
     title: "Livré, en production.",
     intro:
@@ -186,7 +167,7 @@ export const homeFR = {
   },
 
   ai: {
-    tk: "05",
+    tk: "04",
     eyebrow: "La philosophie",
     title: [
       [{ t: "Un outil puissant." }],
@@ -204,7 +185,7 @@ export const homeFR = {
   },
 
   process: {
-    tk: "06",
+    tk: "05",
     eyebrow: "Ma façon de travailler",
     title: "Un pipeline transparent.",
     intro:

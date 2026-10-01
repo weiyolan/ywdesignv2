@@ -1,5 +1,4 @@
 // NL home copy — full Dutch translation (Belgian/Flemish).
-import type { NumFmt } from "@/lib/format";
 import type { Seg, Home } from "./en";
 
 const nbsp = " ";
@@ -22,16 +21,6 @@ export const homeNL = {
     ctas: [
       { label: "Bekijk het werk", href: "#work", variant: "primary" as const, arrow: "→" },
       { label: "De filosofie", href: "#ai", variant: "ghost" as const },
-    ],
-  },
-
-  growth: {
-    title: "growth.tsx — wat goede code oplevert",
-    live: "live",
-    funnel: [
-      { k: "Bezoekers", val: 48200, fmt: "k" as NumFmt, d: "+0%" },
-      { k: "Klikken", val: 13100, fmt: "k" as NumFmt, d: "27% CTR" },
-      { k: "Winst", val: 92400, fmt: "eur" as NumFmt, d: "▲ live", profit: true },
     ],
   },
 
@@ -96,14 +85,6 @@ export const homeNL = {
   },
 
   orb: {
-    tk: "02",
-    eyebrow: "Realtime 3D",
-    title: [
-      [{ t: "Geen video." }],
-      [{ t: "Een " }, { t: "live", accent: true, scramble: true }, { t: " 3D-scène." }],
-    ] as Seg[][],
-    lede:
-      "Gerenderd op je GPU aan 60 fps — zelfgeschreven GLSL-shaders voor licht en kleur, lens flares die over de pagina schieten, veerfysica bij het slepen, een GSAP-timeline bij de wissel. Pak hem vast en laat hem draaien.",
     sun: "Zon",
     moon: "Maan",
     toggle: "Wissel tussen zon en maan",
@@ -116,7 +97,7 @@ export const homeNL = {
   },
 
   stack: {
-    tk: "03",
+    tk: "02",
     eyebrow: "De stack, in detail",
     title: ["Geen WordPress.", "Code" + nbsp + "op maat."],
     intro:
@@ -169,7 +150,7 @@ export const homeNL = {
   },
 
   work: {
-    tk: "04",
+    tk: "03",
     eyebrow: "Geselecteerd werk",
     title: "Gelanceerd, in productie.",
     intro:
@@ -186,7 +167,7 @@ export const homeNL = {
   },
 
   ai: {
-    tk: "05",
+    tk: "04",
     eyebrow: "De filosofie",
     title: [
       [{ t: "Een power tool." }],
@@ -204,7 +185,7 @@ export const homeNL = {
   },
 
   process: {
-    tk: "06",
+    tk: "05",
     eyebrow: "Hoe ik werk",
     title: "Een transparante pijplijn.",
     intro:
