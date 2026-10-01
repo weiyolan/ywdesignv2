@@ -97,7 +97,7 @@ export function SunMoonDemo({ copy, hero }: { copy: Copy; hero?: boolean }) {
 
   const mode = moon ? "moon" : "sun";
   return (
-    <div className="sm-demo" data-mode={mode}>
+    <div className="sm-demo" data-mode={mode} data-ready={ready || undefined}>
       <div className="sm-toggle" role="group" aria-label={copy.toggle}>
         <button type="button" aria-pressed={!moon} onClick={() => setMoon(false)}>
           ☀ {copy.sun}
@@ -118,7 +118,8 @@ export function SunMoonDemo({ copy, hero }: { copy: Copy; hero?: boolean }) {
         </div>
         <div ref={ref} className="sm-stage" role="img" aria-label={copy.aria[mode]}>
           {webgl && (
-            <span className={"sm-loader" + (ready ? " is-done" : "")} aria-hidden="true">
+            <span className={"sm-loader" + (ready ? " is-merge" : "")} aria-hidden="true">
+              <i />
               <i />
             </span>
           )}

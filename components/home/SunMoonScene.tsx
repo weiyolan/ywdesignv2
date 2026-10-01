@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PresentationControls } from "@react-three/drei";
 import {
@@ -85,7 +85,7 @@ void main(){
 }`;
 
 const CORONA_FRAG = /* glsl */ `
-uniform float uTime; uniform float uMix; varying vec2 vUv;
+uniform float uTime; uniform float uMix; uniform float uGrow; varying vec2 vUv;
 // plane half-size 1.3 → the sphere's limb sits at r ≈ .77 (sun) / .69 (moon, scale .9)
 void main(){
   vec2 p=(vUv-.5)*2.; float r=length(p); float a=atan(p.y,p.x);
@@ -95,6 +95,7 @@ void main(){
   // soft, wide rays born at the limb, tapering outward; two sets drifting apart
   float rays=pow(.5+.5*sin(a*12.+uTime*.2),3.)*.55+pow(.5+.5*sin(a*7.-uTime*.13+1.7),4.)*.4;
   rays*=exp(-d*3.2)*smoothstep(limb,limb+.16,r); // roots fade in → no beads on the rim
+  rays*=smoothstep(.35,1.,uGrow); halo*=uGrow; // intro: rays bloom only as the sun grows
   vec3 warm=mix(vec3(1.,.72,.38),vec3(1.,.4,.4),smoothstep(0.,.25,d));
   float k=(halo+rays*.8)*mix(1.,.28,uMix)*smoothstep(1.,.8,r);
   gl_FragColor=vec4(mix(warm,vec3(.45,.55,1.),uMix)*k,k);
@@ -102,7 +103,7 @@ void main(){
 
 // ponytail: module-level scene state — there is exactly one scene on the page;
 // hoist into a hook/context if it ever renders twice.
-const uniforms = { uTime: { value: 0 }, uMix: { value: 0 }, uLight: { value: new Vector3(-1, 0.4, -0.35).normalize() } };
+const uniforms = { uTime: { value: 0 }, uMix: { value: 0 }, uGrow: { value: 0 }, uLight: { value: new Vector3(-1, 0.4, -0.35).normalize() } };
 // Built directly (not as JSX props) so all materials share THIS uniforms object
 // by reference — R3F would copy a `uniforms` prop and the GSAP tween would miss.
 const additive = { uniforms, transparent: true, depthWrite: false, blending: AdditiveBlending };
@@ -167,6 +168,24 @@ function Orb({ moon, reduced, onLight }: { moon: boolean; reduced: boolean; onLi
   );
 }
 
+// Intro: the loader's two dots merge (CSS, MERGE s) and the sun grows out of
+// the merged dot — orb + corona scale up from dot size on the first frame.
+const MERGE = 0.45;
+function Grow({ reduced, children }: { reduced: boolean; children: ReactNode }) {
+  const g = useRef<Group>(null);
+  const tw = useRef<gsap.core.Tween>(null);
+  useEffect(() => () => void tw.current?.kill(), []);
+  useFrame(() => {
+    tw.current ??= gsap.fromTo(
+      uniforms.uGrow,
+      { value: reduced ? 1 : 0 },
+      { value: 1, duration: reduced ? 0 : 1.4, delay: reduced ? 0 : MERGE, ease: "power3.out" },
+    );
+    g.current?.scale.setScalar(0.05 + 0.95 * uniforms.uGrow.value);
+  });
+  return <group ref={g}>{children}</group>;
+}
+
 export default function SunMoonScene({ moon, active, onLight }: { moon: boolean; active: boolean; onLight: Light }) {
   const [reduced] = useState(() => matchMedia("(prefers-reduced-motion: reduce)").matches);
   return (
@@ -177,13 +196,15 @@ export default function SunMoonScene({ moon, active, onLight }: { moon: boolean;
       camera={{ position: [0, 0, 4.2], fov: 38 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
     >
-      {/* corona: camera-facing, outside the controls so it never tilts */}
-      <mesh position={[0, 0, -0.05]} material={coronaMat}>
-        <planeGeometry args={[2.6, 2.6]} />
-      </mesh>
-      <PresentationControls global snap={false} speed={1.5} polar={[-0.6, 0.6]} damping={0.3}>
-        <Orb moon={moon} reduced={reduced} onLight={onLight} />
-      </PresentationControls>
+      <Grow reduced={reduced}>
+        {/* corona: camera-facing, outside the controls so it never tilts */}
+        <mesh position={[0, 0, -0.05]} material={coronaMat}>
+          <planeGeometry args={[2.6, 2.6]} />
+        </mesh>
+        <PresentationControls global snap={false} speed={1.5} polar={[-0.6, 0.6]} damping={0.3}>
+          <Orb moon={moon} reduced={reduced} onLight={onLight} />
+        </PresentationControls>
+      </Grow>
     </Canvas>
   );
 }

@@ -570,6 +570,10 @@ header{padding:170px 0 60px;position:relative}
 /* square, never taller than wide: the camera fov is vertical, so a tall stage would crop the corona left/right */
 .sm-hero .sm-stage{width:min(100%,640px);aspect-ratio:1;max-height:none;margin-inline:auto}
 @media(max-width:980px){.sm-hero .sm-stage{width:min(100%,420px)}} /* flares span the page width, never widen it */
+/* big screens: the hero grid outgrows --maxw so the orb column (≈526px at 1280) keeps growing;
+   the stage stays square and short of the viewport height (header pad + toggle + chips) */
+@media(min-width:1440px){.sm-hero .hero-grid{width:100%;max-width:min(1760px,94vw)}
+  .sm-hero .sm-stage{width:min(100%,calc(100svh - 280px))}}
 /* deep-space band — always dark (local tokens keep copy readable in light theme);
    fades into the page at top/bottom. Star layers slide with the orb's rotation. */
 .sunmoon{--fx:0;--fy:0;--s1:0px;--s2:0px;--s3:0px;--sy:0px;color-scheme:dark;
@@ -632,12 +636,23 @@ header{padding:170px 0 60px;position:relative}
 .sm-burst{transition:opacity 1.2s}.sm-demo[data-mode="moon"] .sm-burst{opacity:0}
 @media(prefers-reduced-motion:reduce){.sm-streak,.sm-burst,.sm-sky .l3{animation:none}.sm-fx{transition:none}}
 /* no-WebGL fallback: the CSS orb */
-/* tiny loader while the 3D sun compiles: a warm ember pulsing in the orb spot, fades on first frame */
-.sm-loader{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;transition:opacity .6s ease}
-.sm-loader.is-done{opacity:0}
-.sm-loader i{width:14px;height:14px;border-radius:50%;background:#ffd36b;box-shadow:0 0 18px 6px rgba(255,170,60,.55);animation:sm-ember 1.2s ease-in-out infinite}
-@keyframes sm-ember{0%,100%{transform:scale(.7);opacity:.55}50%{transform:scale(1.25);opacity:1}}
-@media(prefers-reduced-motion:reduce){.sm-loader i{animation:none}}
+/* loader while the 3D sun compiles: two embers orbiting each other in the orb spot. On the
+   first frame (.is-merge) they spiral in and fuse; the WebGL sun then grows out of the merged
+   dot (SunMoonScene MERGE = .45s) and the loader fades under it. */
+@property --sm-a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@property --sm-r{syntax:"<length>";inherits:false;initial-value:12px}
+@property --sm-k{syntax:"<number>";inherits:false;initial-value:1}
+.sm-loader{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;transition:opacity .5s ease .45s}
+.sm-loader.is-merge{opacity:0}
+.sm-loader i{grid-area:1/1;width:10px;height:10px;border-radius:50%;background:#ffd36b;box-shadow:0 0 14px 4px rgba(255,170,60,.55);
+  transform:rotate(var(--sm-a)) translateX(var(--sm-r)) scale(var(--sm-k));animation:sm-orbit 1.1s linear infinite;
+  transition:--sm-r .45s cubic-bezier(.5,0,.75,0),--sm-k .45s ease-in,background .45s,box-shadow .45s}
+.sm-loader i + i{background:#ff8a6b;box-shadow:0 0 14px 4px rgba(255,90,120,.5);animation-delay:-.55s}
+.sm-loader.is-merge i{--sm-r:0px;--sm-k:1.6;background:#fff1c2;box-shadow:0 0 22px 8px rgba(255,170,60,.7);animation-duration:.5s}
+@keyframes sm-orbit{to{--sm-a:360deg}}
+@media(prefers-reduced-motion:reduce){.sm-loader i{animation:none;transition:none}.sm-loader i + i{--sm-a:180deg}}
+/* flares wait for the sun (fade in as it grows) */
+.sm-demo:not([data-ready]) .sm-fx{opacity:0}
 .sm-fallback{position:absolute;inset:0;margin:auto;width:46%;aspect-ratio:1;border-radius:50%;transition:background 1s,box-shadow 1s,transform 1s;
   background:radial-gradient(circle at 35% 30%,#ffd17a,#ff7a3c 55%,#d64500);box-shadow:0 0 90px 10px rgba(255,140,60,.45)}
 .sm-demo[data-mode="moon"] .sm-fallback{transform:scale(.9);
