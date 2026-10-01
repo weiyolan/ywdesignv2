@@ -4,10 +4,319 @@
 import type { Slug, Project } from "./en";
 
 export const projectsFR = {
-  // ── 01 · Nu ─────────────────────────────────────────────────────────────
+  // ── 01 · AutomatX Labs ──────────────────────────────────────────────────
+  automatx: {
+    slug: "automatx",
+    eyebrowNum: "01",
+    category: "Cabinet d’ingénierie · Lyon",
+    year: "2026",
+    titleSegs: [
+      { t: "AutomatX — un ingénieur, " },
+      { t: "X labs.", scramble: true, accent: true },
+    ],
+    lede:
+      "Le site d’AutomatX Labs, mon cabinet d’ingénierie indépendant. Quatre labs répartis selon ce qu’ils améliorent (un procédé, un corps, un objet physique, un calcul), huit compétences qui les traversent, et une carte stellaire en 3D qui réunit tout le modèle sur un seul écran.",
+    liveHref: "https://automatx.eu/fr/",
+    meta: {
+      role: "Marque, design & développement",
+      year: "2026",
+      sector: "Ingénierie · Automatisation de laboratoire",
+      stack: ["HTML", "CSS", "Vanilla JS", "three.js"],
+    },
+    heroImg: "/work/automatx-hero.jpg",
+    heroAlt: "Accueil d’AutomatX Labs — « One engineer. X labs. » sur une grille d’ingénierie sombre",
+    metaTitle: "AutomatX Labs — Étude de cas",
+    metaDescription:
+      "La réalisation d’automatx.eu : un site statique et bilingue sans aucune requête externe, une structure X Labs et une constellation three.js interactive des labs et des compétences.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "Le brief",
+          title: "Plusieurs domaines, une méthode, un site.",
+        },
+        paras: [
+          [
+            { t: "Automatisation de laboratoire, analyse du mouvement, impression 3D, IA. Sur un CV, ça paraît dispersé. Le site devait montrer qu’il s’agit d’" },
+            { t: "une seule méthode appliquée partout", b: true },
+            { t: " : mesurer, automatiser, rendre reproductible." },
+          ],
+          [
+            { t: "La réponse, c’est le " },
+            { t: "modèle X Labs", b: true },
+            {
+              t: ". Les labs sont répartis selon le système qu’ils améliorent, et les compétences sont les outils qu’ils partagent. Un projet appartient au lab dont il améliore le système, pas à celui des outils qu’il utilise.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ x_labs ]",
+            b: "Quatre labs, huit compétences",
+            p: "Procédé · Pharma, Corps · Sport, Matière · Robotique et Calcul · IA partagent capteurs, électronique, mécanique, logiciel, données, IA/ML, validation et industrialisation.",
+          },
+          {
+            k: "[ zero_requests ]",
+            b: "Rien ne vient d’ailleurs",
+            p: "Polices, scripts et three.js sont tous auto-hébergés. Ni CDN, ni Google Fonts, ni analytics, donc rien qui pose une question RGPD.",
+          },
+          {
+            k: "[ progressive ]",
+            b: "Fonctionne sans JavaScript",
+            p: "D’abord du HTML et du CSS. Les scripts ne font qu’ajouter : la carte 3D, les figures sport animées et les apparitions au défilement.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · FR",
+            p: "Dix URL, chacune associée à son miroir français via hreflang, plus un sitemap et du JSON-LD.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "automatxWeb",
+        head: {
+          eyebrow: "Réalisation phare",
+          title: "Les labs en constellation",
+          intro:
+            "La carte de la page d’accueil, qui tourne ici comme sur le site en ligne. Les quatre labs sont placés sur deux diagonales, si bien que leurs liens dessinent le X du logo. Les compétences gravitent sur une sphère extérieure, près des labs qu’elles servent. Glissez pour tourner autour, lancez une étoile, survolez-la pour allumer ses liens.",
+        },
+        label: "web3d.js",
+        note: "glisser · survoler · ctrl + molette pour zoomer",
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "Comment c’est construit",
+          title: "Le SVG reste la source de vérité",
+          intro:
+            "La carte part d’un SVG accessible : vrais liens, nœuds focalisables, libellés lisibles. three.js est une couche placée derrière, et le SVG reste utilisable si cette couche ne se charge pas.",
+        },
+        steps: [
+          {
+            sn: "01 / lire le balisage",
+            h: "Nœuds & liens depuis le DOM",
+            p: "web3d.js construit le graphe à partir des cercles du SVG et des liens <line data-a data-b> : modifier la carte, c’est modifier le balisage.",
+          },
+          {
+            sn: "02 / recaler chaque image",
+            h: "Reprojeté à l’écran",
+            p: "À chaque image, chaque étoile est projetée à l’écran et son nœud SVG déplacé au même endroit, pour que libellés, anneaux de focus et zones cliquables restent sur les étoiles.",
+          },
+          {
+            sn: "03 / rien au repos",
+            h: "Différé, en pause, facultatif",
+            p: "Le script ne se charge qu’à l’approche de la carte et se met en pause hors écran. Avec le mouvement réduit ou sans WebGL, la carte plate reste.",
+          },
+        ],
+      },
+      {
+        kind: "statBand",
+        stats: [
+          { sv: "0", sl: "requête externe" },
+          { sv: "4 × 8", sl: "labs × compétences" },
+          { sv: "10", sl: "URL · EN + FR" },
+          { sv: "1", sl: "bibliothèque tierce" },
+        ],
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Galerie", title: "À travers le site" },
+        items: [
+          { id: "automatx-g1", span: "wide", alt: "Accueil — la carte stellaire labs × compétences" },
+          { id: "automatx-g2", span: "tall", alt: "Lab Pharma — automatisation Hamilton VENUS et validation GMP" },
+          { id: "automatx-g3", span: "half", alt: "Lab Sport — signaux de mouvement simulés en SVG au trait fin" },
+          { id: "automatx-g4", span: "half", alt: "Origine — la recherche à la KU Leuven et le parcours" },
+        ],
+      },
+    ],
+    signatureData: {
+      automatxWeb: {
+        intro:
+          "AutomatX Labs est le cabinet d’ingénierie indépendant de Yolan Weiler, ingénieur biomédical et électrique (KU Leuven) installé à Lyon. Une seule méthode appliquée partout : mesurer, automatiser, rendre reproductible.",
+        hint: "Glissez pour tourner · ⌘/Ctrl + molette ou pincez pour zoomer · touchez une étoile pour lire →",
+        go: "Ouvrir le lab →",
+      },
+    },
+  },
+
+  // ── 02 · Milo Weiler ────────────────────────────────────────────────────
+  milo: {
+    slug: "milo",
+    eyebrowNum: "02",
+    category: "Portfolio de photographie",
+    year: "2025",
+    titleSegs: [
+      { t: "Milo Weiler — témoin de la " },
+      { t: "beauté de la vie.", scramble: true, accent: true },
+    ],
+    lede:
+      "Un portfolio cinématographique pour un photographe belge de plateau, de portrait & corporate — 55 projets répartis sur sept chapitres, tenus ensemble par un écrin sombre et une navigation de chapitres collante.",
+    liveHref: "https://miloweiler.com",
+    meta: {
+      role: "Design & développement",
+      year: "2025",
+      sector: "Portfolio · Arts",
+      stack: ["Next.js", "Sanity", "Figma"],
+    },
+    heroImg: "/work/milo-hero.jpg",
+    heroAlt: "Milo Weiler — galerie d’un projet fine art en noir et blanc sur une page rouge profond",
+    metaTitle: "Milo Weiler — Étude de cas",
+    metaDescription:
+      "Un portfolio sombre et cinématographique pour un photographe belge — 55 projets sur sept chapitres, navigation de chapitres collante, trilingue EN · NL · FR, scores Lighthouse au sommet.",
+    sections: [
+      {
+        kind: "quote",
+        quote: [
+          { t: "Un corpus d’œuvres, pas une grille de vignettes — le site doit se lire comme un " },
+          { t: "livre de chapitres", accent: true },
+          { t: ", chacun avec sa propre voix." },
+        ],
+        cite: "// le brief, en une ligne",
+      },
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "Le brief",
+          title: "Un corpus d’œuvres, pas une grille de vignettes.",
+        },
+        paras: [
+          [
+            {
+              t: "La pratique de Milo navigue entre numérique et argentique, documentaire et mise en scène. Une galerie plate aplatirait toute cette amplitude. Au lieu de cela, le site se lit comme un ",
+            },
+            { t: "livre de chapitres", b: true },
+            {
+              t: " — Plateau, Corporate & Marque, Événements, Portraits, Produit & Food, Beaux-arts — chacun avec sa propre voix.",
+            },
+          ],
+          [
+            { t: "Un " },
+            { t: "écrin sombre et cinématographique", b: true },
+            {
+              t: " laisse la photographie rayonner, tandis qu’une navigation de chapitres collante vous garde orienté à travers 55 projets. Trilingue EN · NL · FR, avec de solides scores Lighthouse sur un site profondément riche en images.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ sectioned_scroll ]",
+            b: "Défilement par chapitres",
+            p: "Sept sections avec une navigation collante qui suit où vous êtes à mesure que vous parcourez le travail.",
+          },
+          {
+            k: "[ headless_cms ]",
+            b: "Galeries gérées dans Sanity",
+            p: "55 projets, légendes et ordre — tout éditable par Milo, sans déploiement.",
+          },
+          {
+            k: "[ performance ]",
+            b: "Rapide malgré les images",
+            p: "Un chargement d’images responsive et différé garde un site riche en médias rapide et sans décalage CLS.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · NL · FR",
+            p: "Trois langues, routing et métadonnées localisés de bout en bout.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "miloStack",
+        placement: "hero",
+        head: {
+          eyebrow: "Réalisation phare",
+          title: "La galerie en profondeur",
+          intro:
+            "La page d’accueil de miloweiler.com : chaque catégorie est une carte 16:9 dans une seule pile en profondeur. Un cran de molette ou un balayage avance d’une carte, un ticker lissé met à l’échelle et décale les autres, et la pièce prend la couleur de chaque photo. Faites défiler ou balayez dessus :",
+        },
+        label: "CardCarousel.jsx",
+        note: "molette · balayage · ← →",
+      },
+      {
+        kind: "chapterIndex",
+        head: {
+          eyebrow: "Architecture",
+          title: "Sept chapitres, un seul écrin cinématographique",
+          intro:
+            "55 projets n’ont pas leur place dans une grille plate. Ils sont triés en sept corpus d’œuvres, chacun avec sa propre voix — le rail collant suit où vous êtes à mesure que vous les parcourez.",
+        },
+        chapters: [
+          { cn: "01", ct: "Photographie de plateau", cd: "Clips, cinéma, théâtre & publicités" },
+          { cn: "02", ct: "Corporate & Marque", cd: "Campagnes, portraits d’équipe, coulisses" },
+          { cn: "03", ct: "Événements & Documentaires", cd: "Des scènes de concert aux salles de conférence" },
+          { cn: "04", ct: "Portraits & Headshots", cd: "Acteurs, musiciens & corporate, numérique et argentique" },
+          { cn: "05", ct: "Produit & Food", cd: "Design, texture et intention à travers la lumière" },
+          { cn: "06", ct: "Beaux-arts", cd: "Explorations entre documentaire & mise en scène" },
+          { cn: "07", ct: "Travaux personnels", cd: "Retracer le contexte qui façonne un instant" },
+        ],
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Galerie", title: "À travers les chapitres" },
+        items: [
+          { id: "milo-s1", span: "wide", alt: "Accueil — le carrousel en profondeur" },
+          { id: "milo-s2", span: "tall", alt: "À propos — portrait d’ouverture et soleil dessiné" },
+          { id: "milo-s3", span: "half", alt: "À propos — le collage photo flottant sur la lune" },
+          { id: "milo-s4", span: "half", alt: "Fine Art — page de chapitre" },
+          { id: "milo-s5", span: "half", alt: "Galerie de catégorie — Événements" },
+          { id: "milo-s6", span: "half", alt: "Contact — Get in touch et Trusted by" },
+        ],
+      },
+    ],
+    signatureData: {
+      // rail label, card title, description; img/bg/count/year from the live home (Sanity)
+      miloStack: {
+        projects: "projets",
+        prev: "Catégorie précédente",
+        next: "Catégorie suivante",
+        items: [
+          {
+            rail: "Photographie de plateau",
+            t: "Photographie de plateau",
+            p: "Là où l’art et la narration se rencontrent — des instants de clips, de cinéma, de théâtre et de publicités à travers la Belgique et au-delà.",
+            img: "/work/milo-stack-1.jpg", bg: "#4B0E07", count: 18, year: "2026",
+          },
+          {
+            rail: "Corporate & Marque",
+            t: "Corporate & Marque",
+            p: "Une entreprise, c’est plus que son produit. Campagnes de marque, portraits d’équipe et coulisses pour des entreprises en Belgique et aux Pays-Bas.",
+            img: "/work/milo-stack-2.jpg", bg: "#BD9A75", count: 9, year: "2026",
+          },
+          {
+            rail: "Événements & Docs",
+            t: "Événements & Documentaires",
+            p: "Des scènes de concert aux salles de conférence — documenter les événements tels qu’ils se déroulent, les instants authentiques plutôt que posés.",
+            img: "/work/milo-stack-3.jpg", bg: "#032900", count: 12, year: "2025",
+          },
+          {
+            rail: "Portraits",
+            t: "Portraits & Headshots",
+            p: "Le portrait comme prolongement de l’histoire de quelqu’un — des headshots professionnels pour acteurs, musiciens et clients corporate, en numérique et en argentique.",
+            img: "/work/milo-stack-4.jpg", bg: "#93b9ba", count: 13, year: "2025",
+          },
+          {
+            rail: "Produit & Food",
+            t: "Produit & Food",
+            p: "Chaque objet façonné raconte une histoire de design, de texture et d’intention — traduite par la lumière, la forme et la surface.",
+            img: "/work/milo-stack-5.jpg", bg: "#30221d", count: 6, year: "2026",
+          },
+          {
+            rail: "Beaux-arts",
+            t: "Beaux-arts & Personnel",
+            p: "Des explorations continues entre approches documentaire et dirigée, retraçant le contexte invisible qui façonne un instant.",
+            img: "/work/milo-stack-6.jpg", bg: "#070b22", count: 3, year: "2026",
+          },
+        ],
+      },
+    },
+  },
+
+  // ── 03 · Nu ─────────────────────────────────────────────────────────────
   nu: {
     slug: "nu",
-    eyebrowNum: "01",
+    eyebrowNum: "03",
     category: "E-commerce beauté & bien-être",
     year: "2024",
     titleSegs: [
@@ -175,302 +484,6 @@ export const projectsFR = {
             added: "✓ Added",
           },
         },
-      },
-    },
-  },
-
-  // ── 02 · Milo Weiler ────────────────────────────────────────────────────
-  milo: {
-    slug: "milo",
-    eyebrowNum: "02",
-    category: "Portfolio de photographie",
-    year: "2025",
-    titleSegs: [
-      { t: "Milo Weiler — témoin de la " },
-      { t: "beauté de la vie.", scramble: true, accent: true },
-    ],
-    lede:
-      "Un portfolio cinématographique pour un photographe belge de plateau, de portrait & corporate — 55 projets répartis sur sept chapitres, tenus ensemble par un écrin sombre et une navigation de chapitres collante.",
-    liveHref: "https://miloweiler.com",
-    meta: {
-      role: "Design & développement",
-      year: "2025",
-      sector: "Portfolio · Arts",
-      stack: ["Next.js", "Sanity", "Figma"],
-    },
-    heroImg: "/work/milo-hero.jpg",
-    heroAlt: "Milo Weiler — hero du portfolio photographique cinématographique",
-    metaTitle: "Milo Weiler — Étude de cas",
-    metaDescription:
-      "Un portfolio sombre et cinématographique pour un photographe belge — 55 projets sur sept chapitres, navigation de chapitres collante, trilingue EN · NL · FR, scores Lighthouse au sommet.",
-    sections: [
-      {
-        kind: "quote",
-        quote: [
-          { t: "Un corpus d’œuvres, pas une grille de vignettes — le site doit se lire comme un " },
-          { t: "livre de chapitres", accent: true },
-          { t: ", chacun avec sa propre voix." },
-        ],
-        cite: "// le brief, en une ligne",
-      },
-      {
-        kind: "twoColFeature",
-        head: {
-          eyebrow: "Le brief",
-          title: "Un corpus d’œuvres, pas une grille de vignettes.",
-        },
-        paras: [
-          [
-            {
-              t: "La pratique de Milo navigue entre numérique et argentique, documentaire et mise en scène. Une galerie plate aplatirait toute cette amplitude. Au lieu de cela, le site se lit comme un ",
-            },
-            { t: "livre de chapitres", b: true },
-            {
-              t: " — Plateau, Corporate & Marque, Événements, Portraits, Produit & Food, Beaux-arts — chacun avec sa propre voix.",
-            },
-          ],
-          [
-            { t: "Un " },
-            { t: "écrin sombre et cinématographique", b: true },
-            {
-              t: " laisse la photographie rayonner, tandis qu’une navigation de chapitres collante vous garde orienté à travers 55 projets. Trilingue EN · NL · FR, avec de solides scores Lighthouse sur un site profondément riche en images.",
-            },
-          ],
-        ],
-        features: [
-          {
-            k: "[ sectioned_scroll ]",
-            b: "Défilement par chapitres",
-            p: "Sept sections avec une navigation collante qui suit où vous êtes à mesure que vous parcourez le travail.",
-          },
-          {
-            k: "[ headless_cms ]",
-            b: "Galeries gérées dans Sanity",
-            p: "55 projets, légendes et ordre — tout éditable par Milo, sans déploiement.",
-          },
-          {
-            k: "[ performance ]",
-            b: "Rapide malgré les images",
-            p: "Un chargement d’images responsive et différé garde un site riche en médias rapide et sans décalage CLS.",
-          },
-          {
-            k: "[ i18n ]",
-            b: "EN · NL · FR",
-            p: "Trois langues, routing et métadonnées localisés de bout en bout.",
-          },
-        ],
-      },
-      {
-        kind: "signature",
-        demo: "miloRail",
-        head: {
-          eyebrow: "Build signature",
-          title: "Le rail de chapitres collant",
-          intro:
-            "Une navigation qui se comporte à la fois comme une table des matières et comme une position de défilement. Choisissez un chapitre — la scène et l’index répondent, comme le site en ligne réagit quand vous défilez. Essayez :",
-        },
-        label: "ChapterNav.tsx",
-        note: "composant en direct",
-      },
-      {
-        kind: "chapterIndex",
-        head: {
-          eyebrow: "Architecture",
-          title: "Sept chapitres, un seul écrin cinématographique",
-          intro:
-            "55 projets n’ont pas leur place dans une grille plate. Ils sont triés en sept corpus d’œuvres, chacun avec sa propre voix — le rail collant suit où vous êtes à mesure que vous les parcourez.",
-        },
-        chapters: [
-          { cn: "01", ct: "Photographie de plateau", cd: "Clips, cinéma, théâtre & publicités" },
-          { cn: "02", ct: "Corporate & Marque", cd: "Campagnes, portraits d’équipe, coulisses" },
-          { cn: "03", ct: "Événements & Documentaires", cd: "Des scènes de concert aux salles de conférence" },
-          { cn: "04", ct: "Portraits & Headshots", cd: "Acteurs, musiciens & corporate, numérique et argentique" },
-          { cn: "05", ct: "Produit & Food", cd: "Design, texture et intention à travers la lumière" },
-          { cn: "06", ct: "Beaux-arts", cd: "Explorations entre documentaire & mise en scène" },
-          { cn: "07", ct: "Travaux personnels", cd: "Retracer le contexte qui façonne un instant" },
-        ],
-      },
-      {
-        kind: "gallery",
-        head: { eyebrow: "Galerie", title: "À travers les chapitres" },
-        items: [
-          { id: "milo-g1", span: "tall", alt: "Photographie de plateau" },
-          { id: "milo-g2", span: "wide", alt: "Page d’accueil de chapitre" },
-          { id: "milo-g3", span: "half", alt: "Portraits" },
-          { id: "milo-g4", span: "half", alt: "Beaux-arts" },
-        ],
-      },
-    ],
-    signatureData: {
-      // `rail` = the short label on the rail button (prototype rail markup);
-      // `t` = the caption heading shown in the stage (prototype data[] array).
-      miloRail: [
-        {
-          rail: "Photographie de plateau",
-          t: "Photographie de plateau",
-          p: "Là où l’art et la narration se rencontrent — des instants de clips, de cinéma, de théâtre et de publicités à travers la Belgique et au-delà.",
-        },
-        {
-          rail: "Corporate & Marque",
-          t: "Corporate & Marque",
-          p: "Une entreprise, c’est plus que son produit. Campagnes de marque, portraits d’équipe et coulisses pour des entreprises en Belgique et aux Pays-Bas.",
-        },
-        {
-          rail: "Événements & Docs",
-          t: "Événements & Documentaires",
-          p: "Des scènes de concert aux salles de conférence — documenter les événements tels qu’ils se déroulent, les instants authentiques plutôt que posés.",
-        },
-        {
-          rail: "Portraits",
-          t: "Portraits & Headshots",
-          p: "Le portrait comme prolongement de l’histoire de quelqu’un — des headshots professionnels pour acteurs, musiciens et clients corporate, en numérique et en argentique.",
-        },
-        {
-          rail: "Produit & Food",
-          t: "Produit & Food",
-          p: "Chaque objet façonné raconte une histoire de design, de texture et d’intention — traduite par la lumière, la forme et la surface.",
-        },
-        {
-          rail: "Beaux-arts",
-          t: "Beaux-arts & Personnel",
-          p: "Des explorations continues entre approches documentaire et dirigée, retraçant le contexte invisible qui façonne un instant.",
-        },
-      ],
-    },
-  },
-
-  // ── 03 · AutomatX Labs ──────────────────────────────────────────────────
-  automatx: {
-    slug: "automatx",
-    eyebrowNum: "03",
-    category: "Cabinet d’ingénierie · Lyon",
-    year: "2026",
-    titleSegs: [
-      { t: "AutomatX — un ingénieur, " },
-      { t: "X labs.", scramble: true, accent: true },
-    ],
-    lede:
-      "Le site d’AutomatX Labs, mon cabinet d’ingénierie indépendant. Quatre labs répartis selon ce qu’ils améliorent (un procédé, un corps, un objet physique, un calcul), huit compétences qui les traversent, et une carte stellaire en 3D qui réunit tout le modèle sur un seul écran.",
-    liveHref: "https://automatx.eu/fr/",
-    meta: {
-      role: "Marque, design & développement",
-      year: "2026",
-      sector: "Ingénierie · Automatisation de laboratoire",
-      stack: ["HTML", "CSS", "Vanilla JS", "three.js"],
-    },
-    heroImg: "/work/automatx-hero.jpg",
-    heroAlt: "Accueil d’AutomatX Labs — « One engineer. X labs. » sur une grille d’ingénierie sombre",
-    metaTitle: "AutomatX Labs — Étude de cas",
-    metaDescription:
-      "La réalisation d’automatx.eu : un site statique et bilingue sans aucune requête externe, une structure X Labs et une constellation three.js interactive des labs et des compétences.",
-    sections: [
-      {
-        kind: "twoColFeature",
-        head: {
-          eyebrow: "Le brief",
-          title: "Plusieurs domaines, une méthode, un site.",
-        },
-        paras: [
-          [
-            { t: "Automatisation de laboratoire, analyse du mouvement, impression 3D, IA. Sur un CV, ça paraît dispersé. Le site devait montrer qu’il s’agit d’" },
-            { t: "une seule méthode appliquée partout", b: true },
-            { t: " : mesurer, automatiser, rendre reproductible." },
-          ],
-          [
-            { t: "La réponse, c’est le " },
-            { t: "modèle X Labs", b: true },
-            {
-              t: ". Les labs sont répartis selon le système qu’ils améliorent, et les compétences sont les outils qu’ils partagent. Un projet appartient au lab dont il améliore le système, pas à celui des outils qu’il utilise.",
-            },
-          ],
-        ],
-        features: [
-          {
-            k: "[ x_labs ]",
-            b: "Quatre labs, huit compétences",
-            p: "Procédé · Pharma, Corps · Sport, Matière · Robotique et Calcul · IA partagent capteurs, électronique, mécanique, logiciel, données, IA/ML, validation et industrialisation.",
-          },
-          {
-            k: "[ zero_requests ]",
-            b: "Rien ne vient d’ailleurs",
-            p: "Polices, scripts et three.js sont tous auto-hébergés. Ni CDN, ni Google Fonts, ni analytics, donc rien qui pose une question RGPD.",
-          },
-          {
-            k: "[ progressive ]",
-            b: "Fonctionne sans JavaScript",
-            p: "D’abord du HTML et du CSS. Les scripts ne font qu’ajouter : la carte 3D, les figures sport animées et les apparitions au défilement.",
-          },
-          {
-            k: "[ i18n ]",
-            b: "EN · FR",
-            p: "Dix URL, chacune associée à son miroir français via hreflang, plus un sitemap et du JSON-LD.",
-          },
-        ],
-      },
-      {
-        kind: "signature",
-        demo: "automatxWeb",
-        head: {
-          eyebrow: "Réalisation phare",
-          title: "Les labs en constellation",
-          intro:
-            "La carte de la page d’accueil, qui tourne ici comme sur le site en ligne. Les quatre labs sont placés sur deux diagonales, si bien que leurs liens dessinent le X du logo. Les compétences gravitent sur une sphère extérieure, près des labs qu’elles servent. Glissez pour tourner autour, lancez une étoile, survolez-la pour allumer ses liens.",
-        },
-        label: "web3d.js",
-        note: "glisser · survoler · ctrl + molette pour zoomer",
-      },
-      {
-        kind: "approach",
-        head: {
-          eyebrow: "Comment c’est construit",
-          title: "Le SVG reste la source de vérité",
-          intro:
-            "La carte part d’un SVG accessible : vrais liens, nœuds focalisables, libellés lisibles. three.js est une couche placée derrière, et le SVG reste utilisable si cette couche ne se charge pas.",
-        },
-        steps: [
-          {
-            sn: "01 / lire le balisage",
-            h: "Nœuds & liens depuis le DOM",
-            p: "web3d.js construit le graphe à partir des cercles du SVG et des liens <line data-a data-b> : modifier la carte, c’est modifier le balisage.",
-          },
-          {
-            sn: "02 / recaler chaque image",
-            h: "Reprojeté à l’écran",
-            p: "À chaque image, chaque étoile est projetée à l’écran et son nœud SVG déplacé au même endroit, pour que libellés, anneaux de focus et zones cliquables restent sur les étoiles.",
-          },
-          {
-            sn: "03 / rien au repos",
-            h: "Différé, en pause, facultatif",
-            p: "Le script ne se charge qu’à l’approche de la carte et se met en pause hors écran. Avec le mouvement réduit ou sans WebGL, la carte plate reste.",
-          },
-        ],
-      },
-      {
-        kind: "statBand",
-        stats: [
-          { sv: "0", sl: "requête externe" },
-          { sv: "4 × 8", sl: "labs × compétences" },
-          { sv: "10", sl: "URL · EN + FR" },
-          { sv: "1", sl: "bibliothèque tierce" },
-        ],
-      },
-      {
-        kind: "gallery",
-        head: { eyebrow: "Galerie", title: "À travers le site" },
-        items: [
-          { id: "automatx-g1", span: "wide", alt: "Accueil — la carte stellaire labs × compétences" },
-          { id: "automatx-g2", span: "tall", alt: "Lab Pharma — automatisation Hamilton VENUS et validation GMP" },
-          { id: "automatx-g3", span: "half", alt: "Lab Sport — signaux de mouvement simulés en SVG au trait fin" },
-          { id: "automatx-g4", span: "half", alt: "Origine — la recherche à la KU Leuven et le parcours" },
-        ],
-      },
-    ],
-    signatureData: {
-      automatxWeb: {
-        intro:
-          "AutomatX Labs est le cabinet d’ingénierie indépendant de Yolan Weiler, ingénieur biomédical et électrique (KU Leuven) installé à Lyon. Une seule méthode appliquée partout : mesurer, automatiser, rendre reproductible.",
-        hint: "Glissez pour tourner · ⌘/Ctrl + molette ou pincez pour zoomer · touchez une étoile pour lire →",
-        go: "Ouvrir le lab →",
       },
     },
   },

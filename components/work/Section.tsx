@@ -8,7 +8,7 @@ import { ChapterIndex } from "@/components/work/ChapterIndex";
 import { Gallery } from "@/components/work/Gallery";
 import { NuLangSwitch } from "@/components/work/signature/NuLangSwitch";
 import { NuShop } from "@/components/work/signature/NuShop";
-import { MiloChapterRail } from "@/components/work/signature/MiloChapterRail";
+import { MiloStack } from "@/components/work/signature/MiloStack";
 import { BermudaIcons } from "@/components/work/signature/BermudaIcons";
 import { YwGlass } from "@/components/work/signature/YwGlass";
 import { AutomatxWeb } from "@/components/work/signature/AutomatxWeb";
@@ -27,8 +27,8 @@ function SignatureDemo({
       return data?.nuLang ? <NuLangSwitch dict={data.nuLang} /> : null;
     case "nuShop":
       return data?.nuShop ? <NuShop shop={data.nuShop} /> : null;
-    case "miloRail":
-      return data?.miloRail ? <MiloChapterRail chapters={data.miloRail} /> : null;
+    case "miloStack":
+      return data?.miloStack ? <MiloStack data={data.miloStack} /> : null;
     case "bermudaIcons":
       return data?.bermudaIcons ? <BermudaIcons data={data.bermudaIcons} /> : null;
     case "ywGlass":
@@ -44,10 +44,13 @@ function SignatureDemo({
 export function Section({
   section,
   anchor,
+  bare,
   signatureData,
 }: {
   section: SectionT;
   anchor?: boolean;
+  /** signature only: just the demo, no head or frame (page opener) */
+  bare?: boolean;
   signatureData?: Project["signatureData"];
 }) {
   switch (section.kind) {
@@ -74,6 +77,13 @@ export function Section({
     case "gallery":
       return <Gallery head={section.head} items={section.items} />;
     case "signature":
+      if (bare)
+        return (
+          <section className="sig-bare" id={anchor ? "signature" : undefined}>
+            <SignatureDemo demo={section.demo} data={signatureData} />
+            <p className="sig-bare-note">{section.note}</p>
+          </section>
+        );
       return (
         <section className="detail-section" id={anchor ? "signature" : undefined}>
           <div className="wrap">
@@ -92,7 +102,7 @@ export function Section({
                 <span>{section.note}</span>
               </div>
               {/* nuShop / automatxWeb render their own shell (no .demo-stage). */}
-              {section.demo === "nuShop" || section.demo === "automatxWeb" ? (
+              {section.demo === "nuShop" || section.demo === "automatxWeb" || section.demo === "miloStack" ? (
                 <SignatureDemo demo={section.demo} data={signatureData} />
               ) : (
                 <div className="demo-stage">

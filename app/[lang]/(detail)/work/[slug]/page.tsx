@@ -52,6 +52,8 @@ export default async function ProjectPage({
   // The first signature section owns the #signature anchor (hero "Jump to the
   // build" target).
   const firstSig = project.sections.findIndex((s) => s.kind === "signature");
+  // A signature with placement "hero" opens the page frameless, in place of the hero image.
+  const heroSig = project.sections.findIndex((s) => s.kind === "signature" && s.placement === "hero");
 
   // Nu uses its own Corben/Mulish brand fonts inside the live-shop demo; expose
   // the CSS vars at the page root so the ported .nu-* CSS can reference them.
@@ -103,9 +105,18 @@ export default async function ProjectPage({
         }}
       />
       <DetailHero project={project} lang={lang as Locale} />
-      <DetailMedia src={project.heroImg} alt={project.heroAlt} />
+      {heroSig >= 0 ? (
+        <Section
+          section={project.sections[heroSig]}
+          anchor={heroSig === firstSig}
+          bare
+          signatureData={project.signatureData}
+        />
+      ) : (
+        <DetailMedia src={project.heroImg} alt={project.heroAlt} />
+      )}
 
-      {project.sections.map((section, i) => (
+      {project.sections.map((section, i) => i === heroSig ? null : (
         <Section
           key={i}
           section={section}

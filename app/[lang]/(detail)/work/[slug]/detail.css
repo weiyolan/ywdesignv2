@@ -79,7 +79,7 @@
 .gallery .g-half{grid-column:span 3}
 .gallery .g-wide .cell{aspect-ratio:16/9}
 .gallery .g-tall .cell{aspect-ratio:3/4}
-.gallery .g-half .cell{aspect-ratio:4/3}
+.gallery .g-half .cell{aspect-ratio:16/10}
 @media(max-width:780px){.gallery{grid-template-columns:1fr 1fr}
   .gallery .g-wide,.gallery .g-tall,.gallery .g-half{grid-column:span 2}}
 
@@ -224,30 +224,65 @@
 .nu-btn.added{background:#96BC8F;border-color:#96BC8F;color:#141414}
 
 /* ============================================================
-   Milo signature: sticky chapter rail
-   (milo.html inline <style> :16-37)
+   Milo signature: the home depth-stack gallery (MiloStack.tsx)
+   (miloweiler src/components/carousel/* Tailwind classes, as plain CSS)
    ============================================================ */
-.milo-demo{display:grid;grid-template-columns:.85fr 1.15fr;gap:38px;width:100%;align-items:stretch}
-@media(max-width:760px){.milo-demo{grid-template-columns:1fr;gap:24px}}
-.chapter-rail{display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--line)}
-.chapter-rail button{all:unset;cursor:pointer;display:flex;gap:14px;align-items:baseline;
-  padding:13px 18px;border-left:2px solid transparent;margin-left:-1px;transition:.25s;color:var(--text-3)}
-.chapter-rail button .cn{font-family:var(--mono);font-size:12px;opacity:.7}
-.chapter-rail button .ct{font-family:var(--display);font-weight:600;font-size:17px}
-.chapter-rail button:hover{color:var(--text-2)}
-.chapter-rail button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:4px}
-.chapter-rail button.on{color:var(--text);border-left-color:var(--accent)}
-.chapter-rail button.on .ct{color:var(--accent)}
-.chapter-stage{border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;min-height:340px;
-  background:linear-gradient(160deg,var(--bg-3),var(--bg-2))}
-.chapter-stage .big{position:absolute;top:14px;right:22px;font-family:var(--display);font-weight:800;
-  font-size:120px;line-height:1;color:color-mix(in oklch,var(--accent) 30%,transparent);pointer-events:none}
-.chapter-stage .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 28px;
-  background:linear-gradient(0deg,color-mix(in oklch,var(--bg) 80%,transparent),transparent)}
-.chapter-stage .cap h3{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:-.01em}
-.chapter-stage .cap p{color:var(--text-2);font-size:14.5px;line-height:1.55;margin-top:8px;max-width:46ch}
-.chapter-fade{transition:opacity .35s, transform .35s}
-.chapter-fade.swap{opacity:0;transform:translateY(8px)}
+.mst{position:relative;height:clamp(420px,70vh,720px);overflow:hidden;container-type:size;
+  display:flex;align-items:center;justify-content:center;color:#fff;outline:none;
+  background:var(--tint);transition:background-color .8s ease;touch-action:pan-y;user-select:none}
+/* page opener (placement "hero"): no frame — the card colour is a soft glow behind the floating stack */
+@property --tint{syntax:"<color>";inherits:true;initial-value:#1a1a1a}
+.sig-bare{position:relative;padding:8px 0 40px}
+.sig-bare .mst{background:transparent;color:var(--text);overflow-x:clip;overflow-y:visible;isolation:isolate;transition:--tint .8s ease}
+.sig-bare .mst::before{content:"";position:absolute;inset:-10% 0;pointer-events:none;z-index:-1;
+  background:radial-gradient(55% 50% at 50% 50%,color-mix(in oklab,var(--tint) 70%,transparent),transparent 72%);
+}
+.sig-bare .mst-card{color:#fff}
+.sig-bare .mst-nav button{border-color:color-mix(in oklab,var(--text) 35%,transparent)}
+.sig-bare-note{text-align:center;font-family:var(--mono);font-size:12px;color:var(--text-3);margin-top:4px}
+.mst:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.mst-box{position:relative}
+.mst-card{position:absolute;inset:0;opacity:0;visibility:hidden;will-change:transform;backface-visibility:hidden}
+.mst-img{position:absolute;inset:0;border-radius:6px;overflow:hidden}
+.mst-img img{object-fit:cover}
+.mst-grad{position:absolute;inset:0;border-radius:6px;
+  background:linear-gradient(to top,rgb(0 0 0/.6),rgb(0 0 0/.1),rgb(0 0 0/.2))}
+.mst-meta{position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:space-between;
+  font-family:var(--font-spacemono),ui-monospace,monospace;font-size:14px}
+.mst-meta>div{display:flex;justify-content:space-between;align-items:flex-start}
+.mst-meta>div:last-child{align-items:flex-end}
+.mst-meta h3{font-family:var(--font-playfair),Georgia,serif;font-weight:700;font-size:clamp(22px,4.2cqw,48px);
+  line-height:1.1;text-align:right;display:flex;flex-wrap:wrap;justify-content:flex-end;column-gap:.3em;transform:translateY(16px)}
+.mst-meta h3>span{overflow:hidden;display:inline-flex;padding-bottom:.4em}
+.mst-meta h3>span>span{display:inline-block}
+.mst:not(.is-mobile) .mst-grad{background:linear-gradient(to right,rgb(0 0 0/.55),transparent 60%),
+  linear-gradient(to top,rgb(0 0 0/.6),rgb(0 0 0/.1),rgb(0 0 0/.2))}
+.mst-desc{position:absolute;left:40px;bottom:20%;max-width:45%;padding-left:12px;border-left:2px solid rgb(255 255 255/.4);
+  opacity:0;transform:translateY(8px);transition:opacity .15s ease,transform .15s ease}
+.mst-desc.on{opacity:1;transform:none;transition:opacity .5s ease-out .3s,transform .5s ease-out .3s}
+.mst-desc p{font-size:14px;line-height:1.6;color:rgb(255 255 255/.8)}
+.mst.is-mobile .mst-desc{left:0;right:0;bottom:auto;max-width:none}
+.mst.is-mobile .mst-desc p{font-size:13px;line-height:1.4}
+.mst.is-mobile .mst-meta{padding:12px;font-size:11px}
+/* rail: desktop = vertical labels left of the card, mobile = strip under it */
+.mst-rail{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;z-index:40;pointer-events:none}
+.mst-rail-view{position:relative;width:100%;height:260px;overflow:hidden;transform:translateY(-15cqh);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 28%,#000 72%,transparent 100%);
+          mask-image:linear-gradient(to bottom,transparent 0%,#000 28%,#000 72%,transparent 100%)}
+.mst-rail button{all:unset;position:absolute;right:0;top:50%;cursor:pointer;text-align:right;white-space:nowrap;pointer-events:auto;
+  opacity:0;visibility:hidden;will-change:transform,opacity;font-family:var(--font-spacemono),ui-monospace,monospace;font-size:14px}
+.mst-rail button:focus-visible{outline:1px solid #fff;outline-offset:3px}
+.mst.is-mobile .mst-rail{top:50%;bottom:auto;right:0;justify-content:center}
+.mst.is-mobile .mst-rail-view{height:20px;transform:none;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 22%,#000 78%,transparent 100%);
+          mask-image:linear-gradient(to right,transparent 0%,#000 22%,#000 78%,transparent 100%)}
+.mst.is-mobile .mst-rail button{left:50%;right:auto;text-align:center;white-space:normal;width:min(25cqw,280px);
+  font-size:clamp(9px,2.8cqw,14px);line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mst-nav{position:absolute;right:16px;bottom:16px;display:flex;gap:6px;z-index:50}
+.mst-nav button{all:unset;cursor:pointer;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;
+  border:1px solid rgb(255 255 255/.35);font-family:var(--font-spacemono),monospace;font-size:14px;transition:background .2s}
+.mst-nav button:hover,.mst-nav button:focus-visible{background:rgb(255 255 255/.15)}
+@media(prefers-reduced-motion:reduce){.mst,.mst-desc,.mst-desc.on,.mst-meta h3>span>span{transition:none!important}}
 
 /* ============================================================
    Bermuda signature: the real "Get Lost In" morphing icon set
@@ -312,12 +347,12 @@
 
 /* reduced-motion: drop the demo transitions */
 @media(prefers-reduced-motion: reduce){
-  .morph,.chapter-fade,.berm-ico path{transition:none !important}
+  .morph,.berm-ico path{transition:none !important}
 }
 
 /* ===== GLASS SURFACE — frost neutral content cards (prototype glassed .detail-card) =====
    Gated on body[data-surface="glass"] (locked on in app/layout.tsx). Excludes brand/gradient
-   surfaces: .nu-shop & .nu-* (fixed brand palette), .chapter-stage, .ywg, and image frames
+   surfaces: .nu-shop & .nu-* (fixed brand palette), .mst, .ywg, and image frames
    (.detail-media .media / .gallery .cell). */
 body[data-surface="glass"] .demo,
 body[data-surface="glass"] .approach .step,

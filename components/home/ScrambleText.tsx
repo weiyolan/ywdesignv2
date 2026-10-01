@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
@@ -10,6 +10,8 @@ const GLYPHS = "!<>-_\\/[]{}=+*^?#__01010";
 // word scrolls into view. Reduced motion renders the final text immediately.
 // The word is normally inside a Reveal-wrapped heading, so it's hidden during
 // entrance and never flashes its final state before scrambling.
+// The real words stay in the flow (transparent while scrambling) and the glyphs
+// are drawn in an absolute overlay per word, so wider glyphs never reflow the line.
 export function ScrambleText({
   text,
   className,
@@ -18,6 +20,7 @@ export function ScrambleText({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
+  const parts = text.split(/(\s+)/); // odd indices are the whitespace separators
 
   useGSAP(
     () => {
@@ -25,44 +28,43 @@ export function ScrambleText({
       if (!el) return;
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const chars = text.split("");
-        const isSpace = (c: string) => /\s| /.test(c);
-        const resolveAt = chars.map((c) =>
-          isSpace(c) ? 0 : Math.floor(Math.random() * 16) + 6,
-        );
-        const maxF = Math.max(...resolveAt) + 1;
+        const fx = Array.from(el.querySelectorAll<HTMLElement>(".scr-fx"));
+        const words = parts.filter((_, i) => i % 2 === 0 && parts[i]);
+        const resolveAt = words.map((w) => w.split("").map(() => Math.floor(Math.random() * 16) + 6));
+        const maxF = Math.max(...resolveAt.flat()) + 1;
         let frame = 0;
         let timer = 0;
 
         const tick = () => {
-          let out = "";
-          for (let i = 0; i < chars.length; i++) {
-            const c = chars[i];
-            if (isSpace(c)) {
-              out += c;
-              continue;
-            }
-            out +=
-              frame >= resolveAt[i]
-                ? c
-                : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-          }
-          el.textContent = out;
+          words.forEach((w, wi) => {
+            let out = "";
+            for (let i = 0; i < w.length; i++)
+              out += frame >= resolveAt[wi][i] ? w[i] : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+            fx[wi].textContent = out;
+          });
           frame++;
           if (frame <= maxF) timer = window.setTimeout(tick, 38);
-          else el.textContent = text;
+          else done();
+        };
+        const done = () => {
+          el.classList.remove("is-scr");
+          fx.forEach((f) => (f.textContent = ""));
         };
 
         const st = ScrollTrigger.create({
           trigger: el,
           start: "top 92%",
           once: true,
-          onEnter: tick,
+          onEnter: () => {
+            el.classList.add("is-scr");
+            tick();
+          },
         });
 
         return () => {
           window.clearTimeout(timer);
           st.kill();
+          done();
         };
       });
     },
@@ -71,7 +73,16 @@ export function ScrambleText({
 
   return (
     <span ref={ref} className={className}>
-      {text}
+      {parts.map((p, i) =>
+        i % 2 ? (
+          <Fragment key={i}>{p}</Fragment>
+        ) : p ? (
+          <span key={i} className="scr-w">
+            <span className="scr-t">{p}</span>
+            <span className="scr-fx" aria-hidden="true" />
+          </span>
+        ) : null,
+      )}
     </span>
   );
 }

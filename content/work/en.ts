@@ -8,8 +8,8 @@
 // to the matching "use client" demo.
 import type { Seg } from "@/content/home";
 
-export type Slug = "nu" | "milo" | "automatx" | "bermuda" | "ywdesign" | "analoog";
-export const order: Slug[] = ["nu", "milo", "automatx", "bermuda", "ywdesign", "analoog"];
+export type Slug = "automatx" | "milo" | "nu" | "bermuda" | "ywdesign" | "analoog";
+export const order: Slug[] = ["automatx", "milo", "nu", "bermuda", "ywdesign", "analoog"];
 
 /** A meta chip group head + body — the .ds-head / .sec-kicker intro of a section. */
 export type Head = {
@@ -63,7 +63,9 @@ export type Section =
   | {
       kind: "signature";
       head: Head;
-      demo: "nuLang" | "nuShop" | "miloRail" | "bermudaIcons" | "ywGlass" | "automatxWeb";
+      demo: "nuLang" | "nuShop" | "miloStack" | "bermudaIcons" | "ywGlass" | "automatxWeb";
+      /** "hero": render frameless in place of the hero image (page opener) */
+      placement?: "hero";
       /** the .demo-head label (file path) and right-hand caption */
       label: string;
       note: string;
@@ -103,7 +105,12 @@ export type Project = {
         en: Record<string, string>;
       };
     };
-    miloRail?: { rail: string; t: string; p: string }[];
+    miloStack?: {
+      projects: string;
+      prev: string;
+      next: string;
+      items: { rail: string; t: string; p: string; img: string; bg: string; count: number; year: string }[];
+    };
     /** cards in markup order: creativity, detail, personality */
     bermudaIcons?: {
       gl: string;
@@ -119,10 +126,319 @@ export type Project = {
 };
 
 export const projects: Record<Slug, Project> = {
-  // ── 01 · Nu ─────────────────────────────────────────────────────────────
+  // ── 01 · AutomatX Labs ──────────────────────────────────────────────────
+  automatx: {
+    slug: "automatx",
+    eyebrowNum: "01",
+    category: "Engineering practice · Lyon",
+    year: "2026",
+    titleSegs: [
+      { t: "AutomatX — one engineer, " },
+      { t: "X labs.", scramble: true, accent: true },
+    ],
+    lede:
+      "The site for AutomatX Labs, my independent engineering practice. Four labs split by what they improve (a process, a body, a physical thing, a computation), eight capabilities running through them, and a 3D star map that puts the whole model on one screen.",
+    liveHref: "https://automatx.eu",
+    meta: {
+      role: "Brand, design & build",
+      year: "2026",
+      sector: "Engineering · Lab automation",
+      stack: ["HTML", "CSS", "Vanilla JS", "three.js"],
+    },
+    heroImg: "/work/automatx-hero.jpg",
+    heroAlt: "AutomatX Labs home — “One engineer. X labs.” on a dark engineering grid",
+    metaTitle: "AutomatX Labs — Case study",
+    metaDescription:
+      "The automatx.eu build: a static, bilingual site with no external requests, an X Labs structure and an interactive three.js constellation of labs and capabilities.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "The brief",
+          title: "Many fields, one method, one site.",
+        },
+        paras: [
+          [
+            { t: "Lab automation, motion analysis, 3D printing, AI. On a CV that reads as scattered. The site had to show it's " },
+            { t: "one method applied everywhere", b: true },
+            { t: ": measure it, automate it, make it reproducible." },
+          ],
+          [
+            { t: "The answer was the " },
+            { t: "X Labs model", b: true },
+            {
+              t: ". Labs are split by the system they improve, and capabilities are the tools they share. A project belongs to the lab whose system it improves, not to the tools it uses.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ x_labs ]",
+            b: "Four labs, eight capabilities",
+            p: "Process · Pharma, Body · Sports, Matter · Robotics and Compute · AI share sensors, electronics, mechanics, software, data, AI/ML, validation and industrialisation.",
+          },
+          {
+            k: "[ zero_requests ]",
+            b: "Nothing loads from elsewhere",
+            p: "Fonts, scripts and three.js are all self-hosted. No CDN, no Google Fonts, no analytics, so there's nothing to raise a GDPR question.",
+          },
+          {
+            k: "[ progressive ]",
+            b: "Works without JavaScript",
+            p: "Plain HTML and CSS first. Scripts only add to it: the 3D map, live sports figures and scroll reveals.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · FR",
+            p: "Ten URLs, each paired with its French mirror through hreflang, plus a sitemap and JSON-LD.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "automatxWeb",
+        head: {
+          eyebrow: "Signature build",
+          title: "The labs, as a constellation",
+          intro:
+            "The hub map from the home page, running here as on the live site. The four labs sit on two diagonals, so their links draw the logo's X. Capabilities orbit on an outer sphere near the labs they serve. Drag to orbit, throw a star, hover to light its links.",
+        },
+        label: "web3d.js",
+        note: "drag · hover · ctrl + scroll to zoom",
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "How it's built",
+          title: "The SVG stays the source of truth",
+          intro:
+            "The map starts as an accessible SVG: real links, focusable nodes, readable labels. three.js is a layer behind it, and the SVG keeps working when that layer doesn't load.",
+        },
+        steps: [
+          {
+            sn: "01 / read the markup",
+            h: "Nodes & edges from the DOM",
+            p: "web3d.js builds the graph from the SVG circles and <line data-a data-b> edges, so changing the map is a markup edit.",
+          },
+          {
+            sn: "02 / glue every frame",
+            h: "Projected back to the screen",
+            p: "Each frame, every star is projected to the screen and its SVG node moved there, keeping labels, focus rings and hit areas on the stars.",
+          },
+          {
+            sn: "03 / spend nothing idle",
+            h: "Lazy, paused, optional",
+            p: "The script only loads as the map nears the viewport and pauses off-screen. With reduced motion or no WebGL, the flat map stays.",
+          },
+        ],
+      },
+      {
+        kind: "statBand",
+        stats: [
+          { sv: "0", sl: "external requests" },
+          { sv: "4 × 8", sl: "labs × capabilities" },
+          { sv: "10", sl: "URLs · EN + FR" },
+          { sv: "1", sl: "third-party library" },
+        ],
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Gallery", title: "Through the site" },
+        items: [
+          { id: "automatx-g1", span: "wide", alt: "Hub — the labs × capabilities star map" },
+          { id: "automatx-g2", span: "tall", alt: "Pharma lab — Hamilton VENUS automation and GMP validation" },
+          { id: "automatx-g3", span: "half", alt: "Sports lab — simulated motion signals drawn as fine-line SVG" },
+          { id: "automatx-g4", span: "half", alt: "Origin — KU Leuven research and the career path" },
+        ],
+      },
+    ],
+    signatureData: {
+      automatxWeb: {
+        intro:
+          "AutomatX Labs is the independent engineering practice of Yolan Weiler, a biomedical & electrical engineer (KU Leuven) based in Lyon. One method applied everywhere: measure it, automate it, make it reproducible.",
+        hint: "Drag to rotate · ⌘/Ctrl + scroll or pinch to zoom · tap a star to read →",
+        go: "Open lab →",
+      },
+    },
+  },
+
+  // ── 02 · Milo Weiler ────────────────────────────────────────────────────
+  milo: {
+    slug: "milo",
+    eyebrowNum: "02",
+    category: "Photography portfolio",
+    year: "2025",
+    titleSegs: [
+      { t: "Milo Weiler — witness the " },
+      { t: "beauty of life.", scramble: true, accent: true },
+    ],
+    lede:
+      "A cinematic portfolio for a Belgian set, portrait & corporate photographer — 55 projects split across seven chapters, held together by a dark shell and sticky chapter navigation.",
+    liveHref: "https://miloweiler.com",
+    meta: {
+      role: "Design & build",
+      year: "2025",
+      sector: "Portfolio · Arts",
+      stack: ["Next.js", "Sanity", "Figma"],
+    },
+    heroImg: "/work/milo-hero.jpg",
+    heroAlt: "Milo Weiler — a black-and-white fine-art project gallery on a deep red page",
+    metaTitle: "Milo Weiler — Case study",
+    metaDescription:
+      "A cinematic, dark portfolio for a Belgian photographer — 55 projects across seven chapters, sticky chapter navigation, trilingual EN · NL · FR, top Lighthouse scores.",
+    sections: [
+      {
+        kind: "quote",
+        quote: [
+          { t: "A body of work, not a grid of thumbnails — the site should read like a " },
+          { t: "book of chapters", accent: true },
+          { t: ", each with its own voice." },
+        ],
+        cite: "// the brief, in one line",
+      },
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "The brief",
+          title: "A body of work, not a grid of thumbnails.",
+        },
+        paras: [
+          [
+            {
+              t: "Milo's practice moves between digital and analogue, documentary and directed. A flat gallery would flatten that range. Instead the site reads like a ",
+            },
+            { t: "book of chapters", b: true },
+            {
+              t: " — Set, Corporate & Brand, Events, Portraits, Product & Food, Fine Art — each with its own voice.",
+            },
+          ],
+          [
+            { t: "A " },
+            { t: "dark, cinematic shell", b: true },
+            {
+              t: " lets the photography glow, while sticky chapter navigation keeps you oriented across 55 projects. Trilingual EN · NL · FR, with strong Lighthouse scores on a deeply image-heavy site.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ sectioned_scroll ]",
+            b: "Chapter-based scroll",
+            p: "Seven sections with sticky navigation that tracks where you are as you move through the work.",
+          },
+          {
+            k: "[ headless_cms ]",
+            b: "Sanity-managed galleries",
+            p: "55 projects, captions and ordering — all editable by Milo, no deploys.",
+          },
+          {
+            k: "[ performance ]",
+            b: "Fast despite the imagery",
+            p: "Responsive, deferred image loading keeps a media-heavy site quick and CLS-clean.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · NL · FR",
+            p: "Three languages, localized routing and metadata throughout.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "miloStack",
+        placement: "hero",
+        head: {
+          eyebrow: "Signature build",
+          title: "The depth-stack gallery",
+          intro:
+            "The miloweiler.com home page: every category as a 16:9 card in one depth stack. A wheel tick or a swipe moves one card, a lerped ticker scales and staggers the rest, and the room takes on each photo’s colour. Scroll or swipe over it:",
+        },
+        label: "CardCarousel.jsx",
+        note: "wheel · swipe · ← →",
+      },
+      {
+        kind: "chapterIndex",
+        head: {
+          eyebrow: "Architecture",
+          title: "Seven chapters, one cinematic shell",
+          intro:
+            "55 projects don't belong in a flat grid. They're sorted into seven bodies of work, each with its own voice — the sticky rail tracks where you are as you move through them.",
+        },
+        chapters: [
+          { cn: "01", ct: "Set Photography", cd: "Music videos, film, theatre & commercials" },
+          { cn: "02", ct: "Corporate & Brand", cd: "Campaigns, team portraits, behind-the-scenes" },
+          { cn: "03", ct: "Events & Documentaries", cd: "From concert stages to conference halls" },
+          { cn: "04", ct: "Portraits & Headshots", cd: "Actors, musicians & corporate, digital and film" },
+          { cn: "05", ct: "Product & Food", cd: "Design, texture and intention through light" },
+          { cn: "06", ct: "Fine Art", cd: "Explorations between documentary & directed" },
+          { cn: "07", ct: "Personal Work", cd: "Tracing the context that shapes a moment" },
+        ],
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Gallery", title: "Through the chapters" },
+        items: [
+          { id: "milo-s1", span: "wide", alt: "Home — the depth-stack carousel" },
+          { id: "milo-s2", span: "tall", alt: "About — hero portrait with the hand-drawn sun" },
+          { id: "milo-s3", span: "half", alt: "About — the floating photo collage over the moon" },
+          { id: "milo-s4", span: "half", alt: "Fine Art — chapter landing" },
+          { id: "milo-s5", span: "half", alt: "Category gallery — Events" },
+          { id: "milo-s6", span: "half", alt: "Contact — Get in touch and Trusted by" },
+        ],
+      },
+    ],
+    signatureData: {
+      // rail label, card title, description; img/bg/count/year from the live home (Sanity)
+      miloStack: {
+        projects: "projects",
+        prev: "Previous category",
+        next: "Next category",
+        items: [
+          {
+            rail: "Set Photography",
+            t: "Set Photography",
+            p: "Where art and storytelling meet — moments from music videos, film, theatre and commercials across Belgium and beyond.",
+            img: "/work/milo-stack-1.jpg", bg: "#4B0E07", count: 18, year: "2026",
+          },
+          {
+            rail: "Corporate & Brand",
+            t: "Corporate & Brand",
+            p: "A company is more than its product. Brand campaigns, team portraits and behind-the-scenes for companies across Belgium and the Netherlands.",
+            img: "/work/milo-stack-2.jpg", bg: "#BD9A75", count: 9, year: "2026",
+          },
+          {
+            rail: "Events & Docs",
+            t: "Events & Documentaries",
+            p: "From concert stages to conference halls — documenting events as they unfold, authentic moments over posed ones.",
+            img: "/work/milo-stack-3.jpg", bg: "#032900", count: 12, year: "2025",
+          },
+          {
+            rail: "Portraits",
+            t: "Portraits & Headshots",
+            p: "Portraits as an extension of someone’s story — professional headshots for actors, musicians and corporate clients, on digital and film.",
+            img: "/work/milo-stack-4.jpg", bg: "#93b9ba", count: 13, year: "2025",
+          },
+          {
+            rail: "Product & Food",
+            t: "Product & Food",
+            p: "Every crafted object tells a story of design, texture and intention — translated through light, form and surface.",
+            img: "/work/milo-stack-5.jpg", bg: "#30221d", count: 6, year: "2026",
+          },
+          {
+            rail: "Fine Art",
+            t: "Fine Art & Personal",
+            p: "Ongoing explorations between documentary and directed approaches, tracing the invisible context that shapes a moment.",
+            img: "/work/milo-stack-6.jpg", bg: "#070b22", count: 3, year: "2026",
+          },
+        ],
+      },
+    },
+  },
+
+  // ── 03 · Nu ─────────────────────────────────────────────────────────────
   nu: {
     slug: "nu",
-    eyebrowNum: "01",
+    eyebrowNum: "03",
     category: "Beauty & wellness e-commerce",
     year: "2024",
     titleSegs: [
@@ -290,302 +606,6 @@ export const projects: Record<Slug, Project> = {
             added: "✓ Added",
           },
         },
-      },
-    },
-  },
-
-  // ── 02 · Milo Weiler ────────────────────────────────────────────────────
-  milo: {
-    slug: "milo",
-    eyebrowNum: "02",
-    category: "Photography portfolio",
-    year: "2025",
-    titleSegs: [
-      { t: "Milo Weiler — witness the " },
-      { t: "beauty of life.", scramble: true, accent: true },
-    ],
-    lede:
-      "A cinematic portfolio for a Belgian set, portrait & corporate photographer — 55 projects split across seven chapters, held together by a dark shell and sticky chapter navigation.",
-    liveHref: "https://miloweiler.com",
-    meta: {
-      role: "Design & build",
-      year: "2025",
-      sector: "Portfolio · Arts",
-      stack: ["Next.js", "Sanity", "Figma"],
-    },
-    heroImg: "/work/milo-hero.jpg",
-    heroAlt: "Milo Weiler — cinematic photography portfolio hero",
-    metaTitle: "Milo Weiler — Case study",
-    metaDescription:
-      "A cinematic, dark portfolio for a Belgian photographer — 55 projects across seven chapters, sticky chapter navigation, trilingual EN · NL · FR, top Lighthouse scores.",
-    sections: [
-      {
-        kind: "quote",
-        quote: [
-          { t: "A body of work, not a grid of thumbnails — the site should read like a " },
-          { t: "book of chapters", accent: true },
-          { t: ", each with its own voice." },
-        ],
-        cite: "// the brief, in one line",
-      },
-      {
-        kind: "twoColFeature",
-        head: {
-          eyebrow: "The brief",
-          title: "A body of work, not a grid of thumbnails.",
-        },
-        paras: [
-          [
-            {
-              t: "Milo's practice moves between digital and analogue, documentary and directed. A flat gallery would flatten that range. Instead the site reads like a ",
-            },
-            { t: "book of chapters", b: true },
-            {
-              t: " — Set, Corporate & Brand, Events, Portraits, Product & Food, Fine Art — each with its own voice.",
-            },
-          ],
-          [
-            { t: "A " },
-            { t: "dark, cinematic shell", b: true },
-            {
-              t: " lets the photography glow, while sticky chapter navigation keeps you oriented across 55 projects. Trilingual EN · NL · FR, with strong Lighthouse scores on a deeply image-heavy site.",
-            },
-          ],
-        ],
-        features: [
-          {
-            k: "[ sectioned_scroll ]",
-            b: "Chapter-based scroll",
-            p: "Seven sections with sticky navigation that tracks where you are as you move through the work.",
-          },
-          {
-            k: "[ headless_cms ]",
-            b: "Sanity-managed galleries",
-            p: "55 projects, captions and ordering — all editable by Milo, no deploys.",
-          },
-          {
-            k: "[ performance ]",
-            b: "Fast despite the imagery",
-            p: "Responsive, deferred image loading keeps a media-heavy site quick and CLS-clean.",
-          },
-          {
-            k: "[ i18n ]",
-            b: "EN · NL · FR",
-            p: "Three languages, localized routing and metadata throughout.",
-          },
-        ],
-      },
-      {
-        kind: "signature",
-        demo: "miloRail",
-        head: {
-          eyebrow: "Signature build",
-          title: "The sticky chapter rail",
-          intro:
-            "Navigation that behaves like a table of contents and a scroll position at once. Pick a chapter — the stage and index respond, the way the live site reacts as you scroll. Try it:",
-        },
-        label: "ChapterNav.tsx",
-        note: "live component",
-      },
-      {
-        kind: "chapterIndex",
-        head: {
-          eyebrow: "Architecture",
-          title: "Seven chapters, one cinematic shell",
-          intro:
-            "55 projects don't belong in a flat grid. They're sorted into seven bodies of work, each with its own voice — the sticky rail tracks where you are as you move through them.",
-        },
-        chapters: [
-          { cn: "01", ct: "Set Photography", cd: "Music videos, film, theatre & commercials" },
-          { cn: "02", ct: "Corporate & Brand", cd: "Campaigns, team portraits, behind-the-scenes" },
-          { cn: "03", ct: "Events & Documentaries", cd: "From concert stages to conference halls" },
-          { cn: "04", ct: "Portraits & Headshots", cd: "Actors, musicians & corporate, digital and film" },
-          { cn: "05", ct: "Product & Food", cd: "Design, texture and intention through light" },
-          { cn: "06", ct: "Fine Art", cd: "Explorations between documentary & directed" },
-          { cn: "07", ct: "Personal Work", cd: "Tracing the context that shapes a moment" },
-        ],
-      },
-      {
-        kind: "gallery",
-        head: { eyebrow: "Gallery", title: "Through the chapters" },
-        items: [
-          { id: "milo-g1", span: "tall", alt: "Set photography" },
-          { id: "milo-g2", span: "wide", alt: "Chapter landing" },
-          { id: "milo-g3", span: "half", alt: "Portraits" },
-          { id: "milo-g4", span: "half", alt: "Fine art" },
-        ],
-      },
-    ],
-    signatureData: {
-      // `rail` = the short label on the rail button (prototype rail markup);
-      // `t` = the caption heading shown in the stage (prototype data[] array).
-      miloRail: [
-        {
-          rail: "Set Photography",
-          t: "Set Photography",
-          p: "Where art and storytelling meet — moments from music videos, film, theatre and commercials across Belgium and beyond.",
-        },
-        {
-          rail: "Corporate & Brand",
-          t: "Corporate & Brand",
-          p: "A company is more than its product. Brand campaigns, team portraits and behind-the-scenes for companies across Belgium and the Netherlands.",
-        },
-        {
-          rail: "Events & Docs",
-          t: "Events & Documentaries",
-          p: "From concert stages to conference halls — documenting events as they unfold, authentic moments over posed ones.",
-        },
-        {
-          rail: "Portraits",
-          t: "Portraits & Headshots",
-          p: "Portraits as an extension of someone’s story — professional headshots for actors, musicians and corporate clients, on digital and film.",
-        },
-        {
-          rail: "Product & Food",
-          t: "Product & Food",
-          p: "Every crafted object tells a story of design, texture and intention — translated through light, form and surface.",
-        },
-        {
-          rail: "Fine Art",
-          t: "Fine Art & Personal",
-          p: "Ongoing explorations between documentary and directed approaches, tracing the invisible context that shapes a moment.",
-        },
-      ],
-    },
-  },
-
-  // ── 03 · AutomatX Labs ──────────────────────────────────────────────────
-  automatx: {
-    slug: "automatx",
-    eyebrowNum: "03",
-    category: "Engineering practice · Lyon",
-    year: "2026",
-    titleSegs: [
-      { t: "AutomatX — one engineer, " },
-      { t: "X labs.", scramble: true, accent: true },
-    ],
-    lede:
-      "The site for AutomatX Labs, my independent engineering practice. Four labs split by what they improve (a process, a body, a physical thing, a computation), eight capabilities running through them, and a 3D star map that puts the whole model on one screen.",
-    liveHref: "https://automatx.eu",
-    meta: {
-      role: "Brand, design & build",
-      year: "2026",
-      sector: "Engineering · Lab automation",
-      stack: ["HTML", "CSS", "Vanilla JS", "three.js"],
-    },
-    heroImg: "/work/automatx-hero.jpg",
-    heroAlt: "AutomatX Labs home — “One engineer. X labs.” on a dark engineering grid",
-    metaTitle: "AutomatX Labs — Case study",
-    metaDescription:
-      "The automatx.eu build: a static, bilingual site with no external requests, an X Labs structure and an interactive three.js constellation of labs and capabilities.",
-    sections: [
-      {
-        kind: "twoColFeature",
-        head: {
-          eyebrow: "The brief",
-          title: "Many fields, one method, one site.",
-        },
-        paras: [
-          [
-            { t: "Lab automation, motion analysis, 3D printing, AI. On a CV that reads as scattered. The site had to show it's " },
-            { t: "one method applied everywhere", b: true },
-            { t: ": measure it, automate it, make it reproducible." },
-          ],
-          [
-            { t: "The answer was the " },
-            { t: "X Labs model", b: true },
-            {
-              t: ". Labs are split by the system they improve, and capabilities are the tools they share. A project belongs to the lab whose system it improves, not to the tools it uses.",
-            },
-          ],
-        ],
-        features: [
-          {
-            k: "[ x_labs ]",
-            b: "Four labs, eight capabilities",
-            p: "Process · Pharma, Body · Sports, Matter · Robotics and Compute · AI share sensors, electronics, mechanics, software, data, AI/ML, validation and industrialisation.",
-          },
-          {
-            k: "[ zero_requests ]",
-            b: "Nothing loads from elsewhere",
-            p: "Fonts, scripts and three.js are all self-hosted. No CDN, no Google Fonts, no analytics, so there's nothing to raise a GDPR question.",
-          },
-          {
-            k: "[ progressive ]",
-            b: "Works without JavaScript",
-            p: "Plain HTML and CSS first. Scripts only add to it: the 3D map, live sports figures and scroll reveals.",
-          },
-          {
-            k: "[ i18n ]",
-            b: "EN · FR",
-            p: "Ten URLs, each paired with its French mirror through hreflang, plus a sitemap and JSON-LD.",
-          },
-        ],
-      },
-      {
-        kind: "signature",
-        demo: "automatxWeb",
-        head: {
-          eyebrow: "Signature build",
-          title: "The labs, as a constellation",
-          intro:
-            "The hub map from the home page, running here as on the live site. The four labs sit on two diagonals, so their links draw the logo's X. Capabilities orbit on an outer sphere near the labs they serve. Drag to orbit, throw a star, hover to light its links.",
-        },
-        label: "web3d.js",
-        note: "drag · hover · ctrl + scroll to zoom",
-      },
-      {
-        kind: "approach",
-        head: {
-          eyebrow: "How it's built",
-          title: "The SVG stays the source of truth",
-          intro:
-            "The map starts as an accessible SVG: real links, focusable nodes, readable labels. three.js is a layer behind it, and the SVG keeps working when that layer doesn't load.",
-        },
-        steps: [
-          {
-            sn: "01 / read the markup",
-            h: "Nodes & edges from the DOM",
-            p: "web3d.js builds the graph from the SVG circles and <line data-a data-b> edges, so changing the map is a markup edit.",
-          },
-          {
-            sn: "02 / glue every frame",
-            h: "Projected back to the screen",
-            p: "Each frame, every star is projected to the screen and its SVG node moved there, keeping labels, focus rings and hit areas on the stars.",
-          },
-          {
-            sn: "03 / spend nothing idle",
-            h: "Lazy, paused, optional",
-            p: "The script only loads as the map nears the viewport and pauses off-screen. With reduced motion or no WebGL, the flat map stays.",
-          },
-        ],
-      },
-      {
-        kind: "statBand",
-        stats: [
-          { sv: "0", sl: "external requests" },
-          { sv: "4 × 8", sl: "labs × capabilities" },
-          { sv: "10", sl: "URLs · EN + FR" },
-          { sv: "1", sl: "third-party library" },
-        ],
-      },
-      {
-        kind: "gallery",
-        head: { eyebrow: "Gallery", title: "Through the site" },
-        items: [
-          { id: "automatx-g1", span: "wide", alt: "Hub — the labs × capabilities star map" },
-          { id: "automatx-g2", span: "tall", alt: "Pharma lab — Hamilton VENUS automation and GMP validation" },
-          { id: "automatx-g3", span: "half", alt: "Sports lab — simulated motion signals drawn as fine-line SVG" },
-          { id: "automatx-g4", span: "half", alt: "Origin — KU Leuven research and the career path" },
-        ],
-      },
-    ],
-    signatureData: {
-      automatxWeb: {
-        intro:
-          "AutomatX Labs is the independent engineering practice of Yolan Weiler, a biomedical & electrical engineer (KU Leuven) based in Lyon. One method applied everywhere: measure it, automate it, make it reproducible.",
-        hint: "Drag to rotate · ⌘/Ctrl + scroll or pinch to zoom · tap a star to read →",
-        go: "Open lab →",
       },
     },
   },

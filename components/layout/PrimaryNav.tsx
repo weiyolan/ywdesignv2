@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useTheme } from "next-themes";
 import { getSite } from "@/content/site";
-import { localizedHref } from "@/lib/i18n";
+import { getHome } from "@/content/home";
+import { localizedHref, type Locale } from "@/lib/i18n";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { Button } from "@/components/primitives/Button";
 import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
@@ -73,11 +75,15 @@ export function PrimaryNav({ back }: Props) {
         </div>
 
         <div className="navlinks">
-          {site.nav.map((l) => (
-            <Link key={l.label} href={localizedHref(l.href, lang)} className="hide-md">
-              {l.label}
-            </Link>
-          ))}
+          {site.nav.map((l) =>
+            l.href === "/work" ? (
+              <WorkMenu key={l.label} label={l.label} lang={lang} />
+            ) : (
+              <Link key={l.label} href={localizedHref(l.href, lang)} className="hide-md">
+                {l.label}
+              </Link>
+            ),
+          )}
           <Button href={localizedHref(site.cta.href, lang)} variant="primary" className="hide-sm">
             {site.cta.label} <span className="arr">→</span>
           </Button>
@@ -100,9 +106,20 @@ export function PrimaryNav({ back }: Props) {
 
       <div className="nav-drawer" id="nav-drawer" aria-hidden={!open}>
         {site.nav.map((l, i) => (
-          <Link key={l.label} href={localizedHref(l.href, lang)} onClick={close}>
-            {l.label} <span className="md-i">{String(i + 1).padStart(2, "0")}</span>
-          </Link>
+          <div key={l.label}>
+            <Link href={localizedHref(l.href, lang)} onClick={close}>
+              {l.label} <span className="md-i">{String(i + 1).padStart(2, "0")}</span>
+            </Link>
+            {l.href === "/work" && (
+              <div className="md-sub">
+                {getHome(lang).work.items.map((p) => (
+                  <Link key={p.slug} href={localizedHref(`/work/${p.slug}`, lang)} onClick={close}>
+                    {p.title} <span className="md-i">{p.num}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
         <Link href={localizedHref(site.cta.href, lang)} className="btn btn-primary md-cta" onClick={close}>
           {site.cta.label} <span className="arr">→</span>
@@ -116,6 +133,78 @@ export function PrimaryNav({ back }: Props) {
       </div>
       <div className="nav-scrim" id="nav-scrim" onClick={close} aria-hidden="true" />
     </>
+  );
+}
+
+// "Work" + a shadcn-style NavigationMenu card panel listing every case study.
+// Hover (desktop) or the chevron opens it; Esc / outside click / navigating closes it.
+function WorkMenu({ label, lang }: { label: string; lang: Locale }) {
+  const items = getHome(lang).work.items;
+  const allWork = getSite(lang).ui.allWork;
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const timer = useRef(0);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const hover = (v: boolean) => {
+    window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => setOpen(v), v ? 80 : 180);
+  };
+  const close = () => setOpen(false);
+
+  return (
+    <div className="navmenu hide-md" ref={ref} onMouseEnter={() => hover(true)} onMouseLeave={() => hover(false)}>
+      <Link href={localizedHref("/work", lang)} onClick={close}>
+        {label}
+      </Link>
+      <button
+        type="button"
+        className="navmenu-trigger"
+        aria-label={label}
+        aria-expanded={open}
+        aria-controls="navmenu-panel"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+          <path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        </svg>
+      </button>
+      <div id="navmenu-panel" className="navmenu-panel" data-open={open} inert={!open}>
+        <div className="navmenu-grid">
+          {items.map((p) => (
+            <Link key={p.slug} className="navmenu-card" href={localizedHref(`/work/${p.slug}`, lang)} onClick={close}>
+              <span className="navmenu-thumb">
+                <Image src={p.img} alt="" fill sizes="96px" />
+              </span>
+              <span className="navmenu-txt">
+                <b>
+                  <span className="n">{p.num}</span> {p.title}
+                </b>
+                <small>{p.cat}</small>
+              </span>
+            </Link>
+          ))}
+        </div>
+        <Link className="navmenu-all" href={localizedHref("/work", lang)} onClick={close}>
+          {allWork} <span className="arr">→</span>
+        </Link>
+      </div>
+    </div>
   );
 }
 

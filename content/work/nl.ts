@@ -4,10 +4,319 @@
 import type { Slug, Project } from "./en";
 
 export const projectsNL = {
-  // ── 01 · Nu ─────────────────────────────────────────────────────────────
+  // ── 01 · AutomatX Labs ──────────────────────────────────────────────────
+  automatx: {
+    slug: "automatx",
+    eyebrowNum: "01",
+    category: "Ingenieurspraktijk · Lyon",
+    year: "2026",
+    titleSegs: [
+      { t: "AutomatX — één ingenieur, " },
+      { t: "X labs.", scramble: true, accent: true },
+    ],
+    lede:
+      "De site van AutomatX Labs, mijn onafhankelijke ingenieurspraktijk. Vier labs, ingedeeld naar wat ze verbeteren (een proces, een lichaam, iets fysieks, een berekening), acht vaardigheden die erdoorheen lopen, en een 3D-sterrenkaart die het hele model op één scherm zet.",
+    liveHref: "https://automatx.eu",
+    meta: {
+      role: "Merk, design & bouw",
+      year: "2026",
+      sector: "Engineering · Labautomatisering",
+      stack: ["HTML", "CSS", "Vanilla JS", "three.js"],
+    },
+    heroImg: "/work/automatx-hero.jpg",
+    heroAlt: "Home van AutomatX Labs — “One engineer. X labs.” op een donker ingenieursraster",
+    metaTitle: "AutomatX Labs — Case study",
+    metaDescription:
+      "De bouw van automatx.eu: een statische, tweetalige site zonder externe verzoeken, een X Labs-structuur en een interactieve three.js-constellatie van labs en vaardigheden.",
+    sections: [
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "De opdracht",
+          title: "Veel vakgebieden, één methode, één site.",
+        },
+        paras: [
+          [
+            { t: "Labautomatisering, bewegingsanalyse, 3D-printen, AI. Op een cv oogt dat versnipperd. De site moest tonen dat het " },
+            { t: "één methode is, overal toegepast", b: true },
+            { t: ": meten, automatiseren, reproduceerbaar maken." },
+          ],
+          [
+            { t: "Het antwoord werd het " },
+            { t: "X Labs-model", b: true },
+            {
+              t: ". Labs zijn ingedeeld naar het systeem dat ze verbeteren, en vaardigheden zijn de tools die ze delen. Een project hoort bij het lab waarvan het het systeem verbetert, niet bij de tools die het gebruikt.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ x_labs ]",
+            b: "Vier labs, acht vaardigheden",
+            p: "Proces · Pharma, Lichaam · Sport, Materie · Robotica en Rekenen · AI delen sensoren, elektronica, mechanica, software, data, AI/ML, validatie en industrialisatie.",
+          },
+          {
+            k: "[ zero_requests ]",
+            b: "Niets komt van elders",
+            p: "Fonts, scripts en three.js worden allemaal zelf gehost. Geen CDN, geen Google Fonts, geen analytics, dus niets dat een AVG-vraag oproept.",
+          },
+          {
+            k: "[ progressive ]",
+            b: "Werkt zonder JavaScript",
+            p: "Eerst gewone HTML en CSS. Scripts voegen alleen iets toe: de 3D-kaart, live sportfiguren en onthullingen bij het scrollen.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · FR",
+            p: "Tien URL’s, elk via hreflang gekoppeld aan de Franse versie, plus een sitemap en JSON-LD.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "automatxWeb",
+        head: {
+          eyebrow: "Signature build",
+          title: "De labs als sterrenbeeld",
+          intro:
+            "De kaart van de homepage, die hier draait zoals op de live site. De vier labs staan op twee diagonalen, zodat hun verbindingen de X van het logo tekenen. Vaardigheden draaien op een buitenste bol, dicht bij de labs die ze bedienen. Sleep om te draaien, gooi een ster weg, hover om de verbindingen op te lichten.",
+        },
+        label: "web3d.js",
+        note: "slepen · hover · ctrl + scroll om te zoomen",
+      },
+      {
+        kind: "approach",
+        head: {
+          eyebrow: "Hoe het gebouwd is",
+          title: "De SVG blijft de bron van waarheid",
+          intro:
+            "De kaart begint als een toegankelijke SVG: echte links, focusbare nodes, leesbare labels. three.js is een laag erachter, en de SVG blijft werken als die laag niet laadt.",
+        },
+        steps: [
+          {
+            sn: "01 / lees de markup",
+            h: "Nodes & lijnen uit de DOM",
+            p: "web3d.js bouwt de graaf op uit de SVG-cirkels en <line data-a data-b>-lijnen, dus de kaart aanpassen is een markup-aanpassing.",
+          },
+          {
+            sn: "02 / elke frame vastplakken",
+            h: "Terug op het scherm geprojecteerd",
+            p: "Elke frame wordt elke ster op het scherm geprojecteerd en zijn SVG-node erheen verplaatst, zodat labels, focusringen en klikvlakken op de sterren blijven.",
+          },
+          {
+            sn: "03 / niets in rust",
+            h: "Lazy, gepauzeerd, optioneel",
+            p: "Het script laadt pas als de kaart in beeld komt en pauzeert buiten beeld. Met beperkte beweging of zonder WebGL blijft de platte kaart staan.",
+          },
+        ],
+      },
+      {
+        kind: "statBand",
+        stats: [
+          { sv: "0", sl: "externe verzoeken" },
+          { sv: "4 × 8", sl: "labs × vaardigheden" },
+          { sv: "10", sl: "URL’s · EN + FR" },
+          { sv: "1", sl: "externe library" },
+        ],
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Galerij", title: "Door de site" },
+        items: [
+          { id: "automatx-g1", span: "wide", alt: "Hub — de sterrenkaart van labs × vaardigheden" },
+          { id: "automatx-g2", span: "tall", alt: "Pharma-lab — Hamilton VENUS-automatisering en GMP-validatie" },
+          { id: "automatx-g3", span: "half", alt: "Sportlab — gesimuleerde bewegingssignalen als fijne SVG-lijnen" },
+          { id: "automatx-g4", span: "half", alt: "Oorsprong — onderzoek aan de KU Leuven en het loopbaanpad" },
+        ],
+      },
+    ],
+    signatureData: {
+      automatxWeb: {
+        intro:
+          "AutomatX Labs is de onafhankelijke ingenieurspraktijk van Yolan Weiler, biomedisch & elektrotechnisch ingenieur (KU Leuven), gevestigd in Lyon. Eén methode, overal toegepast: meten, automatiseren, reproduceerbaar maken.",
+        hint: "Sleep om te draaien · ⌘/Ctrl + scroll of knijp om te zoomen · tik op een ster om te lezen →",
+        go: "Open lab →",
+      },
+    },
+  },
+
+  // ── 02 · Milo Weiler ────────────────────────────────────────────────────
+  milo: {
+    slug: "milo",
+    eyebrowNum: "02",
+    category: "Fotografieportfolio",
+    year: "2025",
+    titleSegs: [
+      { t: "Milo Weiler — getuige van de " },
+      { t: "schoonheid van het leven.", scramble: true, accent: true },
+    ],
+    lede:
+      "Een cinematografisch portfolio voor een Belgische set-, portret- en bedrijfsfotograaf — 55 projecten verdeeld over zeven hoofdstukken, samengehouden door een donkere schil en een vastgezette hoofdstuknavigatie.",
+    liveHref: "https://miloweiler.com",
+    meta: {
+      role: "Ontwerp & build",
+      year: "2025",
+      sector: "Portfolio · Kunst",
+      stack: ["Next.js", "Sanity", "Figma"],
+    },
+    heroImg: "/work/milo-hero.jpg",
+    heroAlt: "Milo Weiler — zwart-witte fine-art projectgalerij op een dieprode pagina",
+    metaTitle: "Milo Weiler — Case study",
+    metaDescription:
+      "Een cinematografisch, donker portfolio voor een Belgische fotograaf — 55 projecten over zeven hoofdstukken, vastgezette hoofdstuknavigatie, drietalig EN · NL · FR, topscores in Lighthouse.",
+    sections: [
+      {
+        kind: "quote",
+        quote: [
+          { t: "Een oeuvre, geen rooster van thumbnails — de site moet lezen als een " },
+          { t: "boek vol hoofdstukken", accent: true },
+          { t: ", elk met zijn eigen stem." },
+        ],
+        cite: "// de briefing, in één zin",
+      },
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "De briefing",
+          title: "Een oeuvre, geen rooster van thumbnails.",
+        },
+        paras: [
+          [
+            {
+              t: "Milo's praktijk beweegt tussen digitaal en analoog, documentair en geregisseerd. Een vlakke galerij zou dat bereik platslaan. In plaats daarvan leest de site als een ",
+            },
+            { t: "boek vol hoofdstukken", b: true },
+            {
+              t: " — Set, Corporate & Brand, Events, Portretten, Product & Food, Fine Art — elk met zijn eigen stem.",
+            },
+          ],
+          [
+            { t: "Een " },
+            { t: "donkere, cinematografische schil", b: true },
+            {
+              t: " laat de fotografie stralen, terwijl een vastgezette hoofdstuknavigatie je oriënteert doorheen 55 projecten. Drietalig EN · NL · FR, met sterke Lighthouse-scores op een uitgesproken beeldzware site.",
+            },
+          ],
+        ],
+        features: [
+          {
+            k: "[ sectioned_scroll ]",
+            b: "Hoofdstukgebaseerde scroll",
+            p: "Zeven secties met een vastgezette navigatie die volgt waar je bent terwijl je je door het werk beweegt.",
+          },
+          {
+            k: "[ headless_cms ]",
+            b: "Galerijen beheerd in Sanity",
+            p: "55 projecten, bijschriften en volgorde — allemaal bewerkbaar door Milo, zonder deploys.",
+          },
+          {
+            k: "[ performance ]",
+            b: "Snel ondanks de beelden",
+            p: "Responsief, uitgesteld laden van beelden houdt een mediazware site snel en CLS-zuiver.",
+          },
+          {
+            k: "[ i18n ]",
+            b: "EN · NL · FR",
+            p: "Drie talen, gelokaliseerde routing en metadata van begin tot eind.",
+          },
+        ],
+      },
+      {
+        kind: "signature",
+        demo: "miloStack",
+        placement: "hero",
+        head: {
+          eyebrow: "Signature build",
+          title: "De dieptestapel-galerij",
+          intro:
+            "De homepage van miloweiler.com: elke categorie als 16:9-kaart in één dieptestapel. Eén scrolltik of swipe schuift één kaart op, een gelerpte ticker schaalt en verspringt de rest, en de ruimte neemt de kleur van elke foto aan. Scroll of swipe eroverheen:",
+        },
+        label: "CardCarousel.jsx",
+        note: "scroll · swipe · ← →",
+      },
+      {
+        kind: "chapterIndex",
+        head: {
+          eyebrow: "Architectuur",
+          title: "Zeven hoofdstukken, één cinematografische schil",
+          intro:
+            "55 projecten horen niet thuis in een vlak rooster. Ze zijn ingedeeld in zeven oeuvres, elk met zijn eigen stem — de vastgezette rail volgt waar je bent terwijl je je erdoorheen beweegt.",
+        },
+        chapters: [
+          { cn: "01", ct: "Setfotografie", cd: "Videoclips, film, theater & commercials" },
+          { cn: "02", ct: "Corporate & Brand", cd: "Campagnes, teamportretten, behind-the-scenes" },
+          { cn: "03", ct: "Events & Documentaires", cd: "Van concertpodia tot conferentiezalen" },
+          { cn: "04", ct: "Portretten & Headshots", cd: "Acteurs, muzikanten & corporate, digitaal en film" },
+          { cn: "05", ct: "Product & Food", cd: "Ontwerp, textuur en intentie door licht" },
+          { cn: "06", ct: "Fine Art", cd: "Verkenningen tussen documentair & geregisseerd" },
+          { cn: "07", ct: "Persoonlijk Werk", cd: "Het natrekken van de context die een moment vormt" },
+        ],
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Galerij", title: "Doorheen de hoofdstukken" },
+        items: [
+          { id: "milo-s1", span: "wide", alt: "Home — de dieptestapel-carrousel" },
+          { id: "milo-s2", span: "tall", alt: "Over mij — openingsportret met de getekende zon" },
+          { id: "milo-s3", span: "half", alt: "Over mij — de zwevende fotocollage boven de maan" },
+          { id: "milo-s4", span: "half", alt: "Fine Art — hoofdstukpagina" },
+          { id: "milo-s5", span: "half", alt: "Categoriegalerij — Events" },
+          { id: "milo-s6", span: "half", alt: "Contact — Get in touch en Trusted by" },
+        ],
+      },
+    ],
+    signatureData: {
+      // rail label, card title, description; img/bg/count/year from the live home (Sanity)
+      miloStack: {
+        projects: "projecten",
+        prev: "Vorige categorie",
+        next: "Volgende categorie",
+        items: [
+          {
+            rail: "Setfotografie",
+            t: "Setfotografie",
+            p: "Waar kunst en verhaal elkaar ontmoeten — momenten uit videoclips, film, theater en commercials in België en daarbuiten.",
+            img: "/work/milo-stack-1.jpg", bg: "#4B0E07", count: 18, year: "2026",
+          },
+          {
+            rail: "Corporate & Brand",
+            t: "Corporate & Brand",
+            p: "Een bedrijf is meer dan zijn product. Merkcampagnes, teamportretten en behind-the-scenes voor bedrijven in België en Nederland.",
+            img: "/work/milo-stack-2.jpg", bg: "#BD9A75", count: 9, year: "2026",
+          },
+          {
+            rail: "Events & Docs",
+            t: "Events & Documentaires",
+            p: "Van concertpodia tot conferentiezalen — events documenteren zoals ze zich ontvouwen, authentieke momenten boven geposeerde.",
+            img: "/work/milo-stack-3.jpg", bg: "#032900", count: 12, year: "2025",
+          },
+          {
+            rail: "Portretten",
+            t: "Portretten & Headshots",
+            p: "Portretten als verlengstuk van iemands verhaal — professionele headshots voor acteurs, muzikanten en bedrijfsklanten, op digitaal en film.",
+            img: "/work/milo-stack-4.jpg", bg: "#93b9ba", count: 13, year: "2025",
+          },
+          {
+            rail: "Product & Food",
+            t: "Product & Food",
+            p: "Elk vakkundig gemaakt object vertelt een verhaal van ontwerp, textuur en intentie — vertaald door licht, vorm en oppervlak.",
+            img: "/work/milo-stack-5.jpg", bg: "#30221d", count: 6, year: "2026",
+          },
+          {
+            rail: "Fine Art",
+            t: "Fine Art & Persoonlijk",
+            p: "Doorlopende verkenningen tussen documentaire en geregisseerde benaderingen, die de onzichtbare context natrekken die een moment vormt.",
+            img: "/work/milo-stack-6.jpg", bg: "#070b22", count: 3, year: "2026",
+          },
+        ],
+      },
+    },
+  },
+
+  // ── 03 · Nu ─────────────────────────────────────────────────────────────
   nu: {
     slug: "nu",
-    eyebrowNum: "01",
+    eyebrowNum: "03",
     category: "E-commerce voor beauty & wellness",
     year: "2024",
     titleSegs: [
@@ -175,302 +484,6 @@ export const projectsNL = {
             added: "✓ Added",
           },
         },
-      },
-    },
-  },
-
-  // ── 02 · Milo Weiler ────────────────────────────────────────────────────
-  milo: {
-    slug: "milo",
-    eyebrowNum: "02",
-    category: "Fotografieportfolio",
-    year: "2025",
-    titleSegs: [
-      { t: "Milo Weiler — getuige van de " },
-      { t: "schoonheid van het leven.", scramble: true, accent: true },
-    ],
-    lede:
-      "Een cinematografisch portfolio voor een Belgische set-, portret- en bedrijfsfotograaf — 55 projecten verdeeld over zeven hoofdstukken, samengehouden door een donkere schil en een vastgezette hoofdstuknavigatie.",
-    liveHref: "https://miloweiler.com",
-    meta: {
-      role: "Ontwerp & build",
-      year: "2025",
-      sector: "Portfolio · Kunst",
-      stack: ["Next.js", "Sanity", "Figma"],
-    },
-    heroImg: "/work/milo-hero.jpg",
-    heroAlt: "Milo Weiler — cinematografisch fotografieportfolio hero",
-    metaTitle: "Milo Weiler — Case study",
-    metaDescription:
-      "Een cinematografisch, donker portfolio voor een Belgische fotograaf — 55 projecten over zeven hoofdstukken, vastgezette hoofdstuknavigatie, drietalig EN · NL · FR, topscores in Lighthouse.",
-    sections: [
-      {
-        kind: "quote",
-        quote: [
-          { t: "Een oeuvre, geen rooster van thumbnails — de site moet lezen als een " },
-          { t: "boek vol hoofdstukken", accent: true },
-          { t: ", elk met zijn eigen stem." },
-        ],
-        cite: "// de briefing, in één zin",
-      },
-      {
-        kind: "twoColFeature",
-        head: {
-          eyebrow: "De briefing",
-          title: "Een oeuvre, geen rooster van thumbnails.",
-        },
-        paras: [
-          [
-            {
-              t: "Milo's praktijk beweegt tussen digitaal en analoog, documentair en geregisseerd. Een vlakke galerij zou dat bereik platslaan. In plaats daarvan leest de site als een ",
-            },
-            { t: "boek vol hoofdstukken", b: true },
-            {
-              t: " — Set, Corporate & Brand, Events, Portretten, Product & Food, Fine Art — elk met zijn eigen stem.",
-            },
-          ],
-          [
-            { t: "Een " },
-            { t: "donkere, cinematografische schil", b: true },
-            {
-              t: " laat de fotografie stralen, terwijl een vastgezette hoofdstuknavigatie je oriënteert doorheen 55 projecten. Drietalig EN · NL · FR, met sterke Lighthouse-scores op een uitgesproken beeldzware site.",
-            },
-          ],
-        ],
-        features: [
-          {
-            k: "[ sectioned_scroll ]",
-            b: "Hoofdstukgebaseerde scroll",
-            p: "Zeven secties met een vastgezette navigatie die volgt waar je bent terwijl je je door het werk beweegt.",
-          },
-          {
-            k: "[ headless_cms ]",
-            b: "Galerijen beheerd in Sanity",
-            p: "55 projecten, bijschriften en volgorde — allemaal bewerkbaar door Milo, zonder deploys.",
-          },
-          {
-            k: "[ performance ]",
-            b: "Snel ondanks de beelden",
-            p: "Responsief, uitgesteld laden van beelden houdt een mediazware site snel en CLS-zuiver.",
-          },
-          {
-            k: "[ i18n ]",
-            b: "EN · NL · FR",
-            p: "Drie talen, gelokaliseerde routing en metadata van begin tot eind.",
-          },
-        ],
-      },
-      {
-        kind: "signature",
-        demo: "miloRail",
-        head: {
-          eyebrow: "Signature build",
-          title: "De vastgezette hoofdstukrail",
-          intro:
-            "Navigatie die zich tegelijk gedraagt als een inhoudstafel en een scrollpositie. Kies een hoofdstuk — het podium en de index reageren, net zoals de live site reageert wanneer je scrolt. Probeer het:",
-        },
-        label: "ChapterNav.tsx",
-        note: "live component",
-      },
-      {
-        kind: "chapterIndex",
-        head: {
-          eyebrow: "Architectuur",
-          title: "Zeven hoofdstukken, één cinematografische schil",
-          intro:
-            "55 projecten horen niet thuis in een vlak rooster. Ze zijn ingedeeld in zeven oeuvres, elk met zijn eigen stem — de vastgezette rail volgt waar je bent terwijl je je erdoorheen beweegt.",
-        },
-        chapters: [
-          { cn: "01", ct: "Setfotografie", cd: "Videoclips, film, theater & commercials" },
-          { cn: "02", ct: "Corporate & Brand", cd: "Campagnes, teamportretten, behind-the-scenes" },
-          { cn: "03", ct: "Events & Documentaires", cd: "Van concertpodia tot conferentiezalen" },
-          { cn: "04", ct: "Portretten & Headshots", cd: "Acteurs, muzikanten & corporate, digitaal en film" },
-          { cn: "05", ct: "Product & Food", cd: "Ontwerp, textuur en intentie door licht" },
-          { cn: "06", ct: "Fine Art", cd: "Verkenningen tussen documentair & geregisseerd" },
-          { cn: "07", ct: "Persoonlijk Werk", cd: "Het natrekken van de context die een moment vormt" },
-        ],
-      },
-      {
-        kind: "gallery",
-        head: { eyebrow: "Galerij", title: "Doorheen de hoofdstukken" },
-        items: [
-          { id: "milo-g1", span: "tall", alt: "Setfotografie" },
-          { id: "milo-g2", span: "wide", alt: "Hoofdstuklanding" },
-          { id: "milo-g3", span: "half", alt: "Portretten" },
-          { id: "milo-g4", span: "half", alt: "Fine art" },
-        ],
-      },
-    ],
-    signatureData: {
-      // `rail` = the short label on the rail button (prototype rail markup);
-      // `t` = the caption heading shown in the stage (prototype data[] array).
-      miloRail: [
-        {
-          rail: "Setfotografie",
-          t: "Setfotografie",
-          p: "Waar kunst en verhaal elkaar ontmoeten — momenten uit videoclips, film, theater en commercials in België en daarbuiten.",
-        },
-        {
-          rail: "Corporate & Brand",
-          t: "Corporate & Brand",
-          p: "Een bedrijf is meer dan zijn product. Merkcampagnes, teamportretten en behind-the-scenes voor bedrijven in België en Nederland.",
-        },
-        {
-          rail: "Events & Docs",
-          t: "Events & Documentaires",
-          p: "Van concertpodia tot conferentiezalen — events documenteren zoals ze zich ontvouwen, authentieke momenten boven geposeerde.",
-        },
-        {
-          rail: "Portretten",
-          t: "Portretten & Headshots",
-          p: "Portretten als verlengstuk van iemands verhaal — professionele headshots voor acteurs, muzikanten en bedrijfsklanten, op digitaal en film.",
-        },
-        {
-          rail: "Product & Food",
-          t: "Product & Food",
-          p: "Elk vakkundig gemaakt object vertelt een verhaal van ontwerp, textuur en intentie — vertaald door licht, vorm en oppervlak.",
-        },
-        {
-          rail: "Fine Art",
-          t: "Fine Art & Persoonlijk",
-          p: "Doorlopende verkenningen tussen documentaire en geregisseerde benaderingen, die de onzichtbare context natrekken die een moment vormt.",
-        },
-      ],
-    },
-  },
-
-  // ── 03 · AutomatX Labs ──────────────────────────────────────────────────
-  automatx: {
-    slug: "automatx",
-    eyebrowNum: "03",
-    category: "Ingenieurspraktijk · Lyon",
-    year: "2026",
-    titleSegs: [
-      { t: "AutomatX — één ingenieur, " },
-      { t: "X labs.", scramble: true, accent: true },
-    ],
-    lede:
-      "De site van AutomatX Labs, mijn onafhankelijke ingenieurspraktijk. Vier labs, ingedeeld naar wat ze verbeteren (een proces, een lichaam, iets fysieks, een berekening), acht vaardigheden die erdoorheen lopen, en een 3D-sterrenkaart die het hele model op één scherm zet.",
-    liveHref: "https://automatx.eu",
-    meta: {
-      role: "Merk, design & bouw",
-      year: "2026",
-      sector: "Engineering · Labautomatisering",
-      stack: ["HTML", "CSS", "Vanilla JS", "three.js"],
-    },
-    heroImg: "/work/automatx-hero.jpg",
-    heroAlt: "Home van AutomatX Labs — “One engineer. X labs.” op een donker ingenieursraster",
-    metaTitle: "AutomatX Labs — Case study",
-    metaDescription:
-      "De bouw van automatx.eu: een statische, tweetalige site zonder externe verzoeken, een X Labs-structuur en een interactieve three.js-constellatie van labs en vaardigheden.",
-    sections: [
-      {
-        kind: "twoColFeature",
-        head: {
-          eyebrow: "De opdracht",
-          title: "Veel vakgebieden, één methode, één site.",
-        },
-        paras: [
-          [
-            { t: "Labautomatisering, bewegingsanalyse, 3D-printen, AI. Op een cv oogt dat versnipperd. De site moest tonen dat het " },
-            { t: "één methode is, overal toegepast", b: true },
-            { t: ": meten, automatiseren, reproduceerbaar maken." },
-          ],
-          [
-            { t: "Het antwoord werd het " },
-            { t: "X Labs-model", b: true },
-            {
-              t: ". Labs zijn ingedeeld naar het systeem dat ze verbeteren, en vaardigheden zijn de tools die ze delen. Een project hoort bij het lab waarvan het het systeem verbetert, niet bij de tools die het gebruikt.",
-            },
-          ],
-        ],
-        features: [
-          {
-            k: "[ x_labs ]",
-            b: "Vier labs, acht vaardigheden",
-            p: "Proces · Pharma, Lichaam · Sport, Materie · Robotica en Rekenen · AI delen sensoren, elektronica, mechanica, software, data, AI/ML, validatie en industrialisatie.",
-          },
-          {
-            k: "[ zero_requests ]",
-            b: "Niets komt van elders",
-            p: "Fonts, scripts en three.js worden allemaal zelf gehost. Geen CDN, geen Google Fonts, geen analytics, dus niets dat een AVG-vraag oproept.",
-          },
-          {
-            k: "[ progressive ]",
-            b: "Werkt zonder JavaScript",
-            p: "Eerst gewone HTML en CSS. Scripts voegen alleen iets toe: de 3D-kaart, live sportfiguren en onthullingen bij het scrollen.",
-          },
-          {
-            k: "[ i18n ]",
-            b: "EN · FR",
-            p: "Tien URL’s, elk via hreflang gekoppeld aan de Franse versie, plus een sitemap en JSON-LD.",
-          },
-        ],
-      },
-      {
-        kind: "signature",
-        demo: "automatxWeb",
-        head: {
-          eyebrow: "Signature build",
-          title: "De labs als sterrenbeeld",
-          intro:
-            "De kaart van de homepage, die hier draait zoals op de live site. De vier labs staan op twee diagonalen, zodat hun verbindingen de X van het logo tekenen. Vaardigheden draaien op een buitenste bol, dicht bij de labs die ze bedienen. Sleep om te draaien, gooi een ster weg, hover om de verbindingen op te lichten.",
-        },
-        label: "web3d.js",
-        note: "slepen · hover · ctrl + scroll om te zoomen",
-      },
-      {
-        kind: "approach",
-        head: {
-          eyebrow: "Hoe het gebouwd is",
-          title: "De SVG blijft de bron van waarheid",
-          intro:
-            "De kaart begint als een toegankelijke SVG: echte links, focusbare nodes, leesbare labels. three.js is een laag erachter, en de SVG blijft werken als die laag niet laadt.",
-        },
-        steps: [
-          {
-            sn: "01 / lees de markup",
-            h: "Nodes & lijnen uit de DOM",
-            p: "web3d.js bouwt de graaf op uit de SVG-cirkels en <line data-a data-b>-lijnen, dus de kaart aanpassen is een markup-aanpassing.",
-          },
-          {
-            sn: "02 / elke frame vastplakken",
-            h: "Terug op het scherm geprojecteerd",
-            p: "Elke frame wordt elke ster op het scherm geprojecteerd en zijn SVG-node erheen verplaatst, zodat labels, focusringen en klikvlakken op de sterren blijven.",
-          },
-          {
-            sn: "03 / niets in rust",
-            h: "Lazy, gepauzeerd, optioneel",
-            p: "Het script laadt pas als de kaart in beeld komt en pauzeert buiten beeld. Met beperkte beweging of zonder WebGL blijft de platte kaart staan.",
-          },
-        ],
-      },
-      {
-        kind: "statBand",
-        stats: [
-          { sv: "0", sl: "externe verzoeken" },
-          { sv: "4 × 8", sl: "labs × vaardigheden" },
-          { sv: "10", sl: "URL’s · EN + FR" },
-          { sv: "1", sl: "externe library" },
-        ],
-      },
-      {
-        kind: "gallery",
-        head: { eyebrow: "Galerij", title: "Door de site" },
-        items: [
-          { id: "automatx-g1", span: "wide", alt: "Hub — de sterrenkaart van labs × vaardigheden" },
-          { id: "automatx-g2", span: "tall", alt: "Pharma-lab — Hamilton VENUS-automatisering en GMP-validatie" },
-          { id: "automatx-g3", span: "half", alt: "Sportlab — gesimuleerde bewegingssignalen als fijne SVG-lijnen" },
-          { id: "automatx-g4", span: "half", alt: "Oorsprong — onderzoek aan de KU Leuven en het loopbaanpad" },
-        ],
-      },
-    ],
-    signatureData: {
-      automatxWeb: {
-        intro:
-          "AutomatX Labs is de onafhankelijke ingenieurspraktijk van Yolan Weiler, biomedisch & elektrotechnisch ingenieur (KU Leuven), gevestigd in Lyon. Eén methode, overal toegepast: meten, automatiseren, reproduceerbaar maken.",
-        hint: "Sleep om te draaien · ⌘/Ctrl + scroll of knijp om te zoomen · tik op een ster om te lezen →",
-        go: "Open lab →",
       },
     },
   },
