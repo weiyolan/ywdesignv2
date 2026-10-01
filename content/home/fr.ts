@@ -5,11 +5,11 @@ const nbsp = " ";
 
 export const homeFR = {
   hero: {
-    eyebrow: "Développeur & designer web senior · Lyon, FR",
+    eyebrow: "Des sites conçus de zéro · Lyon, FR",
     headline: [
-      [{ t: "Des sites,", scramble: true }, { t: " conçus" }],
-      [{ t: "de " }, { t: "zéro", scramble: true, accent: true }, { t: " —" }],
-      [{ t: "l’IA, c’est l’" }, { t: "outil.", scramble: true, accent: true }],
+      [{ t: "Développeur", scramble: true }, { t: " &" }],
+      [{ t: "designer", scramble: true, accent: true }, { t: " web" }],
+      [{ t: "senior", scramble: true }, { t: "." }],
     ] as Seg[][],
     sub: [
       { t: "Je suis " },

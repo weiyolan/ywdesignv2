@@ -572,7 +572,8 @@ header{padding:170px 0 60px;position:relative}
 @media(max-width:980px){.sm-hero .sm-stage{width:min(100%,420px)}} /* flares span the page width, never widen it */
 /* big screens: the hero grid outgrows --maxw so the orb column (≈526px at 1280) keeps growing;
    the stage stays square and short of the viewport height (header pad + toggle + chips) */
-@media(min-width:1440px){.sm-hero .hero-grid{width:100%;max-width:min(1760px,94vw)}
+.sm-hero .hero-grid{width:100%} /* .sunmoon is a flex column → the auto-margin wrap would shrink to its content */
+@media(min-width:1440px){.sm-hero .hero-grid{max-width:min(1760px,94vw)}
   .sm-hero .sm-stage{width:min(100%,calc(100svh - 280px))}}
 /* deep-space band — always dark (local tokens keep copy readable in light theme);
    fades into the page at top/bottom. Star layers slide with the orb's rotation. */

@@ -17,18 +17,18 @@ const MARK = `<rect width="32" height="32" rx="7" fill="#1d232a"/><svg x="5" y="
 const SITE = process.env.SITE ?? "http://localhost:3000";
 const CARDS = {
   en: {
-    eyebrow: "Senior web developer &amp; designer · Lyon, FR",
-    lines: ["Websites, built", "from <b>scratch</b>—", "AI is the <b>power&nbsp;tool.</b>"],
+    eyebrow: "Websites, built from scratch · Lyon, FR",
+    lines: ["Senior web", "developer &amp;", "<b>designer</b>."],
     foot: "Hand-coded, AI-accelerated · Next.js · GSAP · Three.js",
   },
   fr: {
-    eyebrow: "Développeur &amp; designer web senior · Lyon, FR",
-    lines: ["Des sites, conçus", "de <b>zéro</b> —", "l’IA, c’est l’<b>outil.</b>"],
+    eyebrow: "Des sites conçus de zéro · Lyon, FR",
+    lines: ["Développeur &amp;", "<b>designer</b> web", "senior."],
     foot: "Codé à la main, accéléré par l’IA · Next.js · GSAP · Three.js",
   },
   nl: {
-    eyebrow: "Senior webdeveloper &amp; designer · Lyon, FR",
-    lines: ["Websites, gebouwd", "vanaf <b>nul</b>—", "AI is het <b>power&nbsp;tool.</b>"],
+    eyebrow: "Websites, gebouwd vanaf nul · Lyon, FR",
+    lines: ["Senior", "webdeveloper", "&amp; <b>designer</b>."],
     foot: "Met de hand, AI-versneld · Next.js · GSAP · Three.js",
   },
 };

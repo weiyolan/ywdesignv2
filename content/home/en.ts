@@ -24,11 +24,11 @@ const nbsp = " ";
 
 export const home = {
   hero: {
-    eyebrow: "Senior web developer & designer · Lyon, FR",
+    eyebrow: "Websites, built from scratch · Lyon, FR",
     headline: [
-      [{ t: "Websites,", scramble: true }, { t: " built" }],
-      [{ t: "from " }, { t: "scratch", scramble: true, accent: true }, { t: "—" }],
-      [{ t: "AI is the " }, { t: "power" + nbsp + "tool.", scramble: true, accent: true }],
+      [{ t: "Senior", scramble: true }, { t: " web" }],
+      [{ t: "developer", scramble: true }, { t: " &" }],
+      [{ t: "designer", scramble: true, accent: true }, { t: "." }],
     ] as Seg[][],
     sub: [
       { t: "I'm " },
