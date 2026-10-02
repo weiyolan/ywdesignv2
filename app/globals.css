@@ -114,6 +114,20 @@
 /* ============ base reset (styles.css :27-34) ============ */
 *{box-sizing:border-box;margin:0;padding:0}
 html{background:var(--bg)}
+/* desktop scrollbar: slim, theme-tinted, accent on hover (mouse/trackpad only — touch keeps
+   the native overlay bar). Blink/WebKit use the pseudo-elements; Firefox the standard props
+   (setting scrollbar-color in Chrome would disable the pseudo-element styling). */
+@media(hover:hover) and (pointer:fine){
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:color-mix(in oklch,var(--text-3) 55%,transparent);
+    border:3px solid transparent;background-clip:padding-box;border-radius:10px}
+  ::-webkit-scrollbar-thumb:hover{background-color:var(--accent);border-width:2px}
+  ::-webkit-scrollbar-corner{background:transparent}
+  @supports not selector(::-webkit-scrollbar){
+    html{scrollbar-width:thin;scrollbar-color:color-mix(in oklch,var(--text-3) 55%,transparent) transparent}
+  }
+}
 body{
   background:transparent;color:var(--text);font-family:var(--sans);
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
