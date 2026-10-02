@@ -9,7 +9,7 @@ import {
 import "../globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { AppearanceProvider } from "@/components/providers/AppearanceProvider";
-import { ACCENT_LC, TYPE_KEY, ACCENT_KEY } from "@/lib/appearance";
+import { TYPE_KEY, ACCENT_KEY } from "@/lib/appearance";
 import { GsapProvider } from "@/components/providers/GsapProvider";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
@@ -50,7 +50,7 @@ const newsreader = Newsreader({
 
 // Runs before first paint (mirrors next-themes' own data-theme script) so a returning
 // visitor's editor theme + custom accent are applied with no flash of the defaults.
-const appearanceInit = `(function(){try{var d=document.documentElement;if(localStorage.getItem('${TYPE_KEY}')==='editor')d.setAttribute('data-type','editor');var h=localStorage.getItem('${ACCENT_KEY}');if(h)d.style.setProperty('--accent','oklch(${ACCENT_LC} '+h+')');}catch(e){}})();`;
+const appearanceInit = `(function(){try{var d=document.documentElement;if(localStorage.getItem('${TYPE_KEY}')==='editor')d.setAttribute('data-type','editor');var h=localStorage.getItem('${ACCENT_KEY}');if(h)d.style.setProperty('--accent-h',h);}catch(e){}})();`;
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));

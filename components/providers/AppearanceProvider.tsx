@@ -9,7 +9,6 @@ import {
   type ReactNode,
 } from "react";
 import {
-  accentFromHue,
   ACCENT_KEY,
   DEFAULT_HUE,
   TYPE_KEY,
@@ -19,8 +18,8 @@ import {
 // Two visitor-chosen preferences that sit alongside next-themes' light/dark:
 //   • typeTheme — "code" (default, Bricolage/JetBrains) ⇄ "editor" (Fraunces/Newsreader
 //     serif + warm palette). Drives [data-type="editor"] on <html>; globals.css keys on it.
-//   • accentHue — rotates the OKLCH accent. Lightness/chroma stay locked (ACCENT_LC) so
-//     every hue is tasteful and --accent-ink contrast stays valid. Sets --accent inline.
+//   • accentHue — rotates the OKLCH accent. Lightness/chroma are fixed per theme in CSS
+//     (--accent-l/--accent-c) so every hue stays legible on dark and light. Sets --accent-h inline.
 // Both persist to localStorage; a pre-paint script in app/layout.tsx applies them before
 // first paint (no flash). This provider just mirrors that into React state for the UI.
 
@@ -55,7 +54,7 @@ export function AppearanceProvider({ children }: { children: ReactNode }) {
 
   const setAccentHue = useCallback((h: number) => {
     setAccentHueState(h);
-    document.documentElement.style.setProperty("--accent", accentFromHue(h));
+    document.documentElement.style.setProperty("--accent-h", String(h));
     try {
       localStorage.setItem(ACCENT_KEY, String(h));
     } catch {}

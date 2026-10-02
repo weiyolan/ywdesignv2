@@ -5,7 +5,8 @@
 
 export type TypeTheme = "code" | "editor";
 
-export const ACCENT_LC = "0.84 0.185"; // locked OKLCH lightness + chroma
+// Lightness + chroma are per theme in CSS (--accent-l/--accent-c: bright on dark, darker on
+// light); only the hue is visitor-set, as --accent-h.
 export const DEFAULT_HUE = 152; // matches globals.css --accent default
 export const TYPE_KEY = "yw-type";
 export const ACCENT_KEY = "yw-accent";
@@ -18,4 +19,4 @@ export const ACCENT_PRESETS = [152, 195, 255, 300, 340, 35];
 export const GALACTIC_SUN_RED = 28;
 export const GALACTIC_MOON_BLUE = 250;
 
-export const accentFromHue = (hue: number) => `oklch(${ACCENT_LC} ${hue})`;
+export const accentFromHue = (hue: number) => `oklch(var(--accent-l) var(--accent-c) ${hue})`;

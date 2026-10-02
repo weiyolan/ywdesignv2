@@ -21,7 +21,9 @@
   --text-2:oklch(0.74 0.010 245);
   --text-3:oklch(0.56 0.012 245);
   /* accent */
-  --accent: oklch(0.84 0.185 152);
+  /* accent = visitor hue (--accent-h, AppearanceProvider) at a per-theme lightness/chroma */
+  --accent-l: 0.84; --accent-c: 0.185; --accent-h: 152;
+  --accent: oklch(var(--accent-l) var(--accent-c) var(--accent-h));
   --accent-ink: oklch(0.18 0.02 245);
   --accent-soft: color-mix(in oklch, var(--accent) 16%, transparent);
   --accent-line: color-mix(in oklch, var(--accent) 42%, transparent);
@@ -43,6 +45,10 @@
   --text:  oklch(0.235 0.012 260);
   --text-2:oklch(0.44 0.012 260);
   --text-3:oklch(0.58 0.012 260);
+  /* darker accent on paper (≈5.5:1 for any hue) → light ink on accent fills */
+  --accent-l: 0.50; --accent-c: 0.15;
+  --accent: oklch(var(--accent-l) var(--accent-c) var(--accent-h));
+  --accent-ink: oklch(0.985 0.004 95);
   --accent-soft: color-mix(in oklch, var(--accent) 20%, transparent);
 }
 
@@ -228,11 +234,13 @@ section{isolation:isolate;padding:104px 0;position:relative}
 }
 #nav.scrolled{padding:12px 40px;background:color-mix(in oklch,var(--bg) 72%,transparent);
   backdrop-filter:blur(16px) saturate(1.3);border-bottom-color:var(--line)}
+/* light: near-opaque paper — at the default 72% (glass: 55%) the dark-ink links sit on grey over the space band */
+[data-theme="light"] #nav.scrolled,[data-theme="light"] body[data-surface="glass"] #nav.scrolled{background:color-mix(in oklch,var(--bg) 88%,transparent)}
 @media(max-width:720px){#nav,#nav.scrolled{padding-left:20px;padding-right:20px}}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
 .mark{display:block;height:36px;aspect-ratio:471/383;background:currentColor;
   mask:url(/ywdesign.svg) center/contain no-repeat}
-.logo .stat{font-family:var(--mono);font-size:10.5px;color:var(--text-3);display:flex;
+.logo .stat{font-family:var(--mono);font-size:10.5px;color:var(--text-2);display:flex;
   align-items:center;gap:6px;padding:4px 9px;border:1px solid var(--line);border-radius:100px}
 .logo .stat::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);
   box-shadow:0 0 0 0 var(--accent);animation:pulse 2.4s infinite}
@@ -591,9 +599,13 @@ header{padding:170px 0 60px;position:relative}
   --text:#eef1f7;--text-2:#b8c1d8;--text-3:#8490b0;--line:rgba(190,205,255,.14);--line-2:rgba(190,205,255,.24);
   --bg-2:#0b1033;color:var(--text);
   min-height:100svh;display:flex;flex-direction:column;justify-content:center;--sp:1}
-/* light theme: the copy crossfades from page ink to starlight as space fades in */
-[data-theme="light"] .sunmoon{--text:color-mix(in oklch,#eef1f7 calc(var(--sp) * 100%),#15181d);
-  --text-2:color-mix(in oklch,#b8c1d8 calc(var(--sp) * 100%),#4a5260);--text-3:color-mix(in oklch,#8490b0 calc(var(--sp) * 100%),#6b7382)}
+/* light theme: the band stays solid space (no scroll fade) — a dark→paper crossfade passes
+   through mid-grey, where neither starlight nor ink copy is legible. It ends in a short edge
+   into the paper instead. Inside it the accent keeps its bright on-dark variant. z-index lifts
+   the backdrop over the page grid (too bright on space in light mode). */
+[data-theme="light"] .sunmoon{position:relative;z-index:1;
+  --accent-l:.84;--accent-c:.185;--accent:oklch(var(--accent-l) var(--accent-c) var(--accent-h));--accent-ink:oklch(.18 .02 245)}
+[data-theme="light"] .sunmoon::before,[data-theme="light"] .sm-sky{opacity:1}
 /* space backdrop + stars fade with scroll (--sp, scrubbed by SunMoonDemo; 1 without JS) */
 .sunmoon::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:var(--sp);
   background:
@@ -601,6 +613,13 @@ header{padding:170px 0 60px;position:relative}
     radial-gradient(34% 40% at 18% 82%,rgba(20,140,190,.2),transparent 70%),
     radial-gradient(30% 30% at 40% 12%,rgba(200,60,160,.12),transparent 70%),
     linear-gradient(180deg,var(--bg) 0,#070b26 130px,#050820 50%,#070b26 calc(100% - 130px),var(--bg) 100%)}
+/* light theme: paper under the nav (dark-ink links), space ends just below the marquee —
+   the default 130px edges would put the nav and the starlit marquee on mid-grey */
+[data-theme="light"] .sunmoon::before{background:
+    radial-gradient(38% 50% at 72% 50%,rgba(104,72,220,.34),transparent 70%),
+    radial-gradient(34% 40% at 18% 82%,rgba(20,140,190,.2),transparent 70%),
+    radial-gradient(30% 30% at 40% 12%,rgba(200,60,160,.12),transparent 70%),
+    linear-gradient(180deg,var(--bg) 0,var(--bg) 56px,#070b26 128px,#050820 50%,#070b26 calc(100% - 56px),var(--bg) 100%)}
 .sm-sky{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:var(--sp);
   -webkit-mask:linear-gradient(180deg,transparent,#000 120px,#000 calc(100% - 120px),transparent);
           mask:linear-gradient(180deg,transparent,#000 120px,#000 calc(100% - 120px),transparent)}
