@@ -4,6 +4,8 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
+import { useAppearance } from "@/components/providers/AppearanceProvider";
+import { GALACTIC_MOON_BLUE, GALACTIC_SUN_RED } from "@/lib/appearance";
 
 // three.js + R3F live in their own chunk, fetched only when the section nears
 // the viewport — the home page's first-load JS is unchanged.
@@ -39,6 +41,12 @@ type Copy = {
 // `hero`: the landing hero — space is on from the first paint and only fades out on the way past.
 export function SunMoonDemo({ copy, hero }: { copy: Copy; hero?: boolean }) {
   const [moon, setMoon] = useState(false);
+  const { setAccentHue } = useAppearance();
+  // picking sun/moon also snaps the site accent (and the AppearanceMenu picker)
+  const pick = (m: boolean) => {
+    setMoon(m);
+    setAccentHue(m ? GALACTIC_MOON_BLUE : GALACTIC_SUN_RED);
+  };
   const [near, setNear] = useState(false); // ever came close → mount the scene
   const [visible, setVisible] = useState(false); // on screen → run the frame loop
   const [webgl, setWebgl] = useState(true);
@@ -99,10 +107,10 @@ export function SunMoonDemo({ copy, hero }: { copy: Copy; hero?: boolean }) {
   return (
     <div className="sm-demo" data-mode={mode} data-ready={ready || undefined}>
       <div className="sm-toggle" role="group" aria-label={copy.toggle}>
-        <button type="button" aria-pressed={!moon} onClick={() => setMoon(false)}>
+        <button type="button" aria-pressed={!moon} onClick={() => pick(false)}>
           ☀ {copy.sun}
         </button>
-        <button type="button" aria-pressed={moon} onClick={() => setMoon(true)}>
+        <button type="button" aria-pressed={moon} onClick={() => pick(true)}>
           ☾ {copy.moon}
         </button>
       </div>

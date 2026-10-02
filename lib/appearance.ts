@@ -14,4 +14,8 @@ export const ACCENT_KEY = "yw-accent";
 // nav AppearanceMenu and the home "Design systems" bento card so they agree.
 export const ACCENT_PRESETS = [152, 195, 255, 300, 340, 35];
 
+// Sun/Moon toggle on the home hero snaps the accent to these.
+export const GALACTIC_SUN_RED = 28;
+export const GALACTIC_MOON_BLUE = 250;
+
 export const accentFromHue = (hue: number) => `oklch(${ACCENT_LC} ${hue})`;
