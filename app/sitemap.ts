@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { locales, defaultLocale, localizedHref } from "@/lib/i18n";
 import { order } from "@/content/work";
+import { serviceSlugs } from "@/content/services";
 
 const BASE = "https://ywdesign.co";
 
@@ -13,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/work",
     "/technology",
     "/about",
+    "/services",
+    ...serviceSlugs.map((s) => `/services/${s}`),
     ...order.map((s) => `/work/${s}`),
   ];
 

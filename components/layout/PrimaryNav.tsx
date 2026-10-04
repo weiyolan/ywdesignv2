@@ -43,7 +43,7 @@ export function PrimaryNav({ back }: Props) {
       if (e.key === "Escape") setOpen(false);
     };
     const onResize = () => {
-      if (window.innerWidth > 900) setOpen(false);
+      if (window.innerWidth > 1160) setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);

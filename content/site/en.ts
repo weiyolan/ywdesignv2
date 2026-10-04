@@ -47,6 +47,7 @@ export const site = {
   nav: [
     { label: "Home", href: "/" },
     { label: "Work", href: "/work" },
+    { label: "Services", href: "/services" },
     { label: "Technology", href: "/technology" },
     { label: "About", href: "/about" },
   ] as NavLink[],
@@ -106,6 +107,15 @@ export const site = {
           { label: "About", href: "/about" },
           { label: "AI philosophy", href: "/#ai" },
           { label: "Process", href: "/#process" },
+        ] as NavLink[],
+      },
+      {
+        title: "Services",
+        links: [
+          { label: "Custom website", href: "/services/website" },
+          { label: "E-commerce store", href: "/services/e-commerce" },
+          { label: "Website redesign", href: "/services/redesign" },
+          { label: "All services", href: "/services" },
         ] as NavLink[],
       },
       {

@@ -330,7 +330,10 @@ section{isolation:isolate;padding:104px 0;position:relative}
   border:1px solid var(--line-2);background:transparent;color:var(--text);cursor:pointer;transition:.18s;
   display:inline-flex;align-items:center;justify-content:center;gap:8px}
 .appearance-random:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
-@media(max-width:900px){.navlinks .hide-md{display:none}}
+@media(max-width:1160px){.navlinks .hide-md{display:none}}
+/* ≤1160px → burger drawer (FR labels need ~1120px with Services); just above, tighten the gaps */
+.navlinks a:not(.btn){white-space:nowrap}
+@media(max-width:1240px){.navlinks{gap:18px}}
 
 /* ============ mobile nav (burger + drawer) ============ */
 .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;
@@ -382,9 +385,9 @@ body.nav-open .nav-drawer > *:nth-child(6){transition-delay:.35s}
 .nav-scrim{position:fixed;inset:0;z-index:54;background:rgba(0,0,0,.5);
   opacity:0;pointer-events:none;transition:opacity .35s ease}
 body.nav-open .nav-scrim{opacity:1;pointer-events:auto}
-@media(max-width:900px){.nav-burger{display:flex}}
+@media(max-width:1160px){.nav-burger{display:flex}}
 @media(max-width:520px){.navlinks .hide-sm{display:none}}
-@media(min-width:901px){.nav-drawer,.nav-scrim{display:none!important}}
+@media(min-width:1161px){.nav-drawer,.nav-scrim{display:none!important}}
 
 /* ============ hero ============ */
 header{padding:170px 0 60px;position:relative}
@@ -718,7 +721,7 @@ header{padding:170px 0 60px;position:relative}
 
 /* ============ footer ============ */
 footer{border-top:1px solid var(--line);padding:60px 0 46px;position:relative;z-index:1}
-.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
 @media(max-width:720px){.foot-grid{grid-template-columns:1fr 1fr}}
 .foot-brand .mark{height:52px;margin-bottom:14px}
 .foot-brand p{font-family:var(--mono);font-size:12px;color:var(--text-3);margin-top:12px;max-width:34ch;line-height:1.7}
@@ -915,7 +918,7 @@ body[data-surface="glass"]{ --glow:0.7 }
   border-top:1px solid var(--line);font-size:12px;color:var(--text-2)}
 .navlinks a.navmenu-all:hover{color:var(--accent)}
 @media(prefers-reduced-motion:reduce){.navmenu-panel,.navmenu-panel[data-open="true"]{transition:none}}
-@media(max-width:900px){.navlinks .navmenu.hide-md{display:none}}
+@media(max-width:1160px){.navlinks .navmenu.hide-md{display:none}}
 /* drawer: projects under "Work" */
 .nav-drawer{overflow-y:auto;justify-content:safe center}
 .nav-drawer .md-sub{display:flex;flex-direction:column;padding:4px 0 8px 14px;border-bottom:1px solid var(--line)}

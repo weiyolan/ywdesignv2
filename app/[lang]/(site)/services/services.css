@@ -1,0 +1,61 @@
+/* ---------- service pages (/services, /services/[service]) ----------
+   Route-scoped global CSS. Cards reuse the global .card; tokens from globals.css. */
+
+.svc-hero{padding:165px 0 40px;position:relative}
+@media(max-width:720px){.svc-hero{padding-top:120px}}
+.svc-crumbs{font-family:var(--mono);font-size:12px;color:var(--text-3);margin-bottom:26px}
+.svc-crumbs a{color:var(--text-2);text-decoration:none}
+.svc-crumbs a:hover{color:var(--accent)}
+.svc-h1{font-size:clamp(46px,8.4vw,108px);margin:18px 0 0;line-height:.95}
+.svc-sub{font-size:clamp(17px,2vw,21px);line-height:1.55;color:var(--text-2);max-width:56ch;margin-top:26px}
+.svc-hero .hero-cta{margin-top:34px}
+
+/* hub cards */
+.svc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:920px){.svc-cards{grid-template-columns:1fr}}
+.svc-card{min-height:280px;text-decoration:none;color:inherit;height:100%}
+.svc-card .n{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:auto}
+.svc-card h2{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.1;letter-spacing:-.015em;margin:26px 0 10px}
+.svc-card .more,.svc-case .more{font-family:var(--mono);font-size:12px;color:var(--text-2);margin-top:18px}
+.svc-card:hover .more,.svc-case:hover .more{color:var(--accent)}
+
+/* sections */
+.svc-sec{padding:72px 0}
+.svc-label{margin:0 0 26px}
+.svc-points{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:1100px){.svc-points{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.svc-points{grid-template-columns:1fr}}
+.svc-point h3{margin-top:0}
+.svc-two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+@media(max-width:860px){.svc-two{grid-template-columns:1fr;gap:48px}}
+.svc-included{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.svc-included li{padding:15px 0 15px 30px;border-bottom:1px solid var(--line);position:relative;
+  font-size:16px;color:var(--text)}
+.svc-included li::before{content:"✓";position:absolute;left:2px;top:15px;font-family:var(--mono);color:var(--accent)}
+.svc-process{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px}
+.svc-process li{display:grid;grid-template-columns:42px 1fr;gap:12px}
+.svc-process .n{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:4px}
+.svc-process b{font-family:var(--display);font-size:19px;font-weight:700;color:var(--text)}
+.svc-process p{color:var(--text-2);font-size:15px;line-height:1.55;margin:4px 0 0}
+
+/* proof */
+.svc-cases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:920px){.svc-cases{grid-template-columns:1fr}}
+.svc-case{padding:0;text-decoration:none;color:inherit;height:100%}
+.svc-case .thumb{position:relative;display:block;aspect-ratio:16/10;border-bottom:1px solid var(--line)}
+.svc-case .thumb img{object-fit:cover}
+.svc-case .txt{display:flex;flex-direction:column;gap:4px;padding:20px 22px 22px}
+.svc-case b{font-family:var(--display);font-size:20px;font-weight:700}
+.svc-case small{font-family:var(--mono);font-size:11.5px;color:var(--text-3)}
+
+/* FAQ */
+.svc-faq{border-top:1px solid var(--line);max-width:900px}
+.svc-faq details{border-bottom:1px solid var(--line)}
+.svc-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0}
+.svc-faq summary::-webkit-details-marker{display:none}
+.svc-faq summary::after{content:"+";font-family:var(--mono);font-size:20px;color:var(--accent);transition:transform .25s}
+.svc-faq details[open] summary::after{transform:rotate(45deg)}
+.svc-faq h3{font-family:var(--display);font-weight:600;font-size:clamp(17px,2vw,20px);margin:0;color:var(--text)}
+.svc-faq summary:hover h3{color:var(--accent)}
+.svc-faq details p{color:var(--text-2);font-size:16px;line-height:1.65;margin:0 0 22px;max-width:70ch}
+.svc-faq summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}

@@ -35,6 +35,7 @@ export const siteNL = {
   nav: [
     { label: "Home", href: "/" },
     { label: "Werk", href: "/work" },
+    { label: "Diensten", href: "/services" },
     { label: "Technologie", href: "/technology" },
     { label: "Over", href: "/about" },
   ] as NavLink[],
@@ -93,6 +94,15 @@ export const siteNL = {
           { label: "Over", href: "/about" },
           { label: "AI-filosofie", href: "/#ai" },
           { label: "Proces", href: "/#process" },
+        ] as NavLink[],
+      },
+      {
+        title: "Diensten",
+        links: [
+          { label: "Website op maat", href: "/services/website" },
+          { label: "Webshop", href: "/services/e-commerce" },
+          { label: "Website redesign", href: "/services/redesign" },
+          { label: "Alle diensten", href: "/services" },
         ] as NavLink[],
       },
       {

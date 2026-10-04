@@ -15,8 +15,10 @@ import { LenisProvider } from "@/components/providers/LenisProvider";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
 import { BackgroundFX } from "@/components/layout/BackgroundFX";
 import { getSite } from "@/content/site";
-import { locales, defaultLocale, isLocale, ogLocale } from "@/lib/i18n";
+import { locales, defaultLocale, isLocale, ogLocale, localizedHref } from "@/lib/i18n";
 import { ogCard } from "@/lib/metadata";
+import { AREA_SERVED, SAME_AS } from "@/lib/seo";
+import { getServices } from "@/content/services";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -112,6 +114,7 @@ export default async function RootLayout({
         url: `https://ywdesign.co/${lang}`,
         image: `https://ywdesign.co/og-${lang}.jpg`,
         knowsLanguage: ["fr", "en", "nl"],
+        sameAs: SAME_AS,
         address: {
           "@type": "PostalAddress",
           addressLocality: "Lyon",
@@ -129,7 +132,22 @@ export default async function RootLayout({
         telephone: "+33765601415",
         vatID: "FR65984069609",
         founder: { "@id": "https://ywdesign.co/#yolan" },
-        areaServed: "Worldwide",
+        logo: "https://ywdesign.co/icon-512.png",
+        sameAs: SAME_AS,
+        priceRange: "€€",
+        areaServed: AREA_SERVED,
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: getServices(lang).hub.eyebrow,
+          itemListElement: getServices(lang).items.map((s) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: s.name,
+              url: `https://ywdesign.co${localizedHref(`/services/${s.slug}`, lang)}`,
+            },
+          })),
+        },
         address: {
           "@type": "PostalAddress",
           streetAddress: "504 Chemin de la Rivière",
