@@ -44,6 +44,8 @@ export const siteFR = {
 
   ui: {
     allWork: "Tous les projets",
+    allServices: "Tous les services",
+    allTech: "Toute la stack en détail",
     moreWork: "Autres projets",
     prev: "Précédent",
     next: "Suivant",

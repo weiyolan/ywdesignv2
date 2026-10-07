@@ -1,0 +1,24 @@
+/* 404 — empty 3D space (app/global-not-found.tsx) */
+.nf{position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;isolation:isolate}
+.nf-canvas{position:fixed!important;inset:0;z-index:0;opacity:0;transition:opacity 1.6s ease}
+.nf[data-lit="true"] .nf-canvas{opacity:1}
+.nf .dots-bg{z-index:0}
+/* soft centre shade so the copy always reads over the stars */
+.nf-vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(60% 50% at 50% 48%,color-mix(in oklch,var(--bg) 70%,transparent),transparent 75%),
+    radial-gradient(120% 90% at 50% 50%,transparent 55%,color-mix(in oklch,var(--bg) 80%,transparent))}
+.nf-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:26px 40px}
+.nf-hint{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3)}
+.nf-main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:0 24px 12vh;pointer-events:none}
+.nf-main a{pointer-events:auto}
+.nf .eyebrow{justify-content:center;margin-bottom:22px}
+.nf-h1{font-family:var(--display);font-weight:800;font-size:clamp(46px,8.4vw,120px);line-height:.95;letter-spacing:-.045em;margin:0;color:var(--text)}
+.nf-sub{max-width:520px;margin:24px auto 0;font-size:17px;line-height:1.55;color:var(--text-2)}
+.nf-path{margin:18px 0 0;font-family:var(--mono);font-size:12.5px;color:var(--text-3);max-width:90vw;overflow-wrap:anywhere}
+.nf-path .p{color:var(--accent)}
+.nf-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
+.nf-rise{opacity:0;transform:translateY(16px);animation:nf-rise .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(.25s + var(--d) * .09s)}
+@keyframes nf-rise{to{opacity:1;transform:none}}
+@media(max-width:640px){.nf-top{padding:20px 22px}.nf-hint{display:none}.nf-sub{font-size:15.5px}}
+@media(prefers-reduced-motion:reduce){.nf-rise{animation:none;opacity:1;transform:none}.nf-canvas{transition:none}}

@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { getSite } from "@/content/site";
 import { getHome } from "@/content/home";
+import { getServices } from "@/content/services";
+import { getTechnology, techNames } from "@/content/technology";
 import { localizedHref, type Locale } from "@/lib/i18n";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { Button } from "@/components/primitives/Button";
@@ -75,15 +77,16 @@ export function PrimaryNav({ back }: Props) {
         </div>
 
         <div className="navlinks">
-          {site.nav.map((l) =>
-            l.href === "/work" ? (
-              <WorkMenu key={l.label} label={l.label} lang={lang} />
+          {site.nav.map((l) => {
+            const menu = menuFor(l.href, lang);
+            return menu ? (
+              <NavMenu key={l.label} label={l.label} href={l.href} lang={lang} {...menu} />
             ) : (
               <Link key={l.label} href={localizedHref(l.href, lang)} className="hide-md">
                 {l.label}
               </Link>
-            ),
-          )}
+            );
+          })}
           <Button href={localizedHref(site.cta.href, lang)} variant="primary" className="hide-sm">
             {site.cta.label} <span className="arr">→</span>
           </Button>
@@ -104,17 +107,17 @@ export function PrimaryNav({ back }: Props) {
         </div>
       </nav>
 
-      <div className="nav-drawer" id="nav-drawer" aria-hidden={!open}>
+      <div className="nav-drawer" id="nav-drawer" aria-hidden={!open} data-lenis-prevent>
         {site.nav.map((l, i) => (
           <div key={l.label}>
             <Link href={localizedHref(l.href, lang)} onClick={close}>
               {l.label} <span className="md-i">{String(i + 1).padStart(2, "0")}</span>
             </Link>
-            {l.href === "/work" && (
+            {menuFor(l.href, lang) && (
               <div className="md-sub">
-                {getHome(lang).work.items.map((p) => (
-                  <Link key={p.slug} href={localizedHref(`/work/${p.slug}`, lang)} onClick={close}>
-                    {p.title} <span className="md-i">{p.num}</span>
+                {menuFor(l.href, lang)!.items.map((p) => (
+                  <Link key={p.href} href={localizedHref(p.href, lang)} onClick={close}>
+                    {p.title} <span className="md-i">{p.num ?? p.mark}</span>
                   </Link>
                 ))}
               </div>
@@ -136,11 +139,45 @@ export function PrimaryNav({ back }: Props) {
   );
 }
 
-// "Work" + a shadcn-style NavigationMenu card panel listing every case study.
-// Hover (desktop) or the chevron opens it; Esc / outside click / navigating closes it.
-function WorkMenu({ label, lang }: { label: string; lang: Locale }) {
-  const items = getHome(lang).work.items;
-  const allWork = getSite(lang).ui.allWork;
+type MenuItem = { href: string; title: string; sub: string; num?: string; img?: string; mark?: string };
+
+// Card panel for one nav entry: Work (thumbs), Services (numbered), Technology
+// (letter marks → /technology#<demo>). Built from the same content the pages use.
+function menuFor(href: string, lang: Locale): { items: MenuItem[]; all: string } | null {
+  const ui = getSite(lang).ui;
+  if (href === "/work")
+    return {
+      all: ui.allWork,
+      items: getHome(lang).work.items.map((p) => ({ href: `/work/${p.slug}`, title: p.title, sub: p.cat, num: p.num, img: p.img })),
+    };
+  if (href === "/services")
+    return {
+      all: ui.allServices,
+      items: getServices(lang).items.map((s, i) => ({
+        href: `/services/${s.slug}`,
+        title: s.name,
+        sub: s.card,
+        mark: String(i + 1).padStart(2, "0"),
+      })),
+    };
+  if (href === "/technology")
+    return {
+      all: ui.allTech,
+      items: getTechnology(lang).sections.map((s) => ({
+        href: `/technology#${s.demo}`,
+        title: techNames[s.demo],
+        sub: s.role,
+        mark: s.mark,
+      })),
+    };
+  return null;
+}
+
+// A shadcn-style NavigationMenu card panel. Hover (desktop) or the chevron opens
+// it; Esc / outside click / navigating closes it. Cards cascade in (CSS stagger
+// on --i) each time it opens.
+function NavMenu({ label, href, lang, items, all }: { label: string; href: string; lang: Locale; items: MenuItem[]; all: string }) {
+  const id = `navmenu-${href.slice(1)}`;
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const timer = useRef(0);
@@ -166,10 +203,11 @@ function WorkMenu({ label, lang }: { label: string; lang: Locale }) {
     timer.current = window.setTimeout(() => setOpen(v), v ? 80 : 180);
   };
   const close = () => setOpen(false);
+  const kind = items.some((p) => p.img) ? "thumbs" : "marks";
 
   return (
     <div className="navmenu hide-md" ref={ref} onMouseEnter={() => hover(true)} onMouseLeave={() => hover(false)}>
-      <Link href={localizedHref("/work", lang)} onClick={close}>
+      <Link href={localizedHref(href, lang)} onClick={close}>
         {label}
       </Link>
       <button
@@ -177,31 +215,48 @@ function WorkMenu({ label, lang }: { label: string; lang: Locale }) {
         className="navmenu-trigger"
         aria-label={label}
         aria-expanded={open}
-        aria-controls="navmenu-panel"
+        aria-controls={id}
         onClick={() => setOpen((v) => !v)}
       >
         <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
           <path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
         </svg>
       </button>
-      <div id="navmenu-panel" className="navmenu-panel" data-open={open} inert={!open}>
+      <div id={id} className="navmenu-panel" data-kind={kind} data-open={open} inert={!open}>
         <div className="navmenu-grid">
-          {items.map((p) => (
-            <Link key={p.slug} className="navmenu-card" href={localizedHref(`/work/${p.slug}`, lang)} onClick={close}>
-              <span className="navmenu-thumb">
-                <Image src={p.img} alt="" fill sizes="96px" />
-              </span>
+          {items.map((p, i) => (
+            <Link
+              key={p.href}
+              className="navmenu-card"
+              href={localizedHref(p.href, lang)}
+              onClick={close}
+              style={{ "--i": i } as CSSProperties}
+            >
+              {p.img ? (
+                <span className="navmenu-thumb">
+                  <Image src={p.img} alt="" fill sizes="96px" />
+                </span>
+              ) : (
+                <span className="navmenu-mark" aria-hidden="true">
+                  {p.mark}
+                </span>
+              )}
               <span className="navmenu-txt">
                 <b>
-                  <span className="n">{p.num}</span> {p.title}
+                  {p.img && p.num && <span className="n">{p.num}</span>} {p.title}
                 </b>
-                <small>{p.cat}</small>
+                <small>{p.sub}</small>
               </span>
             </Link>
           ))}
         </div>
-        <Link className="navmenu-all" href={localizedHref("/work", lang)} onClick={close}>
-          {allWork} <span className="arr">→</span>
+        <Link
+          className="navmenu-all"
+          href={localizedHref(href, lang)}
+          onClick={close}
+          style={{ "--i": items.length } as CSSProperties}
+        >
+          {all} <span className="arr">→</span>
         </Link>
       </div>
     </div>

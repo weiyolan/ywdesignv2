@@ -57,6 +57,8 @@ export const site = {
   // Cross-cutting micro-copy for the case-study template (hero actions + pager).
   ui: {
     allWork: "All work",
+    allServices: "All services",
+    allTech: "The full deep dive",
     moreWork: "More projects",
     prev: "Previous",
     next: "Next",

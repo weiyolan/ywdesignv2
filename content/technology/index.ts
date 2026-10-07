@@ -15,3 +15,13 @@ const dict: Record<Locale, Technology> = { en: technologyEN, fr: technologyFR, n
 export function getTechnology(lang: Locale): Technology {
   return dict[lang];
 }
+
+// Product names per deep section (brand names — identical in every locale).
+export const techNames: Record<import("./en").TechDemo, string> = {
+  next: "Next.js",
+  sanity: "Sanity",
+  gsap: "GSAP",
+  react: "React",
+  ts: "TypeScript",
+  tw: "Tailwind CSS",
+};

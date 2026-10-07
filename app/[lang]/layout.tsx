@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  Bricolage_Grotesque,
-  JetBrains_Mono,
-  Fraunces,
-  Newsreader,
-} from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { AppearanceProvider } from "@/components/providers/AppearanceProvider";
-import { TYPE_KEY, ACCENT_KEY } from "@/lib/appearance";
+import { appearanceInit } from "@/lib/appearance";
+import { fontVars } from "@/lib/fonts";
 import { GsapProvider } from "@/components/providers/GsapProvider";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
@@ -19,40 +14,6 @@ import { locales, defaultLocale, isLocale, ogLocale, localizedHref } from "@/lib
 import { ogCard } from "@/lib/metadata";
 import { AREA_SERVED, SAME_AS } from "@/lib/seo";
 import { getServices } from "@/content/services";
-
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  variable: "--font-bricolage",
-  display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
-});
-
-// Editor-theme serifs. preload:false → the woff2 files download only when a visitor
-// actually switches to the editor theme (the browser fetches a font file lazily, when
-// some rendered text first uses the family), so the default "code" view pays nothing.
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  preload: false,
-});
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-newsreader",
-  display: "swap",
-  style: ["normal", "italic"],
-  preload: false,
-});
-
-// Runs before first paint (mirrors next-themes' own data-theme script) so a returning
-// visitor's editor theme + custom accent are applied with no flash of the defaults.
-const appearanceInit = `(function(){try{var d=document.documentElement;if(localStorage.getItem('${TYPE_KEY}')==='editor')d.setAttribute('data-type','editor');var h=localStorage.getItem('${ACCENT_KEY}');if(h)d.style.setProperty('--accent-h',h);}catch(e){}})();`;
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -163,7 +124,7 @@ export default async function RootLayout({
     <html
       lang={lang}
       suppressHydrationWarning
-      className={`${bricolage.variable} ${jetbrains.variable} ${fraunces.variable} ${newsreader.variable}`}
+      className={fontVars}
     >
       <body data-surface="glass">
         <script dangerouslySetInnerHTML={{ __html: appearanceInit }} />

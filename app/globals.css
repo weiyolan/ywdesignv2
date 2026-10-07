@@ -347,7 +347,7 @@ body.nav-open .nav-burger span:nth-child(2){opacity:0}
 body.nav-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 .nav-drawer{position:fixed;top:0;right:0;bottom:0;z-index:55;width:min(82vw,360px);
-  display:flex;flex-direction:column;justify-content:center;gap:6px;padding:88px 30px 36px;
+  display:flex;flex-direction:column;justify-content:safe center;gap:6px;padding:88px 30px 36px;overflow-y:auto;overscroll-behavior:contain;
   background:color-mix(in oklch,var(--bg) 88%,#000);border-left:1px solid var(--line);
   backdrop-filter:blur(20px) saturate(1.3);
   transform:translateX(102%);transition:transform .42s cubic-bezier(.2,.7,.2,1);
@@ -917,7 +917,21 @@ body[data-surface="glass"]{ --glow:0.7 }
 .navlinks a.navmenu-all{display:flex;justify-content:space-between;margin-top:4px;padding:11px 12px 9px;
   border-top:1px solid var(--line);font-size:12px;color:var(--text-2)}
 .navlinks a.navmenu-all:hover{color:var(--accent)}
-@media(prefers-reduced-motion:reduce){.navmenu-panel,.navmenu-panel[data-open="true"]{transition:none}}
+/* Services / Technology: no thumbs → a mark tile; one column of wider cards (services) or 2×3 (tech) */
+.navmenu-panel[data-kind="marks"]{width:min(520px,calc(100vw - 32px))}
+.navmenu-mark{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:9px;
+  border:1px solid var(--line);background:var(--accent-soft);color:var(--accent);
+  font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:-.02em;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),background .2s}
+.navlinks a.navmenu-card:hover .navmenu-mark{transform:rotate(-6deg) scale(1.06)}
+#navmenu-services .navmenu-grid{grid-template-columns:1fr}
+.navmenu-panel[data-kind="marks"] .navmenu-txt small{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+/* Staggered entrance: cards rise + fade in one after another (--i set inline); closing is instant. */
+.navmenu-card,.navlinks a.navmenu-all{opacity:0;transform:translateY(10px) scale(.98);
+  transition:opacity .12s ease,transform .12s ease,background .15s}
+.navmenu-panel[data-open="true"] .navmenu-card,.navmenu-panel[data-open="true"] a.navmenu-all{opacity:1;transform:none;
+  transition:opacity .38s ease calc(60ms + var(--i) * 45ms),transform .5s cubic-bezier(.2,.8,.2,1) calc(60ms + var(--i) * 45ms),background .15s}
+@media(prefers-reduced-motion:reduce){.navmenu-panel,.navmenu-panel[data-open="true"],.navmenu-card,.navmenu-panel[data-open="true"] .navmenu-card,.navmenu-panel[data-open="true"] a.navmenu-all{transition:none}.navmenu-card,.navlinks a.navmenu-all{opacity:1;transform:none}}
 @media(max-width:1160px){.navlinks .navmenu.hide-md{display:none}}
 /* drawer: projects under "Work" */
 .nav-drawer{overflow-y:auto;justify-content:safe center}

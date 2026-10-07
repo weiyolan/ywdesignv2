@@ -44,6 +44,8 @@ export const siteNL = {
 
   ui: {
     allWork: "Alle projecten",
+    allServices: "Alle diensten",
+    allTech: "De volledige deep dive",
     moreWork: "Meer projecten",
     prev: "Vorige",
     next: "Volgende",

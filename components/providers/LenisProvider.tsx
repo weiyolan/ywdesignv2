@@ -13,9 +13,16 @@ function LenisGsapBridge() {
   // scroll-driven components (SelectedWork, StackDeepDive, ProcessTimeline)
   // working untouched, since their onUpdate callbacks fire from ScrollTrigger.
   useLenis(ScrollTrigger.update);
-  // Instant scroll-to-top on SPA route change (single source of truth).
+  // Instant scroll on SPA route change (single source of truth): to the #hash
+  // target when there is one (nav menu → /technology#gsap), else to the top.
   useEffect(() => {
-    lenis?.scrollTo(0, { immediate: true });
+    if (!lenis) return;
+    const id = decodeURIComponent(location.hash.slice(1));
+    const el = id ? document.getElementById(id) : null;
+    if (!el) return void lenis.scrollTo(0, { immediate: true });
+    // next frame: let pinned ScrollTrigger sections lay out first
+    const raf = requestAnimationFrame(() => lenis.scrollTo(el, { offset: -92, immediate: true }));
+    return () => cancelAnimationFrame(raf);
   }, [pathname, lenis]);
   return null;
 }

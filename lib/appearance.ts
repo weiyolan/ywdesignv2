@@ -20,3 +20,8 @@ export const GALACTIC_SUN_RED = 28;
 export const GALACTIC_MOON_BLUE = 250;
 
 export const accentFromHue = (hue: number) => `oklch(var(--accent-l) var(--accent-c) ${hue})`;
+
+// Runs before first paint (mirrors next-themes' own data-theme script) so a returning
+// visitor's editor theme + custom accent are applied with no flash of the defaults.
+// Shared by the root layout and app/global-not-found.tsx.
+export const appearanceInit = `(function(){try{var d=document.documentElement;if(localStorage.getItem('${TYPE_KEY}')==='editor')d.setAttribute('data-type','editor');var h=localStorage.getItem('${ACCENT_KEY}');if(h)d.style.setProperty('--accent-h',h);}catch(e){}})();`;

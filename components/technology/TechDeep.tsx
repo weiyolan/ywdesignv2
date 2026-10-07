@@ -45,7 +45,7 @@ export function TechDeep({
   );
 
   return (
-    <section className={"tech-deep" + (section.rev ? " rev" : "")}>
+    <section id={section.demo} className={"tech-deep" + (section.rev ? " rev" : "")}>
       <div className="wrap">
         {layout === "full" ? (
           <>
