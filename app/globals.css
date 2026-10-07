@@ -935,5 +935,47 @@ body[data-surface="glass"]{ --glow:0.7 }
 @media(max-width:1160px){.navlinks .navmenu.hide-md{display:none}}
 /* drawer: projects under "Work" */
 .nav-drawer{overflow-y:auto;justify-content:safe center}
-.nav-drawer .md-sub{display:flex;flex-direction:column;padding:4px 0 8px 14px;border-bottom:1px solid var(--line)}
-.nav-drawer .md-sub a:not(.btn){font-family:var(--sans);font-weight:500;font-size:16px;letter-spacing:0;padding:7px 0;border-bottom:0;color:var(--text-2)}
+/* Drawer accordion — one section open at a time (DrawerNav). The rail on the left
+   is a slider: its accent bar slides to the open section (--rail-y/--rail-h). */
+.nav-drawer .md-list{position:relative;padding-left:18px}
+.nav-drawer .md-rail{position:absolute;left:-12px;top:0;bottom:0;width:30px;touch-action:none;cursor:ns-resize}
+.nav-drawer .md-rail::before{content:"";position:absolute;left:14px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.nav-drawer .md-rail-bar{position:absolute;left:13px;top:0;width:3px;border-radius:3px;background:var(--accent);
+  box-shadow:0 0 14px var(--accent);height:var(--rail-h,0);transform:translateY(var(--rail-y,0));opacity:0;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),height .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.nav-drawer .md-rail-bar[data-on="true"]{opacity:1}
+.nav-drawer .md-sec{border-bottom:1px solid var(--line);opacity:0;transform:translateY(10px);transition:opacity .4s ease,transform .4s ease}
+body.nav-open .nav-drawer .md-sec{opacity:1;transform:none;transition-delay:calc(.12s + var(--i) * .05s)}
+.nav-drawer .md-title{display:flex;width:100%;align-items:baseline;justify-content:space-between;gap:14px;
+  background:none;border:0;cursor:pointer;text-align:left;
+  font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:-.02em;color:var(--text);
+  text-decoration:none;padding:13px 0;border-bottom:0;transition:color .2s,padding-left .25s}
+.nav-drawer a.md-title{border-bottom:0}
+.nav-drawer .md-title:hover,.nav-drawer .md-sec[data-open="true"] .md-title{color:var(--accent);padding-left:8px}
+.nav-drawer .md-sec[data-open="true"] .md-title .md-i{color:var(--accent)}
+.nav-drawer .md-title .md-i{display:inline-flex;align-items:center;gap:6px}
+.nav-drawer .md-title svg{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.nav-drawer .md-sec[data-open="true"] .md-title svg{transform:rotate(180deg)}
+.nav-drawer .md-fold{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.8,.2,1)}
+.nav-drawer .md-sec[data-open="true"] .md-fold{grid-template-rows:1fr}
+.nav-drawer .md-fold-in{min-height:0;overflow:hidden;display:flex;flex-direction:column;padding-left:10px}
+.nav-drawer .md-fold-in a:not(.btn){font-family:var(--sans);font-weight:500;font-size:16px;letter-spacing:0;
+  padding:8px 0;border-bottom:0;color:var(--text-2);align-items:center;
+  opacity:0;transform:translateX(-8px);transition:opacity .15s,transform .15s,color .2s,padding-left .25s}
+.nav-drawer .md-sec[data-open="true"] .md-fold-in a:not(.btn){opacity:1;transform:none;
+  transition:opacity .35s ease calc(80ms + var(--j) * 40ms),transform .45s cubic-bezier(.2,.8,.2,1) calc(80ms + var(--j) * 40ms),color .2s,padding-left .25s}
+.nav-drawer .md-fold-in a:not(.btn):hover{color:var(--accent)}
+.nav-drawer .md-sub-t{display:inline-flex;align-items:center;gap:10px}
+.nav-drawer .md-sub-t .nav-ic{color:var(--accent);flex:none}
+.nav-drawer .md-fold-in a.md-all{font-family:var(--mono);font-size:12.5px;color:var(--text-3);padding:8px 0 14px}
+@media(prefers-reduced-motion:reduce){.nav-drawer .md-fold,.nav-drawer .md-rail-bar,.nav-drawer .md-fold-in a:not(.btn){transition:none!important}}
+/* Nav icons draw themselves in (pathLength=1) as the menu cascades open, and again on hover. */
+.nav-ic [pathLength]{stroke-dasharray:1;stroke-dashoffset:0}
+.nav-ic .dot{fill:currentColor;stroke:none}
+/* two identical keyframes: switching name is what restarts the draw on hover */
+@keyframes nav-ic-draw{from{stroke-dashoffset:1}}
+@keyframes nav-ic-redraw{from{stroke-dashoffset:1}}
+.navmenu-panel[data-open="true"] .nav-ic [pathLength]{animation:nav-ic-draw .9s cubic-bezier(.5,0,.2,1) calc(120ms + var(--i) * 45ms) both}
+.navlinks a.navmenu-card:hover .nav-ic [pathLength]{animation:nav-ic-redraw .7s cubic-bezier(.5,0,.2,1) both}
+.nav-drawer .md-sec[data-open="true"] .nav-ic [pathLength]{animation:nav-ic-draw .8s cubic-bezier(.5,0,.2,1) calc(120ms + var(--j) * 40ms) both}
+@media(prefers-reduced-motion:reduce){.nav-ic [pathLength]{animation:none!important}}
