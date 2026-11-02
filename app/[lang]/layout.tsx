@@ -48,6 +48,14 @@ export async function generateMetadata({
       images: [ogCard(locale, seo.ogTitle)],
     },
     twitter: { card: "summary_large_image", images: [`/og-${locale}.jpg`] },
+    // Search Console / Bing Webmaster ownership tags — only emitted when the
+    // tokens are set in the Netlify env (DNS verification needs neither).
+    verification: {
+      ...(process.env.GOOGLE_SITE_VERIFICATION && { google: process.env.GOOGLE_SITE_VERIFICATION }),
+      ...(process.env.BING_SITE_VERIFICATION && {
+        other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION },
+      }),
+    },
   };
 }
 
