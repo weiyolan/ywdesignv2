@@ -4,8 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import {
@@ -32,20 +31,40 @@ type AppearanceValue = {
 
 const AppearanceContext = createContext<AppearanceValue | null>(null);
 
-export function AppearanceProvider({ children }: { children: ReactNode }) {
-  const [typeTheme, setTypeThemeState] = useState<TypeTheme>("code");
-  const [accentHue, setAccentHueState] = useState<number>(DEFAULT_HUE);
+// Module-level store (one per page): lazily seeded from localStorage on the
+// client, read through useSyncExternalStore so SSR/hydration render the defaults
+// and the client snapshot follows — no setState-in-effect sync pass.
+type Prefs = { typeTheme: TypeTheme; accentHue: number };
+const SERVER_PREFS: Prefs = { typeTheme: "code", accentHue: DEFAULT_HUE };
+let prefs: Prefs | null = null;
+const listeners = new Set<() => void>();
 
-  // Sync React state to whatever the pre-paint script already applied to <html>.
-  useEffect(() => {
+function readStored(): Prefs {
+  const next = { ...SERVER_PREFS };
+  try {
     const t = localStorage.getItem(TYPE_KEY);
-    if (t === "editor" || t === "code") setTypeThemeState(t);
+    if (t === "editor" || t === "code") next.typeTheme = t;
     const h = Number(localStorage.getItem(ACCENT_KEY));
-    if (Number.isFinite(h) && h > 0) setAccentHueState(h);
-  }, []);
+    if (Number.isFinite(h) && h > 0) next.accentHue = h;
+  } catch {}
+  return next;
+}
+const getPrefs = () => (prefs ??= readStored());
+const getServerPrefs = () => SERVER_PREFS;
+function subscribe(cb: () => void) {
+  listeners.add(cb);
+  return () => void listeners.delete(cb);
+}
+function update(patch: Partial<Prefs>) {
+  prefs = { ...getPrefs(), ...patch };
+  listeners.forEach((l) => l());
+}
+
+export function AppearanceProvider({ children }: { children: ReactNode }) {
+  const { typeTheme, accentHue } = useSyncExternalStore(subscribe, getPrefs, getServerPrefs);
 
   const setTypeTheme = useCallback((t: TypeTheme) => {
-    setTypeThemeState(t);
+    update({ typeTheme: t });
     document.documentElement.setAttribute("data-type", t);
     try {
       localStorage.setItem(TYPE_KEY, t);
@@ -53,7 +72,7 @@ export function AppearanceProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const setAccentHue = useCallback((h: number) => {
-    setAccentHueState(h);
+    update({ accentHue: h });
     document.documentElement.style.setProperty("--accent-h", String(h));
     try {
       localStorage.setItem(ACCENT_KEY, String(h));

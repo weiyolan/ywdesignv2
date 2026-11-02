@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, type ReactNode } from "react";
+import { useRef, useEffect, useSyncExternalStore, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { ReactLenis, useLenis, type LenisRef } from "lenis/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
@@ -27,16 +27,19 @@ function LenisGsapBridge() {
   return null;
 }
 
+const REDUCED = "(prefers-reduced-motion: reduce)";
+const reducedMotion = () => window.matchMedia(REDUCED).matches;
+function subscribeReducedMotion(cb: () => void) {
+  const mq = window.matchMedia(REDUCED);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+}
+
 export function LenisProvider({ children }: { children: ReactNode }) {
   const lenisRef = useRef<LenisRef>(null);
-  const [active, setActive] = useState(true);
-
-  // Respect prefers-reduced-motion: unmount Lenis -> native scroll.
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setActive(false);
-    }
-  }, []);
+  // Respect prefers-reduced-motion: unmount Lenis -> native scroll (also
+  // follows live OS-setting changes).
+  const active = !useSyncExternalStore(subscribeReducedMotion, reducedMotion, () => false);
 
   // Hand the RAF loop to GSAP's single ticker. Read the instance lazily inside
   // the callback — the ref can be null on the first effect pass.

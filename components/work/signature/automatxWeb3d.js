@@ -23,7 +23,7 @@ export function mountAutomatxWeb(section, web) {
   const svg = web.querySelector('svg');
   let renderer;
   try { renderer = svg && new WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'low-power' }); }
-  catch (e) { renderer = null; } // no WebGL → the SVG map stays as is
+  catch { renderer = null; } // no WebGL → the SVG map stays as is
   if (!renderer) { web.classList.remove('is-loading'); return () => {}; }
 
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -246,7 +246,7 @@ export function mountAutomatxWeb(section, web) {
   svg.addEventListener('pointerdown', (ev) => {
     if (ev.button > 0 || pinch || ev.target.closest('.node:not(.node--hub)')) return; // the X is derived → dragging it rotates
     orbit = { id: ev.pointerId, x: ev.clientX, y: ev.clientY, x0: ev.clientX, y0: ev.clientY, t: performance.now() };
-    try { svg.setPointerCapture(ev.pointerId); } catch (e) { /* pointer already gone */ }
+    try { svg.setPointerCapture(ev.pointerId); } catch { /* pointer already gone */ }
     web.classList.add('is-rotating');
   });
   svg.addEventListener('pointermove', (ev) => {
@@ -334,7 +334,7 @@ export function mountAutomatxWeb(section, web) {
       if (ev.button > 0) return;
       drag = { n, id: ev.pointerId, x0: ev.clientX, y0: ev.clientY, moved: false, at: new Vector3(), target: null };
       onPtr(ev);
-      try { n.el.setPointerCapture(ev.pointerId); } catch (e) { /* pointer already gone */ }
+      try { n.el.setPointerCapture(ev.pointerId); } catch { /* pointer already gone */ }
       n.el.classList.add('is-drag');
     });
     n.el.addEventListener('pointermove', (ev) => {

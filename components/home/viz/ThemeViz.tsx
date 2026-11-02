@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 
 // The theme bento card's Light/Dark control. The active pill is pure CSS keyed
@@ -13,8 +13,8 @@ export function ThemeViz({
   labels?: { light: string; dark: string };
 }) {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  // false during SSR + hydration, true after — without a setState-in-effect pass.
+  const mounted = useSyncExternalStore(noop, () => true, () => false);
 
   return (
     <div className="viz-theme" role="group" aria-label="Theme">
@@ -39,6 +39,8 @@ export function ThemeViz({
     </div>
   );
 }
+
+const noop = () => () => {};
 
 function SunIcon() {
   return (
