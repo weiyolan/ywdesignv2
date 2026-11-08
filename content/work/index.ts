@@ -8,7 +8,7 @@ import type { Slug, Project } from "./en";
 
 // Keep the public surface of the old flat module intact.
 export { order, projects } from "./en";
-export type { Slug, Head, Section, Project } from "./en";
+export type { Slug, Head, Section, Project, YogaStudioCopy, YogaRetreatField, YogaRetreatGroup } from "./en";
 
 const dict: Record<Locale, Record<Slug, Project>> = {
   en: projectsEN,

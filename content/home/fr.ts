@@ -163,6 +163,7 @@ export const homeFR = {
       { num: "04", cat: "Agence événementielle · Belgique", slug: "bermuda", title: "Bermuda Events", body: "Un site de marque premium qui met en scène les productions passées à grande échelle, avec un tunnel de contact conçu pour qualifier les bons leads.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
       { num: "05", cat: "Site de studio · Version précédente", slug: "ywdesign", title: "YWdesign v1", body: "L’ancien site du studio YWdesign — des panneaux en verre dépoli sur un dégradé mouvant, une feuille de route transparente étape par étape et une grille de services pensée pour inspirer confiance.", href: "https://ywdesign2.netlify.app/fr", img: "/work/ywdesign.jpg" },
       { num: "06", cat: "Photographie argentique · Belgique", slug: "analoog", title: "Milo Weiler Analogique", body: "Un site de services éditorial et posé pour la photographie argentique fine art — funérailles, portraits et mariages en moyen format, rythmé pour ralentir.", href: "https://analoog.miloweiler.com/fr", img: "/work/analoog.jpg" },
+      { num: "07", cat: "Retraites de yoga · Belgique", slug: "yoga", title: "Yoga, Zen & Tonic", body: "Un site de retraites bilingue piloté depuis un Sanity Studio sur mesure — inscriptions avec places en direct, mails de confirmation, carnet d’adresses et newsletters, le tout édité depuis un téléphone.", href: "https://yogazentonic.com/en", img: "/work/yoga.jpg" },
     ],
   },
 

@@ -8,8 +8,8 @@
 // to the matching "use client" demo.
 import type { Seg } from "@/content/home";
 
-export type Slug = "automatx" | "milo" | "nu" | "bermuda" | "ywdesign" | "analoog";
-export const order: Slug[] = ["automatx", "milo", "nu", "bermuda", "ywdesign", "analoog"];
+export type Slug = "automatx" | "milo" | "nu" | "bermuda" | "ywdesign" | "analoog" | "yoga";
+export const order: Slug[] = ["automatx", "milo", "nu", "bermuda", "ywdesign", "analoog", "yoga"];
 
 /** A meta chip group head + body — the .ds-head / .sec-kicker intro of a section. */
 export type Head = {
@@ -63,7 +63,7 @@ export type Section =
   | {
       kind: "signature";
       head: Head;
-      demo: "nuLang" | "nuShop" | "miloStack" | "bermudaIcons" | "ywGlass" | "automatxWeb";
+      demo: "nuLang" | "nuShop" | "miloStack" | "bermudaIcons" | "ywGlass" | "automatxWeb" | "yogaStudio";
       /** "hero": render frameless in place of the hero image (page opener) */
       placement?: "hero";
       /** the .demo-head label (file path) and right-hand caption */
@@ -122,6 +122,90 @@ export type Project = {
     ywGlass?: { toggle: string; cards: { t: string; d: string }[] };
     /** panel copy for the labs map; node labels stay as on the live (EN) site */
     automatxWeb?: { intro: string; hint: string; go: string };
+    /** UI copy of the Yoga, Zen & Tonic studio replica (the client's own NL/EN content is fixed in the component) */
+    yogaStudio?: YogaStudioCopy;
+  };
+};
+
+/** Label + ⓘ help text of one studio field. */
+type FieldCopy = { label: string; help: string };
+export type YogaRetreatGroup = "basics" | "nutshell" | "place" | "practical" | "closing" | "seo";
+export type YogaRetreatField =
+  | "title" | "startDate" | "endDate" | "place" | "country" | "capacity" | "booked" | "bookedExtra"
+  | "nutshellTitle" | "nutshellText" | "highlights"
+  | "placeTitle" | "placeText"
+  | "deposit" | "included" | "notIncluded"
+  | "closingTitle" | "closingText"
+  | "seoTitle" | "seoDescription";
+
+/**
+ * Studio replica copy. `{x}` placeholders are filled in by the component.
+ * Mirrors the real Studio (yoga repo, studio/): StatusList + SignupView, the
+ * newsletter actions + MailPreview inspector, PageOverview + I18nTabs + InlineFields.
+ */
+export type YogaStudioCopy = {
+  hint: string;
+  publish: string;
+  published: string;
+  draft: string;
+  soon: string;
+  /** 12 short month names */
+  months: string[];
+  groups: { contact: string; content: string };
+  nav: {
+    signups: string; messages: string; contacts: string; newsletters: string;
+    retreats: string; forms: string; mails: string; pages: string; media: string;
+  };
+  signups: {
+    all: string;
+    statuses: { new: string; confirmed: string; waitlist: string; cancelled: string };
+    allRetreats: string;
+    empty: string;
+    signedUpOn: string;
+    booked: string;
+    left: string;
+    full: string;
+    status: string;
+    fullWarn: string;
+    email: string; phone: string; room: string; diet: string; message: string; consent: string;
+    yes: string; no: string;
+    note: string; notePh: string;
+    confirmMail: string; mailSent: string;
+    statusToast: string;
+  };
+  newsletter: {
+    sent: string;
+    steps: [string, string, string, string];
+    tabContent: string;
+    tabSend: string;
+    name: FieldCopy; subject: FieldCopy; heading: FieldCopy; body: FieldCopy; blocks: FieldCopy;
+    blockCard: string; blockButton: string;
+    audience: FieldCopy;
+    audiences: { subscribers: FieldCopy; participants: FieldCopy; contacts: FieldCopy };
+    preview: string;
+    test: string; testSent: string;
+    sendBtn: string; sentOn: string;
+    dialogTitle: string;
+    recipients: string;
+    recipientsNote: string;
+    tip: string;
+    cancel: string; sendTo: string;
+    sentToast: string;
+    publishedToast: string;
+  };
+  retreat: {
+    page: string; pageSub: string;
+    upcoming: string; past: string; all: string;
+    featured: string;
+    progress: string;
+    noEn: string;
+    translateAll: string;
+    stillEmpty: string;
+    standard: string; custom: string;
+    translate: string; translated: string; translateEdited: string;
+    auto: string;
+    groups: Record<YogaRetreatGroup, { t: string; where: string }>;
+    fields: Record<YogaRetreatField, FieldCopy>;
   };
 };
 
@@ -1021,5 +1105,297 @@ export const projects: Record<Slug, Project> = {
         ],
       },
     ],
+  },
+
+  // ── 07 · Yoga, Zen & Tonic ──────────────────────────────────────────────
+  yoga: {
+    slug: "yoga",
+    eyebrowNum: "07",
+    category: "Yoga retreats · Belgium",
+    year: "2026",
+    titleSegs: [
+      { t: "Yoga, Zen & Tonic — one studio runs " },
+      { t: "the whole business.", scramble: true, accent: true },
+    ],
+    lede:
+      "A bilingual site for a yoga duo’s retreats, classes and events — and, behind it, a Sanity Studio made for them. Rita & Philippe run sign-ups, mails, the contact book, newsletters, photos and every page from one place, often from a phone.",
+    liveHref: "https://yogazentonic.com/en",
+    meta: {
+      role: "Design, build & CMS",
+      year: "2026",
+      sector: "Wellness · Retreats",
+      stack: ["Next.js", "Sanity", "Resend", "Gemini"],
+    },
+    heroImg: "/work/yoga-hero.jpg",
+    heroAlt: "Yoga, Zen & Tonic home — “Yoga, zen and a splash of tonic.” over a desert photo",
+    metaTitle: "Yoga, Zen & Tonic — Case study",
+    metaDescription:
+      "A retreat business run from one custom Sanity Studio: sign-up forms, sign-ups with live capacity, confirmation mails, a contact book, newsletters, a photo bank and an NL · EN site with AI translation.",
+    sections: [
+      {
+        kind: "signature",
+        demo: "yogaStudio",
+        placement: "hero",
+        head: {
+          eyebrow: "Signature build",
+          title: "Their studio, rebuilt for you to click",
+        },
+        label: "studio/structure/index.ts",
+        note: "A working replica of their Studio · confirm a sign-up, send the newsletter, translate a retreat",
+      },
+      {
+        kind: "twoColFeature",
+        head: {
+          eyebrow: "The brief",
+          title: "One login instead of six tools.",
+        },
+        paras: [
+          [
+            { t: "Before, a retreat lived in " },
+            { t: "Google Forms, a spreadsheet, Gmail, Mailchimp, Facebook and a website", b: true },
+            { t: " — each with its own login and its own copy of the guest list. Nothing knew how many places were left." },
+          ],
+          [
+            { t: "Rita & Philippe aren’t technical, and they edit on their phones between classes. So the brief was not “a CMS”: it was " },
+            { t: "one place that runs the business", b: true },
+            { t: ", and explains itself on every field." },
+          ],
+        ],
+        features: [
+          {
+            k: "[ sign_ups ]",
+            b: "Forms → sign-ups → seats",
+            p: "Their own form builder with steps and conditional questions. Each sign-up opens as a readable card; one status click recomputes the places left on the site.",
+          },
+          {
+            k: "[ mails ]",
+            b: "Mails they can write",
+            p: "Confirmation, waiting-list and newsletter mails are documents with a live HTML preview, a test-to-myself button and Resend delivery.",
+          },
+          {
+            k: "[ contact_book ]",
+            b: "Every person, once",
+            p: "Sign-ups, messages, reviews and subscribers merged into one row per e-mail address — with consent, unsubscribes, CSV import and export.",
+          },
+          {
+            k: "[ i18n_ai ]",
+            b: "NL · EN, with ✨",
+            p: "Field-level translation with NL | EN tabs. One click translates a field, a bulk tool translates every document still missing English.",
+          },
+        ],
+      },
+      {
+        kind: "chapterIndex",
+        head: {
+          eyebrow: "The studio",
+          title: "What runs through it",
+          intro: "29 document types, 24 custom Studio components, at most two clicks to any document.",
+        },
+        chapters: [
+          { cn: "01", ct: "Retreats", cd: "One document per retreat, tabs in page order, an overview of what’s still empty" },
+          { cn: "02", ct: "Sign-up forms", cd: "Steps, conditional questions, “Other: …”, a form per retreat or the default" },
+          { cn: "03", ct: "Sign-ups", cd: "Status chips, a readable card, a table with CSV, live “booked” per retreat" },
+          { cn: "04", ct: "Mails", cd: "Confirmation, waiting list and receipts — editable, previewed, tested" },
+          { cn: "05", ct: "Contact book", cd: "One row per address, from every form, newsletter on/off" },
+          { cn: "06", ct: "Newsletters", cd: "Retreat cards, an audience, a test mail, then sent once" },
+          { cn: "07", ct: "Photo bank", cd: "Every photo stored once, with hotspot and AI alt text" },
+          { cn: "08", ct: "Reviews", cd: "Come in private, go public without the e-mail address" },
+        ],
+      },
+      {
+        kind: "featureList",
+        head: {
+          eyebrow: "Studio UX",
+          title: "Rules that came from watching them edit",
+          intro: "Sanity’s defaults are built for developers. Every change below fixed something that confused the people who use it every day.",
+        },
+        features: [
+          {
+            k: "[ where_it_goes ]",
+            b: "Every field says where it shows",
+            p: "Not “Title”, but “the big title on the card and in Google” — behind a small ⓘ, so help costs no space.",
+          },
+          {
+            k: "[ two_clicks ]",
+            b: "Two clicks to anything",
+            p: "Groups, then documents. Page singletons sit on top of their list; states are filter chips, not extra panels.",
+          },
+          {
+            k: "[ no_red ]",
+            b: "No red for “not done yet”",
+            p: "Empty is not an error: in progress is blue, done is green. Red stays for real mistakes.",
+          },
+          {
+            k: "[ placeholders ]",
+            b: "[Brackets] never go live",
+            p: "Any text still in [brackets] warns in yellow and lands in one “still to fill in” list.",
+          },
+          {
+            k: "[ one_row ]",
+            b: "Dense but readable",
+            p: "Short fields take one row — title, input, NL | EN, ✨ — so a retreat fits on a phone screen.",
+          },
+          {
+            k: "[ live_preview ]",
+            b: "Edit with the page next to it",
+            p: "Presentation mode with drafts and click-to-edit; publish triggers a webhook that revalidates the static site.",
+          },
+        ],
+      },
+      {
+        kind: "statBand",
+        stats: [
+          { sv: "1", sl: "Studio for sign-ups, mails, newsletters and every page" },
+          { sv: "0", sl: "Extra tools — no Google Forms, Mailchimp or spreadsheets" },
+          { sv: "2", sl: "Languages per field, with AI translation" },
+        ],
+      },
+      {
+        kind: "quote",
+        quote: [
+          { t: "Explain where the value goes. " },
+          { t: "Every field says where it appears on the site", accent: true },
+          { t: " — and what it’s for." },
+        ],
+        cite: "// Studio UX rule n° 1 — studio/SANITY-UI.md",
+      },
+      {
+        kind: "gallery",
+        head: { eyebrow: "Gallery", title: "Through the site" },
+        items: [
+          { id: "yoga-g1", span: "wide", alt: "Dahab: Yoga & Freediving — a retreat page opens on its photo, dates and places left" },
+          { id: "yoga-g2", span: "tall", alt: "A retreat page on a phone — dates, places left and the sign-up button" },
+          { id: "yoga-g3", span: "half", alt: "Retreats — upcoming retreats as cards with places left" },
+          { id: "yoga-g4", span: "half", alt: "Classes — weekly schedule with a level per class" },
+        ],
+      },
+    ],
+    signatureData: {
+      yogaStudio: {
+        hint: "A working replica of their Studio — click around",
+        publish: "Publish",
+        published: "Published",
+        draft: "Draft",
+        soon: "Lives in the full Studio",
+        months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        groups: { contact: "Contact", content: "Content" },
+        nav: {
+          signups: "Sign-ups",
+          messages: "Contact form",
+          contacts: "Contact book",
+          newsletters: "Newsletters",
+          retreats: "Retreats",
+          forms: "Forms",
+          mails: "Mails",
+          pages: "Pages",
+          media: "Photo bank",
+        },
+        signups: {
+          all: "All",
+          statuses: { new: "New", confirmed: "Confirmed", waitlist: "Waiting list", cancelled: "Cancelled" },
+          allRetreats: "All retreats",
+          empty: "Nothing here.",
+          signedUpOn: "Signed up on {date}",
+          booked: "Booked {n} / {cap}",
+          left: "{n} left",
+          full: "full",
+          status: "Status",
+          fullWarn: "The retreat is full: put this sign-up on the waiting list, or raise Max. participants.",
+          email: "E-mail",
+          phone: "Phone",
+          room: "Room / price",
+          diet: "Diet or allergies",
+          message: "Questions or remarks",
+          consent: "Agreed: data · terms",
+          yes: "Yes",
+          no: "No",
+          note: "Internal note (only visible in the Studio)",
+          notePh: "e.g. paid the deposit on 8 Nov",
+          confirmMail: "Confirmation mail",
+          mailSent: "Confirmation mail sent to {name}",
+          statusToast: "Status: {s} — places on the site updated",
+        },
+        newsletter: {
+          sent: "Sent {date} · {n} addresses",
+          steps: ["Write", "Test", "Publish", "Send"],
+          tabContent: "Content",
+          tabSend: "Send",
+          name: { label: "Name", help: "Not on the site: only to find the newsletter back in the Studio. Readers don’t see this." },
+          subject: { label: "Subject", help: "What they see in their inbox. Use {naam} for their first name." },
+          heading: { label: "Title", help: "Big title in the mail, under the photo and above the text. Optional." },
+          body: { label: "Text", help: "The main text of the mail. Start with “Hi {naam},”. Bold, italics, links and lists work." },
+          blocks: { label: "Below the text", help: "Retreat or class cards, your own card, a button or extra text — in this order." },
+          blockCard: "Card: retreat",
+          blockButton: "Button",
+          audience: { label: "Who to", help: "Never someone who unsubscribed. Everyone gets it in their own language, with their own unsubscribe link." },
+          audiences: {
+            subscribers: { label: "Newsletter subscribers", help: "Signed up in the footer or the contact form." },
+            participants: { label: "Retreat participants", help: "Ever signed up for a retreat (customers: allowed, with an unsubscribe link)." },
+            contacts: { label: "Everyone in the contact book", help: "Only if they gave permission (GDPR)." },
+          },
+          preview: "Preview",
+          test: "Send test mail to myself",
+          testSent: "Test mail sent to {email}",
+          sendBtn: "Send newsletter…",
+          sentOn: "Sent on",
+          dialogTitle: "Send “{name}”",
+          recipients: "{n} recipients ({nl} NL, {en} EN)",
+          recipientsNote: "Contact book minus everyone who unsubscribed. Filled in automatically, so it never goes out twice.",
+          tip: "Tip: send yourself a test mail first (right, under the preview).",
+          cancel: "Cancel",
+          sendTo: "Send to {n}",
+          sentToast: "Newsletter sent to {n} addresses",
+          publishedToast: "Published — ready to send",
+        },
+        retreat: {
+          page: "Retreats page",
+          pageSub: "Title, intro and opening photo of /retreats",
+          upcoming: "Upcoming",
+          past: "Past",
+          all: "All",
+          featured: "featured on Home",
+          progress: "Retreat {pct}% filled in",
+          noEn: "{n} without EN",
+          translateAll: "Translate all (AI)",
+          stillEmpty: "Still empty:",
+          standard: "default",
+          custom: "custom",
+          translate: "Translate NL → EN (AI)",
+          translated: "Translated {n} text(s) into English",
+          translateEdited: "Demo: ✨ only knows the original texts — the real one asks Gemini",
+          auto: "automatic, from confirmed sign-ups",
+          groups: {
+            basics: { t: "Basics", where: "Top of the page and on the cards: dates, place, price, “x places left”." },
+            nutshell: { t: "In a nutshell", where: "The first text block, with the highlights in a row." },
+            place: { t: "The place", where: "The venue and its surroundings, with 2 photos." },
+            practical: { t: "Practical", where: "Prices per room, deposit, what is (not) included." },
+            closing: { t: "Closing", where: "The end of the page: big photo, short text and the Sign up button." },
+            seo: { t: "SEO", where: "Google and sharing on WhatsApp. Empty = title + nutshell." },
+          },
+          fields: {
+            title: { label: "Title", help: "The big title on the retreat page, on the cards and in Google. Short: max. 40 characters." },
+            startDate: { label: "From", help: "First day. Upcoming / past follows from the end date — never set by hand." },
+            endDate: { label: "Until", help: "Last day. After this date the retreat moves to “Past” and shows its recap." },
+            place: { label: "Place", help: "Next to the date on the page and on the cards, e.g. “Belgian Eifel”." },
+            country: { label: "Country", help: "Next to the place, also in the menu. e.g. “Belgium”." },
+            capacity: { label: "Max. participants", help: "Places on the site = max. − booked − extra. Nothing left: “full” + waiting list." },
+            booked: { label: "Booked (automatic)", help: "Counts confirmed sign-ups. Change a sign-up’s status and this follows." },
+            bookedExtra: { label: "Extra taken (manual)", help: "Places taken outside the form, e.g. friends who paid cash." },
+            nutshellTitle: { label: "Heading", help: "The heading of “In a nutshell”, e.g. “Our classic.”" },
+            nutshellText: { label: "Intro", help: "The first text visitors read. Keep it short: max. 400 characters." },
+            highlights: { label: "Highlights", help: "One per line. Shown as a row with icons." },
+            placeTitle: { label: "Heading", help: "The heading of “The place”." },
+            placeText: { label: "Text", help: "About the venue and its surroundings. Max. 400 characters." },
+            deposit: { label: "Deposit (€)", help: "Asked in the confirmation mail. Empty = no deposit block." },
+            included: { label: "Included", help: "One per line, shown with a ✓." },
+            notIncluded: { label: "Not included", help: "One per line, e.g. “Travel to the venue”." },
+            closingTitle: { label: "Heading", help: "Big heading on the closing photo." },
+            closingText: { label: "Text", help: "One or two sentences above the Sign up button." },
+            seoTitle: { label: "Google title", help: "Empty = the retreat title. Max. 60 characters." },
+            seoDescription: { label: "Google description", help: "Empty = the nutshell intro. Max. 160 characters." },
+          },
+        },
+      },
+    },
   },
 };

@@ -12,6 +12,7 @@ import { MiloStack } from "@/components/work/signature/MiloStack";
 import { BermudaIcons } from "@/components/work/signature/BermudaIcons";
 import { YwGlass } from "@/components/work/signature/YwGlass";
 import { AutomatxWeb } from "@/components/work/signature/AutomatxWeb";
+import { YogaStudio } from "@/components/work/signature/YogaStudio";
 import type { Section as SectionT, Project } from "@/content/work";
 
 // Picks the right demo for a signature section from the project's signatureData.
@@ -35,6 +36,8 @@ function SignatureDemo({
       return data?.ywGlass ? <YwGlass data={data.ywGlass} /> : null;
     case "automatxWeb":
       return data?.automatxWeb ? <AutomatxWeb data={data.automatxWeb} /> : null;
+    case "yogaStudio":
+      return data?.yogaStudio ? <YogaStudio copy={data.yogaStudio} /> : null;
   }
 }
 
@@ -101,8 +104,8 @@ export function Section({
                 </span>
                 <span>{section.note}</span>
               </div>
-              {/* nuShop / automatxWeb render their own shell (no .demo-stage). */}
-              {section.demo === "nuShop" || section.demo === "automatxWeb" || section.demo === "miloStack" ? (
+              {/* nuShop / automatxWeb / miloStack / yogaStudio render their own shell (no .demo-stage). */}
+              {section.demo === "nuShop" || section.demo === "automatxWeb" || section.demo === "miloStack" || section.demo === "yogaStudio" ? (
                 <SignatureDemo demo={section.demo} data={signatureData} />
               ) : (
                 <div className="demo-stage">

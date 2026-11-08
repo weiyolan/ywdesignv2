@@ -182,6 +182,7 @@ export const home = {
       { num: "04", cat: "Events agency · Belgium", slug: "bermuda", title: "Bermuda Events", body: "A premium brand site framing past productions at scale, with a contact funnel built to qualify the right leads.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
       { num: "05", cat: "Studio site · Previous version", slug: "ywdesign", title: "YWdesign v1", body: "The previous YWdesign studio site — frosted-glass panels over a drifting gradient, a transparent step-by-step roadmap and a service grid built to earn trust.", href: "https://ywdesign2.netlify.app/", img: "/work/ywdesign.jpg" },
       { num: "06", cat: "Analogue photography · Belgium", slug: "analoog", title: "Milo Weiler Analogue", body: "A quiet, editorial service site for fine-art film photography — funerals, portraits and weddings on medium format, paced to slow you down.", href: "https://analoog.miloweiler.com/en", img: "/work/analoog.jpg" },
+      { num: "07", cat: "Yoga retreats · Belgium", slug: "yoga", title: "Yoga, Zen & Tonic", body: "A bilingual retreat site run from one custom Sanity Studio — sign-ups with live places, confirmation mails, a contact book and newsletters, all edited from a phone.", href: "https://yogazentonic.com/en", img: "/work/yoga.jpg" },
     ],
   },
 

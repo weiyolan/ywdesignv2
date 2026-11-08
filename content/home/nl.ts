@@ -163,6 +163,7 @@ export const homeNL = {
       { num: "04", cat: "Eventbureau · België", slug: "bermuda", title: "Bermuda Events", body: "Een premium merksite die voorbije producties op schaal in beeld brengt, met een contacttrechter gebouwd om de juiste leads te kwalificeren.", href: "https://bermuda-events.be", img: "/work/bermuda.jpg" },
       { num: "05", cat: "Studiosite · Vorige versie", slug: "ywdesign", title: "YWdesign v1", body: "De vorige studiosite van YWdesign — matglazen panelen op een bewegend verloop, een transparante roadmap stap voor stap en een dienstenraster dat vertrouwen wekt.", href: "https://ywdesign2.netlify.app/", img: "/work/ywdesign.jpg" },
       { num: "06", cat: "Analoge fotografie · België", slug: "analoog", title: "Milo Weiler Analoog", body: "Een rustige, redactionele dienstensite voor fine-art filmfotografie — uitvaarten, portretten en huwelijken op middenformaat, op een tempo dat vertraagt.", href: "https://analoog.miloweiler.com/nl", img: "/work/analoog.jpg" },
+      { num: "07", cat: "Yogaretreats · België", slug: "yoga", title: "Yoga, Zen & Tonic", body: "Een tweetalige retreatsite gerund vanuit één Sanity Studio op maat — inschrijvingen met live plaatsen, bevestigingsmails, een contactboek en nieuwsbrieven, allemaal bewerkt op een gsm.", href: "https://yogazentonic.com", img: "/work/yoga.jpg" },
     ],
   },
 
